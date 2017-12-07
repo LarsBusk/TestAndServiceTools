@@ -11,7 +11,7 @@ namespace MstEmbeddedLogger
 {
   class Program
   {
-    private static Process fssProcess = new Process();
+    private static Process fssProcess;
     static void Main(string[] args)
     {
       while (true)
@@ -26,6 +26,7 @@ namespace MstEmbeddedLogger
 
     static void StartFossServiceScanLogging()
     {
+      fssProcess = new Process();
       ProcessStartInfo info = new ProcessStartInfo();
       info.FileName = "Foss Service Scan.exe";
       info.Arguments = "saveTrace Service4u";
