@@ -47,10 +47,11 @@ namespace MstEmbeddedLogger
 
     static void DeleteOldFiles()
     {
-      var files = Directory.GetFiles("\\AutoTrace");
+      var files = Directory.GetFiles("AutoTrace");
 
       foreach (var file in files)
       {
+        //Console.WriteLine($"{file} was last accessed {new FileInfo(file).LastWriteTime}");
         if (new FileInfo(file).LastWriteTime < DateTime.Now - TimeSpan.FromDays(7))
         {
           File.Delete(file);
