@@ -6,7 +6,7 @@ using System.Threading;
 using OPCClient.OPCTags;
 using OPCClient.Properties;
 
-namespace OPCClient.MeatMasterII
+namespace OPCClient.KepServer
 {
   /// <summary>
   /// Communicate with Opc Server of given type
@@ -61,19 +61,6 @@ namespace OPCClient.MeatMasterII
     {
       OpcHelp.Disconnect();
       OpcHelp = null;
-    }
-
-
-    public static void KepServerSetRegistrationValue2(int value)
-    {
-      KepServerOpcTags.ControllerGroup.PreregistrationValue2.ObjectValue = value;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.PreregistrationValue2);
-    }
-
-    public static void KepServerSetRegistrationValue1(int value)
-    {
-      KepServerOpcTags.ControllerGroup.PreregistrationValue1.ObjectValue = value;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.PreregistrationValue1);
     }
 
     public static void KepServerSetProductCodeN(int productCodeN)

@@ -40,20 +40,16 @@
       this.label7 = new System.Windows.Forms.Label();
       this.tbProductCode = new System.Windows.Forms.TextBox();
       this.lblState = new System.Windows.Forms.Label();
-      this.btnCip = new System.Windows.Forms.Button();
-      this.btnWaterReference = new System.Windows.Forms.Button();
       this.btnCalibration = new System.Windows.Forms.Button();
       this.btnStartStop = new System.Windows.Forms.Button();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
-      this.label6 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
+      this.tbPauseTime = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
-      this.tbCipTime = new System.Windows.Forms.TextBox();
-      this.tbWaterRefTime = new System.Windows.Forms.TextBox();
       this.tbMeasureTime = new System.Windows.Forms.TextBox();
       this.btnStartSimulation = new System.Windows.Forms.Button();
       this.groupBox4 = new System.Windows.Forms.GroupBox();
-      this.lblCip = new System.Windows.Forms.Label();
+      this.lblSimCounter = new System.Windows.Forms.Label();
       this.lblSampleCounter = new System.Windows.Forms.Label();
       this.lblCalibrationSample = new System.Windows.Forms.Label();
       this.lblWatchdog = new System.Windows.Forms.Label();
@@ -146,8 +142,6 @@
       this.groupBox2.Controls.Add(this.label7);
       this.groupBox2.Controls.Add(this.tbProductCode);
       this.groupBox2.Controls.Add(this.lblState);
-      this.groupBox2.Controls.Add(this.btnCip);
-      this.groupBox2.Controls.Add(this.btnWaterReference);
       this.groupBox2.Controls.Add(this.btnCalibration);
       this.groupBox2.Controls.Add(this.btnStartStop);
       this.groupBox2.Location = new System.Drawing.Point(12, 12);
@@ -184,26 +178,6 @@
       this.lblState.TabIndex = 4;
       this.lblState.Text = "State";
       // 
-      // btnCip
-      // 
-      this.btnCip.Location = new System.Drawing.Point(155, 126);
-      this.btnCip.Name = "btnCip";
-      this.btnCip.Size = new System.Drawing.Size(102, 23);
-      this.btnCip.TabIndex = 3;
-      this.btnCip.Text = "CIP";
-      this.btnCip.UseVisualStyleBackColor = true;
-      this.btnCip.Click += new System.EventHandler(this.btnCip_Click);
-      // 
-      // btnWaterReference
-      // 
-      this.btnWaterReference.Location = new System.Drawing.Point(155, 97);
-      this.btnWaterReference.Name = "btnWaterReference";
-      this.btnWaterReference.Size = new System.Drawing.Size(102, 23);
-      this.btnWaterReference.TabIndex = 2;
-      this.btnWaterReference.Text = "Water Reference";
-      this.btnWaterReference.UseVisualStyleBackColor = true;
-      this.btnWaterReference.Click += new System.EventHandler(this.btnWaterReference_Click);
-      // 
       // btnCalibration
       // 
       this.btnCalibration.Location = new System.Drawing.Point(155, 68);
@@ -226,11 +200,9 @@
       // 
       // groupBox3
       // 
-      this.groupBox3.Controls.Add(this.label6);
-      this.groupBox3.Controls.Add(this.label5);
+      this.groupBox3.Controls.Add(this.label3);
+      this.groupBox3.Controls.Add(this.tbPauseTime);
       this.groupBox3.Controls.Add(this.label4);
-      this.groupBox3.Controls.Add(this.tbCipTime);
-      this.groupBox3.Controls.Add(this.tbWaterRefTime);
       this.groupBox3.Controls.Add(this.tbMeasureTime);
       this.groupBox3.Controls.Add(this.btnStartSimulation);
       this.groupBox3.Location = new System.Drawing.Point(321, 12);
@@ -240,23 +212,21 @@
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Simmulate";
       // 
-      // label6
+      // label3
       // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(17, 116);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(46, 13);
-      this.label6.TabIndex = 6;
-      this.label6.Text = "CIP time";
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(17, 71);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(60, 13);
+      this.label3.TabIndex = 6;
+      this.label3.Text = "PauseTime";
       // 
-      // label5
+      // tbPauseTime
       // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(21, 69);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(84, 13);
-      this.label5.TabIndex = 5;
-      this.label5.Text = "Water reference";
+      this.tbPauseTime.Location = new System.Drawing.Point(20, 87);
+      this.tbPauseTime.Name = "tbPauseTime";
+      this.tbPauseTime.Size = new System.Drawing.Size(112, 20);
+      this.tbPauseTime.TabIndex = 5;
       // 
       // label4
       // 
@@ -266,22 +236,6 @@
       this.label4.Size = new System.Drawing.Size(70, 13);
       this.label4.TabIndex = 4;
       this.label4.Text = "Measure time";
-      // 
-      // tbCipTime
-      // 
-      this.tbCipTime.Location = new System.Drawing.Point(20, 132);
-      this.tbCipTime.Name = "tbCipTime";
-      this.tbCipTime.Size = new System.Drawing.Size(112, 20);
-      this.tbCipTime.TabIndex = 3;
-      this.tbCipTime.Text = "5";
-      // 
-      // tbWaterRefTime
-      // 
-      this.tbWaterRefTime.Location = new System.Drawing.Point(20, 85);
-      this.tbWaterRefTime.Name = "tbWaterRefTime";
-      this.tbWaterRefTime.Size = new System.Drawing.Size(112, 20);
-      this.tbWaterRefTime.TabIndex = 2;
-      this.tbWaterRefTime.Text = "15";
       // 
       // tbMeasureTime
       // 
@@ -303,25 +257,25 @@
       // 
       // groupBox4
       // 
-      this.groupBox4.Controls.Add(this.lblCip);
+      this.groupBox4.Controls.Add(this.lblSimCounter);
       this.groupBox4.Controls.Add(this.lblSampleCounter);
       this.groupBox4.Controls.Add(this.lblCalibrationSample);
       this.groupBox4.Controls.Add(this.lblWatchdog);
-      this.groupBox4.Location = new System.Drawing.Point(321, 249);
+      this.groupBox4.Location = new System.Drawing.Point(321, 240);
       this.groupBox4.Name = "groupBox4";
-      this.groupBox4.Size = new System.Drawing.Size(189, 145);
+      this.groupBox4.Size = new System.Drawing.Size(189, 154);
       this.groupBox4.TabIndex = 3;
       this.groupBox4.TabStop = false;
       this.groupBox4.Text = "Status";
       // 
-      // lblCip
+      // lblSimCounter
       // 
-      this.lblCip.AutoSize = true;
-      this.lblCip.Location = new System.Drawing.Point(10, 90);
-      this.lblCip.Name = "lblCip";
-      this.lblCip.Size = new System.Drawing.Size(22, 13);
-      this.lblCip.TabIndex = 3;
-      this.lblCip.Text = "Cip";
+      this.lblSimCounter.AutoSize = true;
+      this.lblSimCounter.Location = new System.Drawing.Point(7, 90);
+      this.lblSimCounter.Name = "lblSimCounter";
+      this.lblSimCounter.Size = new System.Drawing.Size(94, 13);
+      this.lblSimCounter.TabIndex = 3;
+      this.lblSimCounter.Text = "Simulation counter";
       // 
       // lblSampleCounter
       // 
@@ -354,13 +308,14 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(703, 408);
+      this.ClientSize = new System.Drawing.Size(525, 407);
       this.Controls.Add(this.groupBox4);
       this.Controls.Add(this.groupBox3);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.groupBox1);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Name = "MainForm";
-      this.Text = "MilkoStream FT OPC test client";
+      this.Text = "ProFoss OPC test client";
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
       this.groupBox2.ResumeLayout(false);
@@ -385,16 +340,10 @@
     private System.Windows.Forms.Label lblConnected;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.Label lblState;
-    private System.Windows.Forms.Button btnCip;
-    private System.Windows.Forms.Button btnWaterReference;
     private System.Windows.Forms.Button btnCalibration;
     private System.Windows.Forms.Button btnStartStop;
     private System.Windows.Forms.GroupBox groupBox3;
-    private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.TextBox tbCipTime;
-    private System.Windows.Forms.TextBox tbWaterRefTime;
     private System.Windows.Forms.TextBox tbMeasureTime;
     private System.Windows.Forms.Button btnStartSimulation;
     private System.Windows.Forms.Label label7;
@@ -403,7 +352,9 @@
     private System.Windows.Forms.Label lblWatchdog;
     private System.Windows.Forms.Label lblCalibrationSample;
     private System.Windows.Forms.Label lblSampleCounter;
-    private System.Windows.Forms.Label lblCip;
-  }
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbPauseTime;
+        private System.Windows.Forms.Label lblSimCounter;
+    }
 }
 

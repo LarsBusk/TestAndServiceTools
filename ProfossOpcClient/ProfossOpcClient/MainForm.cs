@@ -15,6 +15,7 @@ using System.Windows.Forms.VisualStyles;
 using log4net;
 using OPCClient.KepServer;
 using OPCClient.OPCTags;
+using ProfossOpcClient;
 using Timer = System.Timers.Timer;
 
 namespace MstOpcClient
@@ -40,8 +41,6 @@ namespace MstOpcClient
     private bool connected;
 
     private int state;
-
-    private bool isInCip;
 
     private int sampleCounter;
 
@@ -75,18 +74,7 @@ namespace MstOpcClient
       {
         state = value;
         UpdateButtonStates();
-        SetLabel(lblState, Enum.GetName(typeof(MatildeStateTypes), state));
-      }
-    }
-
-    private bool IsInCip
-    {
-      get { return isInCip; }
-      set
-      {
-        isInCip = value;
-        HandleCip();
-        SetLabel(lblCip, $"Cip: {value}");
+        SetLabel(lblState, Enum.GetName(typeof(ProFossStateTypes), state));
       }
     }
 
@@ -156,9 +144,8 @@ namespace MstOpcClient
       cbOpcServer.Items.Add(new KepServerItems("KepServer V5", "Kepware.KEPServerEX.V5"));
 
       cbOpcServer.SelectedItem = cbOpcServer.Items[0];
-      tbGroupName.Text = "Matilde.Pdx";
+      tbGroupName.Text = "ProFoss.Pdx";
 
-      IsInCip = false;
       Connected = false;
       isSimulating = false;
     }
@@ -171,9 +158,6 @@ namespace MstOpcClient
 
       if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
         State = opcTags.InstrumentGroup.ModeN.Value;
-
-      if (!IsInCip.Equals(opcTags.ControllerGroup.CIP.Value))
-        IsInCip = opcTags.ControllerGroup.CIP.Value;
 
       if (!SampleCounter.Equals(opcTags.InstrumentGroup.SampleCounter.Value))
         SampleCounter = opcTags.InstrumentGroup.SampleCounter.Value;
@@ -217,53 +201,28 @@ namespace MstOpcClient
     {
       switch (State)
       {
-        case 5:
+        case 2:
           UpdateButton(btnStartStop, true, "Start measuring");
-          UpdateButton(btnWaterReference, true, "Start WaterRef");
           UpdateButton(btnCalibration, false);
-          UpdateButton(btnCip, true, "Start CIP");
           UpdateButton(btnStartSimulation, true);
           tbProductCode.Enabled = Connected;
           break;
-        case 6:
+        case 3:
           UpdateButton(btnStartStop, true, "Stop measuring");
-          UpdateButton(btnWaterReference, false, "Start WaterRef");
           UpdateButton(btnCalibration, true);
-          UpdateButton(btnCip, false);
           UpdateButton(btnStartSimulation, true);
           tbProductCode.Enabled = Connected;
           break;
-        case 21:
-          UpdateButton(btnWaterReference, true, "Stop WaterRef");
+        case 9:
           UpdateButton(btnStartStop, false, "Start measuring");
-          UpdateButton(btnCip, false);
           UpdateButton(btnCalibration, false);
           UpdateButton(btnStartSimulation, true);
           break;
         default:
           UpdateButton(btnStartStop, false, "Start measuring");
           UpdateButton(btnCalibration, false);
-          UpdateButton(btnWaterReference, false, "Start WaterRef");
           UpdateButton(btnStartSimulation, false, "Start");
-          UpdateButton(btnCip, false);
           break;
-      }
-    }
-
-    private void HandleCip()
-    {
-      State = Connected ? 5 : 0;
-
-      if (IsInCip)
-      {
-        KepServerCommunicator.KepServerStartMeasuring(false);
-        UpdateButton(btnCip, true, "Stop CIP");
-        UpdateButton(btnStartStop, false);
-        UpdateButton(btnWaterReference, false);
-      }
-      else
-      {
-        UpdateButton(btnCip, true, "Start CIP");
       }
     }
 
@@ -296,18 +255,13 @@ namespace MstOpcClient
 
     private void btnStartStop_Click(object sender, EventArgs e)
     {
-      int productCode;
-
-      if (int.TryParse(tbProductCode.Text, out productCode))
+      if (state.Equals(2))
       {
-        if (state.Equals(5))
-        {
-          KepServerCommunicator.KepServerStartMeasuring(true);
-        }
-        else if (state.Equals(6))
-        {
-          KepServerCommunicator.KepServerStartMeasuring(false);
-        }
+        StartMeasuring();
+      }
+      else if (state.Equals(3))
+      {
+        KepServerCommunicator.KepServerStartMeasuring(false);
       }
     }
 
@@ -328,41 +282,13 @@ namespace MstOpcClient
       KepServerCommunicator.SetCalibrationSample(false);
     }
 
-    private void btnWaterReference_Click(object sender, EventArgs e)
-    {
-      if (State.Equals(5))
-      {
-        KepServerCommunicator.SetWaterRef(true);
-      }
-      else if (State.Equals(21))
-      {
-        KepServerCommunicator.SetWaterRef(false);
-      }
-    }
-
-    private void btnCip_Click(object sender, EventArgs e)
-    {
-      if (IsInCip)
-      {
-        KepServerCommunicator.SetCip(false);
-      }
-      else
-      {
-        KepServerCommunicator.SetCip(true);
-      }
-    }
-
     private void btnStartSimulation_Click(object sender, EventArgs e)
     {
-      isSimulating = !isSimulating;
-
       if (isSimulating)
       {
         simulationTimer.Stop();
         btnStartSimulation.Text = "Start";
         KepServerCommunicator.KepServerStartMeasuring(false);
-        KepServerCommunicator.SetCip(false);
-        KepServerCommunicator.SetWaterRef(false);
       }
       else
       {
@@ -371,42 +297,47 @@ namespace MstOpcClient
         simTimerCounter = 0;
       }
 
+      isSimulating = !isSimulating;
     }
 
     private void SimulationTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
       int sampleTime = int.Parse(tbMeasureTime.Text);
-      int waterRefTime = int.Parse(tbWaterRefTime.Text);
-      int cipTime = int.Parse(tbCipTime.Text);
+      int pauseTime = int.Parse(tbPauseTime.Text);
+      lblSimCounter.Text = $"Simulation counter: {simTimerCounter}";
 
-      if (simTimerCounter<sampleTime)
+      if (simTimerCounter < sampleTime)
       {
-        if (state == 5)
+        if (state == 2)
         {
-          KepServerCommunicator.KepServerStartMeasuring(true);
+          StartMeasuring();
         }
       }
-      else if (simTimerCounter > sampleTime & simTimerCounter < sampleTime + cipTime)
+      else if (simTimerCounter > sampleTime & simTimerCounter < sampleTime + pauseTime)
       {
-        if (state == 6)
+        if (state == 3)
         {
           KepServerCommunicator.KepServerStartMeasuring(false);
           Thread.Sleep(TimeSpan.FromSeconds(20));
-          KepServerCommunicator.SetCip(true);
         }
-      }
-      else if (simTimerCounter > sampleTime + cipTime & simTimerCounter < sampleTime + cipTime + waterRefTime)
-      {
-        KepServerCommunicator.SetCip(false);
-        KepServerCommunicator.SetWaterRef(true);
       }
 
       simTimerCounter++;
 
-      if (simTimerCounter > sampleTime + cipTime + waterRefTime)
+      if (simTimerCounter > sampleTime + pauseTime)
       {
         simTimerCounter = 0;
-        KepServerCommunicator.SetWaterRef(false);
+      }
+    }
+
+    private void StartMeasuring()
+    {
+      int productCode;
+
+      if (int.TryParse(tbProductCode.Text, out productCode))
+      {
+        KepServerCommunicator.KepServerSetProductCodeN(productCode);
+        KepServerCommunicator.KepServerStartMeasuring(true);
       }
     }
   }

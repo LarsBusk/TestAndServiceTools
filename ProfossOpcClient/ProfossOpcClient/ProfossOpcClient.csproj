@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{092A7F04-646E-432A-B56E-4C34B302DBDA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MstOpcClient</RootNamespace>
-    <AssemblyName>MstOpcClient</AssemblyName>
+    <RootNamespace>ProfossOpcClient</RootNamespace>
+    <AssemblyName>ProfossOpcClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -56,7 +56,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KepServerItems.cs" />
-    <Compile Include="MatildeStateType.cs" />
+    <Compile Include="ProFossStateTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

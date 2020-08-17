@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="OPCClient.MeatMasterII.MeatMasterOPCCommunicatior">
+    <Position X="0.75" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAABAAAAAggAAAAAAEAAAAA=</HashCode>
+      <FileName>MeatMasterII\MeatMasterOPCCommunicatior.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="opcServerType" />
+      <Field Name="MeatMasterIIOPCTags" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OPCClient.OPCTags.MeatMasterIIOPCTags">
+    <Position X="7.25" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAAFAAAACCAIAIgAAgAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>OPCTags\MeatMasterIIOPCTags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OPCClient.OPCTags.KepServerMeatMasterIIOPCTags">
+    <Position X="5.75" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OPCTags\KepServerMeatMasterIIOPCTags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OPCClient.OPCTags.LinkMasterMeatMasterIIOPCTags">
+    <Position X="9" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OPCTags\LinkMasterMeatMasterIIOPCTags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="OPCClient.MeatMasterII.OPCServerType">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>MeatMasterII\MeatMasterOPCCommunicatior.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
