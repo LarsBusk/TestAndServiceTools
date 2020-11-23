@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpcLabs.OpcComplexEventProcessing</name>
+    </assembly>
+    <members>
+        <member name="T:OpcLabs.BaseLib.AssemblyNames">
+            <exclude/>  
+        </member>
+        <member name="T:OpcLabs.BaseLib.PublicKeyTokens">
+            <exclude/>  
+        </member>
+        <member name="T:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload">
+            <summary>
+            An event payload for OPC Alarms&amp;Events notifications.
+            </summary>
+            <remarks>
+            This class does not hold any (event) attribute values. Create a derived class if attribute values are required.
+            </remarks>
+            <example>
+            <code 
+                source="..\..\Net\Examples\CSharp\VS2017\Console\SimpleAEStreamInsightApplication\Program.cs" 
+                lang="C#"
+                region="Example"/>
+            <!--code  // IMPROVE: have this example in VB
+                source="..\..\Net\Examples\VBNET\VS2017\Console\SimpleAEStreamInsightApplication\Program.vb" 
+                lang="VB.NET" title="Visual Basic (VB.NET)"
+                region="Example"/ -->
+            </example>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.#ctor(OpcLabs.EasyOpc.AlarmsAndEvents.AEEventData)">
+            <summary>
+            Initializes a new event payload from an OPC Alarms&amp;Events event object.
+            </summary>
+            <param name="eventData">Event data.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.#ctor(OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload)">
+            <summary>Initializes a new copy of the <see cref="T:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload"/> object.</summary>
+            <param name="eventDataPayload">Event payload object to be copied from.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.#ctor(System.String,System.DateTime,System.String,System.Int64,System.Int64,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.DateTime,System.Int64,System.String)">
+            <summary>
+            Initializes a new event payload from values of its fields.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.op_Implicit(OpcLabs.EasyOpc.AlarmsAndEvents.AEEventData)~OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload">
+            <summary>
+            Converts an for OPC Alarms&amp;Events event object to an event payload.
+            </summary>
+            <param name="eventData">Event data.</param>
+            <returns>Returns an event payload containing the data from the event object.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.FromAEEvent(OpcLabs.EasyOpc.AlarmsAndEvents.AEEventData)">
+            <summary>
+            Converts an for OPC Alarms&amp;Events event object to an event payload.
+            </summary>
+            <param name="eventData">Event data.</param>
+            <returns>Returns an event payload containing the data from the event object.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.QualifiedSourceName">
+            <summary>The source of event notification.</summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Time">
+            <summary>Time of the event occurrence - for conditions, time that the condition transitioned into the new state or 
+            sub-condition.</summary>
+            <remarks>
+            <para>For example, if the event notification is for acknowledgment of a condition, this would be the time that the 
+            condition became acknowledged.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Message">
+            <summary>Event notification message describing the event.</summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.EventType">
+            <summary>Simple, Condition-Related, or Tracking event.</summary>
+            <remarks>
+            <para>Internal value of one of <see cref="T:OpcLabs.EasyOpc.AlarmsAndEvents.AEEventType"/> constants.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.CategoryId">
+            <summary>Event category ID.</summary>
+            <remarks>
+            <para>Standard and Vendor-specific event category codes.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Severity">
+            <summary>Event severity (1..1000).</summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.ConditionName">
+            <summary>The name of the condition related to this event notification.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.SubconditionName">
+            <summary>The name of the current sub-condition, for multi-state conditions. For a single-state condition, this contains 
+            the condition name.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Enabled">
+            <summary>New state of the condition: The condition is enabled.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Active">
+            <summary>New state of the condition: The condition is active.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Acknowledged">
+            <summary>New state of the condition: The condition is acknowledged.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Quality">
+            <summary>Quality associated with the condition.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            <para>Values are as defined for the OPC Quality Flags in the OPC Data Access Server specification.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.AcknowledgeRequired">
+            <summary>This flag indicates that the related condition requires acknowledgment of this event.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            <para>The determination of those events which require acknowledgment is server specific. For example, transition into 
+            a LimitAlarm condition would likely require an acknowledgment, while the event notification of the resulting 
+            acknowledgment would likely not require an acknowledgment.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.ActiveTime">
+            <summary>Time that the condition became active (for single-state conditions), or the time of the transition into the 
+            current sub-condition (for multi-state conditions).</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            <para>This time is used by the client when acknowledging the condition.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.Cookie">
+            <summary>Server defined cookie associated with the event notification.</summary>
+            <remarks>
+            <para><b>This property is used only for Condition-Related Events (see EventType).</b> </para>
+            <para>The cookie is used by the client when acknowledging the condition. This value is opaque to the client.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.ActorId">
+            <summary>Actor ID.</summary>
+            <remarks>
+            <para><b>This property is used only for Tracking Events and for Condition-Related Events which are acknowledgment 
+            notifications (see EventType).</b> </para>
+            <para>For tracking events, this is the actor ID for the event notification.</para>
+            <para>For condition-related events, this is the AcknowledgerID when the new state is acknowledged. If the 
+            AcknowledgerID is an empty string, the event was automatically acknowledged by the server.</para>
+            <para>For other events, the value is an empty string.</para>
+            </remarks>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload">
+            <summary>
+            A payload for OPC Alarms&amp;Events notifications.
+            </summary>
+        </member>
+        <member name="F:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.DefaultEventSeverity">
+            <summary>
+            Event severity used when the event arguments contain no event, and the default event payload is not specified.
+            </summary>
+            <remarks>
+            The OPC-A&amp;E severities are from 0(1) to 1000. The value 9999 is chosen to be higher than the severity of any 
+            OPC-A&amp;E event, yet still in a 4-digit range.</remarks>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.#ctor(OpcLabs.EasyOpc.AlarmsAndEvents.OperationModel.EasyAENotificationEventArgs)">
+            <summary>
+            Initializes a new event payload from event arguments for OPC Alarms&amp;Events notifications.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <remarks>
+            When the event arguments contain no event, a default event payload is set to the <see cref="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.EventDataPayload"/> property,
+            with severity equal to <see cref="F:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.DefaultEventSeverity"/>, and an error message from the event arguments.
+            </remarks>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.#ctor(OpcLabs.EasyOpc.AlarmsAndEvents.OperationModel.EasyAENotificationEventArgs,OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload)">
+            <summary>
+            Initializes a new event payload from event arguments for OPC Alarms&amp;Events notifications.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <param name="defaultEventDataPayload">Event payload to be used when the event arguments contain no event.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.#ctor(System.String,System.String,System.Boolean,System.Boolean,OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AEEventDataPayload)">
+            <summary>
+            Initializes a new event payload from values of its fields.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.op_Implicit(OpcLabs.EasyOpc.AlarmsAndEvents.OperationModel.EasyAENotificationEventArgs)~OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload">
+            <summary>
+            Converts event arguments for OPC Alarms&amp;Events notification to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.FromEasyAENotificationEventArgs(OpcLabs.EasyOpc.AlarmsAndEvents.OperationModel.EasyAENotificationEventArgs)">
+            <summary>
+            Converts event arguments for OPC Alarms&amp;Events notification to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.Server">
+            <summary>
+            A string specifying the OPC-A&amp;E server.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.ErrorId">
+            <summary>
+            Gets the error ID of the error.
+            </summary>
+            <value>The error ID of the error.</value>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.Refresh">
+            <summary>Denotes whether this notification was triggered by subscription refresh.</summary>
+            <remarks>
+            <para>When Refresh is True, the value of True in RefreshComplete tells that the refresh has completed.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.RefreshComplete">
+            <summary>When True, this notification denotes that the subscription refresh is complete.</summary>
+            <remarks>
+            <para>RefreshComplete can only be True when Refresh is also True.</para>
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.EventDataPayload">
+            <summary>
+            The event payload.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.AENotificationPayload.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.AlarmsAndEvents.ComplexEventProcessing.NamespaceDoc">
+            <summary>
+            This namespace contains classes used to develop StreamInsight applications with OPC Alarms&amp;Events 
+            (OPC-A&amp;E).
+            </summary>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1">
+            <summary>
+            An event payload for OPC-DA data value, timestamp and quality.
+            </summary>
+            <typeparam name="TValue">The type of OPC values in this payload class.</typeparam>
+            <example>
+            <code 
+                source="..\..\Net\Examples\CSharp\VS2017\Console\SimpleDAStreamInsightApplication\Program.cs" 
+                lang="C#"
+                region="Example"/>
+            <!--code  // IMPROVE: have this example in VB
+                source="..\..\Net\Examples\VBNET\VS2017\Console\SimpleDAStreamInsightApplication\Program.vb" 
+                lang="VB.NET" title="Visual Basic (VB.NET)"
+                region="Example"/ -->
+            </example>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.#ctor(OpcLabs.EasyOpc.DataAccess.Generic.DAVtq{`0})">
+            <summary>
+            Initializes a new event payload from OPC-DA VTQ (data value, timestamp and quality).
+            </summary>
+            <param name="vtq">Data value, timestamp and quality.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.#ctor(System.DateTime,System.Int32,`0)">
+            <summary>
+            Initializes a new event payload from values of its fields.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.op_Implicit(OpcLabs.EasyOpc.DataAccess.Generic.DAVtq{`0})~OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload{`0}">
+            <summary>
+            Converts OPC-DA data value, timestamp and quality to an event payload.
+            </summary>
+            <param name="vtq">Data value, timestamp and quality.</param>
+            <returns>Returns an event payload containing the OPC-DA data value, timestamp and quality.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.FromDAVtq(OpcLabs.EasyOpc.DataAccess.Generic.DAVtq{`0})">
+            <summary>
+            Converts OPC-DA data value, timestamp and quality to an event payload.
+            </summary>
+            <param name="vtq">Data value, timestamp and quality.</param>
+            <returns>Returns an event payload containing the OPC-DA data value, timestamp and quality.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.Timestamp">
+            <summary>
+            The timestamp associated with the value.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.Quality">
+            <summary>
+            The quality associated with the value.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.Value">
+            <summary>
+            The value of item data.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1">
+            <summary>
+            An event payload for significant change in a subscribed OPC-DA item.
+            </summary>
+            <typeparam name="TValue">The type of OPC values in this payload class.</typeparam>
+            <example>
+            <code 
+                source="..\..\Net\Examples\CSharp\VS2017\Console\SimpleDAStreamInsightApplication\Program.cs" 
+                lang="C#"
+                region="Example"/>
+            <!--code  // IMPROVE: have this example in VB
+                source="..\..\Net\Examples\VBNET\VS2017\Console\SimpleDAStreamInsightApplication\Program.vb" 
+                lang="VB.NET" title="Visual Basic (VB.NET)"
+                region="Example"/ -->
+            </example>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.#ctor(OpcLabs.EasyOpc.DataAccess.Generic.EasyDAItemChangedEventArgs{`0})">
+            <summary>
+            Initializes a new event payload from event arguments for significant change in a subscribed OPC-DA item.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.#ctor(OpcLabs.EasyOpc.DataAccess.Generic.EasyDAItemChangedEventArgs{`0},OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload{`0})">
+            <summary>
+            Initializes a new event payload from event arguments for significant change in a subscribed OPC-DA item.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <param name="defaultVtqPayload">VTQ payload to be used when the event arguments contain no VTQ.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.#ctor(System.String,System.String,System.String,OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAVtqPayload{`0})">
+            <summary>
+            Initializes a new event payload from values of its fields.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.op_Implicit(OpcLabs.EasyOpc.DataAccess.Generic.EasyDAItemChangedEventArgs{`0})~OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload{`0}">
+            <summary>
+            Converts event arguments for significant change in a subscribed OPC-DA item to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.FromEasyDAItemChangedEventArgs(OpcLabs.EasyOpc.DataAccess.Generic.EasyDAItemChangedEventArgs{`0})">
+            <summary>
+            Converts event arguments for significant change in a subscribed OPC-DA item to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.Server">
+            <summary>
+            A string specifying the OPC-DA server.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.Item">
+            <summary>
+            A string specifying the OPC-DA item.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.ErrorId">
+            <summary>
+            Gets the error ID of the error.
+            </summary>
+            <value>The error ID of the error.</value>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.VtqPayload">
+            <summary>
+            An event payload for OPC-DA data value, timestamp and quality.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.DAItemChangedPayload`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.DataAccess.ComplexEventProcessing.NamespaceDoc">
+            <summary>
+            This namespace contains extension classes used to develop StreamInsight applications with OPC Data Access (OPC-DA).
+            </summary>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.UA.ComplexEventProcessing.NamespaceDoc">
+            <summary>
+            This namespace contains classes used to develop StreamInsight applications with OPC Unified Architecture
+            (OPC-UA).
+            </summary>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1">
+            <summary>
+            An event payload with an OPC-UA attribute value, together with status code and timestamps.
+            </summary>
+            <typeparam name="TValue">The type of OPC values in this payload class.</typeparam>
+            <example>
+            <code 
+                source="..\..\Net\Examples\CSharp\VS2017\Console\SimpleUAStreamInsightApplication\Program.cs" 
+                lang="C#"
+                region="Example"/>
+            <!--code  // IMPROVE: have this example in VB
+                source="..\..\Net\Examples\VBNET\VS2017\Console\SimpleUAStreamInsightApplication\Program.vb" 
+                lang="VB.NET" title="Visual Basic (VB.NET)"
+                region="Example"/ -->
+            </example>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.#ctor(OpcLabs.EasyOpc.UA.Generic.UAAttributeData{`0})">
+            <summary>
+            Initializes a new event payload from an OPC-UA attribute data (value, together with status code and timestamps).
+            </summary>
+            <param name="attributeData">OPC-UA attribute value, together with status code and timestamps.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.#ctor(System.Int64,System.DateTime,System.DateTime,`0)">
+            <summary>
+            Initializes a new event payload from values of its fields.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.op_Implicit(OpcLabs.EasyOpc.UA.Generic.UAAttributeData{`0})~OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload{`0}">
+            <summary>
+            Converts an OPC-UA attribute value, together with status code and timestamps, to an event payload.
+            </summary>
+            <param name="attributeData">OPC-UA attribute value, together with status code and timestamps.</param>
+            <returns>Returns an event payload containing the data given.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.FromUAAttributeData(OpcLabs.EasyOpc.UA.Generic.UAAttributeData{`0})">
+            <summary>
+            Converts an OPC-UA attribute value, together with status code and timestamps, to an event payload.
+            </summary>
+            <param name="attributeData">OPC-UA attribute value, together with status code and timestamps.</param>
+            <returns>Returns an event payload containing the data given.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.ServerTimestamp">
+            <summary>
+            The server timestamp associated with the value.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.SourceTimestamp">
+            <summary>
+            The source timestamp associated with the value.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.Status">
+            <summary>
+            The status code associated with the value.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.Value">
+            <summary>
+            The value of attribute data.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1">
+            <summary>
+            An event payload for significant data change in a subscribed OPC-UA monitored item.
+            </summary>
+            <typeparam name="TValue">The type of OPC values in this payload class.</typeparam>
+            <example>
+            <code 
+                source="..\..\Net\Examples\CSharp\VS2017\Console\SimpleUAStreamInsightApplication\Program.cs" 
+                lang="C#"
+                region="Example"/>
+            <!--code  // IMPROVE: have this example in VB
+                source="..\..\Net\Examples\VBNET\VS2017\Console\SimpleUAStreamInsightApplication\Program.vb" 
+                lang="VB.NET" title="Visual Basic (VB.NET)"
+                region="Example"/ -->
+            </example>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.#ctor">
+            <summary>Initializes a new instance, an empty event payload.</summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.#ctor(OpcLabs.EasyOpc.UA.Generic.EasyUADataChangeNotificationEventArgs{`0})">
+            <summary>
+            Initializes a new event payload from event arguments for significant change in a subscribed OPC-UA 
+            monitored item.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.#ctor(OpcLabs.EasyOpc.UA.Generic.EasyUADataChangeNotificationEventArgs{`0},OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload{`0})">
+            <summary>
+            Initializes a new event payload from event arguments for significant change in a subscribed OPC-UA 
+            monitored item.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <param name="defaultAttributeDataPayload">Attribute data payload to be used when the event arguments contain 
+            no event data.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.#ctor(System.String,System.String,System.String,OpcLabs.EasyOpc.UA.ComplexEventProcessing.UAAttributeDataPayload{`0})">
+            <summary>
+            Initializes a new event payload from individual data members.
+            </summary>
+            <param name="endpoint">A string specifying the OPC-UA server endpoint.</param>
+            <param name="attribute">A string specifying the OPC-UA node, its attribute and index range list.</param>
+            <param name="errorId">The error ID of the error.</param>
+            <param name="attributeDataPayload">An event payload with an OPC-UA attribute value, together with status code and timestamps.</param>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.op_Implicit(OpcLabs.EasyOpc.UA.Generic.EasyUADataChangeNotificationEventArgs{`0})~OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload{`0}">
+            <summary>
+            Converts event arguments for significant change in a subscribed OPC-UA monitored item to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.FromEasyUADataChangeNotificationEventArgs(OpcLabs.EasyOpc.UA.Generic.EasyUADataChangeNotificationEventArgs{`0})">
+            <summary>
+            Converts event arguments for significant change in a subscribed OPC-UA monitored item to an event payload.
+            </summary>
+            <param name="eventArgs">Event data.</param>
+            <returns>Returns an event payload containing the data from the event arguments.</returns>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.Endpoint">
+            <summary>
+            A string specifying the OPC-UA server endpoint.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.Attribute">
+            <summary>
+            A string specifying the OPC-UA node, its attribute and index range list.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.ErrorId">
+            <summary>
+            Gets the error ID of the error.
+            </summary>
+            <value>The error ID of the error.</value>
+        </member>
+        <member name="P:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.AttributeDataPayload">
+            <summary>
+            An event payload with an OPC-UA attribute value, together with status code and timestamps.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.EasyOpc.UA.ComplexEventProcessing.UADataChangeNotificationPayload`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+    </members>
+</doc>

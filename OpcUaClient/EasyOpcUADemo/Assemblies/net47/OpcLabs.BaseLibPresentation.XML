@@ -1,0 +1,1321 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpcLabs.BaseLibPresentation</name>
+    </assembly>
+    <members>
+        <member name="T:OpcLabs.BaseLib.AssemblyNames">
+            <exclude/>  
+        </member>
+        <member name="T:OpcLabs.BaseLib.PublicKeyTokens">
+            <exclude/>  
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider">
+            <summary>
+            Redirects Error extended property to standard error handling in WPF.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider.CanExtend(System.Object)">
+            <inheritdoc cref="M:System.ComponentModel.IExtenderProvider.CanExtend(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider.SetError(System.Object,System.String)">
+            <summary>
+            Sets the error description string for the specified element.
+            </summary>
+            <param name="component">The component on which the extender property resides.</param>
+            <param name="value">The error description string for the specified element.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider.GetError(System.Object)">
+            <summary>
+            Gets the current error description string for the specified element.
+            </summary>
+            <param name="component">The component on which the extender property resides.</param>
+            <returns>The current error description string for the specified element..</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider.ShouldSerializeError(System.ComponentModel.IComponent)">
+            <summary>
+            Determines whether the Error property for the given component is equal to its default value.
+            </summary>
+            <param name="component">The component on which the extender property resides.</param>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ErrorProvider.ResetError(System.ComponentModel.IComponent)">
+            <summary>
+            Reset the Error property for the given component to its default value.
+            </summary>
+            <param name="component">The component on which the extender property resides.</param>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamespaceDoc">
+            <summary>
+            This namespace provides internal classes that allow the use of Windows Forms components and controls in Windows Presentation Foundation. 
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Resource1">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Resource1.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Resource1.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Resource1.ExtensionsProvider_RootNotFoundText">
+            <summary>
+              Looks up a localized string similar to Root not found..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Resource1.WpfAutoExtensibleComponentReferenceConverter_CannotResolveNameTextFormat">
+            <summary>
+              Looks up a localized string similar to Cannot resolve name &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceTypes.AddReferenceType(System.Type,System.Type,System.Boolean)">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute">
+            <summary>
+            Extends ToolboxItemAttribute about ToolboxItemTypeForWpf property.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute"/> and specifies the name of the type.
+            </summary>
+            <param name="toolboxItemTypeName"> </param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute.ToolboxItemTypeForWpf">
+            <summary>
+            Gets the type of the toolbox item for WPF.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute.ToolboxItemTypeNameForWpf">
+            <summary>
+            Gets the name of the type of the current <see cref="T:System.Drawing.Design.ToolboxItem"/> for WPF.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfToolboxItemAttribute.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IValueSource">
+            <summary>
+            Provides value source.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IValueSource.Value">
+            <summary>
+            Specifies value.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.#ctor(System.ComponentModel.IComponent,System.String)">
+            exclude
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.Component">
+            <inheritdoc cref="P:System.ComponentModel.ISite.Component"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.Container">
+            <inheritdoc cref="P:System.ComponentModel.ISite.Container"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.DesignMode">
+            <inheritdoc cref="P:System.ComponentModel.ISite.DesignMode"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.Name">
+            <inheritdoc cref="P:System.ComponentModel.ISite.Name"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedSite.GetService(System.Type)">
+            <inheritdoc cref="M:System.IServiceProvider.GetService(System.Type)"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference">
+            <summary>
+            Determines common interface for named reference.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference.GetReferenceName">
+            <summary>
+            Gets name of reference.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference.GetCurrentReference">
+            <summary>
+            Gets referenced object.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference">
+            <summary>
+            Represents reference to named object.
+            </summary>
+            <remarks>
+            References object may have IObjectProxy, IObjectTypeProxy, INotifyPropertyChanged interfaces - then 
+            Two <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/> is same if its names is equals (referenced objects may be no equals). 
+            </remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.#ctor(System.String)">
+            <summary>
+            Creates a instance with specified name.
+            </summary>
+            <remarks>Reference is resolved during getting <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ProxiedObject"/> or <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ProxiedObjectType"/>. Reference can be resolved after set new site with <see cref="P:System.ComponentModel.Container.Components"/>.</remarks>
+            <param name="name">The name of referenced object.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.#ctor(System.String,System.Object)">
+            <summary>
+            Creates a instance with specified name and reference.
+            </summary>
+            <param name="name"> </param>
+            <param name="reference"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference)">
+            <summary>
+            Creates a instance by another <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/>.
+            </summary>
+            <param name="namedReference"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference)">
+            <summary>
+            Creates a instance by another <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/>.
+            </summary>
+            <param name="namedReference"> </param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Name">
+            <summary>
+            Specifies name of reference.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Converter">
+            <summary>
+            Determines converter that is using for resolving name to reference.
+            </summary>
+            <remarks><see cref="T:System.ComponentModel.ReferenceConverter"/> and <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Site"/> is using by default.</remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.op_Equality(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference)">
+            <summary>Determines whether the two objects are equal.</summary>
+            <param name="left">First object to be compared.</param>
+            <param name="right">Second object to be compared.</param>
+            <returns><c>True</c> if the objects are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.op_Inequality(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference)">
+            <summary>Determines whether the two objects are not equal.</summary>
+            <param name="left">First object to be compared.</param>
+            <param name="right">Second object to be compared.</param>
+            <returns><c>True</c> if the objects are not equal; <c>false</c> if they are equal.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ForComponent(System.ComponentModel.IComponent)">
+            <summary>
+            Create <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/> for specified component.
+            </summary>
+            <param name="component"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Site">
+            <inheritdoc cref="P:System.ComponentModel.IComponent.Site"/>
+        </member>
+        <member name="E:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Disposed">
+            <inheritdoc cref="E:System.ComponentModel.IComponent.Disposed"/>
+        </member>
+        <member name="E:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.PropertyChanged">
+            <inheritdoc cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.PropertyChanged"/> event for a given property.
+            </summary>
+            <param name="propertyName">The name of the property that changed.</param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ProxiedObject">
+            <inheritdoc cref="P:OpcLabs.BaseLib.ComponentModel.Internal.IObjectProxy.ProxiedObject"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.ProxiedObjectType">
+            <inheritdoc cref="P:OpcLabs.BaseLib.ComponentModel.Internal.IObjectTypeProxy.ProxiedObjectType"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Equals(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference)">
+            <summary>
+            Determines whether the current object is the same as other object.
+            </summary>
+            <param name="other">Object to be compared.</param>
+            <returns>True if the objects are the same, otherwise false.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.DeepClone">
+            <summary>
+            Creates a new object that is a deep copy of the current instance.
+            </summary>
+            <returns>A new object that is a deep copy of this instance.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.GetReferenceName">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference.GetReferenceName"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference.GetCurrentReference">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReference.GetCurrentReference"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext">
+            <summary>
+            Provides contextual information about component.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.#ctor(System.ComponentModel.ISite)">
+            exclude
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.Container">
+            <inheritdoc cref="P:System.ComponentModel.ITypeDescriptorContext.Container"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.Instance">
+            <inheritdoc cref="P:System.ComponentModel.ITypeDescriptorContext.Instance"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.PropertyDescriptor">
+            <inheritdoc cref="P:System.ComponentModel.ITypeDescriptorContext.PropertyDescriptor"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.GetService(System.Type)">
+            <inheritdoc cref="M:System.IServiceProvider.GetService(System.Type)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.OnComponentChanged">
+            <inheritdoc cref="M:System.ComponentModel.ITypeDescriptorContext.OnComponentChanged"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.SiteTypeDescriptorContext.OnComponentChanging">
+            <inheritdoc cref="M:System.ComponentModel.ITypeDescriptorContext.OnComponentChanging"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.VSxxxxDesignUtilities">
+            <exclude/>  
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.VSxxxxDesignUtilities.GetTrueRuntimeType(System.Object)">
+            <summary>
+            Returns type of object. If object type is any WPF designer type (WindowsInstance, ...) converts it to true runtime type.
+            </summary>
+            <param name="anyObject"> </param>
+            <returns> </returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NamespaceDoc">
+            <summary>
+            This namespace contains internal utilities for presentation component model.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.WpfSiteUtilities">
+            <exclude/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.PresentationComponentModelUtilities">
+            <summary>
+            Utilities for presentation.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.PresentationComponentModelUtilities.GetObjectName(System.Object)">
+            <summary>
+            Returns name of object. Recognizes named reference or components.
+            </summary>
+            <param name="obj"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.PresentationComponentModelUtilities.GetObjectString(System.Object)">
+            <summary>
+            Returns name of object. Recognizes named reference, components or use type converter or ToString method.
+            </summary>
+            <param name="obj"> </param>
+            <returns> </returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindElementResult">
+            <summary>
+            Determines result 
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.IsReadingXamlInRuntime(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Retrieves whether context is from xaml reader in runtime (then returns presentation context provider else returns null).
+            </summary>
+            <param name="context"> </param>
+            <returns> </returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindElement(System.String,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindObject(System.String,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider,System.Boolean)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindObject(System.String,System.Windows.DependencyObject)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindElement(System.String,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider,System.Windows.FrameworkElement@)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.GetNamedReferences(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            <summary>
+            Returns named references for all scoped objects from contextProvider.
+            </summary>
+            <param name="contextProvider"> </param>
+            <returns> </returns>
+            <remarks>All references is resolved.</remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.GetNamedComponents(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            <summary>
+            Returns named references for all scoped objects from contextProvider.
+            </summary>
+            <param name="contextProvider"> </param>
+            <returns> </returns>
+            <remarks>All references is resolved.</remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.RegisterName(System.String,System.Object,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            <summary>
+            Registers the provided name into the current XAML namescope.
+            </summary>
+            <param name="name"> </param>
+            <param name="scopedElement"> </param>
+            <param name="contextProvider"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.UnregisterName(System.String,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            <summary>
+            Unregisters the provided name from the current XAML namescope.
+            </summary>
+            <param name="name"> </param>
+            <param name="contextProvider"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.Utilities.NameScopeHelper.FindScope(System.Windows.DependencyObject,System.Windows.DependencyObject@)">
+            <summary>
+            Finds the nearest NameScope by walking up the logical tree.
+            </summary>
+            <param name="dependencyObject"> </param>
+            <param name="scopeOwner"> </param>
+            <returns> </returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IElementExtension">
+            <summary>
+            Provides element extension interface.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IElementExtension.SetOwner(System.ComponentModel.IComponent,System.ComponentModel.ComponentCollection)">
+            <summary>
+            Sets component or named reference of element that owned this element extension.
+            </summary>
+            <param name="component">The component or named reference of element that owned this element extension.</param>
+            <param name="components">The collection of all components and elements in XAML.</param>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter">
+            <summary>
+            Provides named reference type converter for specified target type. Provides extension of AutoExtensibleComponentReferenceConverter{T} type converter for Presentation design time. 
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance with specified target type.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.#ctor(System.Type,System.Boolean)">
+            <summary>
+            Initializes a new instance with specified target type and only design time.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <inheritdoc cref="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <inheritdoc cref="M:System.ComponentModel.ReferenceConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <inheritdoc cref="M:System.ComponentModel.ReferenceConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <inheritdoc cref="M:System.ComponentModel.ReferenceConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <inheritdoc cref="M:System.ComponentModel.ReferenceConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfComponentReferenceConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+            <inheritdoc cref="M:System.ComponentModel.ReferenceConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfAutoExtensibleComponentReferenceConverter">
+            <summary>
+            Provides extension of AutoExtensibleComponentReferenceConverter{T} type converter for Presentation. 
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContextProvider">
+            exclude
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContextProvider.PresentationContext">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfNamedReferenceProvider">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfNamedReferenceProvider.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider)">
+            exclude
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfNamedReferenceProvider.NamedReferences">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService">
+            exclude
+            <summary>
+            Provides functionality for <see cref="T:System.ComponentModel.Design.IReferenceService"/> in wpf designer. Contains all objects from name scope that is specified by presentation context.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReferenceProvider)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReferenceProvider,System.Boolean,System.Boolean)">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.GetComponent(System.Object)">
+            <inheritdoc cref="M:System.ComponentModel.Design.IReferenceService.GetComponent(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.GetName(System.Object)">
+            <inheritdoc cref="M:System.ComponentModel.Design.IReferenceService.GetName(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.GetReference(System.String)">
+            <inheritdoc cref="M:System.ComponentModel.Design.IReferenceService.GetReference(System.String)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.GetReferences">
+            <inheritdoc cref="M:System.ComponentModel.Design.IReferenceService.GetReferences"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfReferenceService.GetReferences(System.Type)">
+            <inheritdoc cref="M:System.ComponentModel.Design.IReferenceService.GetReferences(System.Type)"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement">
+            <summary>
+            Represents a named element. Its name must be in name scope.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.#ctor(System.String,System.Object)">
+            <summary>
+            Creates a instance with name and element.
+            </summary>
+            <param name="name"> </param>
+            <param name="element"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.op_Equality(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement)">
+            <summary>Determines whether the two objects are equal.</summary>
+            <param name="left">First object to be compared.</param>
+            <param name="right">Second object to be compared.</param>
+            <returns><c>True</c> if the objects are equal; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.op_Inequality(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement,OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement)">
+            <summary>Determines whether the two objects are not equal.</summary>
+            <param name="left">First object to be compared.</param>
+            <param name="right">Second object to be compared.</param>
+            <returns><c>True</c> if the objects are not equal; <c>false</c> if they are equal.</returns>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.Name">
+            <summary>
+            The name of element.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.Element">
+            <summary>
+            The named element.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.Equals(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement)">
+            <summary>
+            Determines whether the current object is the same as other object.
+            </summary>
+            <param name="other">Object to be compared.</param>
+            <returns>True if the objects are the same, otherwise false.</returns>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.ProxiedObject">
+            <inheritdoc cref="P:OpcLabs.BaseLib.ComponentModel.Internal.IObjectProxy.ProxiedObject"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.ProxiedObjectType">
+            <inheritdoc cref="P:OpcLabs.BaseLib.ComponentModel.Internal.IObjectTypeProxy.ProxiedObjectType"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.ToNamedReference">
+            <summary>
+            Converts <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement"/> to <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/>.
+            </summary>
+            <returns> </returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement.ToNamedComponent">
+            <summary>
+            Converts <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedElement"/> to <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.NamedReference"/>.
+            </summary>
+            <returns>Returns IComponent and Site.Name contains component name.</returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReferenceProvider">
+            <summary>
+            Provides an interface for obtaining named references to objects.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.INamedReferenceProvider.NamedReferences">
+            <summary>
+            Gets a collection of named references.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.ExtensionsProvider">
+            <summary>
+            Represents extension provider. All members are only for internal use.
+            <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.ExtensionsProvider"/> is using only in run time.
+            All requests are executed after initializing root.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.ExtensionsProvider.#ctor(System.Windows.FrameworkElement)">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.ExtensionsProvider"/> for specified owner.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfSite">
+            exclude
+            <summary>
+            Provides functionality requires by site in WPF designer.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfSite.PresentationContext">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider.PresentationContext"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfSite.OnPresentationContextChanged(System.Boolean)">
+            <summary>
+            Raised before and after <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.WpfSite.PresentationContext"/> is changed.
+            </summary>
+            <param name="before"> </param>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext">
+            <summary>
+            Provides contextual information about a object, such as its target object, target property, root object and name resolver.
+            </summary>
+            <remark>
+            Any information can be unspecified.
+            </remark>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.IsValid">
+            <summary>
+            Specifies whether is valid.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetObject">
+            <summary>
+            Specifies target object.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetProperty">
+            <summary>
+            Specifies target property.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.NameResolver">
+            <summary>
+            Specifies a service that can return objects that are specified by XAML name, or alternatively, returns a token that defers name resolution. The service can also return an enumerable set of all named objects that are in the XAML namescope.
+            </summary>
+            <remark>
+            This service is used as last case.
+            </remark>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.NameProvider">
+            <summary>
+            Specifies a service that can return object name.
+            </summary>
+            <remark>
+            This service is used as last case.
+            </remark>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.RootObjectProvider">
+            <summary>
+            Specifies a service that can return the root object of markup being parsed.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetElement">
+            <summary>
+            Specifies nearest target UI element in tree.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider">
+            <summary>
+            Provides contextual information about a object, such as its target object, target property, root object and name resolver.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContextProvider.PresentationContext">
+            <summary>
+             Specifies contextual information about a object, such as its target object, target property, root object and name resolver.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext">
+            <summary>
+            Represents contextual information about a object, such as its target object, target property, root object and name resolver.
+            </summary>
+            <remark>
+            Any information can be unspecified.
+            </remark>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.#ctor">
+            <summary>
+            Initializes a new instance of the class with default values.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext)">
+            <summary>
+            Initializes a new instance of the class, using values from given <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext"/>.
+            </summary>
+            <param name="presentationContext"> </param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.#ctor(System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the class, using values from given <see cref="T:System.IServiceProvider"/>.
+            </summary>
+            <param name="serviceProvider"> </param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.IsValid">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.IsValid"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.TargetObject">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetObject"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.TargetProperty">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetProperty"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.NameResolver">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.NameResolver"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.NameProvider">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.NameProvider"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.RootObjectProvider">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.RootObjectProvider"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.PresentationContext.TargetElement">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IPresentationContext.TargetElement"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.ComponentBag_ToStringTextFormat">
+            <summary>
+              Looks up a localized string similar to Content: {0} component(s).
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.Live_ExtensionManagerNotFoundText">
+            <summary>
+              Looks up a localized string similar to Extension manager not found..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.Live_RootNotFoundText">
+            <summary>
+              Looks up a localized string similar to Root not found..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_CannotFindMethodTextFormat">
+            <summary>
+              Looks up a localized string similar to Cannot find {0}({1}, {2}) method in {3}..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ExtendeeCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to Extendee cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ExtendeeMustBeSetText">
+            <summary>
+              Looks up a localized string similar to Extendee must be set..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ExtendeeMustNotBeSetText">
+            <summary>
+              Looks up a localized string similar to Extendee must not be set..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_PropertyNameCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to PropertyName cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_PropertyNameMustBeSetText">
+            <summary>
+              Looks up a localized string similar to PropertyName must be set..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ProviderCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to Provider cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ProviderMustBeSetText">
+            <summary>
+              Looks up a localized string similar to Provider must be set..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ProviderMustNotBeSetText">
+            <summary>
+              Looks up a localized string similar to Provider must not be set..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.Resource1.SetExtendedProperty_ValueMustBeSetText">
+            <summary>
+              Looks up a localized string similar to Value must be set..
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentExtension">
+            <summary>
+            Represents base class for extension that is used in <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag"/>.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentExtension.BeginInit">
+            <inheritdoc cref="M:System.ComponentModel.ISupportInitialize.BeginInit"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentExtension.EndInit">
+            <inheritdoc cref="M:System.ComponentModel.ISupportInitialize.EndInit"/>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions">
+            <summary>
+            Contains an element extension collection.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.#ctor">
+            <summary>
+            Initializes a new instance of the class, with no target element and no extensions.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions)">
+            <summary>
+            Initializes a new instance of the class, using values from given <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions"/>.
+            </summary>
+            <param name="elementExtensions">The element extensions to copy from.</param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.Extensions">
+            <summary>
+            An collection of extensions held in this element extensions.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.Owner">
+            <summary>
+             Gets component or element that owning extensions.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.IsEmpty">
+            <summary>
+            Indicates whether there are no extensions in this element extensions.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.OpcLabs#BaseLib#Presentation#ComponentModel#Internal#IElementExtension#SetOwner(System.ComponentModel.IComponent,System.ComponentModel.ComponentCollection)">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IElementExtension.SetOwner(System.ComponentModel.IComponent,System.ComponentModel.ComponentCollection)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="E:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.PropertyChanged">
+            <summary>
+            Handler for <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.OnPropertyChanged(System.String)">
+            <summary>
+            Fires the <see cref="E:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.PropertyChanged"/> event.
+            </summary>
+            <param name="propertyName">The name of the property that changed.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.DeepClone">
+            <summary>
+            Creates a new object that is a deep copy of the current instance.
+            </summary>
+            <returns>A new object that is a deep copy of this instance.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.ShouldSerializeExtensions">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions.Extensions"/> are empty.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty">
+            <summary>
+            Provides extension for setting extended property.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> with no parameters.
+            </summary>
+            <remarks>Is called from Xaml reader. <see cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.EndInit"/> is called after setting all properties and sets extended property.</remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> with specified provider type.
+            </summary>
+            <param name="defaultProviderType">The provider type that is searched if provider is not specified.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor(System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> with specified parameters.
+            </summary>
+            <param name="providerCanBeUninitialized">A value that specifies requirements for provider initialization (true = can be uninitialized, false = must not be initialized, null = must be initialized).</param>
+            <param name="extendeeCanBeUninitialized">A value that specifies requirements for extendee initialization (true = can be uninitialized, false = must not be initialized, null = must be initialized).</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor(System.ComponentModel.IComponent,System.String,System.ComponentModel.IComponent,System.Object,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> with specified parameters.
+            </summary>
+            <param name="provider">The extender provider of extended property.</param>
+            <param name="propertyName">The name of extended property.</param>
+            <param name="extendee">The component to receive the extended property.</param>
+            <param name="value">The value of extended property.</param>
+            <param name="propertyDescriptor">The property descriptor that specifies extended property.</param>
+            <remarks>Only for internal use. Is called from code and extended property is not set after setting all properties.</remarks>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty)">
+            <summary>
+            Initializes a new instance of the class, copying values from given <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/>. Value is cloned if it is not reference.
+            </summary>
+            <param name="setExtendedProperty">The <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> to copy from.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty,System.Boolean)">
+            <summary>
+            Initializes a new instance of the class, copying values from given <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/>. Value is only copied.
+            </summary>
+            <param name="setExtendedProperty">The <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty"/> to copy from.</param>
+            <param name="resetExtendee">True means that extendee is not copied.</param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Provider">
+            <summary>
+            Specifies <see cref="T:System.ComponentModel.IExtenderProvider"/>.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.PropertyName">
+            <summary>
+            Specifies name of extended property.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Extendee">
+            <summary>
+            Specifies <see cref="T:System.ComponentModel.IComponent"/> to receive the extended property.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Value">
+            <summary>
+            Specifies value of extended property.
+            </summary>
+            <remarks>
+            If value is reference then value is not cloned in cloning constructor.
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.IsReference">
+            <summary>
+            Specifies whether value is reference.
+            </summary>
+            <remarks>
+            If value is reference then value is not cloned in cloning constructor.
+            </remarks>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.PropertyDescriptor">
+            <summary>
+            Specifies property descriptor of extended property.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.ShouldSerialize">
+            <summary>
+            Determines a value indicating whether the value of this extended property needs to be persisted.
+            </summary>
+            <returns> </returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.BeginInit">
+            <inheritdoc cref="M:System.ComponentModel.ISupportInitialize.BeginInit"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.EndInit">
+            <inheritdoc cref="M:System.ComponentModel.ISupportInitialize.EndInit"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.OpcLabs#BaseLib#Presentation#ComponentModel#Internal#IElementExtension#SetOwner(System.ComponentModel.IComponent,System.ComponentModel.ComponentCollection)">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.Internal.IElementExtension.SetOwner(System.ComponentModel.IComponent,System.ComponentModel.ComponentCollection)"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.SetPropertyCore">
+            <summary>
+            Sets value to provider.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.ShouldSerializeValue">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Value"/> property is equal to its default value.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.ResetValue">
+            <summary>
+            Reset the <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.Value"/> property to its default value.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentExtensionCollection">
+            <summary>
+            Provides collection of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentExtension"/>.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag">
+            <summary>
+            Contains a collection of components.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.#ctor">
+            <summary>
+            Initializes a new instance of the class, with no components.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Components">
+            <summary>
+            An collection of components.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Extensions">
+            <summary>
+            An collection of extender property values.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Owner">
+            <summary>
+            Gets or sets owner of <see cref="T:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag"/>.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.ShouldSerializeComponents">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Components"/> are empty.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.ShouldSerializeExtensions">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag.Extensions"/> are empty.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.NamespaceDoc">
+            <summary>
+            This namespace provides classes that allow the use of components in Windows Presentation Foundation. 
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.ComponentModel.Live">
+            <summary>
+            Implements attached properties that allow the use of components in Windows Presentation Foundation.
+            </summary>
+        </member>
+        <member name="F:OpcLabs.BaseLib.Presentation.ComponentModel.Live.ExtensionsProviderProperty">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Live.GetExtensionsProvider(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the ExtensionsProvider attached property for a specified <see cref="T:System.Windows.Window"/> or <see cref="T:System.Windows.Controls.Page"/> or <see cref="T:System.Windows.Controls.UserControl"/>.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The ExtensionsProvider property value for the element.</returns>
+        </member>
+        <member name="F:OpcLabs.BaseLib.Presentation.ComponentModel.Live.ComponentBagProperty">
+            <summary>
+            Identifies the ComponentBag attached property.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Live.GetComponentBag(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the ComponentBag attached property for a specified <see cref="T:System.Windows.Window"/> or <see cref="T:System.Windows.Controls.Page"/> or <see cref="T:System.Windows.Controls.UserControl"/>.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The ComponentBag property value for the element.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Live.SetComponentBag(System.Windows.FrameworkElement,OpcLabs.BaseLib.Presentation.ComponentModel.ComponentBag)">
+            <summary>
+            Sets the value of the ComponentBag attached property to a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="componentBag">The needed ComponentBag value.</param>
+        </member>
+        <member name="F:OpcLabs.BaseLib.Presentation.ComponentModel.Live.ExtensionsProperty">
+            <summary>
+            Identifies the Extensions attached property.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Live.GetExtensions(System.Windows.UIElement)">
+            <summary>
+            Gets the value of the Extensions attached property for a specified <see cref="T:System.Windows.UIElement"/>.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The Extensions property value for the element.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.ComponentModel.Live.SetExtensions(System.Windows.UIElement,OpcLabs.BaseLib.Presentation.ComponentModel.ElementExtensions)">
+            <summary>
+            Sets the value of the Extensions attached property to a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="elementExtensions">The needed ElementExtensions value.</param>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.Debug.DebugContext">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.Debug.NamespaceDoc">
+            <summary>
+            This namespace provides classes that are used to debug.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.Debug.PresentationDebugUtilities">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.Debug.PresentationDebugUtilities.GetServices(System.IServiceProvider)">
+            exclude
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.LiveBinding.WPFLiveBinding">
+            <summary>
+            The toolbox item that extends <see cref="T:System.Windows.Window"/> or <see cref="T:System.Windows.Controls.Page"/> or <see cref="T:System.Windows.Controls.UserControl"/> about Live Binding.
+            It can be only dragged from toolbox to XAML designer. It can not be written in XAML.
+            </summary>
+            <summary>
+            WPFLiveBinding
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.WPFLiveBinding.#ctor">
+            exclude
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.WPFLiveBinding.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection">
+            <summary>
+            Provides collection of bindings for specified Binding Extender.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.#ctor">
+            <summary>
+            Initialize a new instance of <see cref="T:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection"/> with no bindings.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.#ctor(OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection)">
+            <summary>
+            Initializes a new instance of the class, copying values from given <see cref="T:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection"/>.
+            </summary>
+            <param name="bindingCollection">The binding collection to copy from.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.ToBindingBag">
+            <summary>
+            Converts <see cref="T:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection"/> to <see cref="T:OpcLabs.BaseLib.LiveBinding.BindingBag"/>.
+            </summary>
+            <returns>A new BindingBag that contains the bindings from this collection.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.SetOwner(System.ComponentModel.IComponent)">
+            <summary>
+            Sets component or named reference of element that owned these bindings.
+            </summary>
+            <param name="component">The component or named reference of element that owned these bindings.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.BindingCollection.DeepClone">
+            <summary>
+            Creates a new object that is a deep copy of the current instance.
+            </summary>
+            <returns>A new object that is a deep copy of this instance.</returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.SetBindingBag_ExtendeeCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to Extendee cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.SetBindingBag_PropertyNameCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to PropertyName cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.SetBindingBag_ProviderCannotBeNullText">
+            <summary>
+              Looks up a localized string similar to Provider cannot be null..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.SetBindingBag_ProviderMustBeBindingExtender">
+            <summary>
+              Looks up a localized string similar to Provider must be BindingExtender..
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.WPFLiveBinding_BadTargetFrameworkVersionCaptionText">
+            <summary>
+              Looks up a localized string similar to WPFLiveBinding.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.Resource1.WPFLiveBinding_BadTargetFrameworkVersionTextFormat">
+             <summary>
+               Looks up a localized string similar to Check whether the target framework is set to .NET Framework 4.5.2 or later.
+            
+            Exception: {0}.
+             </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.LiveBinding.NamespaceDoc">
+            <summary>
+            This namespace contains components used for live binding for WPF.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag">
+            <summary>
+            Provides extension for setting BindingBag of BindingExtender.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.#ctor">
+            <summary>
+            Initializes new instance with BindingBag property name.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.#ctor(OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag)">
+            <summary>
+            Initializes a new instance of the class, cloning bindings and copying other properties from given <see cref="T:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag"/>.
+            </summary>
+            <param name="setBindingBag">The object to copy from.</param>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.#ctor(OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty,System.Boolean)">
+            <summary>
+            Initializes a new instance of the class, copying values other properties from given <see cref="T:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag"/>.
+            </summary>
+            <param name="setExtendedProperty">The object to copy from.</param>
+            <param name="resetExtendee">True means that extendee is not copied.</param>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.PropertyName">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.PropertyName"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.IsReference">
+            <inheritdoc cref="P:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.IsReference"/>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.Value">
+            <summary>
+            An collection of bindings held in this binding bag.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.Bindings">
+            <summary>
+            An collection of bindings held in this binding bag.
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.IsEmpty">
+            <summary>
+            Indicates whether there are no bindings in this binding bag.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.ShouldSerialize">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.ShouldSerialize"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.SetPropertyCore">
+            <inheritdoc cref="M:OpcLabs.BaseLib.Presentation.ComponentModel.SetExtendedProperty.SetPropertyCore"/>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.ShouldSerializeBindings">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.Bindings"/> are empty.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.ShouldSerializeValue">
+            <summary>
+            Determines whether the <see cref="P:OpcLabs.BaseLib.Presentation.LiveBinding.SetBindingBag.Value"/> are empty.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.Testing.NamespaceDoc">
+            <summary>
+            This namespace supplies classes that provide testing support.
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow">
+            <exclude/>
+            <summary>
+            SwitchboardWindow
+            </summary>
+        </member>
+        <member name="P:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.CommandDictionary">
+            <summary>
+            Command names and their corresponding actions.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.ResetCommandDictionary">
+            <summary>
+            Sets the <see cref="P:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.CommandDictionary"/> back to its default.
+            </summary>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.ShouldSerializeCommandDictionary">
+            <summary>
+            Determines whether <see cref="P:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.CommandDictionary"/> is in its default state.
+            </summary>
+            <returns><c>true</c> if the property has changed from its default value; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:OpcLabs.BaseLib.Presentation.Testing.SwitchboardWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:OpcLabs.BaseLib.Presentation.NamespaceDoc">
+            <summary>
+            This namespace contains classes for Windows Presentation Foundation.
+            </summary>
+        </member>
+    </members>
+</doc>
