@@ -174,6 +174,7 @@ namespace ProFossJsonTest
       var jInstrumentList = JObject.Parse(instruments);
 
       JArray jInstruments = (JArray) jInstrumentList["InstrumentList"]["Instruments"];
+      instrumentsCb.Items.Clear();
 
       foreach (var instrument in jInstruments)
       {
@@ -241,7 +242,7 @@ namespace ProFossJsonTest
       }
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void getInstrumentsBtn_Click(object sender, EventArgs e)
     {
       GetInstruments();
     }
@@ -259,10 +260,14 @@ namespace ProFossJsonTest
         SendCommand(cmd);
       }
     }
-    #endregion 
 
 
 
+    #endregion
 
+    private void resetInstrumentBtn_Click(object sender, EventArgs e)
+    {
+      SendCommand("resetInstrument");
+    }
   }
 }

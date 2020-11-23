@@ -65,10 +65,10 @@ namespace OPCClient
       int mmIIopcTagIndex = 0;
       for (int i = 0; i < numberOfReadOPCTags; i++)
       {
-        if (opcTags.OPCTags[mmIIopcTagIndex].FullName == "Nova Server.GetSample.RawValue01.Value")
+        /*if (opcTags.OPCTags[mmIIopcTagIndex].FullName == "Nova Server.GetSample.RawValue01.Value")
         {
           mmIIopcTagIndex++;
-        }
+        }*/
         opcTags.OPCTags[mmIIopcTagIndex].ObjectValue = readState[i].DataValue;
         mmIIopcTagIndex++;
       }

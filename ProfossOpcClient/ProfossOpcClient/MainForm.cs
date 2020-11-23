@@ -34,6 +34,8 @@ namespace MstOpcClient
 
     private Timer simulationTimer;
 
+    private Timer loggingTimer;
+
     private int opcWatchdog;
 
     private Timer updateTagsTimer;
@@ -137,8 +139,13 @@ namespace MstOpcClient
       updateTagsTimer = new Timer(1000);
       updateTagsTimer.Elapsed += On_updateTagsTimer;
 
+      loggingTimer = new Timer(100);
+      loggingTimer.Elapsed += LoggingTimer_Elapsed;
+
       simulationTimer = new Timer(1000);
       simulationTimer.Elapsed += SimulationTimer_Elapsed;
+
+
 
       cbOpcServer.Items.Add(new KepServerItems("KepServer V6", "Kepware.KEPServerEX.V6"));
       cbOpcServer.Items.Add(new KepServerItems("KepServer V5", "Kepware.KEPServerEX.V5"));
@@ -148,6 +155,16 @@ namespace MstOpcClient
 
       Connected = false;
       isSimulating = false;
+    }
+
+    private void LoggingTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+      log.Debug("Start reading OPC tags.");
+      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+      var opcTags = KepServerCommunicator.KepServerOpcTags;
+      log.Debug("Done reading OPC tags.");
+
+      log.Debug($"Calibration sample: {opcTags.SampleGroup.CalibrationSample}, samplecounter: {opcTags.InstrumentGroup.SampleCounter}");
     }
 
     private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
@@ -339,6 +356,20 @@ namespace MstOpcClient
         KepServerCommunicator.KepServerSetProductCodeN(productCode);
         KepServerCommunicator.KepServerStartMeasuring(true);
       }
+    }
+
+    private void startLoggingBtn_Click(object sender, EventArgs e)
+    {
+      if (loggingTimer.Enabled)
+      {
+        loggingTimer.Enabled = false;
+        startLoggingBtn.Text = "Start logging";
+        return;
+      }
+
+      loggingTimer.Interval = Double.Parse(loggingTimeTb.Text);
+      loggingTimer.Enabled = true;
+      startLoggingBtn.Text = "Stop logging";
     }
   }
 }

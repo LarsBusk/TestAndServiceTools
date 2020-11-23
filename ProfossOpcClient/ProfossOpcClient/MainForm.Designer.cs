@@ -28,7 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.components = new System.ComponentModel.Container();
+      this.kepServerGroupBox = new System.Windows.Forms.GroupBox();
       this.lblConnected = new System.Windows.Forms.Label();
       this.btnDisconnect = new System.Windows.Forms.Button();
       this.btnConnect = new System.Windows.Forms.Button();
@@ -37,6 +38,9 @@
       this.tbGroupName = new System.Windows.Forms.TextBox();
       this.cbOpcServer = new System.Windows.Forms.ComboBox();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.label5 = new System.Windows.Forms.Label();
+      this.loggingTimeTb = new System.Windows.Forms.TextBox();
+      this.startLoggingBtn = new System.Windows.Forms.Button();
       this.label7 = new System.Windows.Forms.Label();
       this.tbProductCode = new System.Windows.Forms.TextBox();
       this.lblState = new System.Windows.Forms.Label();
@@ -53,27 +57,29 @@
       this.lblSampleCounter = new System.Windows.Forms.Label();
       this.lblCalibrationSample = new System.Windows.Forms.Label();
       this.lblWatchdog = new System.Windows.Forms.Label();
-      this.groupBox1.SuspendLayout();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.kepServerGroupBox.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox3.SuspendLayout();
       this.groupBox4.SuspendLayout();
       this.SuspendLayout();
       // 
-      // groupBox1
+      // kepServerGroupBox
       // 
-      this.groupBox1.Controls.Add(this.lblConnected);
-      this.groupBox1.Controls.Add(this.btnDisconnect);
-      this.groupBox1.Controls.Add(this.btnConnect);
-      this.groupBox1.Controls.Add(this.label2);
-      this.groupBox1.Controls.Add(this.label1);
-      this.groupBox1.Controls.Add(this.tbGroupName);
-      this.groupBox1.Controls.Add(this.cbOpcServer);
-      this.groupBox1.Location = new System.Drawing.Point(12, 240);
-      this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(285, 154);
-      this.groupBox1.TabIndex = 0;
-      this.groupBox1.TabStop = false;
-      this.groupBox1.Text = "KepServer";
+      this.kepServerGroupBox.Controls.Add(this.lblConnected);
+      this.kepServerGroupBox.Controls.Add(this.btnDisconnect);
+      this.kepServerGroupBox.Controls.Add(this.btnConnect);
+      this.kepServerGroupBox.Controls.Add(this.label2);
+      this.kepServerGroupBox.Controls.Add(this.label1);
+      this.kepServerGroupBox.Controls.Add(this.tbGroupName);
+      this.kepServerGroupBox.Controls.Add(this.cbOpcServer);
+      this.kepServerGroupBox.Location = new System.Drawing.Point(12, 240);
+      this.kepServerGroupBox.Name = "kepServerGroupBox";
+      this.kepServerGroupBox.Size = new System.Drawing.Size(285, 154);
+      this.kepServerGroupBox.TabIndex = 0;
+      this.kepServerGroupBox.TabStop = false;
+      this.kepServerGroupBox.Text = "KepServer";
+      this.toolTip1.SetToolTip(this.kepServerGroupBox, "Select the version of Kepserver and type the group name, then click connect.");
       // 
       // lblConnected
       // 
@@ -139,6 +145,9 @@
       // 
       // groupBox2
       // 
+      this.groupBox2.Controls.Add(this.label5);
+      this.groupBox2.Controls.Add(this.loggingTimeTb);
+      this.groupBox2.Controls.Add(this.startLoggingBtn);
       this.groupBox2.Controls.Add(this.label7);
       this.groupBox2.Controls.Add(this.tbProductCode);
       this.groupBox2.Controls.Add(this.lblState);
@@ -150,6 +159,33 @@
       this.groupBox2.TabIndex = 1;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Control";
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(29, 87);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(89, 13);
+      this.label5.TabIndex = 10;
+      this.label5.Text = "Logging time (ms)";
+      // 
+      // loggingTimeTb
+      // 
+      this.loggingTimeTb.Location = new System.Drawing.Point(32, 103);
+      this.loggingTimeTb.Name = "loggingTimeTb";
+      this.loggingTimeTb.Size = new System.Drawing.Size(100, 20);
+      this.loggingTimeTb.TabIndex = 9;
+      this.loggingTimeTb.Text = "100";
+      // 
+      // startLoggingBtn
+      // 
+      this.startLoggingBtn.Location = new System.Drawing.Point(156, 102);
+      this.startLoggingBtn.Name = "startLoggingBtn";
+      this.startLoggingBtn.Size = new System.Drawing.Size(101, 23);
+      this.startLoggingBtn.TabIndex = 8;
+      this.startLoggingBtn.Text = "StartLogging";
+      this.startLoggingBtn.UseVisualStyleBackColor = true;
+      this.startLoggingBtn.Click += new System.EventHandler(this.startLoggingBtn_Click);
       // 
       // label7
       // 
@@ -167,6 +203,7 @@
       this.tbProductCode.Name = "tbProductCode";
       this.tbProductCode.Size = new System.Drawing.Size(100, 20);
       this.tbProductCode.TabIndex = 6;
+      this.toolTip1.SetToolTip(this.tbProductCode, "Select the productCode before start measuring.");
       this.tbProductCode.TextChanged += new System.EventHandler(this.tbProductCode_TextChanged);
       // 
       // lblState
@@ -211,6 +248,7 @@
       this.groupBox3.TabIndex = 2;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Simmulate";
+      this.toolTip1.SetToolTip(this.groupBox3, "Type the measure and pause time in seconds.");
       // 
       // label3
       // 
@@ -252,6 +290,7 @@
       this.btnStartSimulation.Size = new System.Drawing.Size(75, 23);
       this.btnStartSimulation.TabIndex = 0;
       this.btnStartSimulation.Text = "Start";
+      this.toolTip1.SetToolTip(this.btnStartSimulation, "Click to start and stop simulation.");
       this.btnStartSimulation.UseVisualStyleBackColor = true;
       this.btnStartSimulation.Click += new System.EventHandler(this.btnStartSimulation_Click);
       // 
@@ -312,12 +351,12 @@
       this.Controls.Add(this.groupBox4);
       this.Controls.Add(this.groupBox3);
       this.Controls.Add(this.groupBox2);
-      this.Controls.Add(this.groupBox1);
+      this.Controls.Add(this.kepServerGroupBox);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Name = "MainForm";
       this.Text = "ProFoss OPC test client";
-      this.groupBox1.ResumeLayout(false);
-      this.groupBox1.PerformLayout();
+      this.kepServerGroupBox.ResumeLayout(false);
+      this.kepServerGroupBox.PerformLayout();
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
       this.groupBox3.ResumeLayout(false);
@@ -330,7 +369,7 @@
 
     #endregion
 
-    private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.GroupBox kepServerGroupBox;
     private System.Windows.Forms.TextBox tbGroupName;
     private System.Windows.Forms.ComboBox cbOpcServer;
     private System.Windows.Forms.Button btnDisconnect;
@@ -355,6 +394,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbPauseTime;
         private System.Windows.Forms.Label lblSimCounter;
+        private System.Windows.Forms.Button startLoggingBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox loggingTimeTb;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

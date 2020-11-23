@@ -28,8 +28,8 @@ namespace OPCClient.OPCTags
       {
         OPCTags = new List<IOPCTag>();
 
-        GetSampleGroup = new KepServerSampleGroup(serverPrefix);
-        OPCTags.AddRange(GetSampleGroup.OPCTags);
+        SampleGroup = new KepServerSampleGroup(serverPrefix);
+        OPCTags.AddRange(SampleGroup.OPCTags);
         ControllerGroup = new KepServerControllerGroup(serverPrefix);
         OPCTags.AddRange(ControllerGroup.OPCTags);
         InstrumentGroup = new KepServerInstrumentGroup(serverPrefix);
@@ -39,7 +39,7 @@ namespace OPCClient.OPCTags
 
       #region GetTags
 
-      public KepServerSampleGroup GetSampleGroup { get; private set; }
+      public KepServerSampleGroup SampleGroup { get; private set; }
       public KepServerControllerGroup ControllerGroup { get; private set; }
       public KepServerInstrumentGroup InstrumentGroup { get; private set; }
       #endregion
