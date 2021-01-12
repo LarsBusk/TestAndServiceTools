@@ -9,6 +9,7 @@ namespace OPCClient.OPCTags
   public class KepServerControllerGroup : OPCGroup
   {
     public OPCTag<int> ProductCodeN;
+    public OPCTag<string> ProductCode;
     public OPCTag<int> WatchdogCounter;
     public OPCTag<bool> StartMeasuring;
     public OPCTag<bool> CalibrationSample;
@@ -19,6 +20,8 @@ namespace OPCClient.OPCTags
     {
       ProductCodeN = new OPCTag<int>(serverPrefix, "Controller.ProductCodeN");
       OPCTags.Add(ProductCodeN);
+      ProductCode = new OPCTag<string>(serverPrefix, "Controller.ProductCode");
+      OPCTags.Add(ProductCode);
       WatchdogCounter = new OPCTag<int>(serverPrefix, "Controller.WatchdogCounter");
       OPCTags.Add(WatchdogCounter);
       StartMeasuring = new OPCTag<bool>(serverPrefix, "Controller.StartMeasuring");

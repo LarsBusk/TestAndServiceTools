@@ -155,6 +155,8 @@ namespace MstOpcClient
 
       Connected = false;
       isSimulating = false;
+
+      ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
     }
 
     private void LoggingTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -192,6 +194,8 @@ namespace MstOpcClient
     private void btnConnect_Click(object sender, EventArgs e)
     {
       ConnectToKepServer();
+      ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
+      UsePrdCpdeNChk.Enabled = false;
     }
 
     private void UpdateStates()
@@ -212,6 +216,7 @@ namespace MstOpcClient
       kepServerCommunicator = null;
       Connected = false;
       State = 0;
+      UsePrdCpdeNChk.Enabled = true;
     }
 
     private void UpdateButtonStates()
@@ -349,11 +354,17 @@ namespace MstOpcClient
 
     private void StartMeasuring()
     {
-      int productCode;
-
-      if (int.TryParse(tbProductCode.Text, out productCode))
+      if (UsePrdCpdeNChk.Checked)
       {
-        KepServerCommunicator.KepServerSetProductCodeN(productCode);
+        if (int.TryParse(tbProductCode.Text, out int productCode))
+        {
+          KepServerCommunicator.KepServerSetProductCodeN(productCode);
+          KepServerCommunicator.KepServerStartMeasuring(true);
+        }
+      }
+      else
+      {
+        KepServerCommunicator.KepServerSetProductCode(tbProductCode.Text);
         KepServerCommunicator.KepServerStartMeasuring(true);
       }
     }
