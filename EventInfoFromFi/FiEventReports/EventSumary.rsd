@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>FiEvents</DataSourceReference>
+      <CommandText>
+Select	ReportId
+	,	StartDateTime
+	,	EndDateTime
+	,	SwVersion
+	,	SamplesInPeriod
+	,	SamplesTotal
+	,	CountryName
+	,	CompanyName
+	,	EventTypeName
+	,	EventCount
+From dbo.GetEventReports()</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="ReportId">
+        <DataField>ReportId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="StartDateTime">
+        <DataField>StartDateTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="EndDateTime">
+        <DataField>EndDateTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="SwVersion">
+        <DataField>SwVersion</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SamplesInPeriod">
+        <DataField>SamplesInPeriod</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="SamplesTotal">
+        <DataField>SamplesTotal</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="CountryName">
+        <DataField>CountryName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CompanyName">
+        <DataField>CompanyName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="EventTypeName">
+        <DataField>EventTypeName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="EventCount">
+        <DataField>EventCount</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
