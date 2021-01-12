@@ -5,38 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using OpcLabs.EasyOpc.UA.OperationModel;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   public class OpcNodes
   {
-    public UAReadArguments[] Nodes;
+    public UAReadArguments[] ReadNodes;
 
 
     private readonly string serverEndPoint;
-    private readonly List<OpcNode> opcNodeList;
+    private readonly List<OpcNode> opcReadNodeList;
+    private readonly List<OpcNode> opcWriteNodeList;
     private readonly string prefix;
 
     public OpcNodes(string serverEndPoint, string group)
     {
       this.serverEndPoint = serverEndPoint;
       prefix = $"ns=2;s={group}";
-      opcNodeList = AllNodes();
-      CreateNotes();
+      opcReadNodeList = AllReadNodes();
+      opcWriteNodeList = Controller();
+      CreateNodes();
     }
 
-    private void CreateNotes()
+    private void CreateNodes()
     {
       List<UAReadArguments> nodeList = new List<UAReadArguments>();
 
-      foreach (var node in AllNodes())
+      foreach (var node in AllReadNodes())
       {
         nodeList.Add(new UAReadArguments(serverEndPoint, node.Address));
       }
 
-      Nodes = nodeList.ToArray();
+      ReadNodes = nodeList.ToArray();
     }
 
-    public List<OpcNode> AllNodes()
+    public List<OpcNode> AllReadNodes()
     {
       List<OpcNode> nodes = new List<OpcNode>();
 
@@ -48,7 +50,7 @@ namespace EasyOpcUADemo
 
     public OpcNode GetNodeByName(string name)
     {
-      return opcNodeList.First(n => n.Header.Equals(name));
+      return opcReadNodeList.First(n => n.Header.Equals(name));
     }
 
     #region Opc nodes
@@ -101,6 +103,20 @@ namespace EasyOpcUADemo
       {
         nodes.Add(new OpcNode(parameter, $"{prefix}.{gr}.{parameter}.Result"));
       }
+
+      return nodes;
+    }
+
+    private List<OpcNode> Controller()
+    {
+      List<OpcNode> nodes = new List<OpcNode>();
+
+      string gr = "Controller";
+
+      nodes.Add(new OpcNode("ProductCodeN", $"{prefix}.{gr}.ProductCodeN"));
+      nodes.Add(new OpcNode("StartMeasuring", $"{prefix}.{gr}.StartMeasuring"));
+      nodes.Add(new OpcNode("StartReferenceMeasurement", $"{prefix}.{gr}.StartReferenceMeasurement"));
+      nodes.Add(new OpcNode("WatchdogCounter", $"{prefix}.{gr}.WatchdogCounter"));
 
       return nodes;
     }

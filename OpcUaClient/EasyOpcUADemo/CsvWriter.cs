@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpcLabs.EasyOpc.UA;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   public static class CsvWriter
   {
@@ -15,6 +16,20 @@ namespace EasyOpcUADemo
 
 
     public static void WriteToFile(List<OpcNodeResult> results)
+    {
+      if (!File.Exists(FileName))
+      {
+        CreateHeader(results);
+        File.AppendAllText(FileName, $"{header}\n");
+      }
+      else
+      {
+        string line = CreateLine(results);
+        File.AppendAllText(FileName, $"{line}\n");
+      }
+    }
+
+    public static void WriteToFile(Dictionary<string, UAAttributeData> results)
     {
       if (!File.Exists(FileName))
       {
@@ -43,16 +58,48 @@ namespace EasyOpcUADemo
       header = builder.ToString();
     }
 
-    private  static string CreateLine(List<OpcNodeResult> results)
+    private static void CreateHeader(Dictionary<string, UAAttributeData> results)
     {
       StringBuilder builder = new StringBuilder();
 
-      builder.Append($"{results[0].ServerDateTime.ToString("O")};");
-      builder.Append($"{CreateResultTime(results).ToString("O")};");
+      builder.Append("ServerTime;");
+      builder.Append("ResultTime;");
+
+      foreach (var opcResult in results)
+      {
+        builder.Append($"{opcResult.Key};");
+      }
+
+      header = builder.ToString();
+    }
+
+    private  static string CreateLine(List<OpcNodeResult> results)
+    {
+      StringBuilder builder = new StringBuilder();
+      string dateFormat = "yyyy-MM-dd HH:mm:ss,fff";
+
+      builder.Append($"{results[0].ServerDateTime.ToString(dateFormat)};");
+      builder.Append($"{CreateResultTime(results).ToString(dateFormat)};");
 
       foreach (var opcResult in results)
       {
         builder.Append($"{opcResult.NodeValue};");
+      }
+
+      return builder.ToString();
+    }
+
+    private static string CreateLine(Dictionary<string, UAAttributeData> results)
+    {
+      StringBuilder builder = new StringBuilder();
+      string dateFormat = "yyyy-MM-dd HH:mm:ss,fff";
+
+      builder.Append($"{results["Watchdog"].ServerTimestamp.ToString(dateFormat)};");
+      builder.Append($"{CreateResultTime(results).ToString(dateFormat)};");
+
+      foreach (var opcResult in results)
+      {
+        builder.Append($"{opcResult.Value.DisplayValue()};");
       }
 
       return builder.ToString();
@@ -68,7 +115,20 @@ namespace EasyOpcUADemo
       int sec = int.Parse(result.Find(r => r.NodeName.Equals("Second")).NodeValue);
       int msec = int.Parse(result.Find(r => r.NodeName.Equals("Msec")).NodeValue);
 
-      return new DateTime(year, month, day, hour, min, sec, msec);
+      return new DateTime(year, month, day, hour, min, sec, msec).ToUniversalTime();
+    }
+
+    private static DateTime CreateResultTime(Dictionary<string, UAAttributeData> results)
+    {
+      int year = int.Parse(results["Year"].DisplayValue());
+      int month = int.Parse(results["Month"].DisplayValue());
+      int day = int.Parse(results["Day"].DisplayValue());
+      int hour = int.Parse(results["Hour"].DisplayValue());
+      int min = int.Parse(results["Minute"].DisplayValue());
+      int sec = int.Parse(results["Second"].DisplayValue());
+      int msec = int.Parse(results["Msec"].DisplayValue());
+
+      return new DateTime(year, month, day, hour, min, sec, msec).ToUniversalTime();
     }
   }
 }

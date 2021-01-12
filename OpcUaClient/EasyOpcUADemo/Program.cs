@@ -3,7 +3,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
     static class Program
     {

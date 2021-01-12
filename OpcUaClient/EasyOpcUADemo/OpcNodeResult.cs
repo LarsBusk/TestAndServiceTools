@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpcLabs.EasyOpc.UA;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   public class OpcNodeResult
   {

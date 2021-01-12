@@ -4,22 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpcLabs.EasyOpc.UA;
+using log4net;
+using OpcLabs.EasyOpc.UA.Engine;
 using OpcLabs.EasyOpc.UA.OperationModel;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   public class OpcUaClient
   {
-    
-
     private const string DefaultUser = "KepLars";
     private const string DefaultPassWord = "FossAnalytical1234";
 
     private readonly string serverEndPoint;
-    private readonly string @group;
-    private EasyUAClient easyUaClient;
+    private readonly EasyUAClient easyUaClient;
     private int handle;
     private readonly OpcNodes opcNodes;
+
+    private static readonly ILog log = LogManager.GetLogger(typeof(OpcUaClient));
 
 
     public event EventHandler<OpcClientEventArgs> RaiseDataChangeEvent; 
@@ -33,6 +34,7 @@ namespace EasyOpcUADemo
         {
           SessionParameters =
           {
+            EndpointSelectionPolicy = UAEndpointSelectionPolicy.NoMessageSecurity,
             RequireMatchingServerSoftwareCertificates = false,
             UserIdentity =
             {
@@ -42,17 +44,18 @@ namespace EasyOpcUADemo
                 Password = password
               }
             }
+            
           }
         }
       };
 
       this.serverEndPoint = endPoint;
-      this.@group = group;
       this.opcNodes = new OpcNodes(serverEndPoint, group);
 
       easyUaClient.DataChangeNotification += EasyUaClient_DataChangeNotification;
-      
-      }
+
+      log.Debug("Uaclient is initiated.");
+    }
 
     public OpcUaClient(string endPoint, string group)
       : this(endPoint, group, DefaultUser, DefaultPassWord)
@@ -64,7 +67,8 @@ namespace EasyOpcUADemo
       UAAttributeData attributeData = null;
 
       attributeData = easyUaClient.Read(serverEndPoint, node);
-      
+      log.Debug($"Value read from {node}: {attributeData.DisplayValue()}");
+
       return attributeData;
     }
 
@@ -74,9 +78,39 @@ namespace EasyOpcUADemo
         100);
     }
 
-    public void SubscribeSampleCounter()
+    /// <summary>
+    /// Uses the SubscribeDataChange method. This seem to a stable way of detecting changes in the sample counter.
+    /// </summary>
+    /// <param name="samplingInterval"></param>
+    public void SubscribeSampleCounter(int samplingInterval = 100)
     {
-      easyUaClient.SubscribeDataChange(serverEndPoint, "ns=2;s=MMII.PDx.Instrument.SampleCounter", 100);
+      string counterNode = opcNodes.GetNodeByName("SampleCounter").Address;
+      easyUaClient.SubscribeDataChange(serverEndPoint, counterNode, samplingInterval);
+    }
+
+    public void SubscribeMultipleNodes()
+    {
+      EasyUAMonitoredItemArguments[] arguments =
+        opcNodes.ReadNodes.Select(a => new EasyUAMonitoredItemArguments(a)).ToArray();
+      easyUaClient.SubscribeMultipleMonitoredItems(arguments);
+    }
+
+    /// <summary>
+    /// Uses the subscribeMonitoredItem method. Does not seem to be stable, misses samples very often.
+    /// </summary>
+    public void Subs()
+    {
+      EasyUAMonitoredItemArguments arg = new EasyUAMonitoredItemArguments()
+      {
+        EndpointDescriptor = serverEndPoint,
+        NodeDescriptor = opcNodes.GetNodeByName("SampleCounter").Address,
+        SubscriptionParameters =
+        {
+          PublishingInterval = 0
+        }
+      };
+
+      easyUaClient.SubscribeMonitoredItem(arg);
     }
 
     public void WriteItem(string nodeId, string valueToWrite)
@@ -91,12 +125,31 @@ namespace EasyOpcUADemo
 
     public List<OpcNodeResult> ReadAll()
     {
-      var readNodes = ReadMultipleNodes(opcNodes.Nodes);
+      DateTime startRead= DateTime.Now;
+      var readNodes = ReadMultipleNodes(opcNodes.ReadNodes);
+      log.Info($"Reading {readNodes.Length} nodes took {DateTime.Now.Subtract(startRead).TotalMilliseconds}");
+
       List<OpcNodeResult> opcResults = new List<OpcNodeResult>();
 
       for (int i = 0; i < readNodes.Length - 1; i++)
       {
-        opcResults.Add(new OpcNodeResult(opcNodes.AllNodes()[i].Header, readNodes[i].AttributeData));
+        opcResults.Add(new OpcNodeResult(opcNodes.AllReadNodes()[i].Header, readNodes[i].AttributeData));
+      }
+
+      return opcResults;
+    }
+
+    public Dictionary<string, UAAttributeData> ReadAll2()
+    {
+      DateTime startRead = DateTime.Now;
+      var readNodes = ReadMultipleNodes(opcNodes.ReadNodes);
+      log.Info($"Reading {readNodes.Length} nodes took {DateTime.Now.Subtract(startRead).TotalMilliseconds}");
+
+      Dictionary<string, UAAttributeData> opcResults = new Dictionary<string, UAAttributeData>();
+
+      for (int i = 0; i < readNodes.Length - 1; i++)
+      {
+        opcResults.Add(opcNodes.AllReadNodes()[i].Header, readNodes[i].AttributeData);
       }
 
       return opcResults;
@@ -109,7 +162,11 @@ namespace EasyOpcUADemo
 
     private void EasyUaClient_DataChangeNotification([JetBrains.Annotations.NotNull] object sender, [JetBrains.Annotations.NotNull] EasyUADataChangeNotificationEventArgs e)
     {
-      OnRaiseDataChangeEvent(new OpcClientEventArgs(e.AttributeData.DisplayValue(), e.Arguments.NodeDescriptor.NodeId.StringIdentifier));
+      OnRaiseDataChangeEvent(new OpcClientEventArgs()
+      {
+        NewValue = e.AttributeData.DisplayValue(), 
+        NodeDescription = e.Arguments.NodeDescriptor.NodeId.StringIdentifier
+      });
     }
 
     protected virtual void OnRaiseDataChangeEvent(OpcClientEventArgs e)

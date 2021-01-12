@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   /// <summary>
   /// This class encapsulates a thread and a queue. Items can be enqueue and 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EasyOpcUADemo
+namespace OpcUaTestClient
 {
   public class OpcClientEventArgs
   {
@@ -23,10 +23,15 @@ namespace EasyOpcUADemo
       set => nodeDescription = value;
     }
 
-    public OpcClientEventArgs(string val, string nodedes)
+    public OpcClientEventArgs(string displayValue, string nodeDescription)
     {
-      NewValue = val;
-      NodeDescription = nodedes;
+      NewValue = displayValue;
+      NodeDescription = nodeDescription;
+    }
+
+    public OpcClientEventArgs()
+    {
+      
     }
   }
 }
