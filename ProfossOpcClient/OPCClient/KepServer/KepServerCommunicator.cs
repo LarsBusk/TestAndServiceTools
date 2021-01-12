@@ -70,6 +70,13 @@ namespace OPCClient.KepServer
       OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.ProductCodeN);
     }
 
+    public static void KepServerSetProductCode(string productCode)
+    {
+      log.DebugFormat("Setting product code to {0}", productCode);
+      KepServerOpcTags.ControllerGroup.ProductCode.ObjectValue = productCode;
+      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.ProductCode);
+    }
+
 
     public static void KepServerStartMeasuring(bool startMeasuring)
     {
