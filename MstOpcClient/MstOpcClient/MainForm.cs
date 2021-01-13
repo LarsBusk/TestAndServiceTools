@@ -107,8 +107,10 @@ namespace MstOpcClient
 
       set
       {
+        isSimulating = value;
         string btnText = isSimulating ? "Stop" : "Start";
         UpdateButton(btnStartSimulation, true, btnText);
+        simLbl.Text = $"Simulating: {isSimulating}";
       }
     }
 
@@ -160,7 +162,7 @@ namespace MstOpcClient
 
       IsInCip = false;
       Connected = false;
-      isSimulating = false;
+      IsSimulating = false;
     }
 
     private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
@@ -244,7 +246,7 @@ namespace MstOpcClient
           UpdateButton(btnStartStop, false, "Start measuring");
           UpdateButton(btnCalibration, false);
           UpdateButton(btnWaterReference, false, "Start WaterRef");
-          UpdateButton(btnStartSimulation, false, "Start");
+          UpdateButton(btnStartSimulation, false);
           UpdateButton(btnCip, false);
           break;
       }
@@ -354,23 +356,20 @@ namespace MstOpcClient
 
     private void btnStartSimulation_Click(object sender, EventArgs e)
     {
-      isSimulating = !isSimulating;
+      IsSimulating = !IsSimulating;
 
-      if (isSimulating)
+      if (IsSimulating)
+      {
+        simulationTimer.Start();
+        simTimerCounter = 0;
+      }
+      else
       {
         simulationTimer.Stop();
-        btnStartSimulation.Text = "Start";
         KepServerCommunicator.KepServerStartMeasuring(false);
         KepServerCommunicator.SetCip(false);
         KepServerCommunicator.SetWaterRef(false);
       }
-      else
-      {
-        simulationTimer.Start();
-        btnStartSimulation.Text = "Stop";
-        simTimerCounter = 0;
-      }
-
     }
 
     private void SimulationTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -408,6 +407,9 @@ namespace MstOpcClient
         simTimerCounter = 0;
         KepServerCommunicator.SetWaterRef(false);
       }
+
+      SimCtrLbl.Text = $"Simulation counter: {simTimerCounter}";
+      
     }
   }
 }
