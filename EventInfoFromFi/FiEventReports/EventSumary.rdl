@@ -227,6 +227,7 @@
                                 <Value>Report ID</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
+                                  <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -258,6 +259,7 @@
                                 <Value>Country</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
+                                  <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -286,9 +288,9 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Eventtype</Value>
+                                <Value>Company</Value>
                                 <Style>
-                                  <FontFamily>Arial</FontFamily>
+                                  <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -317,9 +319,10 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Company</Value>
+                                <Value>Event type</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
+                                  <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -487,7 +490,7 @@
                                     <Style>
                                       <FontSize>11pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>#666666</Color>
+                                      <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -527,7 +530,7 @@
                                     <Style>
                                       <FontSize>11pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>#666666</Color>
+                                      <Color>=Variables!TablixHeaderFontColor.Value</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -651,9 +654,9 @@
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="matrix1_EventTypeName">
+                          <Group Name="CompanyName">
                             <GroupExpressions>
-                              <GroupExpression>=Fields!EventTypeName.Value</GroupExpression>
+                              <GroupExpression>=Fields!CompanyName.Value</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <SortExpressions>
@@ -664,14 +667,14 @@
                           <TablixHeader>
                             <Size>1in</Size>
                             <CellContents>
-                              <Textbox Name="EventTypeName">
+                              <Textbox Name="CompanyName">
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!EventTypeName.Value</Value>
+                                        <Value>=Fields!CompanyName.Value</Value>
                                         <Style />
                                       </TextRun>
                                     </TextRuns>
@@ -680,7 +683,7 @@
                                     </Style>
                                   </Paragraph>
                                 </Paragraphs>
-                                <rd:DefaultName>EventTypeName</rd:DefaultName>
+                                <rd:DefaultName>CompanyName</rd:DefaultName>
                                 <Style>
                                   <Border>
                                     <Color>LightGrey</Color>
@@ -696,9 +699,9 @@
                           </TablixHeader>
                           <TablixMembers>
                             <TablixMember>
-                              <Group Name="matrix1_CompanyName">
+                              <Group Name="EventTypeName">
                                 <GroupExpressions>
-                                  <GroupExpression>=Fields!CompanyName.Value</GroupExpression>
+                                  <GroupExpression>=Fields!EventTypeName.Value</GroupExpression>
                                 </GroupExpressions>
                               </Group>
                               <SortExpressions>
@@ -709,14 +712,14 @@
                               <TablixHeader>
                                 <Size>1in</Size>
                                 <CellContents>
-                                  <Textbox Name="CompanyName">
+                                  <Textbox Name="EventTypeName1">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!CompanyName.Value</Value>
+                                            <Value>=Fields!EventTypeName.Value</Value>
                                             <Style />
                                           </TextRun>
                                         </TextRuns>
@@ -725,7 +728,7 @@
                                         </Style>
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>CompanyName</rd:DefaultName>
+                                    <rd:DefaultName>EventTypeName1</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Color>LightGrey</Color>
@@ -756,14 +759,14 @@
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>EventSumary</DataSetName>
-            <Top>0.42in</Top>
+            <Top>0.43389in</Top>
             <Height>0.64in</Height>
             <Width>6in</Width>
             <ZIndex>1</ZIndex>
             <Style />
           </Tablix>
         </ReportItems>
-        <Height>2.6924cm</Height>
+        <Height>2.72768cm</Height>
         <Style />
       </Body>
       <Width>17.82234cm</Width>

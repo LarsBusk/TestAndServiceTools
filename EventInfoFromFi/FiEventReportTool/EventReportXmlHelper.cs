@@ -64,7 +64,7 @@ namespace FiEventReportTool
       foreach (var eventTypeElement in eventTypeElements)
       {
         string eventType = eventTypeElement.Attribute("type").Value;
-        var eventElements = eventTypeElements.Elements("event");
+        var eventElements = eventTypeElement.Elements("event");
 
         foreach (var eventElement in eventElements)
         {
