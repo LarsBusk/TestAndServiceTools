@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -136,6 +136,8 @@ namespace MstOpcClient
 
     private void Startup()
     {
+      var appSettings = ConfigurationManager.AppSettings;
+
       updateTagsTimer = new Timer(1000);
       updateTagsTimer.Elapsed += On_updateTagsTimer;
 
@@ -145,13 +147,16 @@ namespace MstOpcClient
       simulationTimer = new Timer(1000);
       simulationTimer.Elapsed += SimulationTimer_Elapsed;
 
+      
+      var kepServers = appSettings.AllKeys.Where(k => k.StartsWith("KepServer"));
 
-
-      cbOpcServer.Items.Add(new KepServerItems("KepServer V6", "Kepware.KEPServerEX.V6"));
-      cbOpcServer.Items.Add(new KepServerItems("KepServer V5", "Kepware.KEPServerEX.V5"));
+      foreach (var kepServer in kepServers)
+      {
+        cbOpcServer.Items.Add(new KepServerItems(kepServer, appSettings[kepServer]));
+      }
 
       cbOpcServer.SelectedItem = cbOpcServer.Items[0];
-      tbGroupName.Text = "ProFoss.Pdx";
+      tbGroupName.Text = appSettings["LastGroup"];
 
       Connected = false;
       isSimulating = false;
@@ -159,44 +164,6 @@ namespace MstOpcClient
       ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
     }
 
-    private void LoggingTimer_Elapsed(object sender, ElapsedEventArgs e)
-    {
-      log.Debug("Start reading OPC tags.");
-      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
-      var opcTags = KepServerCommunicator.KepServerOpcTags;
-      log.Debug("Done reading OPC tags.");
-
-      log.Debug($"Calibration sample: {opcTags.SampleGroup.CalibrationSample}, samplecounter: {opcTags.InstrumentGroup.SampleCounter}");
-    }
-
-    private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
-    {
-      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
-
-      var opcTags = KepServerCommunicator.KepServerOpcTags;
-
-      if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
-        State = opcTags.InstrumentGroup.ModeN.Value;
-
-      if (!SampleCounter.Equals(opcTags.InstrumentGroup.SampleCounter.Value))
-        SampleCounter = opcTags.InstrumentGroup.SampleCounter.Value;
-
-
-
-      SetLabel(lblWatchdog, string.Format("Watchdog: {0}", opcTags.InstrumentGroup.WatchdogCounter.Value));
-      SetLabel(lblCalibrationSample,
-        string.Format("Doing calibration: {0}", opcTags.InstrumentGroup.DoingCalibrationSample.Value));
-
-      KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
-      opcWatchdog++;
-    }
-
-    private void btnConnect_Click(object sender, EventArgs e)
-    {
-      ConnectToKepServer();
-      ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
-      UsePrdCpdeNChk.Enabled = false;
-    }
 
     private void UpdateStates()
     {
@@ -210,14 +177,6 @@ namespace MstOpcClient
       tbProductCode.Enabled = Connected;
     }
 
-    private void btnDisconnect_Click(object sender, EventArgs e)
-    {
-      kepServerCommunicator.DisconnectFromKepServer();
-      kepServerCommunicator = null;
-      Connected = false;
-      State = 0;
-      UsePrdCpdeNChk.Enabled = true;
-    }
 
     private void UpdateButtonStates()
     {
@@ -248,7 +207,6 @@ namespace MstOpcClient
       }
     }
 
-
     private void SetLabel(Label label, string text)
     {
       if (lblWatchdog.InvokeRequired)
@@ -275,18 +233,6 @@ namespace MstOpcClient
     }
 
 
-    private void btnStartStop_Click(object sender, EventArgs e)
-    {
-      if (state.Equals(2))
-      {
-        StartMeasuring();
-      }
-      else if (state.Equals(3))
-      {
-        KepServerCommunicator.KepServerStartMeasuring(false);
-      }
-    }
-
     private void tbProductCode_TextChanged(object sender, EventArgs e)
     {
       int productCode;
@@ -297,30 +243,34 @@ namespace MstOpcClient
       }
     }
 
-    private void btnCalibration_Click(object sender, EventArgs e)
-    {
-      KepServerCommunicator.SetCalibrationSample(true);
-      Thread.Sleep(TimeSpan.FromSeconds(1));
-      KepServerCommunicator.SetCalibrationSample(false);
-    }
 
-    private void btnStartSimulation_Click(object sender, EventArgs e)
+    private void StartMeasuring()
     {
-      if (isSimulating)
+      if (UsePrdCpdeNChk.Checked)
       {
-        simulationTimer.Stop();
-        btnStartSimulation.Text = "Start";
-        KepServerCommunicator.KepServerStartMeasuring(false);
+        if (int.TryParse(tbProductCode.Text, out int productCode))
+        {
+          KepServerCommunicator.KepServerSetProductCodeN(productCode);
+          KepServerCommunicator.KepServerStartMeasuring(true);
+        }
       }
       else
       {
-        simulationTimer.Start();
-        btnStartSimulation.Text = "Stop";
-        simTimerCounter = 0;
+        KepServerCommunicator.KepServerSetProductCode(tbProductCode.Text);
+        KepServerCommunicator.KepServerStartMeasuring(true);
       }
-
-      isSimulating = !isSimulating;
     }
+
+    private void UpdateAppSetting(string key, string value)
+    {
+      var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      var settings = configFile.AppSettings.Settings;
+      settings[key].Value = value;
+      configFile.Save(ConfigurationSaveMode.Modified);
+      ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+    }
+
+    #region Timer methods
 
     private void SimulationTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
@@ -352,22 +302,42 @@ namespace MstOpcClient
       }
     }
 
-    private void StartMeasuring()
+    private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
     {
-      if (UsePrdCpdeNChk.Checked)
-      {
-        if (int.TryParse(tbProductCode.Text, out int productCode))
-        {
-          KepServerCommunicator.KepServerSetProductCodeN(productCode);
-          KepServerCommunicator.KepServerStartMeasuring(true);
-        }
-      }
-      else
-      {
-        KepServerCommunicator.KepServerSetProductCode(tbProductCode.Text);
-        KepServerCommunicator.KepServerStartMeasuring(true);
-      }
+      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+
+      var opcTags = KepServerCommunicator.KepServerOpcTags;
+
+      if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
+        State = opcTags.InstrumentGroup.ModeN.Value;
+
+      if (!SampleCounter.Equals(opcTags.InstrumentGroup.SampleCounter.Value))
+        SampleCounter = opcTags.InstrumentGroup.SampleCounter.Value;
+
+
+
+      SetLabel(lblWatchdog, string.Format("Watchdog: {0}", opcTags.InstrumentGroup.WatchdogCounter.Value));
+      SetLabel(lblCalibrationSample,
+        string.Format("Doing calibration: {0}", opcTags.InstrumentGroup.DoingCalibrationSample.Value));
+
+      KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
+      opcWatchdog++;
     }
+
+    private void LoggingTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+      log.Debug("Start reading OPC tags.");
+      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+      var opcTags = KepServerCommunicator.KepServerOpcTags;
+      log.Debug("Done reading OPC tags.");
+
+      log.Debug($"Calibration sample: {opcTags.SampleGroup.CalibrationSample}, samplecounter: {opcTags.InstrumentGroup.SampleCounter}");
+    }
+
+    #endregion
+
+
+    #region Button click methods
 
     private void startLoggingBtn_Click(object sender, EventArgs e)
     {
@@ -382,5 +352,60 @@ namespace MstOpcClient
       loggingTimer.Enabled = true;
       startLoggingBtn.Text = "Stop logging";
     }
+
+    private void btnCalibration_Click(object sender, EventArgs e)
+    {
+      KepServerCommunicator.SetCalibrationSample(true);
+      Thread.Sleep(TimeSpan.FromSeconds(1));
+      KepServerCommunicator.SetCalibrationSample(false);
+    }
+
+    private void btnStartSimulation_Click(object sender, EventArgs e)
+    {
+      if (isSimulating)
+      {
+        simulationTimer.Stop();
+        btnStartSimulation.Text = "Start";
+        KepServerCommunicator.KepServerStartMeasuring(false);
+      }
+      else
+      {
+        simulationTimer.Start();
+        btnStartSimulation.Text = "Stop";
+        simTimerCounter = 0;
+      }
+
+      isSimulating = !isSimulating;
+    }
+
+    private void btnStartStop_Click(object sender, EventArgs e)
+    {
+      if (state.Equals(2))
+      {
+        StartMeasuring();
+      }
+      else if (state.Equals(3))
+      {
+        KepServerCommunicator.KepServerStartMeasuring(false);
+      }
+    }
+
+    private void btnConnect_Click(object sender, EventArgs e)
+    {
+      ConnectToKepServer();
+      ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
+      UsePrdCpdeNChk.Enabled = false;
+      UpdateAppSetting("LastGroup", tbGroupName.Text);
+    }
+
+    private void btnDisconnect_Click(object sender, EventArgs e)
+    {
+      kepServerCommunicator.DisconnectFromKepServer();
+      kepServerCommunicator = null;
+      Connected = false;
+      State = 0;
+      UsePrdCpdeNChk.Enabled = true;
+    }
+    #endregion Button click methods
   }
 }
