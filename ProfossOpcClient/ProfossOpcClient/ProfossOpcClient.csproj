@@ -88,7 +88,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OPCClient\OPCClient.csproj">
+    <ProjectReference Include="..\..\OPCClient\OPCClient.csproj">
       <Project>{7e03ee86-14bb-4758-b8af-9912493fadf4}</Project>
       <Name>OPCClient</Name>
     </ProjectReference>

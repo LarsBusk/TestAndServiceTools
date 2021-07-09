@@ -13,7 +13,7 @@ using System.Timers;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using log4net;
-using OPCClient.KepServer;
+using OPCClient.Communicators;
 using OPCClient.OPCTags;
 using ProfossOpcClient;
 using Timer = System.Timers.Timer;
@@ -24,7 +24,7 @@ namespace MstOpcClient
   {
     #region Private fields
 
-    private KepServerCommunicator kepServerCommunicator;
+    private ProFossKepServerCommunicator kepServerCommunicator;
 
     private static readonly ILog log = LogManager.GetLogger(typeof(MainForm));
 
@@ -119,7 +119,7 @@ namespace MstOpcClient
 
       try
       {
-        kepServerCommunicator = new OPCClient.KepServer.KepServerCommunicator();
+        kepServerCommunicator = new ProFossKepServerCommunicator();
         kepServerCommunicator.ConnectToKepServer(kepServerName, groupName);
       }
       catch (Exception exception)
@@ -239,7 +239,7 @@ namespace MstOpcClient
 
       if (int.TryParse(tbProductCode.Text, out productCode))
       {
-        KepServerCommunicator.KepServerSetProductCodeN(productCode);
+        ProFossKepServerCommunicator.KepServerSetProductCodeN(productCode);
       }
     }
 
@@ -250,14 +250,14 @@ namespace MstOpcClient
       {
         if (int.TryParse(tbProductCode.Text, out int productCode))
         {
-          KepServerCommunicator.KepServerSetProductCodeN(productCode);
-          KepServerCommunicator.KepServerStartMeasuring(true);
+          ProFossKepServerCommunicator.KepServerSetProductCodeN(productCode);
+          ProFossKepServerCommunicator.KepServerStartMeasuring(true);
         }
       }
       else
       {
-        KepServerCommunicator.KepServerSetProductCode(tbProductCode.Text);
-        KepServerCommunicator.KepServerStartMeasuring(true);
+        ProFossKepServerCommunicator.KepServerSetProductCodeN(int.Parse(tbProductCode.Text));
+        ProFossKepServerCommunicator.KepServerStartMeasuring(true);
       }
     }
 
@@ -289,7 +289,7 @@ namespace MstOpcClient
       {
         if (state == 3)
         {
-          KepServerCommunicator.KepServerStartMeasuring(false);
+          ProFossKepServerCommunicator.KepServerStartMeasuring(false);
           Thread.Sleep(TimeSpan.FromSeconds(20));
         }
       }
@@ -304,9 +304,9 @@ namespace MstOpcClient
 
     private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
     {
-      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+      ProFossKepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
 
-      var opcTags = KepServerCommunicator.KepServerOpcTags;
+      var opcTags = ProFossKepServerCommunicator.KepServerOpcTags;
 
       if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
         State = opcTags.InstrumentGroup.ModeN.Value;
@@ -320,18 +320,18 @@ namespace MstOpcClient
       SetLabel(lblCalibrationSample,
         string.Format("Doing calibration: {0}", opcTags.InstrumentGroup.DoingCalibrationSample.Value));
 
-      KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
+      ProFossKepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
       opcWatchdog++;
     }
 
     private void LoggingTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
       log.Debug("Start reading OPC tags.");
-      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
-      var opcTags = KepServerCommunicator.KepServerOpcTags;
+      ProFossKepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+      var opcTags = ProFossKepServerCommunicator.KepServerOpcTags;
       log.Debug("Done reading OPC tags.");
 
-      log.Debug($"Calibration sample: {opcTags.SampleGroup.CalibrationSample}, samplecounter: {opcTags.InstrumentGroup.SampleCounter}");
+      log.Debug($"Calibration sample: {opcTags.SampleGroup.SampleGroup.CalibrationSample}, samplecounter: {opcTags.InstrumentGroup.SampleCounter}");
     }
 
     #endregion
@@ -355,9 +355,9 @@ namespace MstOpcClient
 
     private void btnCalibration_Click(object sender, EventArgs e)
     {
-      KepServerCommunicator.SetCalibrationSample(true);
+      ProFossKepServerCommunicator.SetCalibrationSample(true);
       Thread.Sleep(TimeSpan.FromSeconds(1));
-      KepServerCommunicator.SetCalibrationSample(false);
+      ProFossKepServerCommunicator.SetCalibrationSample(false);
     }
 
     private void btnStartSimulation_Click(object sender, EventArgs e)
@@ -366,7 +366,7 @@ namespace MstOpcClient
       {
         simulationTimer.Stop();
         btnStartSimulation.Text = "Start";
-        KepServerCommunicator.KepServerStartMeasuring(false);
+        ProFossKepServerCommunicator.KepServerStartMeasuring(false);
       }
       else
       {
@@ -386,7 +386,7 @@ namespace MstOpcClient
       }
       else if (state.Equals(3))
       {
-        KepServerCommunicator.KepServerStartMeasuring(false);
+        ProFossKepServerCommunicator.KepServerStartMeasuring(false);
       }
     }
 
