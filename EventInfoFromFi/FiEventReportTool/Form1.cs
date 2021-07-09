@@ -49,6 +49,8 @@ namespace FiEventReportTool
       {
         this.reportFileName = dialog.FileName;
       }
+
+      ReadReport();
     }
 
     private void WriteReportHeaders()
@@ -57,6 +59,13 @@ namespace FiEventReportTool
       this.detailsLabel.Text = reportContents.ToString();
       this.startTimeTextBox.Text = reportContents.StartDateTime.ToString(isoFormat);
       this.endtimeTextBox.Text = reportContents.EndDateTime.ToString(isoFormat);
+    }
+
+    private void ReadReport()
+    {
+      EventReportXmlHelper helper = new EventReportXmlHelper(reportFileName);
+      reportContents = helper.ReadReport();
+      WriteReportHeaders();
     }
 
     private void MainForm_Load(object sender, EventArgs e)

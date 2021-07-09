@@ -50,12 +50,18 @@
   </PropertyGroup>
   <ItemGroup>
     <DataSet Include="EventSumary.rsd" />
+    <DataSet Include="EventTypes.rsd" />
+    <DataSet Include="Top10_Events_SwVersion.rsd" />
+    <DataSet Include="Versions.rsd" />
   </ItemGroup>
   <ItemGroup>
     <DataSource Include="FiEvents.rds" />
   </ItemGroup>
   <ItemGroup>
     <Report Include="EventSumary.rdl" />
+    <Report Include="Top10EventsGraph.rdl" />
+    <Report Include="Top10EventsPie.rdl" />
+    <Report Include="Top10Events_Version.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
