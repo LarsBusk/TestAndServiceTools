@@ -63,8 +63,7 @@ namespace OPCCsvLoggerClient
 
     private void ConnectToKepServer()
     {
-      int updateRate = 100;
-      int.TryParse(tbUpdateRate.Text, out updateRate);
+      if(!int.TryParse(tbUpdateRate.Text, out int updateRate)) updateRate = 100;
 
       try
       {
@@ -72,6 +71,7 @@ namespace OPCCsvLoggerClient
         string groupName = tbGroupName.Text ?? Properties.Settings.Default.KepServerGroupName;
         meatMasterOPCCommunicatior = new MeatMasterOPCCommunicatior(OPCServerType.KepServer);
         meatMasterOPCCommunicatior.ConnectToKepServer(kepServerName, groupName, updateRate);
+        this.getSampleTimer.Interval = updateRate;
       }
       catch (Exception exception)
       {

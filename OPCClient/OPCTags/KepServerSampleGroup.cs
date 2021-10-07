@@ -19,6 +19,7 @@ namespace OPCClient.OPCTags
     public OPCTag<int> Second;
     public OPCTag<int> MilliSecond;
     public OPCTag<int> ProductCodeN;
+    public OPCTag<bool> CalibrationSample;
 
     public KepServerSampleGroup(string serverPrefix) : base(serverPrefix)
     {
@@ -44,6 +45,8 @@ namespace OPCClient.OPCTags
       OPCTags.Add(MilliSecond); 
       ProductCodeN = new OPCTag<int>(serverPrefix, "Sample.ProductCodeN");
       OPCTags.Add(ProductCodeN);
+      CalibrationSample = new OPCTag<bool>(serverPrefix, "Sample.CalibrationSample");
+      OPCTags.Add(CalibrationSample);
     }
   }
 }

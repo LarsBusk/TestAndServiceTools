@@ -8,12 +8,12 @@ namespace OPCClient.OPCTags
 {
   public class KepServerSampleGroupPf : OPCGroup
   {
-    public KepServerSampleGroup SamlpleGroup;
+    public KepServerSampleGroup SampleGroup;
     public KepServerSampleParametersGroupPf SampleParametersGroup;
 
     public KepServerSampleGroupPf(string serverPrefix) : base(serverPrefix)
     {
-      OPCTags.AddRange(SamlpleGroup.OPCTags);
+      OPCTags.AddRange(SampleGroup.OPCTags);
       OPCTags.AddRange(SampleParametersGroup.OPCTags);
     }
   }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using log4net;
 using System.Threading;
 using OPCClient.OPCTags;
@@ -46,7 +47,7 @@ namespace OPCClient.KepServer
       
       log.DebugFormat("Trying to connect to {0} group: {1}", kepServerName, groupName);
 
-      if (!OpcHelp.Connect(kepServerName, 100))
+      if (!OpcHelp.Connect(kepServerName, 10000))
       {
         throw new IOException("Could not connect to OPC server");
       }
@@ -76,6 +77,20 @@ namespace OPCClient.KepServer
       log.DebugFormat("Setting StartMeasuring to {0}", startMeasuring);
       KepServerOpcTags.ControllerGroup.StartMeasuring.ObjectValue = startMeasuring;
       OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.StartMeasuring);
+    }
+
+    public static void TestNewResult(double fatValue, int sampleNumberN, int sampleCounter)
+    {
+      KepServerOpcTags.GetSampleGroup.SampleParametersGroup.Fat.ObjectValue = fatValue;
+      KepServerOpcTags.GetSampleGroup.Identifier.ObjectValue = sampleNumberN;
+      IOPCTag[] tags = new IOPCTag[2];
+      tags = new IOPCTag[] {KepServerOpcTags.GetSampleGroup.SampleParametersGroup.Fat , KepServerOpcTags.GetSampleGroup.Identifier};
+      VarEnum[] types = new VarEnum[2];
+      types = new VarEnum[] {VarEnum.VT_R4, VarEnum.VT_I2};
+      OpcHelp.OPCSetData.SetOPCTags(tags, types);
+      Thread.Sleep(20);
+      KepServerOpcTags.InstrumentGroup.SampleCounter.ObjectValue = sampleCounter;
+      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.InstrumentGroup.SampleCounter);
     }
 
     public static void UpdateWatchDogCounter(int counter)

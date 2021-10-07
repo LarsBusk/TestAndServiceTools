@@ -37,6 +37,10 @@ namespace MstOpcClient
 
     private Timer updateTagsTimer;
 
+    private double fat = 10;
+    private int sampleCounterOut = 1;
+    private int sampleNumber =1;
+
     private bool connected;
 
     private int state;
@@ -151,14 +155,14 @@ namespace MstOpcClient
       updateTagsTimer = new Timer(1000);
       updateTagsTimer.Elapsed += On_updateTagsTimer;
 
-      simulationTimer = new Timer(1000);
+      simulationTimer = new Timer(200);
       simulationTimer.Elapsed += SimulationTimer_Elapsed;
 
       cbOpcServer.Items.Add(new KepServerItems("KepServer V6", "Kepware.KEPServerEX.V6"));
       cbOpcServer.Items.Add(new KepServerItems("KepServer V5", "Kepware.KEPServerEX.V5"));
 
       cbOpcServer.SelectedItem = cbOpcServer.Items[0];
-      tbGroupName.Text = "Matilde.Pdx";
+      tbGroupName.Text = "Siemens.S71500"; //"Matilde.Pdx";
 
       IsInCip = false;
       Connected = false;
@@ -186,7 +190,7 @@ namespace MstOpcClient
       SetLabel(lblCalibrationSample,
         string.Format("Doing calibration: {0}", opcTags.InstrumentGroup.DoingCalibrationSample.Value));
 
-      KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
+      //KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
       opcWatchdog++;
     }
 
@@ -374,7 +378,8 @@ namespace MstOpcClient
 
     private void SimulationTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
-      int sampleTime = int.Parse(tbMeasureTime.Text);
+
+      /*int sampleTime = int.Parse(tbMeasureTime.Text);
       int waterRefTime = int.Parse(tbWaterRefTime.Text);
       int cipTime = int.Parse(tbCipTime.Text);
 
@@ -409,7 +414,32 @@ namespace MstOpcClient
       }
 
       SimCtrLbl.Text = $"Simulation counter: {simTimerCounter}";
-      
+      */
+      SimNewSample();
+    }
+
+    private void newSampleButton_Click(object sender, EventArgs e)
+    {
+      SimNewSample();
+    }
+
+    private void SimNewSample()
+    {
+      KepServerCommunicator.TestNewResult(fat, sampleNumber, sampleCounterOut);
+      fat += 0.2;
+      sampleNumber++;
+      sampleCounterOut++;
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      simulationTimer.Stop();
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      simulationTimer.Interval = int.Parse(intervalTextBox.Text);
+      simulationTimer.Start();
     }
   }
 }

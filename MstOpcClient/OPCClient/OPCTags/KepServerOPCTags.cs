@@ -39,9 +39,9 @@ namespace OPCClient.OPCTags
 
       #region GetTags
 
-      public KepServerSampleGroup GetSampleGroup { get; private set; }
+      public KepServerSampleGroup GetSampleGroup { get;  set; }
       public KepServerControllerGroup ControllerGroup { get; private set; }
-      public KepServerInstrumentGroup InstrumentGroup { get; private set; }
+      public KepServerInstrumentGroup InstrumentGroup { get;  set; }
       #endregion
     }
 }

@@ -37,6 +37,7 @@
       this.tbGroupName = new System.Windows.Forms.TextBox();
       this.cbOpcServer = new System.Windows.Forms.ComboBox();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.newSampleButton = new System.Windows.Forms.Button();
       this.label7 = new System.Windows.Forms.Label();
       this.tbProductCode = new System.Windows.Forms.TextBox();
       this.lblState = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
       this.btnCalibration = new System.Windows.Forms.Button();
       this.btnStartStop = new System.Windows.Forms.Button();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.simLbl = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
@@ -53,12 +55,15 @@
       this.tbMeasureTime = new System.Windows.Forms.TextBox();
       this.btnStartSimulation = new System.Windows.Forms.Button();
       this.groupBox4 = new System.Windows.Forms.GroupBox();
+      this.SimCtrLbl = new System.Windows.Forms.Label();
       this.lblCip = new System.Windows.Forms.Label();
       this.lblSampleCounter = new System.Windows.Forms.Label();
       this.lblCalibrationSample = new System.Windows.Forms.Label();
       this.lblWatchdog = new System.Windows.Forms.Label();
-      this.SimCtrLbl = new System.Windows.Forms.Label();
-      this.simLbl = new System.Windows.Forms.Label();
+      this.button1 = new System.Windows.Forms.Button();
+      this.button2 = new System.Windows.Forms.Button();
+      this.intervalTextBox = new System.Windows.Forms.TextBox();
+      this.label3 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox3.SuspendLayout();
@@ -75,9 +80,9 @@
       this.groupBox1.Controls.Add(this.tbGroupName);
       this.groupBox1.Controls.Add(this.cbOpcServer);
       this.groupBox1.Location = new System.Drawing.Point(16, 295);
-      this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
       this.groupBox1.Size = new System.Drawing.Size(380, 190);
       this.groupBox1.TabIndex = 0;
       this.groupBox1.TabStop = false;
@@ -96,7 +101,7 @@
       // btnDisconnect
       // 
       this.btnDisconnect.Location = new System.Drawing.Point(243, 110);
-      this.btnDisconnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnDisconnect.Margin = new System.Windows.Forms.Padding(4);
       this.btnDisconnect.Name = "btnDisconnect";
       this.btnDisconnect.Size = new System.Drawing.Size(100, 28);
       this.btnDisconnect.TabIndex = 5;
@@ -107,7 +112,7 @@
       // btnConnect
       // 
       this.btnConnect.Location = new System.Drawing.Point(243, 47);
-      this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
       this.btnConnect.Name = "btnConnect";
       this.btnConnect.Size = new System.Drawing.Size(100, 28);
       this.btnConnect.TabIndex = 4;
@@ -138,7 +143,7 @@
       // tbGroupName
       // 
       this.tbGroupName.Location = new System.Drawing.Point(31, 110);
-      this.tbGroupName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tbGroupName.Margin = new System.Windows.Forms.Padding(4);
       this.tbGroupName.Name = "tbGroupName";
       this.tbGroupName.Size = new System.Drawing.Size(160, 22);
       this.tbGroupName.TabIndex = 1;
@@ -147,13 +152,18 @@
       // 
       this.cbOpcServer.FormattingEnabled = true;
       this.cbOpcServer.Location = new System.Drawing.Point(31, 47);
-      this.cbOpcServer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.cbOpcServer.Margin = new System.Windows.Forms.Padding(4);
       this.cbOpcServer.Name = "cbOpcServer";
       this.cbOpcServer.Size = new System.Drawing.Size(160, 24);
       this.cbOpcServer.TabIndex = 0;
       // 
       // groupBox2
       // 
+      this.groupBox2.Controls.Add(this.label3);
+      this.groupBox2.Controls.Add(this.intervalTextBox);
+      this.groupBox2.Controls.Add(this.button2);
+      this.groupBox2.Controls.Add(this.button1);
+      this.groupBox2.Controls.Add(this.newSampleButton);
       this.groupBox2.Controls.Add(this.label7);
       this.groupBox2.Controls.Add(this.tbProductCode);
       this.groupBox2.Controls.Add(this.lblState);
@@ -162,13 +172,23 @@
       this.groupBox2.Controls.Add(this.btnCalibration);
       this.groupBox2.Controls.Add(this.btnStartStop);
       this.groupBox2.Location = new System.Drawing.Point(16, 15);
-      this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
       this.groupBox2.Size = new System.Drawing.Size(379, 268);
       this.groupBox2.TabIndex = 1;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Control";
+      // 
+      // newSampleButton
+      // 
+      this.newSampleButton.Location = new System.Drawing.Point(207, 197);
+      this.newSampleButton.Name = "newSampleButton";
+      this.newSampleButton.Size = new System.Drawing.Size(136, 28);
+      this.newSampleButton.TabIndex = 8;
+      this.newSampleButton.Text = "NewSample";
+      this.newSampleButton.UseVisualStyleBackColor = true;
+      this.newSampleButton.Click += new System.EventHandler(this.newSampleButton_Click);
       // 
       // label7
       // 
@@ -184,7 +204,7 @@
       // 
       this.tbProductCode.Enabled = false;
       this.tbProductCode.Location = new System.Drawing.Point(32, 48);
-      this.tbProductCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tbProductCode.Margin = new System.Windows.Forms.Padding(4);
       this.tbProductCode.Name = "tbProductCode";
       this.tbProductCode.Size = new System.Drawing.Size(132, 22);
       this.tbProductCode.TabIndex = 6;
@@ -203,7 +223,7 @@
       // btnCip
       // 
       this.btnCip.Location = new System.Drawing.Point(207, 155);
-      this.btnCip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnCip.Margin = new System.Windows.Forms.Padding(4);
       this.btnCip.Name = "btnCip";
       this.btnCip.Size = new System.Drawing.Size(136, 28);
       this.btnCip.TabIndex = 3;
@@ -214,7 +234,7 @@
       // btnWaterReference
       // 
       this.btnWaterReference.Location = new System.Drawing.Point(207, 119);
-      this.btnWaterReference.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnWaterReference.Margin = new System.Windows.Forms.Padding(4);
       this.btnWaterReference.Name = "btnWaterReference";
       this.btnWaterReference.Size = new System.Drawing.Size(136, 28);
       this.btnWaterReference.TabIndex = 2;
@@ -225,7 +245,7 @@
       // btnCalibration
       // 
       this.btnCalibration.Location = new System.Drawing.Point(207, 84);
-      this.btnCalibration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnCalibration.Margin = new System.Windows.Forms.Padding(4);
       this.btnCalibration.Name = "btnCalibration";
       this.btnCalibration.Size = new System.Drawing.Size(136, 28);
       this.btnCalibration.TabIndex = 1;
@@ -236,7 +256,7 @@
       // btnStartStop
       // 
       this.btnStartStop.Location = new System.Drawing.Point(207, 48);
-      this.btnStartStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnStartStop.Margin = new System.Windows.Forms.Padding(4);
       this.btnStartStop.Name = "btnStartStop";
       this.btnStartStop.Size = new System.Drawing.Size(136, 28);
       this.btnStartStop.TabIndex = 0;
@@ -255,13 +275,22 @@
       this.groupBox3.Controls.Add(this.tbMeasureTime);
       this.groupBox3.Controls.Add(this.btnStartSimulation);
       this.groupBox3.Location = new System.Drawing.Point(428, 15);
-      this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox3.Name = "groupBox3";
-      this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
       this.groupBox3.Size = new System.Drawing.Size(252, 268);
       this.groupBox3.TabIndex = 2;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Simulate";
+      // 
+      // simLbl
+      // 
+      this.simLbl.AutoSize = true;
+      this.simLbl.Location = new System.Drawing.Point(28, 238);
+      this.simLbl.Name = "simLbl";
+      this.simLbl.Size = new System.Drawing.Size(73, 17);
+      this.simLbl.TabIndex = 7;
+      this.simLbl.Text = "Simulating";
       // 
       // label6
       // 
@@ -296,7 +325,7 @@
       // tbCipTime
       // 
       this.tbCipTime.Location = new System.Drawing.Point(27, 162);
-      this.tbCipTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tbCipTime.Margin = new System.Windows.Forms.Padding(4);
       this.tbCipTime.Name = "tbCipTime";
       this.tbCipTime.Size = new System.Drawing.Size(148, 22);
       this.tbCipTime.TabIndex = 3;
@@ -305,7 +334,7 @@
       // tbWaterRefTime
       // 
       this.tbWaterRefTime.Location = new System.Drawing.Point(27, 105);
-      this.tbWaterRefTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tbWaterRefTime.Margin = new System.Windows.Forms.Padding(4);
       this.tbWaterRefTime.Name = "tbWaterRefTime";
       this.tbWaterRefTime.Size = new System.Drawing.Size(148, 22);
       this.tbWaterRefTime.TabIndex = 2;
@@ -314,7 +343,7 @@
       // tbMeasureTime
       // 
       this.tbMeasureTime.Location = new System.Drawing.Point(27, 48);
-      this.tbMeasureTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tbMeasureTime.Margin = new System.Windows.Forms.Padding(4);
       this.tbMeasureTime.Name = "tbMeasureTime";
       this.tbMeasureTime.Size = new System.Drawing.Size(148, 22);
       this.tbMeasureTime.TabIndex = 1;
@@ -323,7 +352,7 @@
       // btnStartSimulation
       // 
       this.btnStartSimulation.Location = new System.Drawing.Point(26, 197);
-      this.btnStartSimulation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.btnStartSimulation.Margin = new System.Windows.Forms.Padding(4);
       this.btnStartSimulation.Name = "btnStartSimulation";
       this.btnStartSimulation.Size = new System.Drawing.Size(100, 28);
       this.btnStartSimulation.TabIndex = 0;
@@ -339,13 +368,22 @@
       this.groupBox4.Controls.Add(this.lblCalibrationSample);
       this.groupBox4.Controls.Add(this.lblWatchdog);
       this.groupBox4.Location = new System.Drawing.Point(428, 306);
-      this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox4.Name = "groupBox4";
-      this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
       this.groupBox4.Size = new System.Drawing.Size(252, 178);
       this.groupBox4.TabIndex = 3;
       this.groupBox4.TabStop = false;
       this.groupBox4.Text = "Status";
+      // 
+      // SimCtrLbl
+      // 
+      this.SimCtrLbl.AutoSize = true;
+      this.SimCtrLbl.Location = new System.Drawing.Point(13, 138);
+      this.SimCtrLbl.Name = "SimCtrLbl";
+      this.SimCtrLbl.Size = new System.Drawing.Size(129, 17);
+      this.SimCtrLbl.TabIndex = 4;
+      this.SimCtrLbl.Text = "Simulation counter:";
       // 
       // lblCip
       // 
@@ -387,23 +425,42 @@
       this.lblWatchdog.TabIndex = 0;
       this.lblWatchdog.Text = "PDx watchdog";
       // 
-      // SimCtrLbl
+      // button1
       // 
-      this.SimCtrLbl.AutoSize = true;
-      this.SimCtrLbl.Location = new System.Drawing.Point(13, 138);
-      this.SimCtrLbl.Name = "SimCtrLbl";
-      this.SimCtrLbl.Size = new System.Drawing.Size(129, 17);
-      this.SimCtrLbl.TabIndex = 4;
-      this.SimCtrLbl.Text = "Simulation counter:";
+      this.button1.Location = new System.Drawing.Point(209, 231);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(75, 30);
+      this.button1.TabIndex = 9;
+      this.button1.Text = "Stop";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
-      // simLbl
+      // button2
       // 
-      this.simLbl.AutoSize = true;
-      this.simLbl.Location = new System.Drawing.Point(28, 238);
-      this.simLbl.Name = "simLbl";
-      this.simLbl.Size = new System.Drawing.Size(91, 21);
-      this.simLbl.TabIndex = 7;
-      this.simLbl.Text = "Simulating";
+      this.button2.Location = new System.Drawing.Point(116, 231);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(75, 30);
+      this.button2.TabIndex = 10;
+      this.button2.Text = "Start";
+      this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
+      // 
+      // intervalTextBox
+      // 
+      this.intervalTextBox.Location = new System.Drawing.Point(22, 233);
+      this.intervalTextBox.Name = "intervalTextBox";
+      this.intervalTextBox.Size = new System.Drawing.Size(80, 22);
+      this.intervalTextBox.TabIndex = 11;
+      this.intervalTextBox.Text = "200";
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(19, 213);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(54, 17);
+      this.label3.TabIndex = 12;
+      this.label3.Text = "Interval";
       // 
       // MainForm
       // 
@@ -414,7 +471,7 @@
       this.Controls.Add(this.groupBox3);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.groupBox1);
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "MainForm";
       this.Text = "MilkoStream FT OPC test client";
       this.groupBox1.ResumeLayout(false);
@@ -462,6 +519,11 @@
     private System.Windows.Forms.Label lblCip;
     private System.Windows.Forms.Label SimCtrLbl;
     private System.Windows.Forms.Label simLbl;
+    private System.Windows.Forms.Button newSampleButton;
+    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.TextBox intervalTextBox;
+    private System.Windows.Forms.Label label3;
   }
 }
 
