@@ -43,10 +43,18 @@ namespace ProFossJsonTest
 
     private void UpdateTimer_Tick(object sender, EventArgs e)
     {
+      StringBuilder sb = new StringBuilder();
+
       try
       {
-        GetState();
-        GetCurrentProduct();
+        foreach (var item in instrumentListBox.Items)
+        {
+          serialNumber = ((PfInstrument) item).SerialNumber;
+          string instrumentName = ((PfInstrument) item).Name;
+          sb.AppendLine($"{instrumentName}: {GetState()} Product: {GetCurrentProduct()}");
+        }
+
+        respondTb.Text = sb.ToString();
       }
       catch (Exception exception)
       {
@@ -59,7 +67,7 @@ namespace ProFossJsonTest
       if (isSimulating)
       {
         simTime++;
-        
+
         if (simTime < int.Parse(measureTb.Text))
         {
           if (!isMeasuring)
@@ -89,31 +97,42 @@ namespace ProFossJsonTest
 
     private string StartMeasuring()
     {
-      if (productsCb.SelectedItem == null)
-      {
-        respondTb.Text = "Select a product before starting.";
-        return String.Empty;
-      }
-
+      string returnValue = string.Empty;
       string product = ((PfProduct) productsCb.SelectedItem).ProductCode;
 
-      string cmd = $"startMeasurement/{product}";
-      isMeasuring = true;
-      return SendCommand(cmd);
+      foreach (var item in instrumentListBox.SelectedItems)
+      {
+        serialNumber = ((PfInstrument) item).SerialNumber;
+        string cmd = $"startMeasurement/{product}";
+        isMeasuring = true;
+        returnValue = SendCommand(cmd);
+      }
+
+      return returnValue;
     }
 
     private string StopMeasuring()
     {
-      string cmd = "stopMeasurement";
-      isMeasuring = false;
-      return SendCommand(cmd);
+      string returnValue = String.Empty;
+
+      foreach (var selectedItem in instrumentListBox.SelectedItems)
+      {
+        serialNumber = ((PfInstrument) selectedItem).SerialNumber;
+        string cmd = "stopMeasurement";
+        isMeasuring = false;
+        returnValue = SendCommand(cmd);
+      }
+
+      return returnValue;
     }
 
     private string SendCommand(string cmd)
     {
-      serialNumber = ((PfInstrument) instrumentsCb.SelectedItem).SerialNumber;
+      //serialNumber = ((PfInstrument) instrumentsCb.SelectedItem).SerialNumber;
       System.Net.WebClient wc = new System.Net.WebClient();
-      string webData = wc.DownloadString($"http://{ip}:7913/instrument/{serialNumber}/{cmd}");
+      string command = $"http://{ip}:7913/instrument/{serialNumber}/{cmd}";
+      respondTb.Text = command;
+      string webData = wc.DownloadString(command);
       return webData;
     }
 
@@ -127,19 +146,18 @@ namespace ProFossJsonTest
     private string GetState()
     {
       string state = SendCommand("state");
-      Statelbl.Text = $"State: {state}.";
       return state;
     }
 
-    private void GetCurrentProduct()
+    private string GetCurrentProduct()
     {
       string prodInfo = SendCommand("currentProduct");
-      
-      if (string.IsNullOrEmpty(prodInfo)) return;
 
-      var product = JObject.Parse( $"{{'Product':{prodInfo} }}");
+      if (string.IsNullOrEmpty(prodInfo)) return String.Empty;
+
+      var product = JObject.Parse($"{{'Product':{prodInfo} }}");
       string curProduct = (string) product["Product"]["name"];
-      productLbl.Text = $"Current product: {curProduct}";
+      return curProduct;
     }
 
 
@@ -151,12 +169,12 @@ namespace ProFossJsonTest
 
       var jProduct = JObject.Parse(products);
 
-      JArray jProducts = (JArray)jProduct["ProductList"]["Products"];
+      JArray jProducts = (JArray) jProduct["ProductList"]["Products"];
       productsCb.Items.Clear();
 
       foreach (var product in jProducts)
       {
-        productsCb.Items.Add(new PfProduct((string)product["name"], (string)product["productCode"]));
+        productsCb.Items.Add(new PfProduct((string) product["name"], (string) product["productCode"]));
       }
 
       if (productsCb.Items.Count > 0)
@@ -174,16 +192,28 @@ namespace ProFossJsonTest
       var jInstrumentList = JObject.Parse(instruments);
 
       JArray jInstruments = (JArray) jInstrumentList["InstrumentList"]["Instruments"];
-      instrumentsCb.Items.Clear();
+      instrumentListBox.Items.Clear();
 
       foreach (var instrument in jInstruments)
       {
-        instrumentsCb.Items.Add(new PfInstrument((string)instrument["friendlyName"], (string)instrument["serialNumber"]));
+        instrumentListBox.Items.Add(new PfInstrument((string) instrument["friendlyName"],
+          (string) instrument["serialNumber"]));
       }
 
-      if (instrumentsCb.Items.Count > 0)
+      if (instrumentListBox.Items.Count > 0)
       {
-        instrumentsCb.SelectedItem = instrumentsCb.Items[0];
+        serialNumber = ((PfInstrument) instrumentListBox.Items[0]).SerialNumber;
+        instrumentListBox.SelectedItem = instrumentListBox.Items[0];
+      }
+    }
+
+    private void CalibrationSample()
+    {
+      foreach (var item in instrumentListBox.SelectedItems)
+      {
+        serialNumber = ((PfInstrument) item).SerialNumber;
+        isMeasuring = true;
+        SendCommand("MarkAsCalibration");
       }
     }
 
@@ -225,12 +255,9 @@ namespace ProFossJsonTest
     private void ipTb_TextChanged(object sender, EventArgs e)
     {
       ip = ipTb.Text;
-      instrumentsCb.Items.Clear();
-      instrumentsCb.Text = String.Empty;
       productsCb.Items.Clear();
       productsCb.Text = String.Empty;
       respondTb.Text = string.Empty;
-
       try
       {
         GetInstruments();
@@ -254,20 +281,33 @@ namespace ProFossJsonTest
 
     private void productsCb_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if (GetState().Equals("\"Measuring\""))
+      foreach (var item in instrumentListBox.SelectedItems)
       {
-        string cmd = $"switchProduct/{((PfProduct)productsCb.SelectedItem).ProductCode}";
-        SendCommand(cmd);
+        serialNumber = ((PfInstrument) item).SerialNumber;
+        if (GetState().Equals("\"Measuring\""))
+        {
+          string cmd = $"switchProduct/{((PfProduct) productsCb.SelectedItem).ProductCode}";
+          SendCommand(cmd);
+        }
       }
     }
 
+    private void resetInstrumentBtn_Click(object sender, EventArgs e)
+    {
+      foreach (var item in instrumentListBox.SelectedItems)
+      {
+        serialNumber = ((PfInstrument) item).SerialNumber;
+        isMeasuring = true;
+        SendCommand("resetInstrument");
+      }
+    }
 
+    private void calibrationButton_Click(object sender, EventArgs e)
+    {
+      CalibrationSample();
+    }
 
     #endregion
 
-    private void resetInstrumentBtn_Click(object sender, EventArgs e)
-    {
-      SendCommand("resetInstrument");
-    }
   }
 }

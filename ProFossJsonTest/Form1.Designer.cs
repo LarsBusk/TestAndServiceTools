@@ -31,9 +31,8 @@
       this.startBtn = new System.Windows.Forms.Button();
       this.stopBtn = new System.Windows.Forms.Button();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.calibrationButton = new System.Windows.Forms.Button();
       this.resetInstrumentBtn = new System.Windows.Forms.Button();
-      this.productLbl = new System.Windows.Forms.Label();
-      this.Statelbl = new System.Windows.Forms.Label();
       this.getInstrumentsBtn = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.productsCb = new System.Windows.Forms.ComboBox();
@@ -48,7 +47,7 @@
       this.ipTb = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.respondTb = new System.Windows.Forms.TextBox();
-      this.instrumentsCb = new System.Windows.Forms.ComboBox();
+      this.instrumentListBox = new System.Windows.Forms.ListBox();
       this.label5 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -76,9 +75,8 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.calibrationButton);
       this.groupBox1.Controls.Add(this.resetInstrumentBtn);
-      this.groupBox1.Controls.Add(this.productLbl);
-      this.groupBox1.Controls.Add(this.Statelbl);
       this.groupBox1.Controls.Add(this.getInstrumentsBtn);
       this.groupBox1.Controls.Add(this.label1);
       this.groupBox1.Controls.Add(this.productsCb);
@@ -87,10 +85,20 @@
       this.groupBox1.Controls.Add(this.startBtn);
       this.groupBox1.Location = new System.Drawing.Point(12, 28);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(229, 194);
+      this.groupBox1.Size = new System.Drawing.Size(229, 173);
       this.groupBox1.TabIndex = 3;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Control";
+      // 
+      // calibrationButton
+      // 
+      this.calibrationButton.Location = new System.Drawing.Point(87, 82);
+      this.calibrationButton.Name = "calibrationButton";
+      this.calibrationButton.Size = new System.Drawing.Size(101, 23);
+      this.calibrationButton.TabIndex = 12;
+      this.calibrationButton.Text = "Calibration";
+      this.calibrationButton.UseVisualStyleBackColor = true;
+      this.calibrationButton.Click += new System.EventHandler(this.calibrationButton_Click);
       // 
       // resetInstrumentBtn
       // 
@@ -101,24 +109,6 @@
       this.resetInstrumentBtn.Text = "Reset Instrument";
       this.resetInstrumentBtn.UseVisualStyleBackColor = true;
       this.resetInstrumentBtn.Click += new System.EventHandler(this.resetInstrumentBtn_Click);
-      // 
-      // productLbl
-      // 
-      this.productLbl.AutoSize = true;
-      this.productLbl.Location = new System.Drawing.Point(9, 167);
-      this.productLbl.Name = "productLbl";
-      this.productLbl.Size = new System.Drawing.Size(83, 13);
-      this.productLbl.TabIndex = 10;
-      this.productLbl.Text = "Current product:";
-      // 
-      // Statelbl
-      // 
-      this.Statelbl.AutoSize = true;
-      this.Statelbl.Location = new System.Drawing.Point(11, 140);
-      this.Statelbl.Name = "Statelbl";
-      this.Statelbl.Size = new System.Drawing.Size(35, 13);
-      this.Statelbl.TabIndex = 9;
-      this.Statelbl.Text = "State:";
       // 
       // getInstrumentsBtn
       // 
@@ -167,7 +157,7 @@
       this.groupBox2.Controls.Add(this.measureTb);
       this.groupBox2.Location = new System.Drawing.Point(293, 30);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(200, 192);
+      this.groupBox2.Size = new System.Drawing.Size(200, 171);
       this.groupBox2.TabIndex = 4;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Simulate";
@@ -223,7 +213,7 @@
       // 
       // ipTb
       // 
-      this.ipTb.Location = new System.Drawing.Point(18, 250);
+      this.ipTb.Location = new System.Drawing.Point(18, 230);
       this.ipTb.Name = "ipTb";
       this.ipTb.Size = new System.Drawing.Size(182, 20);
       this.ipTb.TabIndex = 5;
@@ -233,7 +223,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(17, 229);
+      this.label4.Location = new System.Drawing.Point(17, 209);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(87, 13);
       this.label4.TabIndex = 6;
@@ -241,39 +231,39 @@
       // 
       // respondTb
       // 
-      this.respondTb.Location = new System.Drawing.Point(257, 230);
+      this.respondTb.Location = new System.Drawing.Point(18, 369);
       this.respondTb.Multiline = true;
       this.respondTb.Name = "respondTb";
       this.respondTb.ReadOnly = true;
-      this.respondTb.Size = new System.Drawing.Size(236, 90);
+      this.respondTb.Size = new System.Drawing.Size(475, 115);
       this.respondTb.TabIndex = 9;
       this.respondTb.Text = "Hej\r\nMed\r\nDig";
       // 
-      // instrumentsCb
+      // instrumentListBox
       // 
-      this.instrumentsCb.FormattingEnabled = true;
-      this.instrumentsCb.Location = new System.Drawing.Point(18, 299);
-      this.instrumentsCb.Name = "instrumentsCb";
-      this.instrumentsCb.Size = new System.Drawing.Size(182, 21);
-      this.instrumentsCb.TabIndex = 10;
-      this.instrumentsCb.SelectedIndexChanged += new System.EventHandler(this.instrumentsCb_SelectedIndexChanged);
+      this.instrumentListBox.FormattingEnabled = true;
+      this.instrumentListBox.Location = new System.Drawing.Point(293, 230);
+      this.instrumentListBox.Name = "instrumentListBox";
+      this.instrumentListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+      this.instrumentListBox.Size = new System.Drawing.Size(200, 121);
+      this.instrumentListBox.TabIndex = 12;
       // 
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(17, 283);
+      this.label5.Location = new System.Drawing.Point(290, 209);
       this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(56, 13);
-      this.label5.TabIndex = 11;
-      this.label5.Text = "Instrument";
+      this.label5.Size = new System.Drawing.Size(61, 13);
+      this.label5.TabIndex = 13;
+      this.label5.Text = "Instruments";
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(535, 360);
+      this.ClientSize = new System.Drawing.Size(522, 507);
       this.Controls.Add(this.label5);
-      this.Controls.Add(this.instrumentsCb);
+      this.Controls.Add(this.instrumentListBox);
       this.Controls.Add(this.respondTb);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.ipTb);
@@ -310,11 +300,10 @@
     private System.Windows.Forms.ComboBox productsCb;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button getInstrumentsBtn;
-    private System.Windows.Forms.ComboBox instrumentsCb;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.Label productLbl;
-    private System.Windows.Forms.Label Statelbl;
     private System.Windows.Forms.Button resetInstrumentBtn;
+    private System.Windows.Forms.Button calibrationButton;
+    private System.Windows.Forms.ListBox instrumentListBox;
+    private System.Windows.Forms.Label label5;
   }
 }
 
