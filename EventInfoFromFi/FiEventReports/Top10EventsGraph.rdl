@@ -289,7 +289,7 @@
                                           <ChartDataLabel>
                                             <Style />
                                           </ChartDataLabel>
-                                          <ToolTip>=Fields!EventText.Value &amp; " " &amp; Fields!Total.Value</ToolTip>
+                                          <ToolTip>=Fields!EventCode.Value &amp; " " &amp; Fields!EventText.Value &amp; " Count: " &amp; Fields!Total.Value</ToolTip>
                                           <Style />
                                           <ChartMarker>
                                             <Style />
