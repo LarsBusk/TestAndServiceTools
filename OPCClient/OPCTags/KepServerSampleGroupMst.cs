@@ -13,6 +13,9 @@ namespace OPCClient.OPCTags
 
     public KepServerSampleGroupMst(string serverPrefix) : base(serverPrefix)
     {
+      SamlpleGroup = new KepServerSampleGroup(serverPrefix);
+      SampleParametersGroup = new KepServerSampleParametersGroupMst(serverPrefix);
+
       OPCTags.AddRange(SamlpleGroup.OPCTags);
       OPCTags.AddRange(SampleParametersGroup.OPCTags);
     }

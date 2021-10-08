@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MstOpcClient", "MstOpcClient\MstOpcClient.csproj", "{092A7F04-646E-432A-B56E-4C34B302DBDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCClient", "OPCClient\OPCClient.csproj", "{7E03EE86-14BB-4758-B8AF-9912493FADF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPCClient", "..\OPCClient\OPCClient.csproj", "{7E03EE86-14BB-4758-B8AF-9912493FADF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
