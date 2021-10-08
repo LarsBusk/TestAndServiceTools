@@ -64,23 +64,6 @@ namespace OPCClient.Communicators
       OpcHelp.OPCGetData.CreateAllReadTags();
     }
 
-    public void ConnectToKepServer()
-    {
-      KepServerOpcTags = new KepServerMeatMasterIIOPCTags();
-
-      OpcHelp = new OpcHelp(KepServerOpcTags);
-
-      string kepServerName = Settings.Default.KepServerName;
-      log.DebugFormat("Trying to connect to {0}", kepServerName);
-
-      if (!OpcHelp.Connect(kepServerName, 100))
-      {
-        throw new IOException("Could not connect to OPC server");
-      }
-
-      OpcHelp.OPCGetData.CreateAllReadTags();
-    }
-
     public void ConnectToKepServer(string kepServerName, string groupName, int updateRate = 100)
     {
       groupName += "."; //Needed to get the full path of the tagnames right.

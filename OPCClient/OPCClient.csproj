@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Communicators\KepServerCommunicator.cs" />
     <Compile Include="Communicators\MilkoStreamKepServerCommunicator.cs" />
     <Compile Include="Communicators\ProFossKepServerCommunicator.cs" />
     <Compile Include="InstrumentStateMode.cs" />
