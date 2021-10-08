@@ -80,8 +80,8 @@ namespace OPCClient.Communicators
 
     public static void UpdateWatchDogCounter(int counter)
     {
-      KepServerOpcTags.ControllerGroup.WatchdogCounter.ObjectValue = counter;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.WatchdogCounter);
+      KepServerOpcTags.InstrumentGroup.WatchdogCounter.ObjectValue = counter;
+      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.InstrumentGroup.WatchdogCounter);
     }
 
     public static void SetCalibrationSample(bool measureCal)
