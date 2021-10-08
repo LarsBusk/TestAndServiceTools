@@ -13,7 +13,7 @@ using System.Timers;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using log4net;
-using OPCClient.KepServer;
+using OPCClient.Communicators;
 using OPCClient.OPCTags;
 using Timer = System.Timers.Timer;
 
@@ -23,7 +23,7 @@ namespace MstOpcClient
   {
     #region Private fields
 
-    private KepServerCommunicator kepServerCommunicator;
+    private MilkoStreamKepServerCommunicator kepServerCommunicator;
 
     private static readonly ILog log = LogManager.GetLogger(typeof(MainForm));
 
@@ -135,7 +135,7 @@ namespace MstOpcClient
 
       try
       {
-        kepServerCommunicator = new OPCClient.KepServer.KepServerCommunicator();
+        kepServerCommunicator = new MilkoStreamKepServerCommunicator();
         kepServerCommunicator.ConnectToKepServer(kepServerName, groupName);
       }
       catch (Exception exception)
@@ -162,7 +162,7 @@ namespace MstOpcClient
       cbOpcServer.Items.Add(new KepServerItems("KepServer V5", "Kepware.KEPServerEX.V5"));
 
       cbOpcServer.SelectedItem = cbOpcServer.Items[0];
-      tbGroupName.Text = "Siemens.S71500"; //"Matilde.Pdx";
+      tbGroupName.Text = "Matilde.Pdx";
 
       IsInCip = false;
       Connected = false;
@@ -171,15 +171,15 @@ namespace MstOpcClient
 
     private void On_updateTagsTimer(object sender, ElapsedEventArgs args)
     {
-      KepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
+      MilkoStreamKepServerCommunicator.OpcHelp.OPCGetData.ReadAllOPCData();
 
-      var opcTags = KepServerCommunicator.KepServerOpcTags;
+      var opcTags = MilkoStreamKepServerCommunicator.KepServerOpcTags;
 
       if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
         State = opcTags.InstrumentGroup.ModeN.Value;
 
-      if (!IsInCip.Equals(opcTags.ControllerGroup.CIP.Value))
-        IsInCip = opcTags.ControllerGroup.CIP.Value;
+      if (!IsInCip.Equals(opcTags.ControllerGroup.Cip.Value))
+        IsInCip = opcTags.ControllerGroup.Cip.Value;
 
       if (!SampleCounter.Equals(opcTags.InstrumentGroup.SampleCounter.Value))
         SampleCounter = opcTags.InstrumentGroup.SampleCounter.Value;
@@ -190,7 +190,7 @@ namespace MstOpcClient
       SetLabel(lblCalibrationSample,
         string.Format("Doing calibration: {0}", opcTags.InstrumentGroup.DoingCalibrationSample.Value));
 
-      //KepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
+      MilkoStreamKepServerCommunicator.UpdateWatchDogCounter(opcWatchdog);
       opcWatchdog++;
     }
 
@@ -262,7 +262,7 @@ namespace MstOpcClient
 
       if (IsInCip)
       {
-        KepServerCommunicator.KepServerStartMeasuring(false);
+        MilkoStreamKepServerCommunicator.KepServerStartMeasuring(false);
         UpdateButton(btnCip, true, "Stop CIP");
         UpdateButton(btnStartStop, false);
         UpdateButton(btnWaterReference, false);
@@ -308,11 +308,11 @@ namespace MstOpcClient
       {
         if (state.Equals(5))
         {
-          KepServerCommunicator.KepServerStartMeasuring(true);
+          MilkoStreamKepServerCommunicator.KepServerStartMeasuring(true);
         }
         else if (state.Equals(6))
         {
-          KepServerCommunicator.KepServerStartMeasuring(false);
+          MilkoStreamKepServerCommunicator.KepServerStartMeasuring(false);
         }
       }
     }
@@ -323,26 +323,26 @@ namespace MstOpcClient
 
       if (int.TryParse(tbProductCode.Text, out productCode))
       {
-        KepServerCommunicator.KepServerSetProductCodeN(productCode);
+        MilkoStreamKepServerCommunicator.KepServerSetProductCodeN(productCode);
       }
     }
 
     private void btnCalibration_Click(object sender, EventArgs e)
     {
-      KepServerCommunicator.SetCalibrationSample(true);
+      MilkoStreamKepServerCommunicator.SetCalibrationSample(true);
       Thread.Sleep(TimeSpan.FromSeconds(1));
-      KepServerCommunicator.SetCalibrationSample(false);
+      MilkoStreamKepServerCommunicator.SetCalibrationSample(false);
     }
 
     private void btnWaterReference_Click(object sender, EventArgs e)
     {
       if (State.Equals(5))
       {
-        KepServerCommunicator.SetWaterRef(true);
+        MilkoStreamKepServerCommunicator.SetWaterRef(true);
       }
       else if (State.Equals(21))
       {
-        KepServerCommunicator.SetWaterRef(false);
+        MilkoStreamKepServerCommunicator.SetWaterRef(false);
       }
     }
 
@@ -350,11 +350,11 @@ namespace MstOpcClient
     {
       if (IsInCip)
       {
-        KepServerCommunicator.SetCip(false);
+        MilkoStreamKepServerCommunicator.SetCip(false);
       }
       else
       {
-        KepServerCommunicator.SetCip(true);
+        MilkoStreamKepServerCommunicator.SetCip(true);
       }
     }
 
@@ -370,16 +370,15 @@ namespace MstOpcClient
       else
       {
         simulationTimer.Stop();
-        KepServerCommunicator.KepServerStartMeasuring(false);
-        KepServerCommunicator.SetCip(false);
-        KepServerCommunicator.SetWaterRef(false);
+        MilkoStreamKepServerCommunicator.KepServerStartMeasuring(false);
+        MilkoStreamKepServerCommunicator.SetCip(false);
+        MilkoStreamKepServerCommunicator.SetWaterRef(false);
       }
     }
 
     private void SimulationTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
-
-      /*int sampleTime = int.Parse(tbMeasureTime.Text);
+      int sampleTime = int.Parse(tbMeasureTime.Text);
       int waterRefTime = int.Parse(tbWaterRefTime.Text);
       int cipTime = int.Parse(tbCipTime.Text);
 
@@ -387,22 +386,22 @@ namespace MstOpcClient
       {
         if (state == 5)
         {
-          KepServerCommunicator.KepServerStartMeasuring(true);
+          MilkoStreamKepServerCommunicator.KepServerStartMeasuring(true);
         }
       }
       else if (simTimerCounter > sampleTime & simTimerCounter < sampleTime + cipTime)
       {
         if (state == 6)
         {
-          KepServerCommunicator.KepServerStartMeasuring(false);
+          MilkoStreamKepServerCommunicator.KepServerStartMeasuring(false);
           Thread.Sleep(TimeSpan.FromSeconds(20));
-          KepServerCommunicator.SetCip(true);
+          MilkoStreamKepServerCommunicator.SetCip(true);
         }
       }
       else if (simTimerCounter > sampleTime + cipTime & simTimerCounter < sampleTime + cipTime + waterRefTime)
       {
-        KepServerCommunicator.SetCip(false);
-        KepServerCommunicator.SetWaterRef(true);
+        MilkoStreamKepServerCommunicator.SetCip(false);
+        MilkoStreamKepServerCommunicator.SetWaterRef(true);
       }
 
       simTimerCounter++;
@@ -410,26 +409,12 @@ namespace MstOpcClient
       if (simTimerCounter > sampleTime + cipTime + waterRefTime)
       {
         simTimerCounter = 0;
-        KepServerCommunicator.SetWaterRef(false);
+        MilkoStreamKepServerCommunicator.SetWaterRef(false);
       }
 
       SimCtrLbl.Text = $"Simulation counter: {simTimerCounter}";
-      */
-      SimNewSample();
     }
 
-    private void newSampleButton_Click(object sender, EventArgs e)
-    {
-      SimNewSample();
-    }
-
-    private void SimNewSample()
-    {
-      KepServerCommunicator.TestNewResult(fat, sampleNumber, sampleCounterOut);
-      fat += 0.2;
-      sampleNumber++;
-      sampleCounterOut++;
-    }
 
     private void button1_Click(object sender, EventArgs e)
     {
