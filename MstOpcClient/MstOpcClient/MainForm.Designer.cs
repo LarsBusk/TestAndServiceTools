@@ -36,6 +36,7 @@
       this.label1 = new System.Windows.Forms.Label();
       this.tbGroupName = new System.Windows.Forms.TextBox();
       this.cbOpcServer = new System.Windows.Forms.ComboBox();
+
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.label3 = new System.Windows.Forms.Label();
       this.intervalTextBox = new System.Windows.Forms.TextBox();
@@ -48,6 +49,7 @@
       this.btnWaterReference = new System.Windows.Forms.Button();
       this.btnCalibration = new System.Windows.Forms.Button();
       this.btnStartStop = new System.Windows.Forms.Button();
+
       this.groupBox3 = new System.Windows.Forms.GroupBox();
       this.simLbl = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
@@ -63,10 +65,19 @@
       this.lblSampleCounter = new System.Windows.Forms.Label();
       this.lblCalibrationSample = new System.Windows.Forms.Label();
       this.lblWatchdog = new System.Windows.Forms.Label();
+
+      this.btnStartStop = new System.Windows.Forms.Button();
+      this.btnCalibration = new System.Windows.Forms.Button();
+      this.btnWaterReference = new System.Windows.Forms.Button();
+      this.btnCip = new System.Windows.Forms.Button();
+      this.tbProductCode = new System.Windows.Forms.TextBox();
+      this.label7 = new System.Windows.Forms.Label();
+      this.groupBox2 = new System.Windows.Forms.GroupBox();
+
       this.groupBox1.SuspendLayout();
-      this.groupBox2.SuspendLayout();
       this.groupBox3.SuspendLayout();
       this.groupBox4.SuspendLayout();
+      this.groupBox2.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
@@ -147,6 +158,7 @@
       this.cbOpcServer.Size = new System.Drawing.Size(121, 21);
       this.cbOpcServer.TabIndex = 0;
       // 
+
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.label3);
@@ -185,28 +197,7 @@
       this.intervalTextBox.Size = new System.Drawing.Size(61, 20);
       this.intervalTextBox.TabIndex = 11;
       this.intervalTextBox.Text = "200";
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(87, 188);
-      this.button2.Margin = new System.Windows.Forms.Padding(2);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(56, 24);
-      this.button2.TabIndex = 10;
-      this.button2.Text = "Start";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
-      // 
-      // button1
-      // 
-      this.button1.Location = new System.Drawing.Point(157, 188);
-      this.button1.Margin = new System.Windows.Forms.Padding(2);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(56, 24);
-      this.button1.TabIndex = 9;
-      this.button1.Text = "Stop";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+
       // 
       // label7
       // 
@@ -225,15 +216,7 @@
       this.tbProductCode.Size = new System.Drawing.Size(100, 20);
       this.tbProductCode.TabIndex = 6;
       this.tbProductCode.TextChanged += new System.EventHandler(this.tbProductCode_TextChanged);
-      // 
-      // lblState
-      // 
-      this.lblState.AutoSize = true;
-      this.lblState.Location = new System.Drawing.Point(92, 169);
-      this.lblState.Name = "lblState";
-      this.lblState.Size = new System.Drawing.Size(32, 13);
-      this.lblState.TabIndex = 4;
-      this.lblState.Text = "State";
+
       // 
       // btnCip
       // 
@@ -275,6 +258,7 @@
       this.btnStartStop.UseVisualStyleBackColor = true;
       this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
       // 
+
       // groupBox3
       // 
       this.groupBox3.Controls.Add(this.simLbl);
@@ -423,27 +407,106 @@
       this.lblWatchdog.TabIndex = 0;
       this.lblWatchdog.Text = "PDx watchdog";
       // 
+
+      // btnStartStop
+      // 
+      this.btnStartStop.Location = new System.Drawing.Point(155, 39);
+      this.btnStartStop.Name = "btnStartStop";
+      this.btnStartStop.Size = new System.Drawing.Size(102, 23);
+      this.btnStartStop.TabIndex = 0;
+      this.btnStartStop.Text = "Start Measuring";
+      this.btnStartStop.UseVisualStyleBackColor = true;
+      this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+      // 
+      // btnCalibration
+      // 
+      this.btnCalibration.Location = new System.Drawing.Point(155, 68);
+      this.btnCalibration.Name = "btnCalibration";
+      this.btnCalibration.Size = new System.Drawing.Size(102, 23);
+      this.btnCalibration.TabIndex = 1;
+      this.btnCalibration.Text = "Calibration Sample";
+      this.btnCalibration.UseVisualStyleBackColor = true;
+      this.btnCalibration.Click += new System.EventHandler(this.btnCalibration_Click);
+      // 
+      // btnWaterReference
+      // 
+      this.btnWaterReference.Location = new System.Drawing.Point(155, 97);
+      this.btnWaterReference.Name = "btnWaterReference";
+      this.btnWaterReference.Size = new System.Drawing.Size(102, 23);
+      this.btnWaterReference.TabIndex = 2;
+      this.btnWaterReference.Text = "Water Reference";
+      this.btnWaterReference.UseVisualStyleBackColor = true;
+      this.btnWaterReference.Click += new System.EventHandler(this.btnWaterReference_Click);
+      // 
+      // btnCip
+      // 
+      this.btnCip.Location = new System.Drawing.Point(155, 126);
+      this.btnCip.Name = "btnCip";
+      this.btnCip.Size = new System.Drawing.Size(102, 23);
+      this.btnCip.TabIndex = 3;
+      this.btnCip.Text = "CIP";
+      this.btnCip.UseVisualStyleBackColor = true;
+      this.btnCip.Click += new System.EventHandler(this.btnCip_Click);
+      // 
+      // tbProductCode
+      // 
+      this.tbProductCode.Enabled = false;
+      this.tbProductCode.Location = new System.Drawing.Point(24, 39);
+      this.tbProductCode.Name = "tbProductCode";
+      this.tbProductCode.Size = new System.Drawing.Size(100, 20);
+      this.tbProductCode.TabIndex = 6;
+      this.tbProductCode.TextChanged += new System.EventHandler(this.tbProductCode_TextChanged);
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Location = new System.Drawing.Point(21, 23);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(77, 13);
+      this.label7.TabIndex = 7;
+      this.label7.Text = "ProductCodeN";
+      // 
+      // groupBox2
+      // 
+      this.groupBox2.Controls.Add(this.label7);
+      this.groupBox2.Controls.Add(this.tbProductCode);
+      this.groupBox2.Controls.Add(this.btnCip);
+      this.groupBox2.Controls.Add(this.btnWaterReference);
+      this.groupBox2.Controls.Add(this.btnCalibration);
+      this.groupBox2.Controls.Add(this.btnStartStop);
+      this.groupBox2.Location = new System.Drawing.Point(12, 12);
+      this.groupBox2.Name = "groupBox2";
+      this.groupBox2.Size = new System.Drawing.Size(284, 218);
+      this.groupBox2.TabIndex = 1;
+      this.groupBox2.TabStop = false;
+      this.groupBox2.Text = "Control";
+      // 
+
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(536, 408);
+
+      this.ClientSize = new System.Drawing.Size(703, 408);
+
       this.Controls.Add(this.groupBox4);
       this.Controls.Add(this.groupBox3);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.groupBox1);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.MaximizeBox = false;
+
+
+
+
       this.Name = "MainForm";
       this.Text = "MilkoStream FT OPC test client";
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
-      this.groupBox2.ResumeLayout(false);
-      this.groupBox2.PerformLayout();
       this.groupBox3.ResumeLayout(false);
       this.groupBox3.PerformLayout();
       this.groupBox4.ResumeLayout(false);
       this.groupBox4.PerformLayout();
+      this.groupBox2.ResumeLayout(false);
+      this.groupBox2.PerformLayout();
       this.ResumeLayout(false);
 
     }
@@ -458,12 +521,6 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label lblConnected;
-    private System.Windows.Forms.GroupBox groupBox2;
-    private System.Windows.Forms.Label lblState;
-    private System.Windows.Forms.Button btnCip;
-    private System.Windows.Forms.Button btnWaterReference;
-    private System.Windows.Forms.Button btnCalibration;
-    private System.Windows.Forms.Button btnStartStop;
     private System.Windows.Forms.GroupBox groupBox3;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
@@ -472,8 +529,6 @@
     private System.Windows.Forms.TextBox tbWaterRefTime;
     private System.Windows.Forms.TextBox tbMeasureTime;
     private System.Windows.Forms.Button btnStartSimulation;
-    private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.TextBox tbProductCode;
     private System.Windows.Forms.GroupBox groupBox4;
     private System.Windows.Forms.Label lblWatchdog;
     private System.Windows.Forms.Label lblCalibrationSample;
@@ -481,10 +536,15 @@
     private System.Windows.Forms.Label lblCip;
     private System.Windows.Forms.Label SimCtrLbl;
     private System.Windows.Forms.Label simLbl;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.TextBox intervalTextBox;
-    private System.Windows.Forms.Label label3;
+
+    private System.Windows.Forms.Button btnStartStop;
+    private System.Windows.Forms.Button btnCalibration;
+    private System.Windows.Forms.Button btnWaterReference;
+    private System.Windows.Forms.Button btnCip;
+    private System.Windows.Forms.TextBox tbProductCode;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.GroupBox groupBox2;
+
   }
 }
 

@@ -79,7 +79,6 @@ namespace MstOpcClient
       {
         state = value;
         UpdateButtonStates();
-        SetLabel(lblState, Enum.GetName(typeof(MatildeStateTypes), state));
       }
     }
 
@@ -413,18 +412,11 @@ namespace MstOpcClient
       }
 
       SimCtrLbl.Text = $"Simulation counter: {simTimerCounter}";
+
+
     }
 
 
-    private void button1_Click(object sender, EventArgs e)
-    {
-      simulationTimer.Stop();
-    }
-
-    private void button2_Click(object sender, EventArgs e)
-    {
-      simulationTimer.Interval = int.Parse(intervalTextBox.Text);
-      simulationTimer.Start();
-    }
+   
   }
 }
