@@ -20,7 +20,8 @@ namespace IrmaCuvetteWear
 
     public override string ToString()
     {
-      return $"{Date};{Time};{Correction.Replace('.', ',')}";
+      string uiSep = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+      return $"{Date};{Time};{Correction.Replace(".", uiSep)}";
     }
 
     private DateTime weardateTime()
