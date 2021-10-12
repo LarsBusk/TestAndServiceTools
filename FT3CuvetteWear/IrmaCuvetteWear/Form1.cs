@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -113,6 +114,11 @@ namespace IrmaCuvetteWear
       var s = e.Data.GetData(DataFormats.FileDrop);
       string name = ((string[]) s)[0];
       CreateCsvFile(name);
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      label4.Text = CultureInfo.CurrentCulture.DisplayName;
     }
   }
 }
