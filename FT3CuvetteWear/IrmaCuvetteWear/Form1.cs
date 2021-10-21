@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,83 +15,43 @@ namespace IrmaCuvetteWear
 {
   public partial class Form1 : Form
   {
-    
-    private string folderName;
+    private LogFileHelper helper;
+    private delegate void SetProgressCallback(int progress);
+
+    private delegate void SetStateLabelCallback(string state);
+
+
     public Form1()
     {
       InitializeComponent();
+      helper = new LogFileHelper();
+      helper.ProgressEvent += Helper_ProgressEvent;
+    }
+
+    private void Helper_ProgressEvent(object sender, ProgressEventArgs e)
+    {
+      SetProgress(e.Progress);
+      UpdateStatusLabel(e.State);
     }
 
     private void browseButton_Click(object sender, EventArgs e)
     {
-        FolderBrowserDialog dialog = new FolderBrowserDialog();
+      FolderBrowserDialog dialog = new FolderBrowserDialog();
 
-        if (!dialog.ShowDialog().Equals(DialogResult.Cancel))
-        {
-          string folder = dialog.SelectedPath;// "C:\\Users\\lab\\Projects\\GitHub\\TestAndServiceTools\\FT3CuvetteWear\\NovaLogs";
-          CreateCsvFile(folder);
-        }
-    }
-
-    private void CreateCsvFile(string folder)
-    {
-      //string folder = dialog.SelectedPath;// "C:\\Users\\lab\\Projects\\GitHub\\TestAndServiceTools\\FT3CuvetteWear\\NovaLogs";
-      var hostFiles = ServerHostfiles(folder);
-      var info = CuvetteLines(hostFiles);
-      SaveToCsv(info);
-    }
-
-    private List<string> ServerHostfiles(string folder)
-    {
-      var files = Directory.GetFiles(folder).Where(f => f.Contains("IrmaDairyServerHost"));
-      return files.ToList();
-    }
-
-    private List<WearInfo> CuvetteLines(List<string> files)
-    {
-      List<WearInfo> wearInfos= new List<WearInfo>();
-      foreach (var logFile in files)
+      if (!dialog.ShowDialog().Equals(DialogResult.Cancel))
       {
-        var lines = File.ReadAllLines(logFile).Where(l => l.Contains("Updating the SBRef average."));
-        foreach (var line in lines)
-        {
-          wearInfos.Add(GetWearInfo(line));
-        }
+        string
+          folder = dialog
+            .SelectedPath; 
+        new Thread(() => helper.CreateCsvFile(folder)).Start();
       }
-
-      wearInfos.Sort();
-      return wearInfos;
-    }
-
-    private WearInfo GetWearInfo(string logLine)
-    {
-      string[] lineParts = logLine.Split(' ');
-      var info = new WearInfo();
-      info.Date = lineParts[0];
-      info.Time = lineParts[1];
-      string correctionPart = lineParts.First(lp => lp.StartsWith("intensityCorrection"));
-      info.Correction = correctionPart.Split('=')[1];
-
-      return info;
-    }
-
-    private void SaveToCsv(List<WearInfo> infos)
-    {
-      List<string> csvLines = new List<string>();
-      csvLines.Add("Date;Time;Correction");
-      foreach (var wearInfo in infos)
-      {
-        csvLines.Add(wearInfo.ToString());
-      }
-
-      File.WriteAllLines("WearLog.csv", csvLines);
     }
 
     private void Form1_DragDrop(object sender, DragEventArgs e)
     {
       var s = e.Data.GetData(DataFormats.FileDrop);
       string name = ((string[])s)[0];
-      CreateCsvFile(name);
+      new Thread(() => helper.CreateCsvFile(name)).Start();
     }
 
     private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -101,24 +62,29 @@ namespace IrmaCuvetteWear
         e.Effect = DragDropEffects.None;
     }
 
-    private void dropTextBox_DragEnter(object sender, DragEventArgs e)
+   
+    private void SetProgress(int progress)
     {
-      if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        e.Effect = DragDropEffects.Copy;
-      else
-        e.Effect = DragDropEffects.None;
+      if (progressBar.InvokeRequired)
+      {
+        SetProgressCallback d = new SetProgressCallback(SetProgress);
+        this.Invoke(d, new object[] { progress });
+        return;
+      }
+
+      progressBar.Value = progress;
     }
 
-    private void dropTextBox_DragDrop(object sender, DragEventArgs e)
+    private void UpdateStatusLabel(string state)
     {
-      var s = e.Data.GetData(DataFormats.FileDrop);
-      string name = ((string[]) s)[0];
-      CreateCsvFile(name);
-    }
+      if (labelState.InvokeRequired)
+      {
+        SetStateLabelCallback d = new SetStateLabelCallback(UpdateStatusLabel);
+        this.Invoke(d, new object[] { state });
+        return;
+      }
 
-    private void Form1_Load(object sender, EventArgs e)
-    {
-      label4.Text = CultureInfo.CurrentCulture.DisplayName;
+      labelState.Text = state;
     }
   }
 }

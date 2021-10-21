@@ -33,7 +33,8 @@ namespace IrmaCuvetteWear
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
+      this.labelState = new System.Windows.Forms.Label();
+      this.progressBar = new System.Windows.Forms.ProgressBar();
       this.SuspendLayout();
       // 
       // browseButton
@@ -73,15 +74,21 @@ namespace IrmaCuvetteWear
       this.label3.TabIndex = 4;
       this.label3.Text = "or drag and drop the folder.";
       // 
-      // label4
+      // labelState
       // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(34, 108);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(35, 13);
-      this.label4.TabIndex = 5;
-      this.label4.Text = "label4";
-      this.label4.Visible = false;
+      this.labelState.AutoSize = true;
+      this.labelState.Location = new System.Drawing.Point(34, 108);
+      this.labelState.Name = "labelState";
+      this.labelState.Size = new System.Drawing.Size(38, 13);
+      this.labelState.TabIndex = 5;
+      this.labelState.Text = "Ready";
+      // 
+      // progressBar
+      // 
+      this.progressBar.Location = new System.Drawing.Point(21, 144);
+      this.progressBar.Name = "progressBar";
+      this.progressBar.Size = new System.Drawing.Size(291, 17);
+      this.progressBar.TabIndex = 6;
       // 
       // Form1
       // 
@@ -89,14 +96,16 @@ namespace IrmaCuvetteWear
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(400, 251);
-      this.Controls.Add(this.label4);
+      this.Controls.Add(this.progressBar);
+      this.Controls.Add(this.labelState);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.browseButton);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+      this.MaximizeBox = false;
       this.Name = "Form1";
       this.Text = "MilkoScan FT3 Cuvette wear tool";
-      this.Load += new System.EventHandler(this.Form1_Load);
       this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
       this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
       this.ResumeLayout(false);
@@ -110,7 +119,8 @@ namespace IrmaCuvetteWear
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label labelState;
+    private System.Windows.Forms.ProgressBar progressBar;
   }
 }
 
