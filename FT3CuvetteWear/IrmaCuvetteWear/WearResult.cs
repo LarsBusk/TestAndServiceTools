@@ -60,7 +60,7 @@ namespace IrmaCuvetteWear
       if (!string.IsNullOrEmpty(logLine))
       {
         int startPos = logLine.IndexOf(startIndicator) + startIndicator.Length + 1;
-        int length = logLine.LastIndexOf(endIndicator) - startPos;
+        int length = logLine.IndexOf(endIndicator, startPos) - startPos;
         getValue = logLine.Substring(startPos, length);
       }
 
