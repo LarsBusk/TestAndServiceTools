@@ -98,7 +98,7 @@ namespace ProFossJsonTest
     private string StartMeasuring()
     {
       string returnValue = string.Empty;
-      string product = ((PfProduct) productsCb.SelectedItem).ProductCode;
+      string product = ((PfProduct) productsCb.SelectedItem).ProductId;
 
       foreach (var item in instrumentListBox.SelectedItems)
       {
@@ -174,7 +174,7 @@ namespace ProFossJsonTest
 
       foreach (var product in jProducts)
       {
-        productsCb.Items.Add(new PfProduct((string) product["name"], (string) product["productCode"]));
+        productsCb.Items.Add(new PfProduct((string) product["name"], (string) product["id"]));
       }
 
       if (productsCb.Items.Count > 0)
@@ -286,7 +286,7 @@ namespace ProFossJsonTest
         serialNumber = ((PfInstrument) item).SerialNumber;
         if (GetState().Equals("\"Measuring\""))
         {
-          string cmd = $"switchProduct/{((PfProduct) productsCb.SelectedItem).ProductCode}";
+          string cmd = $"switchProduct/{((PfProduct) productsCb.SelectedItem).ProductId}";
           SendCommand(cmd);
         }
       }

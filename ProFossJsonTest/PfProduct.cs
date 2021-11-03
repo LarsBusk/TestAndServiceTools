@@ -8,14 +8,14 @@ namespace ProFossJsonTest
 {
   public class PfProduct
   {
-    public string ProductCode;
+    public string ProductId;
 
     public string Name;
 
-    public PfProduct(string name, string code)
+    public PfProduct(string name, string id)
     {
       this.Name = name;
-      this.ProductCode = code;
+      this.ProductId = id;
     }
 
     public override string ToString()
