@@ -101,7 +101,7 @@ namespace IrmaCuvetteWear
       {
         "DarkSignalCalculator", "CleaningLiquidCalculator", "LimestoneCalculator", "MilkstoneCalculator",
         "ProteinCalculator", "MisalignmentCalculator", "Updating the SBRef average.",
-        "AbsoluteMoistureLevelCalculator", "CleanConductivityCheck", "ZeroConductivityCheck"
+        "AbsoluteMoistureLevelCalculator", "CleanConductivityCheck", "ZeroConductivityCheck", "ConductivityGhCheck"
       };
 
       foreach (var logFile in logFiles)
@@ -128,7 +128,7 @@ namespace IrmaCuvetteWear
       {
         "DarkSignalCalculator", "CleaningLiquidCalculator", "LimestoneCalculator", "MilkstoneCalculator",
         "ProteinCalculator", "MisalignmentCalculator", "Updating the SBRef average.",
-        "AbsoluteMoistureLevelCalculator", "CleanConductivityCheck", "ZeroConductivityCheck"
+        "AbsoluteMoistureLevelCalculator", "CleanConductivityCheck", "ZeroConductivityCheck", "ConductivityGhCheck"
       };
 
       var lines = File.ReadAllLines(logFile).Where(li => li.Contains("[Result]"));
