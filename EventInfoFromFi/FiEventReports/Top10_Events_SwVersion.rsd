@@ -7,17 +7,19 @@
 (
 Select		SwVersion
 		,	EventCode
+		,	Instrument
 		,	Max(EventType) as [EventType]
 		,	Max(EventText) as [EventText]
 		,	Sum(Eventcount) as Total
 		,	ROW_NUMBER() over (Partition By SwVersion, Max(EventType)  Order by Sum(Eventcount) Desc) as RowN
 From		dbo.GetAllEvents()
-Group By	SwVersion, EventCode
+Group By	SwVersion, EventCode, Instrument
 )
 Select	SwVersion
 	,	EventType
 	,	EventCode
 	,	EventText
+	,	Instrument
 	,	Total
 	,	RowN
 From	s
@@ -43,6 +45,10 @@ Order By	SwVersion, EventType, RowN</CommandText>
       </Field>
       <Field Name="EventText">
         <DataField>EventText</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Instrument">
+        <DataField>Instrument</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
       <Field Name="RowN">

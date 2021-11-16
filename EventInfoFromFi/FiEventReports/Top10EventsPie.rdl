@@ -28,6 +28,10 @@
           <DataField>EventText</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Instrument">
+          <DataField>Instrument</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="RowN">
           <DataField>RowN</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
@@ -46,6 +50,13 @@
           <Operator>In</Operator>
           <FilterValues>
             <FilterValue>=Parameters!EventTypes.Value</FilterValue>
+          </FilterValues>
+        </Filter>
+        <Filter>
+          <FilterExpression>=Fields!Instrument.Value</FilterExpression>
+          <Operator>In</Operator>
+          <FilterValues>
+            <FilterValue>=Parameters!Instruments.Value</FilterValue>
           </FilterValues>
         </Filter>
       </Filters>
@@ -68,6 +79,17 @@
       <Fields>
         <Field Name="EventTypeName">
           <DataField>EventTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Instruments">
+      <SharedDataSet>
+        <SharedDataSetReference>Instruments</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Instrument">
+          <DataField>Instrument</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -109,12 +131,12 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.40979cm</Width>
+                  <Width>0.07938cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>4.80688cm</Height>
+                  <Height>8.22cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -250,7 +272,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>27.47667cm</Size>
+                            <Size>12.43479cm</Size>
                             <CellContents>
                               <Chart Name="Chart2">
                                 <ChartCategoryHierarchy>
@@ -289,7 +311,7 @@
                                           <ChartDataLabel>
                                             <Style />
                                           </ChartDataLabel>
-                                          <ToolTip>=Fields!EventText.Value &amp; " " &amp; Fields!Total.Value</ToolTip>
+                                          <ToolTip>=Fields!EventCode.Value &amp; " " &amp; Fields!EventText.Value &amp; " Count: " &amp; Fields!Total.Value</ToolTip>
                                           <Style />
                                           <ChartMarker>
                                             <Style />
@@ -297,6 +319,7 @@
                                           <DataElementOutput>Output</DataElementOutput>
                                         </ChartDataPoint>
                                       </ChartDataPoints>
+                                      <Type>Shape</Type>
                                       <Style />
                                       <ChartEmptyPoints>
                                         <Style />
@@ -628,8 +651,8 @@
             </SortExpressions>
             <Top>1.6637cm</Top>
             <Left>1.69016cm</Left>
-            <Height>4.80688cm</Height>
-            <Width>33.20396cm</Width>
+            <Height>8.22cm</Height>
+            <Width>17.83167cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -638,7 +661,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>8.13299cm</Height>
+        <Height>10.67299cm</Height>
         <Style />
       </Body>
       <Width>37.39412cm</Width>
@@ -691,6 +714,24 @@
       </ValidValues>
       <MultiValue>true</MultiValue>
     </ReportParameter>
+    <ReportParameter Name="Instruments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Instruments</DataSetName>
+          <ValueField>Instrument</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Instruments</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Instruments</DataSetName>
+          <ValueField>Instrument</ValueField>
+          <LabelField>Instrument</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -706,6 +747,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>EventTypes</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Instruments</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
