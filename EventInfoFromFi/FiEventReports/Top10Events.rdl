@@ -28,6 +28,10 @@
           <DataField>EventText</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Instrument">
+          <DataField>Instrument</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="RowN">
           <DataField>RowN</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
@@ -46,6 +50,13 @@
           <Operator>In</Operator>
           <FilterValues>
             <FilterValue>=Parameters!Versions.Value</FilterValue>
+          </FilterValues>
+        </Filter>
+        <Filter>
+          <FilterExpression>=Fields!Instrument.Value</FilterExpression>
+          <Operator>In</Operator>
+          <FilterValues>
+            <FilterValue>=Parameters!Instruments.Value</FilterValue>
           </FilterValues>
         </Filter>
       </Filters>
@@ -68,6 +79,17 @@
       <Fields>
         <Field Name="EventTypeName">
           <DataField>EventTypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Instruments">
+      <SharedDataSet>
+        <SharedDataSetReference>Instruments</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="Instrument">
+          <DataField>Instrument</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -573,6 +595,24 @@
       </ValidValues>
       <MultiValue>true</MultiValue>
     </ReportParameter>
+    <ReportParameter Name="Instruments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Instruments</DataSetName>
+          <ValueField>Instrument</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Instruments</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Instruments</DataSetName>
+          <ValueField>Instrument</ValueField>
+          <LabelField>Instrument</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -588,6 +628,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>EventType</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Instruments</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
