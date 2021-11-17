@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="Top10Events_Version">
+    <Query>
+      <DataSourceReference>FiEvents</DataSourceReference>
+      <CommandText>With s as
+(
+Select		SwVersion
+		,	EventCode
+		,	Instrument
+		,	Max(EventType) as [EventType]
+		,	Max(EventText) as [EventText]
+		,	Sum(Eventcount) as Total
+		,	ROW_NUMBER() over (Partition By SwVersion, Max(EventType)  Order by Sum(Eventcount) Desc) as RowN
+From		dbo.GetAllEvents()
+Group By	SwVersion, EventCode, Instrument
+)
+Select	SwVersion
+	,	EventType
+	,	EventCode
+	,	EventText
+	,	Instrument
+	,	Total
+	,	RowN
+From	s
+Where	RowN &lt; 11
+Order By	SwVersion, EventType, RowN</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="SwVersion">
+        <DataField>SwVersion</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="EventType">
+        <DataField>EventType</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="EventCode">
+        <DataField>EventCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Total">
+        <DataField>Total</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="EventText">
+        <DataField>EventText</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Instrument">
+        <DataField>Instrument</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RowN">
+        <DataField>RowN</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

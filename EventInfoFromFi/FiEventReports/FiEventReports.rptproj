@@ -53,6 +53,7 @@
     <DataSet Include="EventTypes.rsd" />
     <DataSet Include="Instruments.rsd" />
     <DataSet Include="Top10_Events_SwVersion.rsd" />
+    <DataSet Include="Top10_Events_SwVersion_Norm.rsd" />
     <DataSet Include="Versions.rsd" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +63,9 @@
     <Report Include="EventSumary.rdl" />
     <Report Include="Top10Events.rdl" />
     <Report Include="Top10EventsColumn.rdl" />
+    <Report Include="Top10EventsColumn_Norm.rdl" />
     <Report Include="Top10EventsPie.rdl" />
+    <Report Include="Top10EventsPie_Norm.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
