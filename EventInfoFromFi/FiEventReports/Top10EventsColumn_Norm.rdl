@@ -6,6 +6,11 @@
     <DataSet Name="Top10Events_Version">
       <SharedDataSet>
         <SharedDataSetReference>Top10_Events_SwVersion_Norm</SharedDataSetReference>
+        <QueryParameters>
+          <QueryParameter Name="@Instruments">
+            <Value>=Parameters!Instruments.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
       </SharedDataSet>
       <Fields>
         <Field Name="SwVersion">
@@ -50,13 +55,6 @@
           <Operator>In</Operator>
           <FilterValues>
             <FilterValue>=Parameters!EventTypes.Value</FilterValue>
-          </FilterValues>
-        </Filter>
-        <Filter>
-          <FilterExpression>=Fields!Instrument.Value</FilterExpression>
-          <Operator>In</Operator>
-          <FilterValues>
-            <FilterValue>=Parameters!Instruments.Value</FilterValue>
           </FilterValues>
         </Filter>
       </Filters>
