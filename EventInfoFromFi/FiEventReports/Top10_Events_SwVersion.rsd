@@ -3,6 +3,16 @@
   <DataSet Name="Top10Events_Version">
     <Query>
       <DataSourceReference>FiEvents</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@Instruments">
+          <DefaultValue>MSC6K</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>String</rd:DbType>
+          <rd:IsMultiValued>true</rd:IsMultiValued>
+        </DataSetParameter>
+      </DataSetParameters>
       <CommandText>With s as
 (
 Select		SwVersion
@@ -13,6 +23,7 @@ Select		SwVersion
 		,	Sum(Eventcount) as Total
 		,	ROW_NUMBER() over (Partition By SwVersion, Max(EventType)  Order by Sum(Eventcount) Desc) as RowN
 From		dbo.GetAllEvents()
+Where Instrument In (@Instruments)
 Group By	SwVersion, EventCode, Instrument
 )
 Select	SwVersion
