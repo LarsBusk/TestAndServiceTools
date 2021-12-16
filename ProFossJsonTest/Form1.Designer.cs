@@ -218,7 +218,6 @@
       this.ipTb.Size = new System.Drawing.Size(182, 20);
       this.ipTb.TabIndex = 5;
       this.ipTb.Text = "Lab-Pf-Win10";
-      this.ipTb.TextChanged += new System.EventHandler(this.ipTb_TextChanged);
       // 
       // label4
       // 

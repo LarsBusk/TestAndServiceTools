@@ -252,23 +252,6 @@ namespace ProFossJsonTest
       GetProducts();
     }
 
-    private void ipTb_TextChanged(object sender, EventArgs e)
-    {
-      ip = ipTb.Text;
-      productsCb.Items.Clear();
-      productsCb.Text = String.Empty;
-      respondTb.Text = string.Empty;
-      try
-      {
-        GetInstruments();
-        respondTb.Text = "Connected.";
-      }
-      catch (WebException exception)
-      {
-        respondTb.Text = exception.Message;
-      }
-    }
-
     private void getInstrumentsBtn_Click(object sender, EventArgs e)
     {
       GetInstruments();
