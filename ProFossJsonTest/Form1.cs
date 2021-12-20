@@ -292,5 +292,9 @@ namespace ProFossJsonTest
 
     #endregion
 
+    private void ipTb_TextChanged(object sender, EventArgs e)
+    {
+      ip = ipTb.Text;
+    }
   }
 }
