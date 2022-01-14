@@ -86,6 +86,7 @@ namespace NoraOpcUaTestServer
         HandleEvents();
       }
     }
+    
 
     private void StateNode_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
     {
@@ -94,6 +95,7 @@ namespace NoraOpcUaTestServer
       var node = (OpcDataVariableNode<string>) sender;
       string noraState = node.Value;
       csvHelper.WriteValues($"Type: {state} New state: {noraState}");
+
       AppendToRichTextBox(noraState);
 
       switch (noraState)
@@ -126,6 +128,7 @@ namespace NoraOpcUaTestServer
     {
       string mes = e.NewState.ToString();
       AppendToRichTextBox(mes);
+
       serverStateLabel.Text = mes;
 
       switch (mes)
@@ -254,6 +257,7 @@ namespace NoraOpcUaTestServer
 
       label.Text = text;
     }
+
 
     private void AppendToRichTextBox(string text)
     {
