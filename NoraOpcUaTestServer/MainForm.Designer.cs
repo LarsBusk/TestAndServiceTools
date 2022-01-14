@@ -310,7 +310,7 @@ namespace NoraOpcUaTestServer
       this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.MaximizeBox = false;
       this.Name = "MainForm";
-      this.Text = "Nora Opc UA Client";
+      this.Text = "Nora Opc UA Server";
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
       this.groupBox2.ResumeLayout(false);

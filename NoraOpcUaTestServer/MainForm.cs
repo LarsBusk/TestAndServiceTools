@@ -29,6 +29,8 @@ namespace NoraOpcUaTestServer
 
     private delegate void UpdateButtonStateCallback(Button button, bool enabled);
 
+    private delegate void AppendToRichTextBoxDelegate(string text);
+
     #endregion
 
 
@@ -84,7 +86,7 @@ namespace NoraOpcUaTestServer
         HandleEvents();
       }
     }
-
+    
 
     private void StateNode_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
     {
@@ -93,6 +95,8 @@ namespace NoraOpcUaTestServer
       var node = (OpcDataVariableNode<string>) sender;
       string noraState = node.Value;
       csvHelper.WriteValues($"Type: {state} New state: {noraState}");
+
+      AppendToRichTextBox(noraState);
 
       switch (noraState)
       {
@@ -123,7 +127,8 @@ namespace NoraOpcUaTestServer
     private void Server_StateChanged(object sender, Opc.UaFx.Server.OpcServerStateChangedEventArgs e)
     {
       string mes = e.NewState.ToString();
-      richTextBox1.AppendText(mes + "\n");
+      AppendToRichTextBox(mes);
+
       serverStateLabel.Text = mes;
 
       switch (mes)
@@ -251,6 +256,20 @@ namespace NoraOpcUaTestServer
       }
 
       label.Text = text;
+    }
+
+
+    private void AppendToRichTextBox(string text)
+    {
+      if (richTextBox1.InvokeRequired)
+      {
+        AppendToRichTextBoxDelegate d = AppendToRichTextBox;
+        this.Invoke(d, new object[] {text});
+        return;
+      }
+
+      richTextBox1.AppendText($"{DateTime.Now}: {text}\n");
+      richTextBox1.ScrollToCaret();
     }
 
     private void UpdateButtonState(Button button, bool enabled)
