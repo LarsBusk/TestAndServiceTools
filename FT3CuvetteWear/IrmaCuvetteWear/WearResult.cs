@@ -14,25 +14,25 @@ namespace IrmaCuvetteWear
 
     public string IntensityCorrection => GetIntensityCorrection();
 
-    public string DarkLevel => GetValue("DarkSignalCalculator", "dark level is", ",");
+    public string DarkLevel => GetValue("DarkSignalCalculator", "dark level is", ", upper limit is");
 
-    public string CleaningLiquidRatio => GetValue("CleaningLiquidCalculator", "ratio is", ",");
+    public string CleaningLiquidRatio => GetValue("CleaningLiquidCalculator", "ratio is", ", lower limit is");
 
-    public string LimeStoneRatio => GetValue("LimestoneCalculator", "ratio is", ",");
+    public string LimeStoneRatio => GetValue("LimestoneCalculator", "ratio is", ", lower limit is");
 
-    public string MilkStoneRatio => GetValue("MilkstoneCalculator", "ratio is", ",");
+    public string MilkStoneRatio => GetValue("MilkstoneCalculator", "ratio is", ", lower limit is");
 
-    public string ProteinRatio => GetValue("ProteinCalculator", "ratio is", ",");
+    public string ProteinRatio => GetValue("ProteinCalculator", "ratio is", ", lower limit is");
 
-    public string InterferometerMisalignmentRatio => GetValue("MisalignmentCalculator", "ratio is", ",");
+    public string InterferometerMisalignmentRatio => GetValue("MisalignmentCalculator", "ratio is", ", lower limit is");
 
-    public string AbsoluteMoistureLevel => GetValue("AbsoluteMoistureLevelCalculator", "abs moisture level", ",");
+    public string AbsoluteMoistureLevel => GetValue("AbsoluteMoistureLevelCalculator", "abs moisture level", ", upper limit is");
 
-    public string ConductivityGhCheck => GetValue("ConductivityGhCheck", "worst value is", ",");
+    public string ConductivityGhCheck => GetValue("ConductivityGhCheck", "worst value is", ", limit is");
 
-    public string CleanConductivityCheck => GetValue("CleanConductivityCheck", "value is", ",");
+    public string CleanConductivityCheck => GetValue("CleanConductivityCheck", "value is", ", lower limit is");
 
-    public string ZeroConductivityCheck => GetValue("ZeroConductivityCheck", "value is", ",");
+    public string ZeroConductivityCheck => GetValue("ZeroConductivityCheck", "value is", ", upper limit is");
 
     public List<string> ResultLines;
     public WearResult(DateTime resultDateTime)
