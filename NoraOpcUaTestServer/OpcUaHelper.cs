@@ -8,30 +8,43 @@ namespace NoraOpcUaTestServer
 {
   public class OpcUaHelper
   {
-    
+    #region Public properties
 
-    public uint HeartBeat => this.noraNodes.ReadNodes.HeartbeatNode.Value;
     public OpcDataVariableNode<double> FatValue => this.noraNodes.ReadNodes.ResultNodes.FatValue;
     public string FatUnit => this.noraNodes.ReadNodes.ResultNodes.FatUnit.Value;
     public double ProteinValue => this.noraNodes.ReadNodes.ResultNodes.ProteinValue.Value;
     public string ProteinUnit => this.noraNodes.ReadNodes.ResultNodes.ProteinUnit.Value;
+    public double LactoseValue => this.noraNodes.ReadNodes.ResultNodes.LactoseValue.Value;
+    public double TsValue => this.noraNodes.ReadNodes.ResultNodes.TsValue.Value;
+    public double SnfValue => noraNodes.ReadNodes.ResultNodes.SnfValue.Value;
     public int Mode => this.noraNodes.ReadNodes.Mode.Value;
     public OpcDataVariableNode<string> ProductName => this.noraNodes.ReadNodes.ProductName;
     public OpcDataVariableNode<uint> EventsCount => noraNodes.ReadNodes.EventNodes.EventsCount;
     public string[] EventMessages => noraNodes.ReadNodes.EventNodes.EventMessages.Value;
+
     public OpcServer Server;
     public OpcDataVariableNode<string> StateNode => noraNodes.ReadNodes.State;
     public OpcDataVariableNode<uint> HeartbeatNode => noraNodes.ReadNodes.HeartbeatNode;
+    public OpcDataVariableNode<string> SampleNumberNode => this.noraNodes.ReadNodes.ResultNodes.SampleNumber;
+
+    #endregion
+     
+    #region Private fields
 
     private readonly NoraNodes noraNodes;
     private readonly CsvHelper csvHelper;
+    private readonly Logger logger;
     private DateTime lastSampleDateTime = DateTime.MinValue;
+
+    #endregion
+
 
 
     public OpcUaHelper(string serverName, string homeFolderName = "Foss")
     {
       noraNodes = new NoraNodes(homeFolderName);
       csvHelper = new CsvHelper();
+      logger = new Logger("NodeValues.txt");
 
       Opc.UaFx.Licenser.LicenseKey =
         "AALSA4IRQPJKOGVQOZP32DTKRRNAIWS3CQLTG7RJEPUAZGVQG6NPQK2OL4DOJNVLSSUDQOEUY5KDHHJWYQSTXUITOEOGOOFL2R5TEIIMCGFE5JV6CQM7TDVFY35SPAB" +
@@ -49,8 +62,25 @@ namespace NoraOpcUaTestServer
         serverName,
         noraNodes.Nodes);
 
-      noraNodes.ReadNodes.ResultNodes.FatValue.AfterApplyChanges += FatValue_AfterApplyChanges;
+      SampleNumberNode.AfterApplyChanges += SampleNumber_AfterApplyChanges;
+      noraNodes.ReadNodes.ResultNodes.FatValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+      noraNodes.ReadNodes.ResultNodes.ProteinValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+      noraNodes.ReadNodes.ResultNodes.LactoseValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+      noraNodes.ReadNodes.ResultNodes.SnfValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+      noraNodes.ReadNodes.ResultNodes.TsValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+
     }
+
+    private void ResultNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+    {
+      var node = (OpcDataVariableNode) sender;
+      var nodeTime = node.Timestamp ?? DateTime.Now;
+      string name = node.DisplayName;
+      var value = node.Value;
+
+      logger.LogInfo($"{name} changed value: {value} at {nodeTime.ToString("O")}");
+    }
+
 
     public void StartServer()
     {
@@ -66,18 +96,18 @@ namespace NoraOpcUaTestServer
     {
       SetNodeValue(noraNodes.WriteNodes.Product, product);
       SetNodeValue(noraNodes.WriteNodes.SetMode, 1);
-      SetNodeValue(noraNodes.WriteNodes.Measuring, true);
+      //SetNodeValue(noraNodes.WriteNodes.Measuring, true);
     }
 
     public void StopMeasuring()
     {
-      SetNodeValue(noraNodes.WriteNodes.Measuring, false);
+      //SetNodeValue(noraNodes.WriteNodes.Measuring, false);
       SetNodeValue(noraNodes.WriteNodes.SetMode, 0);
     }
     
     public void SetCip()
     {
-      SetNodeValue(noraNodes.WriteNodes.SetCleanInPlace, !noraNodes.WriteNodes.SetCleanInPlace.Value);
+      SetNodeValue(noraNodes.WriteNodes.SetCleanInPlace, 2);
     }
 
     public void ChangeProduct(string newProduct)
@@ -101,17 +131,18 @@ namespace NoraOpcUaTestServer
       node.ApplyChanges(Server.SystemContext);
     }
 
-    private void FatValue_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
+    private void SampleNumber_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
     {
+      ResultNode_AfterApplyChanges(sender, e);
       var node = (OpcDataVariableNode) sender;
       DateTime sampleDateTime = node.Timestamp ?? DateTime.Now;
-      double fat = (double) node.Value;
+      string  sampleNumber = (string) node.Value;
       TimeSpan timeDif = TimeSpan.Zero;
 
       if (lastSampleDateTime > DateTime.MinValue)
         timeDif = sampleDateTime.Subtract(lastSampleDateTime);
 
-      csvHelper.WriteValues(sampleDateTime, fat, timeDif);
+      csvHelper.WriteValues(sampleDateTime, sampleNumber, FatValue.Value, ProteinValue, LactoseValue, TsValue, SnfValue,  timeDif);
       lastSampleDateTime = sampleDateTime;
     }
   }
