@@ -10,11 +10,18 @@ namespace NoraOpcUaTestServer.OpcNodes
     public OpcDataVariableNode<string> FatUnit;
     public OpcDataVariableNode<double> ProteinValue;
     public OpcDataVariableNode<string> ProteinUnit;
+    public OpcDataVariableNode<double> LactoseValue;
+    public OpcDataVariableNode<string> LactoseUnit;
+    public OpcDataVariableNode<double> SnfValue;
+    public OpcDataVariableNode<string> SnfUnit;
+    public OpcDataVariableNode<double> TsValue;
+    public OpcDataVariableNode<string> TsUnit;
+    public OpcDataVariableNode<string> SampleNumber;
 
     private readonly OpcFolderNode resultFolder;
     private string folderName = "Result";
     private List<IOpcNode> nodes = new List<IOpcNode>();
-    private string[] parameters = new string[] {"Fat", "Protein"};
+    private string[] parameters = new string[] {"Fat", "Protein", "Lactose", "SNF", "TS"};
 
     public ResultNodes(OpcFolderNode parentFolder)
     {
@@ -29,6 +36,9 @@ namespace NoraOpcUaTestServer.OpcNodes
       {
         nodes.AddRange(ResultFolderNodes(parameter));
       }
+
+      SampleNumber = GetNode<string>(resultFolder, "Sample number");
+      nodes.Add(SampleNumber);
     }
 
     private List<IOpcNode> ResultFolderNodes(string parameterName)
@@ -47,6 +57,18 @@ namespace NoraOpcUaTestServer.OpcNodes
         case "Protein":
           ProteinValue = valueNode;
           ProteinUnit = unitNode;
+          break;
+        case "Lactose":
+          LactoseValue = valueNode;
+          LactoseUnit = unitNode;
+          break;
+        case "SNF":
+          SnfValue = valueNode;
+          SnfUnit = unitNode;
+          break;
+        case "TS":
+          TsValue = valueNode;
+          TsUnit = unitNode;
           break;
       }
 

@@ -9,13 +9,6 @@ namespace NoraOpcUaTestServer.OpcNodes
     public static string OpcNameSpace = Properties.Settings.Default.OpcNameSpace;
 
     public List<string> NodeTree = new List<string>();
-    public  OpcNodeId NodeId(string node)
-    {
-      List<string> nodeTree = new List<string>(NodeTree);
-      nodeTree.Add(node);
-      string name = string.Join(NodeSeparator, nodeTree);
-      return $"ns={OpcNameSpace};s={name}";
-    }
 
     public OpcDataVariableNode<T> GetNode<T>(OpcFolderNode folder, string name)
     {
@@ -31,6 +24,14 @@ namespace NoraOpcUaTestServer.OpcNodes
     {
       NodeTree.AddRange(parentFolder.Id.ValueAsString.Split('/'));
       NodeTree.Add(folderName);
+    }
+
+    private OpcNodeId NodeId(string node)
+    {
+      List<string> nodeTree = new List<string>(NodeTree);
+      nodeTree.Add(node);
+      string name = string.Join(NodeSeparator, nodeTree);
+      return $"ns={OpcNameSpace};s={name}";
     }
   }
 }

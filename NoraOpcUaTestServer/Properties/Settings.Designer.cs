@@ -58,5 +58,14 @@ namespace NoraOpcUaTestServer.Properties {
                 return ((string)(this["RootFolder"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Logs")]
+        public string LogFolder {
+            get {
+                return ((string)(this["LogFolder"]));
+            }
+        }
     }
 }

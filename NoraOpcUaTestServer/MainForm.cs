@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace NoraOpcUaTestServer
     public static string RootFolderName = "Foss";
     public static string ServerName = Properties.Settings.Default.ServerName;
     private OpcUaHelper helper;
-    private CsvHelper2 csvHelper = new CsvHelper2("States.txt");
+    private Logger csvHelper = new Logger("States.txt");
 
     #region Private delegates
 
@@ -94,7 +95,7 @@ namespace NoraOpcUaTestServer
       var state = e.Changes;
       var node = (OpcDataVariableNode<string>) sender;
       string noraState = node.Value;
-      csvHelper.WriteValues($"Type: {state} New state: {noraState}");
+      csvHelper.LogInfo($"Type: {state} New state: {noraState}");
 
       AppendToRichTextBox(noraState);
 
@@ -119,6 +120,9 @@ namespace NoraOpcUaTestServer
           break;
         case "ProcessCleaning":
           currentState = new StateNoraCleaning(helper);
+          break;
+        case "CleanInPlace":
+          currentState = new StateNoraCip(helper);
           break;
       }
     }
@@ -175,7 +179,7 @@ namespace NoraOpcUaTestServer
 
     private void cipButton_Click(object sender, EventArgs e)
     {
-      //helper.SetCip();
+      helper.SetCip();
     }
 
     private void productTextBox_TextChanged(object sender, EventArgs e)
@@ -220,6 +224,11 @@ namespace NoraOpcUaTestServer
       helper.FatValue.AfterApplyChanges += FatValue_AfterApplyChanges;
       helper.EventsCount.AfterApplyChanges += EventsCount_AfterApplyChanges;
       currentState = new StateServerStopped(helper);
+
+      if (!Directory.Exists(Properties.Settings.Default.LogFolder))
+      {
+        Directory.CreateDirectory(Properties.Settings.Default.LogFolder);
+      }
     }
 
 

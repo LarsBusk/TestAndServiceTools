@@ -44,9 +44,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-
     <OutputPath>..\Output\NoraOpcUaTestServer\</OutputPath>
-
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -272,7 +270,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CsvHelper2.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="CsvHelper.cs" />
     <Compile Include="OpcNodes\EventNodes.cs" />
     <Compile Include="MainForm.cs">
@@ -296,6 +294,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="States\IState.cs" />
+    <Compile Include="States\StateNoraCip.cs" />
     <Compile Include="States\StateNoraCleaning.cs" />
     <Compile Include="States\StateNoraMeasuring.cs" />
     <Compile Include="States\StateNoraPreparing.cs" />
