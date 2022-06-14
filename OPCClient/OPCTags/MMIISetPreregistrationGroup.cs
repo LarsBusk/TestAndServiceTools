@@ -15,7 +15,7 @@ namespace OPCClient.OPCTags
       public PreRegistration(string serverPrefix, int registrationNumber)
       {
         //Name = new OPCTag<string>(serverPrefix, string.Format("SetSample.Registration{0:00}.Name", registrationNumber));
-        Value = new OPCTag<int>(serverPrefix, string.Format("SetPreregistration.SampleRegistration{0:00}.Value", registrationNumber));
+        Value = new OPCTag<int>(serverPrefix, $"SetPreregistration.SampleRegistration0{registrationNumber}.Value");
       }
       //public readonly OPCTag<string> Name;
       public readonly OPCTag<int> Value;
@@ -32,7 +32,6 @@ namespace OPCClient.OPCTags
         var preRegistration = new PreRegistration(ServerPrefix, i + 1);
 
         OPCTags.Add(preRegistration.Value);
-        //OPCTags.Add(preRegistration.Name);
         preRegistrations.Add(preRegistration);
       }
     }

@@ -42,11 +42,8 @@
     <AssemblyOriginatorKeyFile>..\..\Nova.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\OPCCsvLoggerClient\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="OpcDaNet">
-      <HintPath>..\..\Tools\OpcDaNet\OpcDaNet.dll</HintPath>
+      <HintPath>.\OpcDaNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -66,7 +63,9 @@
     <Compile Include="Communicators\OPCServerType.cs" />
     <Compile Include="OPCLogWriter.cs" />
     <Compile Include="OPCTags\IOpcTags.cs" />
-    <Compile Include="OPCTags\KepServerControllerGroup.cs" />
+    <Compile Include="OPCTags\KepServerControllerGroupMM.cs" />
+    <Compile Include="OPCTags\KepServerControllerGroupMst.cs" />
+    <Compile Include="OPCTags\KepServerControllerGroupPf.cs" />
     <Compile Include="OPCTags\KepServerMstOPCTags.cs" />
     <Compile Include="OPCTags\KepServerPFOPCTags.cs" />
     <Compile Include="OPCTags\KepServerSampleGroupPf.cs" />
@@ -108,11 +107,14 @@
     </Compile>
     <Compile Include="QueueThread.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.14</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Main.cd" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using log4net;
 using OPC;
 using OPCClient.OPCTags;
 using OPCDA;
@@ -18,6 +19,7 @@ namespace OPCClient
     private readonly IOpcTags opcTags;
     private readonly List<string> opcReadTags = new List<string>();
     private int numberOfReadOPCTags;
+    private readonly ILog log = LogManager.GetLogger(typeof(OPCGetData));
 
     #region CreateGroup
     public void CreateAllReadTags()
@@ -25,6 +27,7 @@ namespace OPCClient
       foreach (IOPCTag element in opcTags.OPCTags)
       {
         CreateReadOPCTag(element);
+        log.Debug($"Tag {element.FullName} is created.");
       }
     }
     #endregion CreateGroup

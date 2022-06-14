@@ -1,5 +1,7 @@
 ﻿using System;
+using log4net;
 using OPC;
+using OPCClient.Communicators;
 using OPCClient.OPCTags;
 using OPCDA.NET;
 
@@ -12,6 +14,7 @@ namespace OPCClient
   {
     private readonly IOpcTags MeatMasterIIOPCTags;
     private OpcServer srv;
+    private static readonly ILog log = LogManager.GetLogger(typeof(OpcHelp));
 
     /// <summary>
     /// Helper for getting opc data
@@ -29,9 +32,11 @@ namespace OPCClient
     /// <param name="meatMasterIIOPCTags"></param>
     public OpcHelp(IOpcTags meatMasterIIOPCTags)
     {
+      log.Debug("Creating a new instance of OpcHelp");
       MeatMasterIIOPCTags = meatMasterIIOPCTags;
       OPCGetData = new OPCGetData(MeatMasterIIOPCTags);
       OPCSetData = new OPCSetData();
+      log.Debug("Instance created....");
     }
 
     /// <summary>
@@ -43,10 +48,12 @@ namespace OPCClient
     public bool Connect(string serverName, int requestedUpdateRate=250)
     {
       srv = new OpcServer();
+      log.Debug($"Opc server is created, trying to connect to {serverName}");
       int rtc = srv.Connect(serverName);
       if (HRESULTS.Failed(rtc))
       {
-        srv.GetErrorString(rtc, 0);//MBR added 0 return Srv.GetErrorString( rtc);
+        string mes = srv.GetErrorString(rtc, 0);//MBR added 0 return Srv.GetErrorString( rtc);
+        log.Error(mes);
         return false;
       }
 
