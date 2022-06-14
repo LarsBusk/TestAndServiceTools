@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace OPCClient.OPCTags
 {
-  public class KepServerControllerGroup : OPCGroup
+  public class KepServerControllerGroupMst : OPCGroup
   {
-    public OPCTag<int> PreregistrationValue1;
-    public OPCTag<int> PreregistrationValue2;
+    public OPCTag<bool> Cip;
+    public OPCTag<bool> WaterReference;
     public OPCTag<int> WatchdogCounter;
     public OPCTag<int> ProductCodeN;
     public OPCTag<bool> StartMeasuring;
     public OPCTag<bool> CalibrationSample;
-    public OPCTag<bool> Cip;
-    public OPCTag<bool> WaterReference;
 
-    public KepServerControllerGroup(string serverPrefix) : base(serverPrefix)
+
+
+    public KepServerControllerGroupMst(string serverPrefix) : base(serverPrefix)
     {
-      PreregistrationValue1 = new OPCTag<int>(serverPrefix, "Controller.SampleRegistration.PreRegistration.Value01");
-      OPCTags.Add(PreregistrationValue1);
-      PreregistrationValue2 = new OPCTag<int>(serverPrefix, "Controller.SampleRegistration.PreRegistration.Value02");
-      OPCTags.Add(PreregistrationValue2);
       WatchdogCounter = new OPCTag<int>(serverPrefix, "Controller.WatchdogCounter");
       OPCTags.Add(WatchdogCounter);
       ProductCodeN = new OPCTag<int>(serverPrefix, "Controller.ProductCodeN");

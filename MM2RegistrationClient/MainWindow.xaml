@@ -1,0 +1,63 @@
+﻿<Window x:Class="RegistrationClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OPC registration client"
+        Height="580.18"
+        Width="459.731"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,0,-6">
+        <Button Content="{Binding Path=ConnectButtonText}"
+                HorizontalAlignment="Left"
+                Margin="345,492,0,0"
+                VerticalAlignment="Top"
+                Width="84"
+                Height="20"
+                Click="ConnectToServer" />
+        <Label Content="Value1" HorizontalAlignment="Left" Margin="19,106,0,0" VerticalAlignment="Top" Width="58" Height="33"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="72,108,0,0" TextWrapping="Wrap" Text="{Binding Path=Value1, Mode=TwoWay}" VerticalAlignment="Top" Width="121"/>
+        <Label Content="Value2 " HorizontalAlignment="Left" Margin="19,146,0,0" VerticalAlignment="Top" Height="32" Width="49"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="73,147,0,0" TextWrapping="Wrap" Text="{Binding Path=Value2, Mode=TwoWay}" VerticalAlignment="Top" Width="121"/>
+        <CheckBox Content="InsertRandom values" IsChecked="{Binding Path=InsertRandom}" IsEnabled="{Binding Path=InsertRandomEnabled}" HorizontalAlignment="Left" Margin="30,257,0,0" VerticalAlignment="Top" Height="19" Width="132"/>
+        <CheckBox Content="Continuos" IsChecked="{Binding Path=Continous}"  HorizontalAlignment="Left" Margin="30,285,0,0" VerticalAlignment="Top" Height="19" Width="75"/>
+        <Button Content="Set values" Click="SetValues" IsEnabled="{Binding Path=SetButtonIsEnabled}" HorizontalAlignment="Left" Margin="345,467,0,0" VerticalAlignment="Top" Width="84"/>
+        <ComboBox HorizontalAlignment="Left" Margin="19,20,0,0" Text="{Binding Path=Server, Mode=TwoWay}" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="KepServer"/>
+            <ComboBoxItem Content="OpcServer"/>
+        </ComboBox>
+        <CheckBox Content="Simulate boxes" IsChecked="{Binding Path=SimulateBoxes}" HorizontalAlignment="Left" Margin="30,231,0,0" VerticalAlignment="Top" AutomationProperties.HelpText="Reads the values from the Boxes.xml file" Height="19" Width="101"/>
+        <CheckBox Content="Rfid Readerrors" IsChecked="{Binding Path=SampleVariationController.NoReadOnRfid}" HorizontalAlignment="Left" Margin="253,21,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Missing Values" IsChecked="{Binding Path=SampleVariationController.NoValues}" HorizontalAlignment="Left" Margin="253,45,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Registration2 first" IsChecked="{Binding Path=SampleVariationController.Registration2First}" HorizontalAlignment="Left" Margin="253,69,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Too great time difference" IsChecked="{Binding Path=SampleVariationController.TooGreatTimeDifference}" HorizontalAlignment="Left" Margin="253,94,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Doubble values" IsChecked="{Binding Path=SampleVariationController.DoubleValues}" HorizontalAlignment="Left" Margin="253,122,0,0" VerticalAlignment="Top"/>
+        <ComboBox Text="{Binding Path=SampleVariationController.RegValueToSkip}" HorizontalAlignment="Left" Margin="368,20,0,0" VerticalAlignment="Top" Width="62" RenderTransformOrigin="3.589,0.925">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+        </ComboBox>
+        <ComboBox Text="{Binding Path=SampleVariationController.RegValueToDouble}" HorizontalAlignment="Left" Margin="368,121,0,0" VerticalAlignment="Top" Width="61">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+        </ComboBox>
+        <Label Content="{Binding Path=Status}" HorizontalAlignment="Left" Margin="230,240,0,0" VerticalAlignment="Top" Height="28" Width="206"/>
+        <Button Content="{Binding Path=MeasureButtonText}" IsEnabled="{Binding Path=MeasureButtonEnabled}" Click="StartStopMeasuring" HorizontalAlignment="Left" Margin="345,437,0,0" VerticalAlignment="Top" Width="84
+            " Height="20" RenderTransformOrigin="0.281,0.698"/>
+        <TextBox Text="{Binding Path=ProductCodeN, Mode=TwoWay}" HorizontalAlignment="Left" Height="29" Margin="106,189,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="97" Grid.ColumnSpan="2"/>
+        <Label Content="Product code" HorizontalAlignment="Left" Margin="19,187,0,0" VerticalAlignment="Top" Height="33" Width="82"/>
+        <CheckBox Content="Send registrations" IsChecked="{Binding Path=SendRegistrations}" HorizontalAlignment="Left" Margin="29,310,0,0" VerticalAlignment="Top" Height="19" Width="118"/>
+        <CheckBox Content="Send product code" IsChecked="{Binding Path=SendProductCode}" HorizontalAlignment="Left" Margin="30,338,0,0" VerticalAlignment="Top" Height="19" Width="123"/>
+        <Label Content="Group" HorizontalAlignment="Left" Margin="19,47,0,0" VerticalAlignment="Top" Width="66" Height="27"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="23,75,0,0" TextWrapping="Wrap" Text="{Binding Path=Group}" VerticalAlignment="Top" Width="143"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="52,425,0,0" TextWrapping="Wrap" Text="{Binding Path=SampleVariationController.DelayStartValue}" Width="90" Height="27" VerticalAlignment="Top"/>
+
+        <CheckBox Content="Delay" IsChecked="{Binding Path=SampleVariationController.IsDelayed}" HorizontalAlignment="Left" Margin="48,379,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="51,486,0,0" TextWrapping="Wrap" Text="{Binding Path=SampleVariationController.DelayIncrease}" VerticalAlignment="Top" Width="90" Height="26"/>
+        <Label Content="Start" HorizontalAlignment="Left" Margin="53,401,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inc." HorizontalAlignment="Left" Margin="55,464,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,425,0,0" TextWrapping="Wrap" Text="{Binding Path=SampleVariationController.DelayEndValue}" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.337,1.522" Height="27"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,486,0,0" TextWrapping="Wrap" Text="{Binding Path=SampleVariationController.ActualDelay}" VerticalAlignment="Top" Width="90" Height="26"/>
+        <Label Content="Stop" HorizontalAlignment="Left" Margin="185,401,0,0" VerticalAlignment="Top"/>
+        <Label Content="Actual" HorizontalAlignment="Left" Margin="185,459,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Path=Watchdog}" HorizontalAlignment="Left" Margin="230,279,0,0" VerticalAlignment="Top" Width="206" Height="25"/>
+    </Grid>
+</Window>

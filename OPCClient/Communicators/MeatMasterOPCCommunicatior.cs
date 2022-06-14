@@ -17,12 +17,15 @@ namespace OPCClient.Communicators
 
     private static readonly ILog log = LogManager.GetLogger(typeof(MeatMasterOPCCommunicatior));
 
+    private static int newProduct = 1;
+
     /// <summary>
     /// Construct - work with the specified type of Opc server
     /// </summary>
-    public MeatMasterOPCCommunicatior(OPCServerType opcCServerType)
+    public MeatMasterOPCCommunicatior(OPCServerType opcServerType)
     {
-      opcServerType = opcCServerType;
+      this.opcServerType = opcServerType;
+      log.Debug($"Opc server type is {opcServerType}");
     }
 
     /// <summary>
@@ -40,43 +43,29 @@ namespace OPCClient.Communicators
     /// <summary>
     /// Connect
     /// </summary>
-    public void ConnectToMeatMasterOPCServer(string groupName = "MMII.PDx.")
+    public void ConnectToMeatMasterOPCServer()
     {
-      switch (opcServerType)
-      {
-        case OPCServerType.MeatMaster:
-          MeatMasterIIOPCTags = new MeatMasterIIOPCTags();
-          break;
-        case OPCServerType.KepServer:
-          KepServerOpcTags = new KepServerMeatMasterIIOPCTags(groupName);
-          break;
-        default:
-          throw new ArgumentOutOfRangeException();
-      }
+      MeatMasterIIOPCTags = new MeatMasterIIOPCTags();
 
       OpcHelp = new OpcHelp(MeatMasterIIOPCTags);
 
-      if (!OpcHelp.Connect(MeatMasterIIOPCTags.ServerName, 100))
+      log.Debug($"Now connecting to {MeatMasterIIOPCTags.ServerName}...");
+
+      try
       {
-        throw new IOException("Could not connect to OPC server");
+        OpcHelp.Connect(MeatMasterIIOPCTags.ServerName, 100);
       }
-
-      OpcHelp.OPCGetData.CreateAllReadTags();
-    }
-
-    public void ConnectToKepServer()
-    {
-      KepServerOpcTags = new KepServerMeatMasterIIOPCTags();
-
-      OpcHelp = new OpcHelp(KepServerOpcTags);
-
-      string kepServerName = Settings.Default.KepServerName;
-      log.DebugFormat("Trying to connect to {0}", kepServerName);
-
-      if (!OpcHelp.Connect(kepServerName, 100))
+      catch (Exception e)
       {
+        log.Error($"C'est le merde...{e.Message} {e.InnerException}");
         throw new IOException("Could not connect to OPC server");
+        
       }
+      /*if (!OpcHelp.Connect(MeatMasterIIOPCTags.ServerName, 100))
+      {
+        log.Error("C'est le merde...");
+        throw new IOException("Could not connect to OPC server");
+      }*/
 
       OpcHelp.OPCGetData.CreateAllReadTags();
     }
@@ -141,8 +130,7 @@ namespace OPCClient.Communicators
     /// </summary>
     public static void StartMeasuring()
     {
-      MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode.ObjectValue = InstrumentStateMode.StartMeasuring;
-      OpcHelp.OPCSetData.SetOneOPCTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode);
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode, InstrumentStateMode.StartMeasuring);
     }
 
     /// <summary>
@@ -150,64 +138,63 @@ namespace OPCClient.Communicators
     /// </summary>
     public static void GotoStandby()
     {
-      MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode.ObjectValue = InstrumentStateMode.GotoStandby;
-      OpcHelp.OPCSetData.SetOneOPCTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode);
-    }
-
-    /// <summary>
-    /// Set product to use by specifying product code
-    /// </summary>
-    /// <param name="productCode"></param>
-    public static void SetProduct(int productCode)
-    {
-      MeatMasterIIOPCTags.SetInstrumentStateGroup.ProductCode.ObjectValue = productCode;
-      OpcHelp.OPCSetData.SetOneOPCTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.ProductCode);
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.Mode, InstrumentStateMode.GotoStandby);
     }
 
     /// <summary>
     /// Set two registration values
     /// </summary>
-    /// <param name="r1"></param>
-    /// <param name="r2"></param>
-    public static void SetPreRegistrationsValues(int r1, int r2)
+    /// <param name="regValue1"></param>
+    public static void SetPreRegistrationsValue1(int regValue1)
     {
-      MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(1).ObjectValue = r1;
-      OpcHelp.OPCSetData.SetOneOPCTag(MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(1));
-      MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(2).ObjectValue = r2;
-      OpcHelp.OPCSetData.SetOneOPCTag(MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(2));
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(1), regValue1);
+    }
+
+    public static void SetPreRegistrationsValue2(int regValue2)
+    {
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetPreregistrationGroup.GetRegistrationValue(2), regValue2);
+    }
+
+    public static void ChangeProduct(int productCode)
+    {
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.ProductCode, productCode);
+      SetValueOfOpcTag(MeatMasterIIOPCTags.SetInstrumentStateGroup.NewProduct, newProduct);
+      newProduct++;
     }
 
     public static void KepServerSetRegistrationValue2(int value)
     {
-      KepServerOpcTags.ControllerGroup.PreregistrationValue2.ObjectValue = value;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.PreregistrationValue2);
+      SetValueOfOpcTag(KepServerOpcTags.ControllerGroup.PreregistrationValue2, value);
     }
 
     public static void KepServerSetRegistrationValue1(int value)
     {
-      KepServerOpcTags.ControllerGroup.PreregistrationValue1.ObjectValue = value;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.PreregistrationValue1);
+      SetValueOfOpcTag(KepServerOpcTags.ControllerGroup.PreregistrationValue1, value);
     }
 
-    public static void KepServerSetProductCodeN(int productCodeN)
+    public static bool KepServerSetProductCodeN(int productCodeN)
     {
-      log.DebugFormat("Setting product code to {0}", productCodeN);
-      KepServerOpcTags.ControllerGroup.ProductCodeN.ObjectValue = productCodeN;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.ProductCodeN);
+      return SetValueOfOpcTag(KepServerOpcTags.ControllerGroup.ProductCodeN, productCodeN);
     }
 
 
     public static void KepServerStartMeasuring(bool startMeasuring)
     {
-      log.DebugFormat("Setting StartMeasuring to {0}", startMeasuring);
-      KepServerOpcTags.ControllerGroup.StartMeasuring.ObjectValue = startMeasuring;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.StartMeasuring);
+      SetValueOfOpcTag(KepServerOpcTags.ControllerGroup.StartMeasuring, startMeasuring);
     }
 
-    public static void UpdateWatchDogCounter(int counter)
+    public static void KepserverUpdateWatchDogCounter(int counter)
     {
-      KepServerOpcTags.ControllerGroup.WatchdogCounter.ObjectValue = counter;
-      OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.WatchdogCounter);
+      SetValueOfOpcTag(KepServerOpcTags.ControllerGroup.WatchdogCounter, counter);
+    }
+
+    private static bool SetValueOfOpcTag(IOPCTag tag, object value)
+    {
+      log.Debug($"Setting value of {tag.ShortName} to {value}");
+      tag.ObjectValue = value;
+      bool res = OpcHelp.OPCSetData.SetOneOPCTag(tag);
+      log.Debug($"Value of tag {tag.ShortName} set: {res}");
+      return res;
     }
   }
 }
