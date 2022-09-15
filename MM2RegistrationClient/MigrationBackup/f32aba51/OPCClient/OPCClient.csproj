@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7E03EE86-14BB-4758-B8AF-9912493FADF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OPCClient</RootNamespace>
+    <AssemblyName>OPCClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\Nova.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpcDaNet">
+      <HintPath>.\OpcDaNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Communicators\KepServerCommunicator.cs" />
+    <Compile Include="Communicators\MilkoStreamKepServerCommunicator.cs" />
+    <Compile Include="Communicators\ProFossKepServerCommunicator.cs" />
+    <Compile Include="InstrumentStateMode.cs" />
+    <Compile Include="Communicators\OPCServerType.cs" />
+    <Compile Include="OPCLogWriter.cs" />
+    <Compile Include="OPCTags\IOpcTags.cs" />
+    <Compile Include="OPCTags\KepServerControllerGroup.cs" />
+    <Compile Include="OPCTags\KepServerMstOPCTags.cs" />
+    <Compile Include="OPCTags\KepServerPFOPCTags.cs" />
+    <Compile Include="OPCTags\KepServerSampleGroupPf.cs" />
+    <Compile Include="OPCTags\KepServerSampleGroupMst.cs" />
+    <Compile Include="OPCTags\KepServerSampleGroupMMII.cs" />
+    <Compile Include="OPCTags\KepServerSampleGroup.cs" />
+    <Compile Include="OPCTags\KepServerInstrumentGroup.cs" />
+    <Compile Include="OPCTags\KepServerSampleParametersGroupMst.cs" />
+    <Compile Include="OPCTags\KepServerSampleParametersGroupPf.cs" />
+    <Compile Include="OPCTags\KepServerSampleParametersGroupMMII.cs" />
+    <Compile Include="OPCTags\KepServerTestGroup.cs" />
+    <Compile Include="OPCTags\MeatMasterIIOPCTags.cs" />
+    <Compile Include="Communicators\MeatMasterOPCCommunicatior.cs" />
+    <Compile Include="OPCGetData.cs" />
+    <Compile Include="OpcHelp.cs" />
+    <Compile Include="OPCSetData.cs" />
+    <Compile Include="OPCTags\KepServerMeatMasterIIOPCTags.cs" />
+    <Compile Include="OPCTags\MMIIGetBatchParamaterGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetOpcServerStateGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetInstrumentStateProductGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleBoneGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleMetalGroup.cs" />
+    <Compile Include="OPCTags\MMIISetPostRegistrationGroup.cs" />
+    <Compile Include="OPCTags\OPCGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetInstrumentStateGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetInstrumentStateEventDetailGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleEventDetailGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleParameterGroup.cs" />
+    <Compile Include="OPCTags\MMIIGetSampleRegistrationGroup.cs" />
+    <Compile Include="OPCTags\MMIISetPreregistrationGroup.cs" />
+    <Compile Include="OPCTags\OPCTag.cs" />
+    <Compile Include="OPCTags\MMIISetInstrumentStateGroup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="QueueThread.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Main.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
