@@ -24,13 +24,13 @@ namespace NoraOpcUaTestServer.States
     public void StartStopMeasuring(string product)
     {}
 
-    public void StartRinse()
+    public void EnqueueRinse()
     {}
 
     public void StartServer()
     {}
 
-    public void StartZero()
+    public void EnqueueZero()
     {}
     
     public void StopServer()

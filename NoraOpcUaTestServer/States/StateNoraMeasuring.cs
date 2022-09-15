@@ -32,16 +32,18 @@ namespace NoraOpcUaTestServer.States
       helper.StopMeasuring();
     }
 
-    public void StartRinse()
+    public void EnqueueRinse()
     {
+        helper.EnqueueClean();
     }
 
     public void StartServer()
     {
     }
 
-    public void StartZero()
+    public void EnqueueZero()
     {
+        helper.EnqueueZero();
     }
 
     public void StopServer()
