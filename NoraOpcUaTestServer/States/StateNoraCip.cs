@@ -6,44 +6,46 @@ using System.Threading.Tasks;
 
 namespace NoraOpcUaTestServer.States
 {
-  class StateNoraCip : IState
-  {
-    public string StateName => "Clean in place";
-
-    private OpcUaHelper helper;
-
-    public StateNoraCip(OpcUaHelper helper)
+    class StateNoraCip : IState
     {
-      this.helper = helper;
-    }
+        public string StateName => "Clean in place";
 
-    public void ChangeProduct(string product)
-    {
-    }
+        private OpcUaHelper helper;
 
-    public void OpenSettings()
-    {
-    }
+        public StateNoraCip(OpcUaHelper helper)
+        {
+            this.helper = helper;
+        }
 
-    public void StartRinse()
-    {
-    }
+        public void ChangeProduct(string product)
+        {
+        }
 
-    public void StartServer()
-    {
-    }
+        public void OpenSettings()
+        {
+        }
 
-    public void StartStopMeasuring(string product)
-    {
-    }
+        public void EnqueueRinse()
+        {
+        }
 
-    public void StartZero()
-    {
-    }
+        public void StartServer()
+        {
+        }
 
-    public void StopServer()
-    {
-      helper.StopServer();
+        public void StartStopMeasuring(string product)
+        {
+            helper.StopMeasuring();
+        }
+
+        public void EnqueueZero()
+        {
+            helper.EnqueueZero();
+        }
+
+        public void StopServer()
+        {
+            helper.StopServer();
+        }
     }
-  }
 }

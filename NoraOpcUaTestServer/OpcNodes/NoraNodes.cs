@@ -3,35 +3,43 @@ using System.Collections.Generic;
 
 namespace NoraOpcUaTestServer.OpcNodes
 {
-  public class NoraNodes
-  {
-    #region Public nodegroups
-
-    //Nodegroups
-    public ReadNodes ReadNodes;
-    public WriteNodes WriteNodes;
-
-    #endregion
-
-
-    public List<IOpcNode> Nodes => this.nodes;
-
-    private List<IOpcNode> nodes;
-    private OpcFolderNode homeFolder;
-
-    public NoraNodes(string homeFolderName = "Foss")
+    public class NoraNodes
     {
-      nodes = new List<IOpcNode>();
-      homeFolder = new OpcFolderNode(homeFolderName);
-      GetNodes();
-    }
+        #region Public nodegroups
 
-    private void GetNodes()
-    {
-      ReadNodes = new ReadNodes(homeFolder);
-      nodes.AddRange(ReadNodes.Nodes);
-      WriteNodes = new WriteNodes(homeFolder);
-      nodes.AddRange(WriteNodes.Nodes);
+        public InstrumentNodes InstrumentNodes;
+        public ControllerNodes ControllerNodes;
+        public SampleNodes SampleNodes;
+        public EventNodes EventNodes;
+        public AlarmNodes AlarmNodes;
+
+        #endregion
+
+
+        public List<IOpcNode> Nodes => this.nodes;
+
+        private readonly List<IOpcNode> nodes;
+        private readonly OpcFolderNode homeFolder;
+
+        public NoraNodes(string homeFolderName)
+        {
+            nodes = new List<IOpcNode>();
+            homeFolder = new OpcFolderNode(homeFolderName);
+            GetNodes();
+        }
+
+        private void GetNodes()
+        {
+            InstrumentNodes = new InstrumentNodes(homeFolder);
+            nodes.AddRange(InstrumentNodes.Nodes);
+            ControllerNodes = new ControllerNodes(homeFolder);
+            nodes.AddRange(ControllerNodes.Nodes);
+            SampleNodes = new SampleNodes(homeFolder);
+            nodes.AddRange(SampleNodes.Nodes);
+            EventNodes = new EventNodes(homeFolder);
+            nodes.AddRange(EventNodes.Nodes);
+            AlarmNodes = new AlarmNodes(homeFolder);
+            nodes.AddRange(AlarmNodes.Nodes);
+        }
     }
-  }
 }
