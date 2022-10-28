@@ -16,5 +16,6 @@ namespace NoraOpcUaTestServer.States
     void EnqueueZero();
     void EnqueueRinse();
     void OpenSettings();
+    void SetCip();
   }
 }

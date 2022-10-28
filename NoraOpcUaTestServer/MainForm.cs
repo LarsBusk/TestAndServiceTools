@@ -172,7 +172,7 @@ namespace NoraOpcUaTestServer
 
         private void cipButton_Click(object sender, EventArgs e)
         {
-            helper.SetCip();
+            currentState.SetCip();
         }
 
         private void productTextBox_TextChanged(object sender, EventArgs e)
@@ -197,7 +197,7 @@ namespace NoraOpcUaTestServer
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (helper != null)
+            if (!(helper is null))
             {
                 currentState.StopServer();
             }
@@ -209,6 +209,11 @@ namespace NoraOpcUaTestServer
 
         private void Initialise()
         {
+            if (!Directory.Exists(Properties.Settings.Default.LogFolder))
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.LogFolder);
+            }
+
             helper = new OpcUaHelper(ServerName, RootFolderName);
             helper.Server.StateChanged += Server_StateChanged;
             helper.StateNode.AfterApplyChanges += StateNode_AfterApplyChanges;
@@ -217,11 +222,6 @@ namespace NoraOpcUaTestServer
             helper.SampleCounterNode.AfterApplyChanges += SampleCounter_AfterApplyChanges;
             helper.EventsCount.AfterApplyChanges += EventsCount_AfterApplyChanges;
             currentState = new StateServerStopped(helper);
-
-            if (!Directory.Exists(Properties.Settings.Default.LogFolder))
-            {
-                Directory.CreateDirectory(Properties.Settings.Default.LogFolder);
-            }
         }
 
 

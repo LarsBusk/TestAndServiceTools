@@ -6,36 +6,47 @@ using System.Threading.Tasks;
 
 namespace NoraOpcUaTestServer.States
 {
-  public class StateServerStarted : IState
-  {
-    public string StateName => "Server started";
-    private OpcUaHelper helper;
-
-    public StateServerStarted(OpcUaHelper opcUaHelper)
+    public class StateServerStarted : IState
     {
-      helper = opcUaHelper;
+        public string StateName => "Server started";
+        private OpcUaHelper helper;
+
+        public StateServerStarted(OpcUaHelper opcUaHelper)
+        {
+            helper = opcUaHelper;
+        }
+
+        public void ChangeProduct(string product)
+        {
+        }
+
+        public void OpenSettings()
+        {
+        }
+
+        public void StartStopMeasuring(string product)
+        {
+        }
+
+        public void EnqueueRinse()
+        {
+        }
+
+        public void StartServer()
+        {
+        }
+
+        public void EnqueueZero()
+        {
+        }
+
+        public void StopServer()
+        {
+            helper.StopServer();
+        }
+
+        public void SetCip()
+        {
+        }
     }
-    public void ChangeProduct(string product)
-    {}
-
-    public void OpenSettings()
-    {}
-
-    public void StartStopMeasuring(string product)
-    {}
-
-    public void EnqueueRinse()
-    {}
-
-    public void StartServer()
-    {}
-
-    public void EnqueueZero()
-    {}
-    
-    public void StopServer()
-    {
-      helper.StopServer();
-    }
-  }
 }

@@ -6,39 +6,49 @@ using System.Threading.Tasks;
 
 namespace NoraOpcUaTestServer.States
 {
-  public class StateNoraPreparing : IState
-  {
-    public string StateName => "Preparing";
-    private OpcUaHelper helper;
-
-    public StateNoraPreparing(OpcUaHelper opcUaHelper)
+    public class StateNoraPreparing : IState
     {
-      helper = opcUaHelper;
+        public string StateName => "Preparing";
+        private OpcUaHelper helper;
+
+        public StateNoraPreparing(OpcUaHelper opcUaHelper)
+        {
+            helper = opcUaHelper;
+        }
+
+        public void ChangeProduct(string product)
+        {
+        }
+
+        public void OpenSettings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnqueueRinse()
+        {
+        }
+
+        public void StartServer()
+        {
+        }
+
+        public void StartStopMeasuring(string product)
+        {
+        }
+
+        public void EnqueueZero()
+        {
+        }
+
+        public void StopServer()
+        {
+            helper.StopServer();
+        }
+
+        public void SetCip()
+        {
+            helper.SetCip();
+        }
     }
-
-    public void ChangeProduct(string product)
-    {}
-
-    public void OpenSettings()
-    {
-      throw new NotImplementedException();
-    }
-
-    public void EnqueueRinse()
-    {}
-
-    public void StartServer()
-    {}
-
-    public void StartStopMeasuring(string product)
-    {}
-
-    public void EnqueueZero()
-    {}
-
-    public void StopServer()
-    {
-      helper.StopServer();
-    }
-  }
 }

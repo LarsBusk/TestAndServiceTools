@@ -47,5 +47,9 @@ namespace NoraOpcUaTestServer.States
         {
             helper.StopServer();
         }
+
+        public void SetCip()
+        {
+        }
     }
 }
