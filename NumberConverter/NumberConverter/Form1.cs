@@ -25,12 +25,12 @@ namespace NumberConverter
         private void buttonConvert_Click(object sender, EventArgs e)
         {
             if (convertToFI.Checked)
-            {                
-                labelResult.Text = Converters.MosaicToFiChassisID(textBoxInput.Text); 
+            {
+                resultTb.Text = Converters.MosaicToFiChassisID(textBoxInput.Text); 
             }
             if (convertMosaic.Checked) 
             {
-                labelResult.Text = Converters.FiToMosaicChassisID(textBoxInput.Text);   
+                resultTb.Text = Converters.FiToMosaicChassisID(textBoxInput.Text);   
             }
             textBoxInput.Text = "";
             textBoxInput.Focus();
