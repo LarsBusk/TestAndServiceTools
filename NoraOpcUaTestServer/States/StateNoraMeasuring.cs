@@ -6,49 +6,54 @@ using System.Threading.Tasks;
 
 namespace NoraOpcUaTestServer.States
 {
-  public class StateNoraMeasuring : IState
-  {
-    public string StateName => "Measuring";
-    private OpcUaHelper helper;
-
-    public StateNoraMeasuring(OpcUaHelper opcUaHelper)
+    public class StateNoraMeasuring : IState
     {
-      helper = opcUaHelper;
-      var currentProduct = helper.ProductName.Value;
-      helper.StartMeasuring(currentProduct);
-    }
+        public string StateName => "Measuring";
+        private OpcUaHelper helper;
 
-    public void ChangeProduct(string product)
-    {
-      helper.ChangeProduct(product);
-    }
+        public StateNoraMeasuring(OpcUaHelper opcUaHelper)
+        {
+            helper = opcUaHelper;
+            var currentProduct = helper.ProductName.Value;
+            helper.StartMeasuring(currentProduct);
+        }
 
-    public void OpenSettings()
-    {
-    }
+        public void ChangeProduct(string product)
+        {
+            helper.ChangeProduct(product);
+        }
 
-    public void StartStopMeasuring(string product)
-    {
-      helper.StopMeasuring();
-    }
+        public void OpenSettings()
+        {
+        }
 
-    public void EnqueueRinse()
-    {
-        helper.EnqueueClean();
-    }
+        public void StartStopMeasuring(string product)
+        {
+            helper.StopMeasuring();
+        }
 
-    public void StartServer()
-    {
-    }
+        public void EnqueueRinse()
+        {
+            helper.EnqueueClean();
+        }
 
-    public void EnqueueZero()
-    {
-        helper.EnqueueZero();
-    }
+        public void StartServer()
+        {
+        }
 
-    public void StopServer()
-    {
-      helper.StopServer();
+        public void EnqueueZero()
+        {
+            helper.EnqueueZero();
+        }
+
+        public void StopServer()
+        {
+            helper.StopServer();
+        }
+
+        public void SetCip()
+        {
+            helper.SetCip();
+        }
     }
-  }
 }

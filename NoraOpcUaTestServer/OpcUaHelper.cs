@@ -79,6 +79,7 @@ namespace NoraOpcUaTestServer
             noraNodes.SampleNodes.ParametersNodes.LactoseValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             noraNodes.SampleNodes.ParametersNodes.SnfValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             noraNodes.SampleNodes.ParametersNodes.TsValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
+            noraNodes.SampleNodes.SampleNumber.AfterApplyChanges += ResultNode_AfterApplyChanges;
 
         }
 
