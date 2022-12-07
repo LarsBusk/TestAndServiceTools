@@ -50,7 +50,7 @@ namespace IrmaCuvetteWear
 
     private IEnumerable<string> LogFiles(string logsFolder)
     {
-      return Directory.GetFiles(logsFolder).Where(f => f.Contains("IrmaDairyServerHost.txt"));
+      return Directory.GetFiles(logsFolder).Where(f => f.Contains("IrmaDairyServerHost.txt") | f.Contains("IrmaServerHost.txt"));
     }
 
     private DateTime ResultDateTime(string resultLine)
