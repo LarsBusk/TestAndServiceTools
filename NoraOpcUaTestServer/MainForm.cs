@@ -227,10 +227,11 @@ namespace NoraOpcUaTestServer
 
         private void HandleEvents()
         {
-            richTextBox1.Clear();
             foreach (var eventMessage in helper.EventMessages)
             {
-                richTextBox1.AppendText($"{eventMessage}\n");
+                if (string.IsNullOrEmpty(eventMessage)) break;
+
+                AppendToRichTextBox($"{eventMessage}\n");
             }
         }
 

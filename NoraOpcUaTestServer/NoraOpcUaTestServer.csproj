@@ -278,6 +278,7 @@
     </Compile>
     <Compile Include="OpcNodes\AlarmNodes.cs" />
     <Compile Include="OpcNodes\EventNodes.cs" />
+    <Compile Include="OpcNodes\SampleEventNodes.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +288,7 @@
     <Compile Include="OpcNodes\NodeBase.cs" />
     <Compile Include="OpcNodes\NoraNodes.cs" />
     <Compile Include="OpcNodes\ParametersNodes.cs" />
+    <Compile Include="OpcNodes\TimeStampNodes.cs" />
     <Compile Include="OpcUaHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

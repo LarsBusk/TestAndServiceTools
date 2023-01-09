@@ -14,6 +14,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<string> State;
         public OpcDataVariableNode<string> ProductName;
         public OpcDataVariableNode<string> ProductCode;
+        public OpcDataVariableNode<int> ProductCodeN;
         public OpcDataVariableNode<string> SerialNumber;
         public OpcDataVariableNode<bool> CleanInQueue;
         public OpcDataVariableNode<bool> CleanToQueue;
@@ -45,6 +46,7 @@ namespace NoraOpcUaTestServer.OpcNodes
             ModeN = CreateOpcUaNode<int>(instrumentFolder, "ModeN", nodes);
             SampleCounter = CreateOpcUaNode<uint>(instrumentFolder, "SampleCounter", nodes);
             ProductCode = CreateOpcUaNode<string>(instrumentFolder, "ProductCode", nodes);
+            ProductCodeN = CreateOpcUaNode<int>(instrumentFolder, "ProductCodeN", nodes);
             ProductName = CreateOpcUaNode<string>(instrumentFolder, "ProductName", nodes);
             State = CreateOpcUaNode<string>(instrumentFolder, "Mode", "Disconnected");
             nodes.Add(State);

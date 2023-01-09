@@ -1,28 +1,22 @@
-﻿using System;
+﻿using Opc.UaFx;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Opc.UaFx;
 
 namespace NoraOpcUaTestServer.OpcNodes
 {
     public class ParametersNodes : NodeBase
     {
-        public OpcDataVariableNode<double> FatValue;
+        public OpcDataVariableNode<float> FatValue;
         public OpcDataVariableNode<string> FatUnit;
-        public OpcDataVariableNode<double> ProteinValue;
+        public OpcDataVariableNode<float> ProteinValue;
         public OpcDataVariableNode<string> ProteinUnit;
-        public OpcDataVariableNode<double> LactoseValue;
+        public OpcDataVariableNode<float> LactoseValue;
         public OpcDataVariableNode<string> LactoseUnit;
-        public OpcDataVariableNode<double> SnfValue;
+        public OpcDataVariableNode<float> SnfValue;
         public OpcDataVariableNode<string> SnfUnit;
-        public OpcDataVariableNode<double> TsValue;
+        public OpcDataVariableNode<float> TsValue;
         public OpcDataVariableNode<string> TsUnit;
         public List<IOpcNode> Nodes => nodes;
-
-        private const string FolderName = "Parameters";
-
+        
         private readonly OpcFolderNode parametersFolder;
         private readonly List<IOpcNode> nodes = new List<IOpcNode>();
         private readonly string[] parameters = { "Fat", "Protein", "Lactose", "SNF", "TS" };
@@ -30,6 +24,7 @@ namespace NoraOpcUaTestServer.OpcNodes
 
         public ParametersNodes(OpcFolderNode parentFolderNode)
         {
+            this.FolderName = "Parameters";
             parametersFolder = new OpcFolderNode(parentFolderNode, FolderName);
             SetNodeTree(parentFolderNode, FolderName);
             GetNodes();
@@ -47,7 +42,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         {
             var nodes = new List<IOpcNode>();
             var parameterFolder = new OpcFolderNode(parametersFolder, parameterName);
-            var valueNode = CreateOpcUaNode<double>(parameterFolder, $"{parameterName}{NodeSeparator}Result");
+            var valueNode = CreateOpcUaNode<float>(parameterFolder, $"{parameterName}{NodeSeparator}Result");
             var unitNode = CreateOpcUaNode<string>(parameterFolder, $"{parameterName}{NodeSeparator}Unit");
 
             switch (parameterName)

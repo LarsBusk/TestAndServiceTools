@@ -26,14 +26,14 @@ namespace NoraOpcUaTestServer
 
             helper.UninterruptableMode.AfterApplyChanges += AlarmHasChanged;
             helper.Zeroincomplete.AfterApplyChanges += AlarmHasChanged;
-            helper.CabinetDoorOpen.AfterApplyChanges += AlarmHasChanged;
+            helper.SystemAlarms.AfterApplyChanges += AlarmHasChanged;
         }
 
         private void GetCurrentAlarms()
         {
             UpdateLabelColour(UninterruptibleModeLabel, helper.UninterruptableMode.Value ? Color.Red : Color.Black);
             UpdateLabelColour(ZeroSettingIncompleteLabel, helper.Zeroincomplete.Value ? Color.Red : Color.Black);
-            UpdateLabelColour(CabinetDoorOpenLabel, helper.CabinetDoorOpen.Value ? Color.Red : Color.Black);
+            UpdateLabelColour(SystemAlarmsLabel, helper.SystemAlarms.Value ? Color.Red : Color.Black);
         }
 
         private void AlarmHasChanged(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
@@ -48,8 +48,8 @@ namespace NoraOpcUaTestServer
                 case "UninterruptibleMode":
                     label = UninterruptibleModeLabel;
                     break;
-                case "CabinetDoorOpen":
-                    label = CabinetDoorOpenLabel;
+                case "SystemAlarms":
+                    label = SystemAlarmsLabel;
                     break;
                 case "ZeroSettingIncomplete":
                     label = ZeroSettingIncompleteLabel;
