@@ -129,15 +129,16 @@ namespace RemovePmsFromFi
         private List<XElement> ComponentElements()
         {
             GetComDoc();
-            return _comDoc.Root.Element("tComponentList").Elements("tComponent")
+            var components = _comDoc.Root.Element("tComponentList").Elements("tComponent")
                 .Where(c => c.Element("eComponentType").Value.Equals("::MEASURED")).ToList();
+            return components;
         }
 
         private List<string> PmNames(List<XElement> pmElements)
         {
             var pmGuids = pmElements.Select(p => p.Attribute("ID").Value);
-
-            var pms = ComponentElements().Where(e => pmGuids.Contains(e.Attribute("ID").Value));
+            var allComponentElements = ComponentElements();
+            var pms = allComponentElements.Where(e => pmGuids.Contains(e.Attribute("ID").Value));
 
             var names = pms.Select(p => p.Element("sName").Value).ToList();
 

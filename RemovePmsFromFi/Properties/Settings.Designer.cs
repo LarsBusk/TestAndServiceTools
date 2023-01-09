@@ -25,19 +25,19 @@ namespace RemovePmsFromFi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Lab-W10-FiBench\\FOSS_FI2")]
-        public string SqlServer {
+        [global::System.Configuration.DefaultSettingValueAttribute("FIBASE2")]
+        public string Database {
             get {
-                return ((string)(this["SqlServer"]));
+                return ((string)(this["Database"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FIBASE2")]
-        public string Database {
+        [global::System.Configuration.DefaultSettingValueAttribute("Lab-W10-FiBench\\FOSS_FI2")]
+        public string SqlServer {
             get {
-                return ((string)(this["Database"]));
+                return ((string)(this["SqlServer"]));
             }
         }
     }
