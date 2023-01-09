@@ -7,6 +7,8 @@ namespace NoraOpcUaTestServer
   public class Logger
   {
     private readonly string fileName;
+
+    private const string TimeFormat = "yyyy-MM-dd HH:mm:ss,fff";
     public Logger(string fileName)
     {
       this.fileName = Path.Combine(Properties.Settings.Default.LogFolder, fileName);
@@ -29,7 +31,7 @@ namespace NoraOpcUaTestServer
 
     private void Log(string message, string logLevel)
     {
-      DateTime logTime = DateTime.Now;
+      var logTime = DateTime.Now.ToString(TimeFormat);
       File.AppendAllText(fileName, $"{logTime} [{logLevel}] {message}\n");
     }
 

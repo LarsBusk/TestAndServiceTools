@@ -5,20 +5,20 @@ namespace NoraOpcUaTestServer
 {
   public class CsvHelper
   {
-    private string fileName;
+    private readonly string fileName;
     public CsvHelper(string fileName = "ResultValues.csv")
     {
       this.fileName = Path.Combine(Properties.Settings.Default.LogFolder, fileName);
 
       if (!File.Exists(this.fileName))
       {
-        File.AppendAllText(this.fileName, "Time;SampleCounter;SampleNumber;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS;Diff\n");
+        File.AppendAllText(this.fileName, "Time;SampleCounter;SampleNumber;Diff;Delay;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS\n");
       }
     }
 
-    public void WriteValues(DateTime time, uint sampleCounter, string sampleNumber, string smapleRegistrationValue, double fat, double protein, double lactose, double ts, double snf, TimeSpan timeDif)
+    public void WriteValues(DateTime time, uint sampleCounter, string sampleNumber, string sampleRegistrationValue, double fat, double protein, double lactose, double ts, double snf, TimeSpan timeDif, TimeSpan delay)
     {
-      File.AppendAllText(this.fileName, $"{time};{sampleCounter};{sampleNumber};{smapleRegistrationValue};{fat};{protein};{lactose};{snf};{ts};{(int)timeDif.TotalMilliseconds}\n");
+      File.AppendAllText(this.fileName, $"{time.ToString("yyy-MM-dd HH:mm:ss,fff")};{sampleCounter};{sampleNumber};{(int)timeDif.TotalMilliseconds};{(int)delay.TotalMilliseconds};{sampleRegistrationValue};{fat};{protein};{lactose};{snf};{ts}\n");
     }
   }
 }

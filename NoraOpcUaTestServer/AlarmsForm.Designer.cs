@@ -31,7 +31,7 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ZeroSettingIncompleteLabel = new System.Windows.Forms.Label();
-            this.CabinetDoorOpenLabel = new System.Windows.Forms.Label();
+            this.SystemAlarmsLabel = new System.Windows.Forms.Label();
             this.UninterruptibleModeLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -39,7 +39,7 @@
             // closeButton
             // 
             this.closeButton.Location = new System.Drawing.Point(379, 252);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(100, 28);
             this.closeButton.TabIndex = 0;
@@ -50,12 +50,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ZeroSettingIncompleteLabel);
-            this.groupBox1.Controls.Add(this.CabinetDoorOpenLabel);
+            this.groupBox1.Controls.Add(this.SystemAlarmsLabel);
             this.groupBox1.Controls.Add(this.UninterruptibleModeLabel);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(341, 266);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -71,15 +71,15 @@
             this.ZeroSettingIncompleteLabel.TabIndex = 2;
             this.ZeroSettingIncompleteLabel.Text = "ZeroSettingIncomplete";
             // 
-            // CabinetDoorOpenLabel
+            // SystemAlarmsLabel
             // 
-            this.CabinetDoorOpenLabel.AutoSize = true;
-            this.CabinetDoorOpenLabel.Location = new System.Drawing.Point(8, 60);
-            this.CabinetDoorOpenLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.CabinetDoorOpenLabel.Name = "CabinetDoorOpenLabel";
-            this.CabinetDoorOpenLabel.Size = new System.Drawing.Size(116, 16);
-            this.CabinetDoorOpenLabel.TabIndex = 1;
-            this.CabinetDoorOpenLabel.Text = "CabinetDoorOpen";
+            this.SystemAlarmsLabel.AutoSize = true;
+            this.SystemAlarmsLabel.Location = new System.Drawing.Point(8, 60);
+            this.SystemAlarmsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SystemAlarmsLabel.Name = "SystemAlarmsLabel";
+            this.SystemAlarmsLabel.Size = new System.Drawing.Size(94, 16);
+            this.SystemAlarmsLabel.TabIndex = 1;
+            this.SystemAlarmsLabel.Text = "SystemAlarms";
             // 
             // UninterruptibleModeLabel
             // 
@@ -99,7 +99,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.closeButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AlarmsForm";
@@ -115,7 +115,7 @@
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label ZeroSettingIncompleteLabel;
-        private System.Windows.Forms.Label CabinetDoorOpenLabel;
+        private System.Windows.Forms.Label SystemAlarmsLabel;
         private System.Windows.Forms.Label UninterruptibleModeLabel;
     }
 }

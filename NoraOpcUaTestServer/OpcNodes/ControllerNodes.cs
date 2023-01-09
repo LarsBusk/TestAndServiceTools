@@ -7,6 +7,7 @@ namespace NoraOpcUaTestServer.OpcNodes
     {
         public List<IOpcNode> Nodes => nodes;
         public OpcDataVariableNode<string> ProductCode;
+        public OpcDataVariableNode<int> ProductCodeN;
         public OpcDataVariableNode<int> ModeN;
         public OpcDataVariableNode<int> PipetteProductCodeN;
         public OpcDataVariableNode<bool> ZeroToQueue;
@@ -14,6 +15,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<bool> NoDelayedResults;
         public OpcDataVariableNode<string> SampleRegistration;
         public OpcDataVariableNode<string> PipetteProductCode;
+        public OpcDataVariableNode<uint> WatchdogCounter;
 
         private readonly OpcFolderNode controllerFolder;
         private List<IOpcNode> nodes = new List<IOpcNode>();
@@ -30,6 +32,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         {
             ModeN = CreateOpcUaNode<int>(controllerFolder, "ModeN", nodes);
             ProductCode = CreateOpcUaNode<string>(controllerFolder, "ProductCode", nodes);
+            ProductCodeN = CreateOpcUaNode<int>(controllerFolder, "ProductCodeN", nodes);
             ZeroToQueue = CreateOpcUaNode<bool>(controllerFolder, "ZeroToQueue", nodes);
             CleanToQueue = CreateOpcUaNode<bool>(controllerFolder, "CleanToQueue", nodes);
             NoDelayedResults = CreateOpcUaNode<bool>(controllerFolder, "NoDelayedResults", nodes);
@@ -38,6 +41,7 @@ namespace NoraOpcUaTestServer.OpcNodes
                 $"SampleRegistration{NodeSeparator}PreRegistration{NodeSeparator}Value", nodes);
             PipetteProductCode = CreateOpcUaNode<string>(controllerFolder, "PipetteProductCode", nodes);
             PipetteProductCodeN = CreateOpcUaNode<int>(controllerFolder, "PipetteProductCodeN", nodes);
+            WatchdogCounter = CreateOpcUaNode<uint>(controllerFolder, "WatchdogCounter", nodes);
         }
     }
 }

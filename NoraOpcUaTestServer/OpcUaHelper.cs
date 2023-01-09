@@ -18,7 +18,8 @@ namespace NoraOpcUaTestServer
         public double TsValue => this.noraNodes.SampleNodes.ParametersNodes.TsValue.Value;
         public double SnfValue => noraNodes.SampleNodes.ParametersNodes.SnfValue.Value;
         public string SampleNumber => noraNodes.SampleNodes.SampleNumber.Value;
-        public string SampleRegistrationValue => noraNodes.SampleNodes.SampleregistrationValue.Value;
+        public string SampleRegistrationValue => noraNodes.SampleNodes.SampleRegistrationValue.Value;
+        public DateTime SampleDateTime => noraNodes.SampleNodes.TimeStampNodes.SampleDateTime.Value;
         public int Mode => this.noraNodes.InstrumentNodes.ModeN.Value;
         public OpcDataVariableNode<string> ProductName => this.noraNodes.InstrumentNodes.ProductName;
         public OpcDataVariableNode<uint> EventsCount => noraNodes.EventNodes.EventsCount;
@@ -33,7 +34,7 @@ namespace NoraOpcUaTestServer
 
         public OpcDataVariableNode<bool> UninterruptableMode => noraNodes.AlarmNodes.UninterruptibleMode;
         public OpcDataVariableNode<bool> Zeroincomplete => noraNodes.AlarmNodes.ZeroSettingIncomplete;
-        public OpcDataVariableNode<bool> CabinetDoorOpen => noraNodes.AlarmNodes.CabinetDoorOpen;
+        public OpcDataVariableNode<bool> SystemAlarms => noraNodes.AlarmNodes.SystemAlarms;
 
         #endregion
 
@@ -45,7 +46,7 @@ namespace NoraOpcUaTestServer
         private readonly NoraNodes noraNodes;
         private readonly CsvHelper csvHelper;
         private readonly Logger logger;
-        private DateTime lastSampleDateTime = DateTime.MinValue;
+        private DateTime lastOpcServerDateTime = DateTime.MinValue;
 
         #endregion
 
@@ -155,16 +156,19 @@ namespace NoraOpcUaTestServer
         {
             ResultNode_AfterApplyChanges(sender, e);
             var node = (OpcDataVariableNode)sender;
-            DateTime sampleDateTime = node.Timestamp ?? DateTime.Now;
+            var opcServerDateTime = node.Timestamp ?? DateTime.Now;
             var sampleCounter = (uint)node.Value;
-            TimeSpan timeDif = TimeSpan.Zero;
+            var timeDif = TimeSpan.Zero;
 
-            if (lastSampleDateTime > DateTime.MinValue)
-                timeDif = sampleDateTime.Subtract(lastSampleDateTime);
+            if (lastOpcServerDateTime > DateTime.MinValue)
+                timeDif = opcServerDateTime.Subtract(lastOpcServerDateTime);
+            
+            var delay = opcServerDateTime.Subtract(SampleDateTime);
 
-            csvHelper.WriteValues(sampleDateTime, sampleCounter, SampleNumber, SampleRegistrationValue, FatValue, ProteinValue, LactoseValue,
-                TsValue, SnfValue, timeDif);
-            lastSampleDateTime = sampleDateTime;
+            csvHelper.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, SampleRegistrationValue, FatValue, ProteinValue, LactoseValue,
+                TsValue, SnfValue, timeDif, delay);
+
+            lastOpcServerDateTime = opcServerDateTime;
         }
 
         private void ToggleNode(OpcDataVariableNode<bool> node, TimeSpan onTime)
