@@ -11,7 +11,7 @@ namespace NoraOpcUaTestServer.OpcNodes
     {
         public List<IOpcNode> Nodes => nodes;
         public OpcDataVariableNode<bool> UninterruptibleMode;
-        //public OpcDataVariableNode<bool> CabinetDoorOpen;
+        public OpcDataVariableNode<bool> CabinetDoorOpen;
         public OpcDataVariableNode<bool> ZeroSettingIncomplete;
         public OpcDataVariableNode<uint> Count;
         public OpcDataVariableNode<bool> SystemAlarms;
@@ -29,7 +29,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         public void GetNodes()
         {
             UninterruptibleMode = CreateOpcUaNode<bool>(alarmsFolder, "UninterruptibleMode", nodes);
-            //CabinetDoorOpen = CreateOpcUaNode<bool>(alarmsFolder, "CabinetDoorOpen", nodes);
+            CabinetDoorOpen = CreateOpcUaNode<bool>(alarmsFolder, "CabinetDoorOpen", nodes);
             ZeroSettingIncomplete = CreateOpcUaNode<bool>(alarmsFolder, "ZeroSettingIncomplete", nodes);
             Count = CreateOpcUaNode<uint>(alarmsFolder, "Count", nodes);
             SystemAlarms = CreateOpcUaNode<bool>(alarmsFolder, "SystemAlarms", nodes);

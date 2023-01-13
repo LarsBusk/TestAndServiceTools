@@ -33,6 +33,7 @@
             this.ZeroSettingIncompleteLabel = new System.Windows.Forms.Label();
             this.SystemAlarmsLabel = new System.Windows.Forms.Label();
             this.UninterruptibleModeLabel = new System.Windows.Forms.Label();
+            this.cabinetDoorOpenLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cabinetDoorOpenLabel);
             this.groupBox1.Controls.Add(this.ZeroSettingIncompleteLabel);
             this.groupBox1.Controls.Add(this.SystemAlarmsLabel);
             this.groupBox1.Controls.Add(this.UninterruptibleModeLabel);
@@ -91,6 +93,15 @@
             this.UninterruptibleModeLabel.TabIndex = 0;
             this.UninterruptibleModeLabel.Text = "UninterruptibleMode";
             // 
+            // cabinetDoorOpenLabel
+            // 
+            this.cabinetDoorOpenLabel.AutoSize = true;
+            this.cabinetDoorOpenLabel.Location = new System.Drawing.Point(9, 119);
+            this.cabinetDoorOpenLabel.Name = "cabinetDoorOpenLabel";
+            this.cabinetDoorOpenLabel.Size = new System.Drawing.Size(116, 16);
+            this.cabinetDoorOpenLabel.TabIndex = 3;
+            this.cabinetDoorOpenLabel.Text = "CabinetDoorOpen";
+            // 
             // AlarmsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -117,5 +128,6 @@
         private System.Windows.Forms.Label ZeroSettingIncompleteLabel;
         private System.Windows.Forms.Label SystemAlarmsLabel;
         private System.Windows.Forms.Label UninterruptibleModeLabel;
+        private System.Windows.Forms.Label cabinetDoorOpenLabel;
     }
 }
