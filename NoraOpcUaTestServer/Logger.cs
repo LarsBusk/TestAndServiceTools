@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 
 namespace NoraOpcUaTestServer
 {
-  public class Logger
+    public class Logger
   {
     private readonly string fileName;
 

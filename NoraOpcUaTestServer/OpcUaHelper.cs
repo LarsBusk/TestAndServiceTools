@@ -35,6 +35,7 @@ namespace NoraOpcUaTestServer
         public OpcDataVariableNode<bool> UninterruptableMode => noraNodes.AlarmNodes.UninterruptibleMode;
         public OpcDataVariableNode<bool> Zeroincomplete => noraNodes.AlarmNodes.ZeroSettingIncomplete;
         public OpcDataVariableNode<bool> SystemAlarms => noraNodes.AlarmNodes.SystemAlarms;
+        public OpcDataVariableNode<bool> CabinetDoorOpen => noraNodes.AlarmNodes.CabinetDoorOpen;
 
         #endregion
 
