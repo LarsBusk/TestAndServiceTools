@@ -9,6 +9,7 @@ namespace NoraOpcUaTestServer.States
     public class StateServerStarted : IState
     {
         public string StateName => "Server started";
+        public bool ForceMeasure { get; set; }
         private OpcUaHelper helper;
 
         public StateServerStarted(OpcUaHelper opcUaHelper)

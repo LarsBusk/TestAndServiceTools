@@ -10,7 +10,19 @@ namespace NoraOpcUaTestServer.States
     public class StateNoraStopped : IState
     {
         public string StateName => "Stopped";
-        private OpcUaHelper helper;
+
+        public bool ForceMeasure
+        {
+            get => forceMeasure;
+            set
+            {
+                forceMeasure = value;
+                if (forceMeasure) helper.StartMeasuring();
+            }
+        }
+
+        private readonly OpcUaHelper helper;
+        private bool forceMeasure;
 
         public StateNoraStopped(OpcUaHelper opcUaHelper)
         {

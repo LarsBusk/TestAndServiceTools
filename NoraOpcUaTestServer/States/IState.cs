@@ -9,6 +9,7 @@ namespace NoraOpcUaTestServer.States
   public interface IState
   {
     string StateName { get; }
+    bool ForceMeasure { get; set; }
     void StartServer();
     void StopServer();
     void StartStopMeasuring(string product);

@@ -9,6 +9,7 @@ namespace NoraOpcUaTestServer.States
     public class StateNoraZeroing : IState
     {
         public string StateName => "Zeroing";
+        public bool ForceMeasure { get; set; }
         private OpcUaHelper helper;
 
         public StateNoraZeroing(OpcUaHelper opcUaHelper)
