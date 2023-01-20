@@ -59,5 +59,6 @@
         <Label Content="Stop" HorizontalAlignment="Left" Margin="185,401,0,0" VerticalAlignment="Top"/>
         <Label Content="Actual" HorizontalAlignment="Left" Margin="185,459,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Path=Watchdog}" HorizontalAlignment="Left" Margin="230,279,0,0" VerticalAlignment="Top" Width="206" Height="25"/>
+        <CheckBox Content="Only value1" IsChecked="{Binding Path=SampleVariationController.OnlyValue1}" HorizontalAlignment="Left" Margin="253,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.51,-0.535"/>
     </Grid>
 </Window>

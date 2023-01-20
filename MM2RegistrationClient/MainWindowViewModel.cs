@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using log4net;
+using OPCClient.Communicators;
+using System;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
-using log4net;
-using OPCClient;
-using OPCClient.Communicators;
 using Timer = System.Timers.Timer;
 
 namespace RegistrationClient
 {
-  class MainWindowViewModel : INotifyPropertyChanged
+    class MainWindowViewModel : INotifyPropertyChanged
   {
     #region Public properties
 
@@ -330,18 +324,18 @@ namespace RegistrationClient
     {
       if (InsertRandom)
       {
-        Tuple<int, int, int> values = SampleVariationController.GetRandomValues();
-        Value1 = values.Item1.ToString();
-        Value2 = values.Item2.ToString();
-        ProductCodeN = values.Item3;
+        RegistrationValues values = SampleVariationController.GetRandomValues();
+        Value1 = values.RegValue1.ToString();
+        Value2 = values.RegValue2.ToString();
+        ProductCodeN = values.ProductCode;
       }
 
       if (SimulateBoxes)
       {
-        Tuple<int, int, int> values = SampleVariationController.GetValuesFromBoxes();
-        Value1 = values.Item1.ToString();
-        Value2 = values.Item2.ToString();
-        ProductCodeN = values.Item3;
+        RegistrationValues values = SampleVariationController.GetValuesFromBoxes();
+        Value1 = values.RegValue1.ToString();
+        Value2 = values.RegValue2.ToString();
+        ProductCodeN = values.ProductCode;
       }
 
       WriteValues();
