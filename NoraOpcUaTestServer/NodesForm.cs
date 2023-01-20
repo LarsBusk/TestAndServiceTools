@@ -26,7 +26,9 @@ namespace NoraOpcUaTestServer
             nodesRtb.Clear();
             foreach (var node in nodes)
             {
-                nodesRtb.AppendText($"{node.Id}\n");
+                var nodeType = node.GetType().ToString();
+                nodeType = nodeType.Substring(nodeType.LastIndexOf('.') + 1);
+                nodesRtb.AppendText($"{node.Id} [{nodeType}\n");
             }
         }
 

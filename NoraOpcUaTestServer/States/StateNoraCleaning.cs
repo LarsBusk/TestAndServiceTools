@@ -9,6 +9,9 @@ namespace NoraOpcUaTestServer.States
     public class StateNoraCleaning : IState
     {
         public string StateName => "Cleaning";
+
+        public bool ForceMeasure { get; set; }
+
         private OpcUaHelper helper;
 
         public StateNoraCleaning(OpcUaHelper opcUaHelper)

@@ -10,6 +10,8 @@ namespace NoraOpcUaTestServer.States
     {
         public string StateName => "Clean in place";
 
+        public bool ForceMeasure { get; set; }
+
         private OpcUaHelper helper;
 
         public StateNoraCip(OpcUaHelper helper)

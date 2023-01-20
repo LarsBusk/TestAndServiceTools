@@ -20,7 +20,8 @@ namespace NoraOpcUaTestServer
         public static string RootFolderName = "Foss.Nora";
         public static string ServerName = Properties.Settings.Default.ServerName;
         private OpcUaHelper helper;
-        private Logger csvHelper = new Logger("States.txt");
+        private readonly Logger statesLogger = new Logger("States.txt");
+        private bool forceMeasure;
 
         #region Private delegates
 
@@ -39,6 +40,7 @@ namespace NoraOpcUaTestServer
             set
             {
                 state = value;
+                state.ForceMeasure = forceMeasure;
                 UpdateLabelText(stateLabel, $"State: {state.StateName}");
             }
         }
@@ -71,6 +73,7 @@ namespace NoraOpcUaTestServer
             var node = (OpcDataVariableNode<uint>)sender;
             string watchdog = node.Value.ToString();
             UpdateLabelText(watchdogLabel, watchdog);
+            helper.UpdateServerWatchdog();
         }
 
         private void EventsCount_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
@@ -91,7 +94,11 @@ namespace NoraOpcUaTestServer
             var state = e.Changes;
             var node = (OpcDataVariableNode<string>)sender;
             string noraState = node.Value;
-            csvHelper.LogInfo($"Type: {state} New state: {noraState}");
+
+            if (SettingsForm.LogOptions.LogStates)
+            {
+                statesLogger.LogInfo($"Type: {state} New state: {noraState}");
+            }
 
             AppendToRichTextBox(noraState);
 
@@ -292,6 +299,11 @@ namespace NoraOpcUaTestServer
         private void noDelayedResCb_CheckedChanged(object sender, EventArgs e)
         {
             helper.SetNoDelayedResults(noDelayedResCb.Checked);
+        }
+
+        private void forceMeasureCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            forceMeasure = forceMeasureCheckBox.Checked;
         }
     }
 }

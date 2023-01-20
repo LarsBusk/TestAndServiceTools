@@ -9,6 +9,7 @@ namespace NoraOpcUaTestServer.States
     public class StateNoraMeasuring : IState
     {
         public string StateName => "Measuring";
+        public bool ForceMeasure { get; set; }
         private OpcUaHelper helper;
 
         public StateNoraMeasuring(OpcUaHelper opcUaHelper)

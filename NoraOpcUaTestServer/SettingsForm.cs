@@ -11,33 +11,46 @@ using NoraOpcUaTestServer.OpcNodes;
 
 namespace NoraOpcUaTestServer
 {
-  public partial class SettingsForm : Form
-  {
-    public SettingsForm()
+    public partial class SettingsForm : Form
     {
-      InitializeComponent();
+        public static LogOptions LogOptions;
+        public SettingsForm()
+        {
+            InitializeComponent();
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            serverTextBox.Text = MainForm.ServerName;
+            rootFolderTextBox.Text = MainForm.RootFolderName;
+            nodeSeparatorTextBox.Text = NodeBase.NodeSeparator;
+            opcNamespaceTextBox.Text = NodeBase.OpcNameSpace;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            MainForm.RootFolderName = rootFolderTextBox.Text;
+            NodeBase.NodeSeparator = nodeSeparatorTextBox.Text;
+            NodeBase.OpcNameSpace = opcNamespaceTextBox.Text;
+            MainForm.ServerName = serverTextBox.Text;
+            LogOptions.LogJitter = jitterCheckBox.Checked;
+            LogOptions.LogMeasuredValues = measuredValuesCheckBox.Checked;
+            LogOptions.LogNodeValues = nodeValuesCheckBox.Checked;
+            LogOptions.LogStates = statesCheckBox.Checked;
+            this.Close();
+        }
     }
 
-    private void SettingsForm_Load(object sender, EventArgs e)
+    public struct LogOptions
     {
-      serverTextBox.Text = MainForm.ServerName;
-      rootFolderTextBox.Text = MainForm.RootFolderName;
-      nodeSeparatorTextBox.Text = NodeBase.NodeSeparator;
-      opcNamespaceTextBox.Text = NodeBase.OpcNameSpace;
+        public bool LogJitter;
+        public bool LogMeasuredValues;
+        public bool LogStates;
+        public bool LogNodeValues;
     }
-
-    private void cancelButton_Click(object sender, EventArgs e)
-    {
-      this.Close();
-    }
-
-    private void saveButton_Click(object sender, EventArgs e)
-    {
-      MainForm.RootFolderName = rootFolderTextBox.Text;
-      NodeBase.NodeSeparator = nodeSeparatorTextBox.Text;
-      NodeBase.OpcNameSpace = opcNamespaceTextBox.Text;
-      MainForm.ServerName = serverTextBox.Text;
-      this.Close();
-    }
-  }
 }
