@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using NoraOpcUaTestServer.States;
+using Opc.UaFx;
+using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoraOpcUaTestServer.States;
-using Opc.UaFx;
-using Timer = System.Windows.Forms.Timer;
 
 namespace NoraOpcUaTestServer
 {
@@ -34,18 +26,18 @@ namespace NoraOpcUaTestServer
         #endregion
 
 
-        private IState currentState
+        private IState CurrentState
         {
-            get => state;
+            get => currentState;
             set
             {
-                state = value;
-                state.ForceMeasure = forceMeasure;
-                UpdateLabelText(stateLabel, $"State: {state.StateName}");
+                currentState = value;
+                currentState.ForceMeasure = forceMeasure;
+                UpdateLabelText(stateLabel, $"State: {currentState.StateName}");
             }
         }
 
-        private IState state;
+        private IState currentState;
 
 
         public MainForm()
@@ -71,7 +63,7 @@ namespace NoraOpcUaTestServer
         private void WatchdogNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode<uint>)sender;
-            string watchdog = node.Value.ToString();
+            var watchdog = node.Value.ToString();
             UpdateLabelText(watchdogLabel, watchdog);
             helper.UpdateServerWatchdog();
         }
@@ -79,21 +71,16 @@ namespace NoraOpcUaTestServer
         private void EventsCount_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode<uint>)sender;
-            uint count = node.Value;
-
-            if (count > 0)
-            {
-                HandleEvents();
-            }
+            var count = node.Value;
+            eventsButton.ForeColor = count > 0 ? Color.Red : Color.Black;
         }
 
 
         private void StateNode_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
         {
-            var args = e;
             var state = e.Changes;
             var node = (OpcDataVariableNode<string>)sender;
-            string noraState = node.Value;
+            var noraState = node.Value;
 
             if (SettingsForm.LogOptions.LogStates)
             {
@@ -105,27 +92,27 @@ namespace NoraOpcUaTestServer
             switch (noraState)
             {
                 case "Measuring":
-                    currentState = new StateNoraMeasuring(helper);
+                    CurrentState = new StateNoraMeasuring(helper);
                     SetStartStopButtonText("Stop");
                     break;
                 case "Stopped":
-                    currentState = new StateNoraStopped(helper);
+                    CurrentState = new StateNoraStopped(helper);
                     SetStartStopButtonText("Start");
                     break;
                 case "ZeroSetting":
-                    currentState = new StateNoraZeroing(helper);
+                    CurrentState = new StateNoraZeroing(helper);
                     break;
                 case "ManualCleaning":
-                    currentState = new StateNoraCleaning(helper);
+                    CurrentState = new StateNoraCleaning(helper);
                     break;
                 case "PrepareMeasuring":
-                    currentState = new StateNoraPreparing(helper);
+                    CurrentState = new StateNoraPreparing(helper);
                     break;
                 case "ProcessCleaning":
-                    currentState = new StateNoraCleaning(helper);
+                    CurrentState = new StateNoraCleaning(helper);
                     break;
                 case "CleanInPlace":
-                    currentState = new StateNoraCip(helper);
+                    CurrentState = new StateNoraCip(helper);
                     SetStartStopButtonText("Stop");
                     break;
             }
@@ -134,7 +121,7 @@ namespace NoraOpcUaTestServer
 
         private void Server_StateChanged(object sender, Opc.UaFx.Server.OpcServerStateChangedEventArgs e)
         {
-            string mes = e.NewState.ToString();
+            var mes = e.NewState.ToString();
             AppendToRichTextBox(mes);
 
             serverStateLabel.Text = mes;
@@ -142,10 +129,10 @@ namespace NoraOpcUaTestServer
             switch (mes)
             {
                 case "Started":
-                    currentState = new StateServerStarted(helper);
+                    CurrentState = new StateServerStarted(helper);
                     break;
                 case "Stopped":
-                    currentState = new StateServerStopped(helper);
+                    CurrentState = new StateServerStopped(helper);
                     break;
             }
         }
@@ -156,12 +143,12 @@ namespace NoraOpcUaTestServer
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            currentState.StartServer();
+            CurrentState.StartServer();
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            currentState.StopServer();
+            CurrentState.StopServer();
         }
 
         private void nodesButton_Click(object sender, EventArgs e)
@@ -174,39 +161,39 @@ namespace NoraOpcUaTestServer
 
         private void startStopButton_Click(object sender, EventArgs e)
         {
-            currentState.StartStopMeasuring(productTextBox.Text);
+            CurrentState.StartStopMeasuring(productTextBox.Text);
         }
 
         private void cipButton_Click(object sender, EventArgs e)
         {
-            currentState.SetCip();
+            CurrentState.SetCip();
         }
 
         private void productTextBox_TextChanged(object sender, EventArgs e)
         {
-            currentState.ChangeProduct(productTextBox.Text);
+            CurrentState.ChangeProduct(productTextBox.Text);
         }
 
         private void zeroButton_Click(object sender, EventArgs e)
         {
-            currentState.EnqueueZero();
+            CurrentState.EnqueueZero();
         }
 
         private void cleanButton_Click(object sender, EventArgs e)
         {
-            currentState.EnqueueRinse();
+            CurrentState.EnqueueRinse();
         }
 
         private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            currentState.OpenSettings();
+            CurrentState.OpenSettings();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!(helper is null))
             {
-                currentState.StopServer();
+                CurrentState.StopServer();
             }
 
             this.Close();
@@ -228,13 +215,29 @@ namespace NoraOpcUaTestServer
             helper.ProductName.AfterApplyChanges += ProductName_AfterApplyChanges;
             helper.SampleCounterNode.AfterApplyChanges += SampleCounter_AfterApplyChanges;
             helper.EventsCount.AfterApplyChanges += EventsCount_AfterApplyChanges;
-            currentState = new StateServerStopped(helper);
+            CurrentState = new StateServerStopped(helper);
+            SettingsForm.LogOptions = InitialiseLogging();
+        }
+
+        private LogOptions InitialiseLogging()
+        {
+            return new LogOptions
+            {
+                LogJitter = true,
+                LogStates = true,
+                LogMeasuredValues = true,
+                LogNodeValues = true
+            };
         }
 
 
         private void HandleEvents()
         {
-            foreach (var eventMessage in helper.EventMessages)
+            var eventMessages = helper.EventMessages;
+
+            if (eventMessages is null) return;
+     
+            foreach (var eventMessage in eventMessages)
             {
                 if (string.IsNullOrEmpty(eventMessage)) break;
 
@@ -246,10 +249,10 @@ namespace NoraOpcUaTestServer
 
         private void SetStartStopButtonText(string text)
         {
-            if (stateLabel.InvokeRequired)
+            if (startStopButton.InvokeRequired)
             {
-                SetStartStopButtonTextCallback d = new SetStartStopButtonTextCallback(SetStartStopButtonText);
-                this.Invoke(d, new object[] { text });
+                SetStartStopButtonTextCallback d = SetStartStopButtonText;
+                this.Invoke(d, new { text });
                 return;
             }
 
@@ -261,7 +264,7 @@ namespace NoraOpcUaTestServer
             if (label.InvokeRequired)
             {
                 UpdateLabelTextCallback d = new UpdateLabelTextCallback(UpdateLabelText);
-                this.Invoke(d, new object[] { label, text });
+                this.Invoke(d, new { label, text });
                 return;
             }
 
@@ -274,7 +277,7 @@ namespace NoraOpcUaTestServer
             if (richTextBox1.InvokeRequired)
             {
                 AppendToRichTextBoxDelegate d = AppendToRichTextBox;
-                this.Invoke(d, new object[] { text });
+                this.Invoke(d, new { text });
                 return;
             }
 
@@ -288,7 +291,6 @@ namespace NoraOpcUaTestServer
         {
             var alarmsForm = new AlarmsForm(helper);
             alarmsForm.Show();
-            //alarmsForm.DoorOpen = 
         }
 
         private void sampleRegButton_Click(object sender, EventArgs e)
@@ -304,6 +306,12 @@ namespace NoraOpcUaTestServer
         private void forceMeasureCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             forceMeasure = forceMeasureCheckBox.Checked;
+        }
+
+        private void eventsButton_Click(object sender, EventArgs e)
+        {
+            var eventsForm = new EventsForm(helper);
+            eventsForm.Show();
         }
     }
 }

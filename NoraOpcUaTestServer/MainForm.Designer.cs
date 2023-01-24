@@ -40,6 +40,7 @@ namespace NoraOpcUaTestServer
             this.nodesButton = new System.Windows.Forms.Button();
             this.fatLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.noDelayedResCb = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cleanButton = new System.Windows.Forms.Button();
             this.zeroButton = new System.Windows.Forms.Button();
@@ -57,9 +58,9 @@ namespace NoraOpcUaTestServer
             this.sampleRegButton = new System.Windows.Forms.Button();
             this.sampleregTextbox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.noDelayedResCb = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.forceMeasureCheckBox = new System.Windows.Forms.CheckBox();
+            this.eventsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -75,9 +76,9 @@ namespace NoraOpcUaTestServer
             this.groupBox1.Controls.Add(this.stopButton);
             this.groupBox1.Controls.Add(this.startButton);
             this.groupBox1.Location = new System.Drawing.Point(32, 178);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(121, 148);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -114,7 +115,7 @@ namespace NoraOpcUaTestServer
             // stopButton
             // 
             this.stopButton.Location = new System.Drawing.Point(15, 70);
-            this.stopButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stopButton.Margin = new System.Windows.Forms.Padding(2);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(64, 27);
             this.stopButton.TabIndex = 1;
@@ -125,7 +126,7 @@ namespace NoraOpcUaTestServer
             // startButton
             // 
             this.startButton.Location = new System.Drawing.Point(15, 39);
-            this.startButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startButton.Margin = new System.Windows.Forms.Padding(2);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(64, 27);
             this.startButton.TabIndex = 0;
@@ -136,7 +137,7 @@ namespace NoraOpcUaTestServer
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(298, 44);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(266, 231);
             this.richTextBox1.TabIndex = 1;
@@ -144,8 +145,8 @@ namespace NoraOpcUaTestServer
             // 
             // nodesButton
             // 
-            this.nodesButton.Location = new System.Drawing.Point(395, 288);
-            this.nodesButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nodesButton.Location = new System.Drawing.Point(385, 288);
+            this.nodesButton.Margin = new System.Windows.Forms.Padding(2);
             this.nodesButton.Name = "nodesButton";
             this.nodesButton.Size = new System.Drawing.Size(80, 27);
             this.nodesButton.TabIndex = 2;
@@ -173,13 +174,25 @@ namespace NoraOpcUaTestServer
             this.groupBox2.Controls.Add(this.startStopButton);
             this.groupBox2.Controls.Add(this.productTextBox);
             this.groupBox2.Location = new System.Drawing.Point(158, 95);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(126, 231);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Nora Control";
+            // 
+            // noDelayedResCb
+            // 
+            this.noDelayedResCb.AutoSize = true;
+            this.noDelayedResCb.Location = new System.Drawing.Point(4, 203);
+            this.noDelayedResCb.Margin = new System.Windows.Forms.Padding(2);
+            this.noDelayedResCb.Name = "noDelayedResCb";
+            this.noDelayedResCb.Size = new System.Drawing.Size(113, 17);
+            this.noDelayedResCb.TabIndex = 12;
+            this.noDelayedResCb.Text = "No delayed results";
+            this.noDelayedResCb.UseVisualStyleBackColor = true;
+            this.noDelayedResCb.CheckedChanged += new System.EventHandler(this.noDelayedResCb_CheckedChanged);
             // 
             // label2
             // 
@@ -194,7 +207,7 @@ namespace NoraOpcUaTestServer
             // cleanButton
             // 
             this.cleanButton.Location = new System.Drawing.Point(4, 163);
-            this.cleanButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cleanButton.Margin = new System.Windows.Forms.Padding(2);
             this.cleanButton.Name = "cleanButton";
             this.cleanButton.Size = new System.Drawing.Size(90, 29);
             this.cleanButton.TabIndex = 4;
@@ -205,7 +218,7 @@ namespace NoraOpcUaTestServer
             // zeroButton
             // 
             this.zeroButton.Location = new System.Drawing.Point(4, 131);
-            this.zeroButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.zeroButton.Margin = new System.Windows.Forms.Padding(2);
             this.zeroButton.Name = "zeroButton";
             this.zeroButton.Size = new System.Drawing.Size(90, 28);
             this.zeroButton.TabIndex = 3;
@@ -216,7 +229,7 @@ namespace NoraOpcUaTestServer
             // cipButton
             // 
             this.cipButton.Location = new System.Drawing.Point(4, 99);
-            this.cipButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cipButton.Margin = new System.Windows.Forms.Padding(2);
             this.cipButton.Name = "cipButton";
             this.cipButton.Size = new System.Drawing.Size(90, 27);
             this.cipButton.TabIndex = 2;
@@ -227,7 +240,7 @@ namespace NoraOpcUaTestServer
             // startStopButton
             // 
             this.startStopButton.Location = new System.Drawing.Point(4, 67);
-            this.startStopButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startStopButton.Margin = new System.Windows.Forms.Padding(2);
             this.startStopButton.Name = "startStopButton";
             this.startStopButton.Size = new System.Drawing.Size(90, 27);
             this.startStopButton.TabIndex = 1;
@@ -238,7 +251,7 @@ namespace NoraOpcUaTestServer
             // productTextBox
             // 
             this.productTextBox.Location = new System.Drawing.Point(4, 40);
-            this.productTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.productTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.productTextBox.Name = "productTextBox";
             this.productTextBox.Size = new System.Drawing.Size(74, 20);
             this.productTextBox.TabIndex = 0;
@@ -321,7 +334,7 @@ namespace NoraOpcUaTestServer
             // sampleRegButton
             // 
             this.sampleRegButton.Location = new System.Drawing.Point(13, 17);
-            this.sampleRegButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sampleRegButton.Margin = new System.Windows.Forms.Padding(2);
             this.sampleRegButton.Name = "sampleRegButton";
             this.sampleRegButton.Size = new System.Drawing.Size(89, 26);
             this.sampleRegButton.TabIndex = 6;
@@ -332,7 +345,7 @@ namespace NoraOpcUaTestServer
             // sampleregTextbox
             // 
             this.sampleregTextbox.Location = new System.Drawing.Point(118, 21);
-            this.sampleregTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sampleregTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.sampleregTextbox.Name = "sampleregTextbox";
             this.sampleregTextbox.Size = new System.Drawing.Size(170, 20);
             this.sampleregTextbox.TabIndex = 10;
@@ -342,25 +355,13 @@ namespace NoraOpcUaTestServer
             this.groupBox3.Controls.Add(this.sampleRegButton);
             this.groupBox3.Controls.Add(this.sampleregTextbox);
             this.groupBox3.Location = new System.Drawing.Point(32, 337);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(299, 49);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sample registration";
-            // 
-            // noDelayedResCb
-            // 
-            this.noDelayedResCb.AutoSize = true;
-            this.noDelayedResCb.Location = new System.Drawing.Point(4, 203);
-            this.noDelayedResCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.noDelayedResCb.Name = "noDelayedResCb";
-            this.noDelayedResCb.Size = new System.Drawing.Size(113, 17);
-            this.noDelayedResCb.TabIndex = 12;
-            this.noDelayedResCb.Text = "No delayed results";
-            this.noDelayedResCb.UseVisualStyleBackColor = true;
-            this.noDelayedResCb.CheckedChanged += new System.EventHandler(this.noDelayedResCb_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -383,11 +384,22 @@ namespace NoraOpcUaTestServer
             this.forceMeasureCheckBox.UseVisualStyleBackColor = true;
             this.forceMeasureCheckBox.CheckedChanged += new System.EventHandler(this.forceMeasureCheckBox_CheckedChanged);
             // 
+            // eventsButton
+            // 
+            this.eventsButton.Location = new System.Drawing.Point(470, 288);
+            this.eventsButton.Name = "eventsButton";
+            this.eventsButton.Size = new System.Drawing.Size(75, 27);
+            this.eventsButton.TabIndex = 13;
+            this.eventsButton.Text = "Events";
+            this.eventsButton.UseVisualStyleBackColor = true;
+            this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 396);
+            this.Controls.Add(this.eventsButton);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.alarmsButton);
@@ -402,7 +414,7 @@ namespace NoraOpcUaTestServer
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Nora Opc UA Server";
@@ -453,6 +465,7 @@ namespace NoraOpcUaTestServer
         private System.Windows.Forms.CheckBox noDelayedResCb;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox forceMeasureCheckBox;
+        private System.Windows.Forms.Button eventsButton;
     }
 }
 
