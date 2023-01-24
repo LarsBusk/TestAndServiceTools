@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NoraOpcUaTestServer
 {
-    public class CsvHelper
+    public class CsvWriter
     {
         private readonly string _fileName = "ResultValues.csv";
 
@@ -15,13 +15,13 @@ namespace NoraOpcUaTestServer
 
         private const string TimeFormat = "yyyy-MM-dd HH:mm:ss,fff";
 
-        public CsvHelper()
+        public CsvWriter()
         {
             this._fileName = Path.Combine(Properties.Settings.Default.LogFolder, _fileName);
             CreateCsvIfNeeded();
         }
 
-        public CsvHelper(string fileName, string columnNames)
+        public CsvWriter(string fileName, string columnNames)
         {
             this._fileName = Path.Combine(Properties.Settings.Default.LogFolder, fileName);
             this._columnNames = columnNames;

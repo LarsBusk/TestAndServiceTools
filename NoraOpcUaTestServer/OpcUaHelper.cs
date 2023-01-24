@@ -24,6 +24,10 @@ namespace NoraOpcUaTestServer
         public OpcDataVariableNode<string> ProductName => this.noraNodes.InstrumentNodes.ProductName;
         public OpcDataVariableNode<uint> EventsCount => noraNodes.EventNodes.EventsCount;
         public string[] EventMessages => noraNodes.EventNodes.EventMessages.Value;
+        public uint[] EventCodes => noraNodes.EventNodes.EventCodes.Value;
+        public ushort[] EventSeverities => noraNodes.EventNodes.EventSeverity.Value;
+        public string[] EventHints => noraNodes.EventNodes.EventHints.Value;
+        public string[] EventSources => noraNodes.EventNodes.EventSources.Value;
 
         public OpcServer Server;
         public OpcDataVariableNode<string> StateNode => noraNodes.InstrumentNodes.State;
@@ -45,8 +49,8 @@ namespace NoraOpcUaTestServer
         #region Private fields
 
         private readonly NoraNodes noraNodes;
-        private readonly CsvHelper csvHelper;
-        private readonly CsvHelper jitterCsvHelper;
+        private readonly CsvWriter csvWriter;
+        private readonly CsvWriter jitterCsvWriter;
         private readonly Logger logger;
         private DateTime lastOpcServerDateTime = DateTime.MinValue;
         private static uint serverWatchdog = 1;
@@ -58,10 +62,10 @@ namespace NoraOpcUaTestServer
         public OpcUaHelper(string serverName, string homeFolderName = "Foss.Nora")
         {
             noraNodes = new NoraNodes(homeFolderName);
-            csvHelper = new CsvHelper("MeasuredValues.csv",
+            csvWriter = new CsvWriter("MeasuredValues.csv",
                 "Time;SampleNumber;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS\n");
-            jitterCsvHelper =
-                new CsvHelper("Jitter.csv", "Time;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
+            jitterCsvWriter =
+                new CsvWriter("Jitter.csv", "Time;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
             logger = new Logger("NodeValues.txt");
 
             Opc.UaFx.Licenser.LicenseKey =
@@ -187,12 +191,12 @@ namespace NoraOpcUaTestServer
 
             if (SettingsForm.LogOptions.LogJitter)
             {
-                jitterCsvHelper.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, timeDif, delay);
+                jitterCsvWriter.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, timeDif, delay);
             }
 
             if (SettingsForm.LogOptions.LogMeasuredValues)
             {
-                csvHelper.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, SampleRegistrationValue, FatValue, ProteinValue, LactoseValue,
+                csvWriter.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, SampleRegistrationValue, FatValue, ProteinValue, LactoseValue,
                 TsValue, SnfValue);
             }
 
