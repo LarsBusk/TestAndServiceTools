@@ -65,7 +65,7 @@ namespace NoraOpcUaTestServer
             csvWriter = new CsvWriter("MeasuredValues.csv",
                 "Time;SampleNumber;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS\n");
             jitterCsvWriter =
-                new CsvWriter("Jitter.csv", "Time;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
+                new CsvWriter("Jitter.csv", "OpcServerTime;SampleTime;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
             logger = new Logger("NodeValues.txt");
 
             Opc.UaFx.Licenser.LicenseKey =
@@ -191,7 +191,7 @@ namespace NoraOpcUaTestServer
 
             if (SettingsForm.LogOptions.LogJitter)
             {
-                jitterCsvWriter.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, timeDif, delay);
+                jitterCsvWriter.WriteValues(opcServerDateTime, SampleDateTime.ToString("yyyy-MM-dd HH:mm:ss,fff"), sampleCounter, SampleNumber, timeDif, delay);
             }
 
             if (SettingsForm.LogOptions.LogMeasuredValues)
