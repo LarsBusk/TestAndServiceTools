@@ -252,7 +252,7 @@ namespace NoraOpcUaTestServer
             if (startStopButton.InvokeRequired)
             {
                 SetStartStopButtonTextCallback d = SetStartStopButtonText;
-                this.Invoke(d, new { text });
+                this.Invoke(d, new object[] { text });
                 return;
             }
 
@@ -264,7 +264,7 @@ namespace NoraOpcUaTestServer
             if (label.InvokeRequired)
             {
                 UpdateLabelTextCallback d = new UpdateLabelTextCallback(UpdateLabelText);
-                this.Invoke(d, new { label, text });
+                this.Invoke(d, new object[] { label, text });
                 return;
             }
 
@@ -277,7 +277,7 @@ namespace NoraOpcUaTestServer
             if (richTextBox1.InvokeRequired)
             {
                 AppendToRichTextBoxDelegate d = AppendToRichTextBox;
-                this.Invoke(d, new { text });
+                this.Invoke(d, new object[] { text });
                 return;
             }
 
