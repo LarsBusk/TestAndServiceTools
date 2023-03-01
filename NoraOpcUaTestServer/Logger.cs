@@ -30,7 +30,7 @@ namespace NoraOpcUaTestServer
 
     private void Log(string message, string logLevel)
     {
-      var logTime = DateTime.Now.ToString(TimeFormat);
+      var logTime = DateTime.UtcNow.ToString(TimeFormat);
       File.AppendAllText(fileName, $"{logTime} [{logLevel}] {message}\n");
     }
 
