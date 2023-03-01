@@ -1,9 +1,11 @@
 ﻿using NoraOpcUaTestServer.States;
+using Opc.Ua;
 using Opc.UaFx;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace NoraOpcUaTestServer
 {
@@ -34,6 +36,12 @@ namespace NoraOpcUaTestServer
                 currentState = value;
                 currentState.ForceMeasure = forceMeasure;
                 UpdateLabelText(stateLabel, $"State: {currentState.StateName}");
+                AppendToRichTextBox(currentState.StateName);
+
+                if (SettingsForm.LogOptions.LogStates)
+                {
+                    statesLogger.LogInfo($"New state: {currentState.StateName}");
+                }
             }
         }
 
@@ -78,16 +86,8 @@ namespace NoraOpcUaTestServer
 
         private void StateNode_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
         {
-            var state = e.Changes;
             var node = (OpcDataVariableNode<string>)sender;
             var noraState = node.Value;
-
-            if (SettingsForm.LogOptions.LogStates)
-            {
-                statesLogger.LogInfo($"Type: {state} New state: {noraState}");
-            }
-
-            AppendToRichTextBox(noraState);
 
             switch (noraState)
             {
@@ -122,8 +122,6 @@ namespace NoraOpcUaTestServer
         private void Server_StateChanged(object sender, Opc.UaFx.Server.OpcServerStateChangedEventArgs e)
         {
             var mes = e.NewState.ToString();
-            AppendToRichTextBox(mes);
-
             serverStateLabel.Text = mes;
 
             switch (mes)
