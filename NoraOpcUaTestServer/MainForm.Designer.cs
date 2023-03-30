@@ -38,7 +38,7 @@ namespace NoraOpcUaTestServer
             this.startButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.nodesButton = new System.Windows.Forms.Button();
-            this.fatLabel = new System.Windows.Forms.Label();
+            this.sampleCounterLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.noDelayedResCb = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -154,15 +154,15 @@ namespace NoraOpcUaTestServer
             this.nodesButton.UseVisualStyleBackColor = true;
             this.nodesButton.Click += new System.EventHandler(this.nodesButton_Click);
             // 
-            // fatLabel
+            // sampleCounterLabel
             // 
-            this.fatLabel.AutoSize = true;
-            this.fatLabel.Location = new System.Drawing.Point(44, 56);
-            this.fatLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fatLabel.Name = "fatLabel";
-            this.fatLabel.Size = new System.Drawing.Size(28, 13);
-            this.fatLabel.TabIndex = 3;
-            this.fatLabel.Text = "Fat: ";
+            this.sampleCounterLabel.AutoSize = true;
+            this.sampleCounterLabel.Location = new System.Drawing.Point(44, 56);
+            this.sampleCounterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.sampleCounterLabel.Name = "sampleCounterLabel";
+            this.sampleCounterLabel.Size = new System.Drawing.Size(82, 13);
+            this.sampleCounterLabel.TabIndex = 3;
+            this.sampleCounterLabel.Text = "SampleCounter:";
             // 
             // groupBox2
             // 
@@ -406,7 +406,7 @@ namespace NoraOpcUaTestServer
             this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.productLabel);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.fatLabel);
+            this.Controls.Add(this.sampleCounterLabel);
             this.Controls.Add(this.nodesButton);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBox1);
@@ -442,7 +442,7 @@ namespace NoraOpcUaTestServer
     private System.Windows.Forms.Button nodesButton;
     private System.Windows.Forms.Label watchdogLabel;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Label fatLabel;
+    private System.Windows.Forms.Label sampleCounterLabel;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.Button startStopButton;
     private System.Windows.Forms.TextBox productTextBox;

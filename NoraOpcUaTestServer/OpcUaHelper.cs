@@ -1,72 +1,23 @@
-﻿using Opc.UaFx;
+﻿using NoraOpcUaTestServer.OpcNodes;
+using Opc.UaFx;
 using Opc.UaFx.Server;
 using System;
 using System.Threading;
-using NoraOpcUaTestServer.OpcNodes;
 
 namespace NoraOpcUaTestServer
 {
     public class OpcUaHelper
     {
-        #region Public properties
-
-        public double FatValue => this.noraNodes.SampleNodes.ParametersNodes.FatValue.Value;
-        public string FatUnit => this.noraNodes.SampleNodes.ParametersNodes.FatUnit.Value;
-        public double ProteinValue => this.noraNodes.SampleNodes.ParametersNodes.ProteinValue.Value;
-        public string ProteinUnit => this.noraNodes.SampleNodes.ParametersNodes.ProteinUnit.Value;
-        public double LactoseValue => this.noraNodes.SampleNodes.ParametersNodes.LactoseValue.Value;
-        public double TsValue => this.noraNodes.SampleNodes.ParametersNodes.TsValue.Value;
-        public double SnfValue => noraNodes.SampleNodes.ParametersNodes.SnfValue.Value;
-        public string SampleNumber => noraNodes.SampleNodes.SampleNumber.Value;
-        public string SampleRegistrationValue => noraNodes.SampleNodes.SampleRegistrationValue.Value;
-        public DateTime SampleDateTime => noraNodes.SampleNodes.TimeStampNodes.SampleDateTime.Value;
-        public int Mode => this.noraNodes.InstrumentNodes.ModeN.Value;
-        public OpcDataVariableNode<string> ProductName => this.noraNodes.InstrumentNodes.ProductName;
-        public OpcDataVariableNode<uint> EventsCount => noraNodes.EventNodes.EventsCount;
-        public string[] EventMessages => noraNodes.EventNodes.EventMessages.Value;
-        public uint[] EventCodes => noraNodes.EventNodes.EventCodes.Value;
-        public ushort[] EventSeverities => noraNodes.EventNodes.EventSeverity.Value;
-        public string[] EventHints => noraNodes.EventNodes.EventHints.Value;
-        public string[] EventSources => noraNodes.EventNodes.EventSources.Value;
-
+        public NoraNodes Nodes => noraNodes;
         public OpcServer Server;
-        public OpcDataVariableNode<string> StateNode => noraNodes.InstrumentNodes.State;
-        public OpcDataVariableNode<uint> WatchdogNode => noraNodes.InstrumentNodes.WatchdogNode;
-        public OpcDataVariableNode<uint> SampleCounterNode => this.noraNodes.InstrumentNodes.SampleCounter;
-
-        #region AlarmNodes
-
-        public OpcDataVariableNode<bool> UninterruptableMode => noraNodes.AlarmNodes.UninterruptibleMode;
-        public OpcDataVariableNode<bool> Zeroincomplete => noraNodes.AlarmNodes.ZeroSettingIncomplete;
-        public OpcDataVariableNode<bool> SystemAlarms => noraNodes.AlarmNodes.SystemAlarms;
-        public OpcDataVariableNode<bool> CabinetDoorOpen => noraNodes.AlarmNodes.CabinetDoorOpen;
-
-        #endregion
-
-
-        #endregion
-
-        #region Private fields
 
         private readonly NoraNodes noraNodes;
-        private readonly CsvWriter csvWriter;
-        private readonly CsvWriter jitterCsvWriter;
-        private readonly Logger logger;
-        private DateTime lastOpcServerDateTime = DateTime.MinValue;
         private static uint serverWatchdog = 1;
-
-        #endregion
-
 
 
         public OpcUaHelper(string serverName, string homeFolderName = "Foss.Nora")
         {
             noraNodes = new NoraNodes(homeFolderName);
-            csvWriter = new CsvWriter("MeasuredValues.csv",
-                "Time;SampleNumber;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS\n");
-            jitterCsvWriter =
-                new CsvWriter("Jitter.csv", "OpcServerTime;SampleTime;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
-            logger = new Logger("NodeValues.txt");
 
             Opc.UaFx.Licenser.LicenseKey =
                 "AALSA4IRQPJKOGVQOZP32DTKRRNAIWS3CQLTG7RJEPUAZGVQG6NPQK2OL4DOJNVLSSUDQOEUY5KDHHJWYQSTXUITOEOGOOFL2R5TEIIMCGFE5JV6CQM7TDVFY35SPAB" +
@@ -83,28 +34,6 @@ namespace NoraOpcUaTestServer
             Server = new OpcServer(
                 serverName,
                 noraNodes.Nodes);
-
-            SampleCounterNode.AfterApplyChanges += SampleCounter_AfterApplyChanges;
-            noraNodes.SampleNodes.ParametersNodes.FatValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            noraNodes.SampleNodes.ParametersNodes.ProteinValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            noraNodes.SampleNodes.ParametersNodes.LactoseValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            noraNodes.SampleNodes.ParametersNodes.SnfValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            noraNodes.SampleNodes.ParametersNodes.TsValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            noraNodes.SampleNodes.SampleNumber.AfterApplyChanges += ResultNode_AfterApplyChanges;
-
-        }
-
-        private void ResultNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
-        {
-            var node = (OpcDataVariableNode)sender;
-            var nodeTime = node.Timestamp ?? DateTime.Now;
-            string name = node.DisplayName;
-            var value = node.Value;
-
-            if (SettingsForm.LogOptions.LogStates)
-            {
-                logger.LogInfo($"{name} changed value: {value} at {nodeTime.ToString("O")}");
-            }
         }
 
 
@@ -174,33 +103,6 @@ namespace NoraOpcUaTestServer
         {
             node.Value = (T)value;
             node.ApplyChanges(Server.SystemContext);
-        }
-
-        private void SampleCounter_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
-        {
-            ResultNode_AfterApplyChanges(sender, e);
-            var node = (OpcDataVariableNode)sender;
-            var opcServerDateTime = node.Timestamp ?? DateTime.Now;
-            var sampleCounter = (uint)node.Value;
-            var timeDif = 0;
-
-            if (lastOpcServerDateTime > DateTime.MinValue)
-                timeDif = (int)opcServerDateTime.Subtract(lastOpcServerDateTime).TotalMilliseconds;
-            
-            var delay = (int)opcServerDateTime.Subtract(SampleDateTime).TotalMilliseconds;
-
-            if (SettingsForm.LogOptions.LogJitter)
-            {
-                jitterCsvWriter.WriteValues(opcServerDateTime, SampleDateTime.ToString("yyyy-MM-dd HH:mm:ss,fff"), sampleCounter, SampleNumber, timeDif, delay);
-            }
-
-            if (SettingsForm.LogOptions.LogMeasuredValues)
-            {
-                csvWriter.WriteValues(opcServerDateTime, sampleCounter, SampleNumber, SampleRegistrationValue, FatValue, ProteinValue, LactoseValue,
-                TsValue, SnfValue);
-            }
-
-            lastOpcServerDateTime = opcServerDateTime;
         }
 
         private void ToggleNode(OpcDataVariableNode<bool> node, TimeSpan onTime)

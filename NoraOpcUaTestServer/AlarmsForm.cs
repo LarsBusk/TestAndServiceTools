@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using NoraOpcUaTestServer.Logging;
 using Opc.UaFx;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace NoraOpcUaTestServer
 {
@@ -24,26 +19,21 @@ namespace NoraOpcUaTestServer
             this.helper = helper;
             GetCurrentAlarms();
 
-            helper.UninterruptableMode.AfterApplyChanges += AlarmHasChanged;
-            helper.Zeroincomplete.AfterApplyChanges += AlarmHasChanged;
-            helper.SystemAlarms.AfterApplyChanges += AlarmHasChanged;
-            helper.CabinetDoorOpen.AfterApplyChanges += AlarmHasChanged;
-        }
-
-        private void CabinetDoorOpen_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
-        {
-            throw new NotImplementedException();
+            helper.Nodes.AlarmNodes.UninterruptibleMode.AfterApplyChanges += AlarmHasChanged;
+            helper.Nodes.AlarmNodes.ZeroSettingIncomplete.AfterApplyChanges += AlarmHasChanged;
+            helper.Nodes.AlarmNodes.SystemAlarms.AfterApplyChanges += AlarmHasChanged;
+            helper.Nodes.AlarmNodes.CabinetDoorOpen.AfterApplyChanges += AlarmHasChanged;
         }
 
         private void GetCurrentAlarms()
         {
-            UpdateLabelColour(UninterruptibleModeLabel, helper.UninterruptableMode.Value ? Color.Red : Color.Black);
-            UpdateLabelColour(ZeroSettingIncompleteLabel, helper.Zeroincomplete.Value ? Color.Red : Color.Black);
-            UpdateLabelColour(SystemAlarmsLabel, helper.SystemAlarms.Value ? Color.Red : Color.Black);
-            UpdateLabelColour(cabinetDoorOpenLabel, helper.CabinetDoorOpen.Value ? Color.Red : Color.Black);
+            UpdateLabelColour(UninterruptibleModeLabel, helper.Nodes.AlarmNodes.UninterruptibleMode.Value ? Color.Red : Color.Black);
+            UpdateLabelColour(ZeroSettingIncompleteLabel, helper.Nodes.AlarmNodes.ZeroSettingIncomplete.Value ? Color.Red : Color.Black);
+            UpdateLabelColour(SystemAlarmsLabel, helper.Nodes.AlarmNodes.SystemAlarms.Value ? Color.Red : Color.Black);
+            UpdateLabelColour(cabinetDoorOpenLabel, helper.Nodes.AlarmNodes.CabinetDoorOpen.Value ? Color.Red : Color.Black);
         }
 
-        private void AlarmHasChanged(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
+        private void AlarmHasChanged(object sender, OpcNodeChangesEventArgs e)
         {
             var alarm = (OpcDataVariableNode<bool>)sender;
             var colour = alarm.Value ? Color.Red : Color.Black;

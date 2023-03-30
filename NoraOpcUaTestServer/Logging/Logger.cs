@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NoraOpcUaTestServer
+namespace NoraOpcUaTestServer.Logging
 {
     public class Logger
   {
