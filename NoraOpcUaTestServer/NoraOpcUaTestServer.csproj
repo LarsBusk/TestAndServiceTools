@@ -274,8 +274,9 @@
     <Compile Include="EventsForm.Designer.cs">
       <DependentUpon>EventsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logger.cs" />
-    <Compile Include="CsvWriter.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\CsvWriter.cs" />
+    <Compile Include="Logging\LogHelper.cs" />
     <Compile Include="NodesForm.cs">
       <SubType>Form</SubType>
     </Compile>

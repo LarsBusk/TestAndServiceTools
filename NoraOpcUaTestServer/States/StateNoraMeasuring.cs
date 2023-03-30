@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NoraOpcUaTestServer.States
+﻿namespace NoraOpcUaTestServer.States
 {
     public class StateNoraMeasuring : IState
     {
@@ -15,7 +9,7 @@ namespace NoraOpcUaTestServer.States
         public StateNoraMeasuring(OpcUaHelper opcUaHelper)
         {
             helper = opcUaHelper;
-            var currentProduct = helper.ProductName.Value;
+            var currentProduct = helper.Nodes.InstrumentNodes.ProductName.Value;
             helper.StartMeasuring(currentProduct);
         }
 

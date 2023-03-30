@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace NoraOpcUaTestServer
+namespace NoraOpcUaTestServer.Logging
 {
     public class CsvWriter
     {

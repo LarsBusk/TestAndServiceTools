@@ -1,11 +1,10 @@
 ﻿using NoraOpcUaTestServer.States;
-using Opc.Ua;
 using Opc.UaFx;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
+using NoraOpcUaTestServer.Logging;
 
 namespace NoraOpcUaTestServer
 {
@@ -16,6 +15,7 @@ namespace NoraOpcUaTestServer
         private OpcUaHelper helper;
         private readonly Logger statesLogger = new Logger("States.txt");
         private bool forceMeasure;
+        private LogHelper logHelper;
 
         #region Private delegates
 
@@ -58,17 +58,17 @@ namespace NoraOpcUaTestServer
 
         private void SampleCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
-            UpdateLabelText(fatLabel, $"Fat: {helper.FatValue.ToString("#.###")} {helper.FatUnit}");
+            var counter = (OpcDataVariableNode<uint>)sender;
+            UpdateLabelText(sampleCounterLabel, $"Sample counter: {counter.Value}");
         }
 
         private void ProductName_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode<string>)sender;
-            string product = node.Value;
-            UpdateLabelText(productLabel, $"Product: {product}");
+            UpdateLabelText(productLabel, $"Product: {node.Value}");
         }
 
-        private void WatchdogNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void WatchdogCounterAfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode<uint>)sender;
             var watchdog = node.Value.ToString();
@@ -76,20 +76,12 @@ namespace NoraOpcUaTestServer
             helper.UpdateServerWatchdog();
         }
 
-        private void EventsCount_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
-        {
-            var node = (OpcDataVariableNode<uint>)sender;
-            var count = node.Value;
-            eventsButton.ForeColor = count > 0 ? Color.Red : Color.Black;
-        }
-
-
-        private void StateNode_AfterApplyChanges(object sender, Opc.UaFx.OpcNodeChangesEventArgs e)
+        private void ModeNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode<string>)sender;
-            var noraState = node.Value;
+            var noraMode = node.Value;
 
-            switch (noraState)
+            switch (noraMode)
             {
                 case "Measuring":
                     CurrentState = new StateNoraMeasuring(helper);
@@ -197,6 +189,33 @@ namespace NoraOpcUaTestServer
             this.Close();
         }
 
+        private void alarmsButton_Click(object sender, EventArgs e)
+        {
+            var alarmsForm = new AlarmsForm(helper);
+            alarmsForm.Show();
+        }
+
+        private void sampleRegButton_Click(object sender, EventArgs e)
+        {
+            helper.SetSampleRegistration(sampleregTextbox.Text);
+        }
+
+        private void noDelayedResCb_CheckedChanged(object sender, EventArgs e)
+        {
+            helper.SetNoDelayedResults(noDelayedResCb.Checked);
+        }
+
+        private void forceMeasureCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            forceMeasure = forceMeasureCheckBox.Checked;
+        }
+
+        private void eventsButton_Click(object sender, EventArgs e)
+        {
+            var eventsForm = new EventsForm(helper);
+            eventsForm.Show();
+        }
+
         #endregion Ui Events
 
         private void Initialise()
@@ -207,12 +226,14 @@ namespace NoraOpcUaTestServer
             }
 
             helper = new OpcUaHelper(ServerName, RootFolderName);
+            logHelper = new LogHelper(helper);
+
             helper.Server.StateChanged += Server_StateChanged;
-            helper.StateNode.AfterApplyChanges += StateNode_AfterApplyChanges;
-            helper.WatchdogNode.AfterApplyChanges += WatchdogNode_AfterApplyChanges;
-            helper.ProductName.AfterApplyChanges += ProductName_AfterApplyChanges;
-            helper.SampleCounterNode.AfterApplyChanges += SampleCounter_AfterApplyChanges;
-            helper.EventsCount.AfterApplyChanges += EventsCount_AfterApplyChanges;
+            helper.Nodes.InstrumentNodes.Mode.AfterApplyChanges += ModeNode_AfterApplyChanges;
+            helper.Nodes.InstrumentNodes.WatchdogCounter.AfterApplyChanges += WatchdogCounterAfterApplyChanges;
+            helper.Nodes.InstrumentNodes.ProductName.AfterApplyChanges += ProductName_AfterApplyChanges;
+            helper.Nodes.InstrumentNodes.SampleCounter.AfterApplyChanges += SampleCounter_AfterApplyChanges;
+
             CurrentState = new StateServerStopped(helper);
             SettingsForm.LogOptions = InitialiseLogging();
         }
@@ -228,21 +249,7 @@ namespace NoraOpcUaTestServer
             };
         }
 
-
-        private void HandleEvents()
-        {
-            var eventMessages = helper.EventMessages;
-
-            if (eventMessages is null) return;
-     
-            foreach (var eventMessage in eventMessages)
-            {
-                if (string.IsNullOrEmpty(eventMessage)) break;
-
-                AppendToRichTextBox($"{eventMessage}\n");
-            }
-        }
-
+        
         #region Updaters
 
         private void SetStartStopButtonText(string text)
@@ -285,31 +292,6 @@ namespace NoraOpcUaTestServer
 
         #endregion
 
-        private void alarmsButton_Click(object sender, EventArgs e)
-        {
-            var alarmsForm = new AlarmsForm(helper);
-            alarmsForm.Show();
-        }
 
-        private void sampleRegButton_Click(object sender, EventArgs e)
-        {
-            helper.SetSampleRegistration(sampleregTextbox.Text);
-        }
-
-        private void noDelayedResCb_CheckedChanged(object sender, EventArgs e)
-        {
-            helper.SetNoDelayedResults(noDelayedResCb.Checked);
-        }
-
-        private void forceMeasureCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            forceMeasure = forceMeasureCheckBox.Checked;
-        }
-
-        private void eventsButton_Click(object sender, EventArgs e)
-        {
-            var eventsForm = new EventsForm(helper);
-            eventsForm.Show();
-        }
     }
 }

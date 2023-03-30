@@ -18,7 +18,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<uint> WatchdogCounter;
 
         private readonly OpcFolderNode controllerFolder;
-        private List<IOpcNode> nodes = new List<IOpcNode>();
+        private readonly List<IOpcNode> nodes = new List<IOpcNode>();
 
         public ControllerNodes(OpcFolderNode parentFolder)
         {

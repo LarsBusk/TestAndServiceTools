@@ -32,11 +32,11 @@ namespace NoraOpcUaTestServer
         private void RefreshGrid()
         {
             const int eventsCount = 16;
-            var eventCodes = _helper.EventCodes;
-            var eventMessages = _helper.EventMessages;
-            var eventSources = _helper.EventSources ?? new string[eventsCount];
-            var eventHints = _helper.EventHints;
-            var eventSeverities = _helper.EventSeverities;
+            var eventCodes = _helper.Nodes.EventNodes.EventCodes.Value;
+            var eventMessages = _helper.Nodes.EventNodes.EventMessages.Value;
+            var eventSources = _helper.Nodes.EventNodes.EventSources.Value ?? new string[eventsCount];
+            var eventHints = _helper.Nodes.EventNodes.EventHints.Value;
+            var eventSeverities = _helper.Nodes.EventNodes.EventSeverity.Value;
 
             EventsDataGridView.Rows.Clear();
 
