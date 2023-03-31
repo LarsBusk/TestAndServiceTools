@@ -2004,7 +2004,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Delays</Caption>
+                <Caption>Delays on OPC server</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2361,7 +2361,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Time between samples</Caption>
+                <Caption>Time between samples on OPC server</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
