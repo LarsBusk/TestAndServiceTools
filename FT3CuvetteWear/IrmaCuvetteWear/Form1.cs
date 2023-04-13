@@ -17,7 +17,7 @@ namespace IrmaCuvetteWear
     public partial class Form1 : Form
     {
         private const string DefaultLogsFolder = @"C:\ProgramData\FOSS\MilkoScan FT3\Logs";
-        private LogFileHelper helper;
+        private readonly LogFileHelper helper;
 
         private delegate void SetProgressCallback(int progress);
 
