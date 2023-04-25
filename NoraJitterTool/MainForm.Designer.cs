@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TestSystemCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.NoraVersionCombo = new System.Windows.Forms.ComboBox();
@@ -39,9 +40,10 @@
             this.CommentTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.realPCCheckBox = new System.Windows.Forms.CheckBox();
+            this.NoDelayedResultsCb = new System.Windows.Forms.CheckBox();
             this.AddTestSystemButton = new System.Windows.Forms.Button();
             this.CleanupButton = new System.Windows.Forms.Button();
-            this.NoDelayedResultsCb = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,6 +136,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.realPCCheckBox);
             this.groupBox1.Controls.Add(this.NoDelayedResultsCb);
             this.groupBox1.Controls.Add(this.NoraVersionCombo);
             this.groupBox1.Controls.Add(this.label4);
@@ -147,6 +150,26 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test setup";
+            // 
+            // realPCCheckBox
+            // 
+            this.realPCCheckBox.AutoSize = true;
+            this.realPCCheckBox.Location = new System.Drawing.Point(153, 58);
+            this.realPCCheckBox.Name = "realPCCheckBox";
+            this.realPCCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.realPCCheckBox.TabIndex = 11;
+            this.realPCCheckBox.Text = "Physical PC";
+            this.realPCCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // NoDelayedResultsCb
+            // 
+            this.NoDelayedResultsCb.AutoSize = true;
+            this.NoDelayedResultsCb.Location = new System.Drawing.Point(153, 34);
+            this.NoDelayedResultsCb.Name = "NoDelayedResultsCb";
+            this.NoDelayedResultsCb.Size = new System.Drawing.Size(113, 17);
+            this.NoDelayedResultsCb.TabIndex = 10;
+            this.NoDelayedResultsCb.Text = "No delayed results";
+            this.NoDelayedResultsCb.UseVisualStyleBackColor = true;
             // 
             // AddTestSystemButton
             // 
@@ -168,16 +191,6 @@
             this.CleanupButton.UseVisualStyleBackColor = true;
             this.CleanupButton.Click += new System.EventHandler(this.CleanupButton_Click);
             // 
-            // NoDelayedResultsCb
-            // 
-            this.NoDelayedResultsCb.AutoSize = true;
-            this.NoDelayedResultsCb.Location = new System.Drawing.Point(153, 34);
-            this.NoDelayedResultsCb.Name = "NoDelayedResultsCb";
-            this.NoDelayedResultsCb.Size = new System.Drawing.Size(113, 17);
-            this.NoDelayedResultsCb.TabIndex = 10;
-            this.NoDelayedResultsCb.Text = "No delayed results";
-            this.NoDelayedResultsCb.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +204,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TestSystemCombo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Nora Jitter Tool";
@@ -218,6 +232,7 @@
         private System.Windows.Forms.Button AddTestSystemButton;
         private System.Windows.Forms.Button CleanupButton;
         private System.Windows.Forms.CheckBox NoDelayedResultsCb;
+        private System.Windows.Forms.CheckBox realPCCheckBox;
     }
 }
 

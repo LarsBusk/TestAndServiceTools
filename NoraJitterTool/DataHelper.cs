@@ -75,7 +75,7 @@ namespace NoraJitterTool
             return versions;
         }
 
-        public int AddNewTestSetup(decimal chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults)
+        public int AddNewTestSetup(decimal chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults, bool physicalPc)
         {
            var testSystem = context.TestSystem.First(t => t.ChassisId.Equals(chassisId));
            testSystem.TestSetup.Add(new TestSetup
@@ -85,7 +85,8 @@ namespace NoraJitterTool
                PlatformVersion = platformVersion, 
                Comment = comment,
                CsvFileName = csvFileName,
-               NoDelayedResults = noDelayedResults
+               NoDelayedResults = noDelayedResults,
+               PhysicalPC = physicalPc
            });
            context.SaveChanges();
 

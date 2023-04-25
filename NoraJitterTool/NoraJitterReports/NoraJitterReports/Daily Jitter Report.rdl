@@ -48,6 +48,10 @@
           <DataField>Count</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="PhysicalPC">
+          <DataField>PhysicalPC</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
         <Field Name="NoDelayedResults">
           <DataField>NoDelayedResults</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
@@ -1127,6 +1131,29 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                   </TextRun>
                   <TextRun>
                     <Value>=First(Fields!NoDelayedResults.Value, "AllStatistics")</Value>
+                    <Style>
+                      <Color>#000e37</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <Color>#000e37</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Physical PC: </Value>
+                    <Style>
+                      <Color>#000e37</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!PhysicalPC.Value, "AllStatistics")</Value>
                     <Style>
                       <Color>#000e37</Color>
                     </Style>

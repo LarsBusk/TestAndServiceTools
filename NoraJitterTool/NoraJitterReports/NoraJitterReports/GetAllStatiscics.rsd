@@ -28,6 +28,7 @@ Select		tsy.SystemName
 		,	tse.TestTime
 		,	tse.Comment
 		,                  tse.NoDelayedResults
+                                     ,                  tse.PhysicalPC
 		,	stat.*
 From stat
 Inner Join TestSetup tse on
@@ -72,6 +73,10 @@ Order By stat.TestSetupId</CommandText>
       <Field Name="TestSetupId">
         <DataField>TestSetupId</DataField>
         <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PhysicalPC">
+        <DataField>PhysicalPC</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
       </Field>
       <Field Name="NoDelayedResults">
         <DataField>NoDelayedResults</DataField>
