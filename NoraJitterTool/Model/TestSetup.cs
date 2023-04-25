@@ -30,6 +30,8 @@ namespace NoraJitterTool.Model
         public bool ExcludeFromSummary { get; set; }
         public bool NoDelayedResults { get; set; }
 
+        public bool PhysicalPC { get; set; }
+
         [Required]
         [StringLength(50)]
         public string PlatformVersion { get; set; }

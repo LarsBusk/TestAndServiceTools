@@ -24,7 +24,8 @@ namespace NoraJitterTool
                 PlatformVersionCombo.Text,
                 CommentTextBox.Text,
                 csvFileName,
-                NoDelayedResultsCb.Checked);
+                NoDelayedResultsCb.Checked,
+                realPCCheckBox.Checked);
 
             helper.AddDelays(setupId, delayInfos);
         }
