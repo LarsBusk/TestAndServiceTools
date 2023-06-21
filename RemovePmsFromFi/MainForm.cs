@@ -28,10 +28,6 @@ namespace RemovePmsFromFi
             xmlHelper.RemoveUnusedComponentsFromCom();
         }
 
-        private void buttonRemoveFromCom_Click(object sender, EventArgs e)
-        {
-            xmlHelper.RemoveUnusedComponentsFromCom();
-        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
