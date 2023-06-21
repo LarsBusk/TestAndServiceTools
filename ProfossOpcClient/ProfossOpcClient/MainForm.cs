@@ -57,7 +57,7 @@ namespace MstOpcClient
 
     private bool Connected
     {
-      get { return connected; }
+      get => connected; 
       set
       {
         connected = value;
@@ -70,14 +70,15 @@ namespace MstOpcClient
 
     private int State
     {
-      get { return state; }
+        get => state;
 
-      set
-      {
-        state = value;
-        UpdateButtonStates();
-        SetLabel(lblState, Enum.GetName(typeof(ProFossStateTypes), state));
-      }
+        set
+        {
+            state = value;
+            log.Debug($"New state is: {state}.");
+            UpdateButtonStates();
+            SetLabel(lblState, Enum.GetName(typeof(ProFossStateTypes), state));
+        }
     }
 
     private int SampleCounter
@@ -160,6 +161,7 @@ namespace MstOpcClient
 
       Connected = false;
       isSimulating = false;
+      State = -1;
 
       ProductCodeLbl.Text = UsePrdCpdeNChk.Checked ? "ProductCodeN" : "ProductCode";
     }
@@ -308,7 +310,7 @@ namespace MstOpcClient
 
       var opcTags = ProFossKepServerCommunicator.KepServerOpcTags;
 
-      if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
+      //if (!State.Equals(opcTags.InstrumentGroup.ModeN.Value))
         State = opcTags.InstrumentGroup.ModeN.Value;
 
       if (!SampleCounter.Equals(opcTags.InstrumentGroup.SampleCounter.Value))
