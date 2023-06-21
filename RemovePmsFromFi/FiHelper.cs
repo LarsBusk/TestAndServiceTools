@@ -37,7 +37,8 @@ namespace RemovePmsFromFi
 
         private static Tuple<string,string> ComponentName(XElement component)
         {
-            var name = component.Element("sName").Value.Replace(" ", "");
+            var name = component.Element("sName").Value.Replace(", ", ",");
+            name = name.Replace(" ", "_");
             var created = component.Element("sCreated").Value;
             var date = created.Split(' ')[0].Split('-');
             var time = created.Split(' ')[1].Replace(":", "");
