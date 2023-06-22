@@ -3,9 +3,9 @@
     public class TestSystemComboItem
     {
         public string Name { get; set; }
-        public decimal ChassisId { get; set; }
+        public long ChassisId { get; set; }
 
-        public TestSystemComboItem(string name, decimal chassisId)
+        public TestSystemComboItem(string name, long chassisId)
         {
             this.Name = name;
             this.ChassisId = chassisId;

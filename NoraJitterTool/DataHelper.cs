@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NoraJitterTool.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace NoraJitterTool
 {
@@ -12,11 +14,15 @@ namespace NoraJitterTool
 
         public DataHelper()
         {
-            context = new NoraJitterData();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("config.json");
+            var config = builder.Build();
+            context = new NoraJitterData(config);
             statistics = new Statistics(context);
         }
 
-        public int AddTestSystem(string serialNumber, decimal chassisId, string type, string systemName)
+        public int AddTestSystem(string serialNumber, long chassisId, string type, string systemName)
         {
             if (GetTestSystem(chassisId) != 0) return GetTestSystem(chassisId);
 
@@ -33,7 +39,7 @@ namespace NoraJitterTool
             return testSystemId;
         }
 
-        public int GetTestSystem(decimal chassisId)
+        public int GetTestSystem(long chassisId)
         {
             var systems = context.TestSystem.FirstOrDefault(t => t.ChassisId.Equals(chassisId));
             return systems is null ? 0 : systems.TestSystemId;
@@ -75,7 +81,7 @@ namespace NoraJitterTool
             return versions;
         }
 
-        public int AddNewTestSetup(decimal chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults, bool physicalPc)
+        public int AddNewTestSetup(long chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults, bool physicalPc)
         {
            var testSystem = context.TestSystem.First(t => t.ChassisId.Equals(chassisId));
            testSystem.TestSetup.Add(new TestSetup

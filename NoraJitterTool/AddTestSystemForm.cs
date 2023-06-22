@@ -15,7 +15,7 @@ namespace NoraJitterTool
         private void AddButton_Click(object sender, EventArgs e)
         {
             var type = SimulatorRadioButton.Checked ? "Simulator" : "Instrument";
-            helper.AddTestSystem(SnTextBox.Text, decimal.Parse(ChassisTextBox.Text), type, NameTextBox.Text);
+            helper.AddTestSystem(SnTextBox.Text, long.Parse(ChassisTextBox.Text), type, NameTextBox.Text);
         }
     }
 }
