@@ -4,7 +4,7 @@ namespace NoraJitterTool.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    using Microsoft.EntityFrameworkCore;
 
     public partial class Delays
     {

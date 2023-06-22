@@ -1,23 +1,24 @@
-using System.Data.Entity;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace NoraJitterTool.Model
 {
     public partial class NoraJitterData : DbContext
     {
-        public NoraJitterData()
-            : base("name=NoraJitterData")
-        {
-        }
-
         public virtual DbSet<Delays> Delays { get; set; }
         public virtual DbSet<TestSetup> TestSetup { get; set; }
         public virtual DbSet<TestSystem> TestSystem { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected readonly IConfiguration Configuration ;
+
+        public NoraJitterData(IConfiguration configuration)
         {
-            modelBuilder.Entity<TestSystem>()
-                .Property(e => e.ChassisId)
-                .HasPrecision(20, 0);
+            Configuration = configuration;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("JitterServer"));
+
     }
 }

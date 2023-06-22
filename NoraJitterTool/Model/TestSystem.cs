@@ -1,10 +1,10 @@
+using System;
+
 namespace NoraJitterTool.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("TestSystem")]
     public partial class TestSystem
@@ -25,7 +25,7 @@ namespace NoraJitterTool.Model
         [StringLength(50)]
         public string Type { get; set; }
 
-        public decimal ChassisId { get; set; }
+        public long ChassisId { get; set; }
 
         [Required]
         [StringLength(50)]
