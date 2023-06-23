@@ -22,7 +22,7 @@
         </Field>
         <Field Name="ChassisId">
           <DataField>ChassisId</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="NoraVersion">
           <DataField>NoraVersion</DataField>
@@ -1084,7 +1084,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
