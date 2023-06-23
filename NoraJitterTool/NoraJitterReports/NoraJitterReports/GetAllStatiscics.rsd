@@ -19,23 +19,23 @@
 	Where TimeBetweenSamples &lt; 35000
 	Group By TestSetupId
 )
-Select		tsy.SystemName
+Select Top 25		tsy.SystemName
 		,	tsy.SerialNumber
 		,	tsy.[Type]
-                                     ,                  tsy.ChassisId
+        ,   tsy.ChassisId
 		,	tse.NoraVersion
 		,	tse.PlatformVersion
 		,	tse.TestTime
 		,	tse.Comment
-		,                  tse.NoDelayedResults
-                                     ,                  tse.PhysicalPC
+		,   tse.NoDelayedResults
+        ,   tse.PhysicalPC
 		,	stat.*
 From stat
 Inner Join TestSetup tse on
 	tse.TestSetupId = stat.TestSetupId
 Inner Join TestSystem tsy on
 	tsy.TestSystemId = tse.TestSystemId
-Order By stat.TestSetupId</CommandText>
+Order By stat.TestSetupId Desc</CommandText>
     </Query>
     <Fields>
       <Field Name="SystemName">
@@ -52,7 +52,7 @@ Order By stat.TestSetupId</CommandText>
       </Field>
       <Field Name="ChassisId">
         <DataField>ChassisId</DataField>
-        <rd:TypeName>System.Decimal</rd:TypeName>
+        <rd:TypeName>System.Int64</rd:TypeName>
       </Field>
       <Field Name="NoraVersion">
         <DataField>NoraVersion</DataField>
