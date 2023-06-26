@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace NoraJitterTool
@@ -20,13 +21,12 @@ namespace NoraJitterTool
             var setupId = helper.AddNewTestSetup(
                 ((TestSystemComboItem)TestSystemCombo.SelectedItem).ChassisId,
                 NoraVersionCombo.Text,
-                DateTime.Now, 
+                DateTime.Now,
                 PlatformVersionCombo.Text,
                 CommentTextBox.Text,
                 csvFileName,
                 NoDelayedResultsCb.Checked,
                 realPCCheckBox.Checked);
-
             helper.AddDelays(setupId, delayInfos);
         }
 

@@ -19,6 +19,11 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="LogFileTool\**" />
+    <EmbeddedResource Remove="LogFileTool\**" />
+    <None Remove="LogFileTool\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
@@ -36,9 +41,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="LogFileTool\GetJitterFromLogs\obj\Debug\.NETFramework,Version=v4.6.AssemblyAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

@@ -11,7 +11,7 @@ namespace NoraJitterTool.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TestSetup()
         {
-            Delays = new HashSet<Delays>();
+            Delays = new List<Delays>();
         }
 
         public int TestSetupId { get; set; }
@@ -38,7 +38,7 @@ namespace NoraJitterTool.Model
         public int TestSystemId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Delays> Delays { get; set; }
+        public virtual List<Delays> Delays { get; set; }
 
         public virtual TestSystem TestSystem { get; set; }
     }
