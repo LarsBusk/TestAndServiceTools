@@ -29,191 +29,218 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.TestSystemCombo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.NoraVersionCombo = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.PlatformVersionCombo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SelectCsvButton = new System.Windows.Forms.Button();
-            this.AddDataButton = new System.Windows.Forms.Button();
-            this.CommentTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.realPCCheckBox = new System.Windows.Forms.CheckBox();
-            this.NoDelayedResultsCb = new System.Windows.Forms.CheckBox();
-            this.AddTestSystemButton = new System.Windows.Forms.Button();
-            this.CleanupButton = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            TestSystemCombo = new System.Windows.Forms.ComboBox();
+            label1 = new System.Windows.Forms.Label();
+            NoraVersionCombo = new System.Windows.Forms.ComboBox();
+            label2 = new System.Windows.Forms.Label();
+            PlatformVersionCombo = new System.Windows.Forms.ComboBox();
+            label3 = new System.Windows.Forms.Label();
+            SelectCsvButton = new System.Windows.Forms.Button();
+            AddDataButton = new System.Windows.Forms.Button();
+            CommentTextBox = new System.Windows.Forms.TextBox();
+            label4 = new System.Windows.Forms.Label();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            realPCCheckBox = new System.Windows.Forms.CheckBox();
+            NoDelayedResultsCb = new System.Windows.Forms.CheckBox();
+            AddTestSystemButton = new System.Windows.Forms.Button();
+            CleanupButton = new System.Windows.Forms.Button();
+            label5 = new System.Windows.Forms.Label();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // TestSystemCombo
             // 
-            this.TestSystemCombo.FormattingEnabled = true;
-            this.TestSystemCombo.Location = new System.Drawing.Point(42, 35);
-            this.TestSystemCombo.Name = "TestSystemCombo";
-            this.TestSystemCombo.Size = new System.Drawing.Size(160, 21);
-            this.TestSystemCombo.TabIndex = 0;
+            TestSystemCombo.FormattingEnabled = true;
+            TestSystemCombo.Location = new System.Drawing.Point(49, 40);
+            TestSystemCombo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            TestSystemCombo.Name = "TestSystemCombo";
+            TestSystemCombo.Size = new System.Drawing.Size(186, 23);
+            TestSystemCombo.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Test system";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(46, 22);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(67, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Test system";
             // 
             // NoraVersionCombo
             // 
-            this.NoraVersionCombo.FormattingEnabled = true;
-            this.NoraVersionCombo.Location = new System.Drawing.Point(6, 34);
-            this.NoraVersionCombo.Name = "NoraVersionCombo";
-            this.NoraVersionCombo.Size = new System.Drawing.Size(121, 21);
-            this.NoraVersionCombo.TabIndex = 2;
+            NoraVersionCombo.FormattingEnabled = true;
+            NoraVersionCombo.Location = new System.Drawing.Point(7, 39);
+            NoraVersionCombo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            NoraVersionCombo.Name = "NoraVersionCombo";
+            NoraVersionCombo.Size = new System.Drawing.Size(140, 23);
+            NoraVersionCombo.TabIndex = 2;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Nora sw version";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(4, 21);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(91, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Nora sw version";
             // 
             // PlatformVersionCombo
             // 
-            this.PlatformVersionCombo.FormattingEnabled = true;
-            this.PlatformVersionCombo.Location = new System.Drawing.Point(6, 74);
-            this.PlatformVersionCombo.Name = "PlatformVersionCombo";
-            this.PlatformVersionCombo.Size = new System.Drawing.Size(121, 21);
-            this.PlatformVersionCombo.TabIndex = 4;
+            PlatformVersionCombo.FormattingEnabled = true;
+            PlatformVersionCombo.Location = new System.Drawing.Point(7, 85);
+            PlatformVersionCombo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            PlatformVersionCombo.Name = "PlatformVersionCombo";
+            PlatformVersionCombo.Size = new System.Drawing.Size(140, 23);
+            PlatformVersionCombo.TabIndex = 4;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Platform version";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(4, 67);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(94, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Platform version";
             // 
             // SelectCsvButton
             // 
-            this.SelectCsvButton.Location = new System.Drawing.Point(429, 180);
-            this.SelectCsvButton.Name = "SelectCsvButton";
-            this.SelectCsvButton.Size = new System.Drawing.Size(75, 23);
-            this.SelectCsvButton.TabIndex = 6;
-            this.SelectCsvButton.Text = "Select Csv";
-            this.SelectCsvButton.UseVisualStyleBackColor = true;
-            this.SelectCsvButton.Click += new System.EventHandler(this.SelectCsvButton_Click);
+            SelectCsvButton.Location = new System.Drawing.Point(500, 208);
+            SelectCsvButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            SelectCsvButton.Name = "SelectCsvButton";
+            SelectCsvButton.Size = new System.Drawing.Size(88, 27);
+            SelectCsvButton.TabIndex = 6;
+            SelectCsvButton.Text = "Select Csv";
+            SelectCsvButton.UseVisualStyleBackColor = true;
+            SelectCsvButton.Click += SelectCsvButton_Click;
             // 
             // AddDataButton
             // 
-            this.AddDataButton.Location = new System.Drawing.Point(429, 209);
-            this.AddDataButton.Name = "AddDataButton";
-            this.AddDataButton.Size = new System.Drawing.Size(75, 23);
-            this.AddDataButton.TabIndex = 7;
-            this.AddDataButton.Text = "Add data";
-            this.AddDataButton.UseVisualStyleBackColor = true;
-            this.AddDataButton.Click += new System.EventHandler(this.AddDataButton_Click);
+            AddDataButton.Location = new System.Drawing.Point(500, 241);
+            AddDataButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            AddDataButton.Name = "AddDataButton";
+            AddDataButton.Size = new System.Drawing.Size(88, 27);
+            AddDataButton.TabIndex = 7;
+            AddDataButton.Text = "Add data";
+            AddDataButton.UseVisualStyleBackColor = true;
+            AddDataButton.Click += AddDataButton_Click;
             // 
             // CommentTextBox
             // 
-            this.CommentTextBox.Location = new System.Drawing.Point(6, 121);
-            this.CommentTextBox.Name = "CommentTextBox";
-            this.CommentTextBox.Size = new System.Drawing.Size(324, 20);
-            this.CommentTextBox.TabIndex = 8;
+            CommentTextBox.Location = new System.Drawing.Point(7, 140);
+            CommentTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            CommentTextBox.Name = "CommentTextBox";
+            CommentTextBox.Size = new System.Drawing.Size(377, 23);
+            CommentTextBox.TabIndex = 8;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Comment";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(4, 121);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(61, 15);
+            label4.TabIndex = 9;
+            label4.Text = "Comment";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.realPCCheckBox);
-            this.groupBox1.Controls.Add(this.NoDelayedResultsCb);
-            this.groupBox1.Controls.Add(this.NoraVersionCombo);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.CommentTextBox);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.PlatformVersionCombo);
-            this.groupBox1.Location = new System.Drawing.Point(42, 75);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(347, 157);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Test setup";
+            groupBox1.Controls.Add(realPCCheckBox);
+            groupBox1.Controls.Add(NoDelayedResultsCb);
+            groupBox1.Controls.Add(NoraVersionCombo);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(CommentTextBox);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(PlatformVersionCombo);
+            groupBox1.Location = new System.Drawing.Point(49, 87);
+            groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox1.Size = new System.Drawing.Size(405, 181);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Test setup";
             // 
             // realPCCheckBox
             // 
-            this.realPCCheckBox.AutoSize = true;
-            this.realPCCheckBox.Location = new System.Drawing.Point(153, 58);
-            this.realPCCheckBox.Name = "realPCCheckBox";
-            this.realPCCheckBox.Size = new System.Drawing.Size(82, 17);
-            this.realPCCheckBox.TabIndex = 11;
-            this.realPCCheckBox.Text = "Physical PC";
-            this.realPCCheckBox.UseVisualStyleBackColor = true;
+            realPCCheckBox.AutoSize = true;
+            realPCCheckBox.Location = new System.Drawing.Point(178, 67);
+            realPCCheckBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            realPCCheckBox.Name = "realPCCheckBox";
+            realPCCheckBox.Size = new System.Drawing.Size(87, 19);
+            realPCCheckBox.TabIndex = 11;
+            realPCCheckBox.Text = "Physical PC";
+            realPCCheckBox.UseVisualStyleBackColor = true;
             // 
             // NoDelayedResultsCb
             // 
-            this.NoDelayedResultsCb.AutoSize = true;
-            this.NoDelayedResultsCb.Location = new System.Drawing.Point(153, 34);
-            this.NoDelayedResultsCb.Name = "NoDelayedResultsCb";
-            this.NoDelayedResultsCb.Size = new System.Drawing.Size(113, 17);
-            this.NoDelayedResultsCb.TabIndex = 10;
-            this.NoDelayedResultsCb.Text = "No delayed results";
-            this.NoDelayedResultsCb.UseVisualStyleBackColor = true;
+            NoDelayedResultsCb.AutoSize = true;
+            NoDelayedResultsCb.Location = new System.Drawing.Point(178, 39);
+            NoDelayedResultsCb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            NoDelayedResultsCb.Name = "NoDelayedResultsCb";
+            NoDelayedResultsCb.Size = new System.Drawing.Size(123, 19);
+            NoDelayedResultsCb.TabIndex = 10;
+            NoDelayedResultsCb.Text = "No delayed results";
+            NoDelayedResultsCb.UseVisualStyleBackColor = true;
             // 
             // AddTestSystemButton
             // 
-            this.AddTestSystemButton.Location = new System.Drawing.Point(420, 19);
-            this.AddTestSystemButton.Name = "AddTestSystemButton";
-            this.AddTestSystemButton.Size = new System.Drawing.Size(93, 23);
-            this.AddTestSystemButton.TabIndex = 11;
-            this.AddTestSystemButton.Text = "Add test system";
-            this.AddTestSystemButton.UseVisualStyleBackColor = true;
-            this.AddTestSystemButton.Click += new System.EventHandler(this.AddTestSystemButton_Click);
+            AddTestSystemButton.Location = new System.Drawing.Point(490, 22);
+            AddTestSystemButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            AddTestSystemButton.Name = "AddTestSystemButton";
+            AddTestSystemButton.Size = new System.Drawing.Size(108, 27);
+            AddTestSystemButton.TabIndex = 11;
+            AddTestSystemButton.Text = "Add test system";
+            AddTestSystemButton.UseVisualStyleBackColor = true;
+            AddTestSystemButton.Click += AddTestSystemButton_Click;
             // 
             // CleanupButton
             // 
-            this.CleanupButton.Location = new System.Drawing.Point(420, 48);
-            this.CleanupButton.Name = "CleanupButton";
-            this.CleanupButton.Size = new System.Drawing.Size(93, 23);
-            this.CleanupButton.TabIndex = 12;
-            this.CleanupButton.Text = "Cleanup";
-            this.CleanupButton.UseVisualStyleBackColor = true;
-            this.CleanupButton.Click += new System.EventHandler(this.CleanupButton_Click);
+            CleanupButton.Location = new System.Drawing.Point(490, 55);
+            CleanupButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            CleanupButton.Name = "CleanupButton";
+            CleanupButton.Size = new System.Drawing.Size(108, 27);
+            CleanupButton.TabIndex = 12;
+            CleanupButton.Text = "Cleanup";
+            CleanupButton.UseVisualStyleBackColor = true;
+            CleanupButton.Click += CleanupButton_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(499, 162);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(38, 15);
+            label5.TabIndex = 13;
+            label5.Text = "label5";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 256);
-            this.Controls.Add(this.CleanupButton);
-            this.Controls.Add(this.AddTestSystemButton);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.AddDataButton);
-            this.Controls.Add(this.SelectCsvButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TestSystemCombo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "MainForm";
-            this.Text = "Nora Jitter Tool";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(612, 295);
+            Controls.Add(label5);
+            Controls.Add(CleanupButton);
+            Controls.Add(AddTestSystemButton);
+            Controls.Add(groupBox1);
+            Controls.Add(AddDataButton);
+            Controls.Add(SelectCsvButton);
+            Controls.Add(label1);
+            Controls.Add(TestSystemCombo);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "MainForm";
+            Text = "Nora Jitter Tool";
+            Load += MainForm_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -233,6 +260,7 @@
         private System.Windows.Forms.Button CleanupButton;
         private System.Windows.Forms.CheckBox NoDelayedResultsCb;
         private System.Windows.Forms.CheckBox realPCCheckBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 

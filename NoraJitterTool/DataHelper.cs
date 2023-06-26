@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using NoraJitterTool.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NoraJitterTool.Model;
-using Microsoft.Extensions.Configuration;
 
 namespace NoraJitterTool
 {
@@ -71,14 +71,14 @@ namespace NoraJitterTool
 
         public string[] NoraVersions()
         {
-            var versions = context.TestSetup.Select(t => t.NoraVersion).Distinct().ToArray();
-            return versions;
+            var versions = context.TestSetup.Select(t => t.NoraVersion).Distinct().OrderByDescending(s => s);
+            return versions.ToArray();
         }
 
         public string[] PlatformVersions()
         {
-            var versions = context.TestSetup.Select(t => t.PlatformVersion).Distinct().ToArray();
-            return versions;
+            var versions = context.TestSetup.Select(t => t.PlatformVersion).Distinct().OrderByDescending(s => s);
+            return versions.ToArray();
         }
 
         public int AddNewTestSetup(long chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults, bool physicalPc)
@@ -117,29 +117,23 @@ namespace NoraJitterTool
         {
             var testSetup = GetTestSetup(testSetupId);
 
-            foreach (var delayInfo in delayInfos)
+            var delays = delayInfos.Select(d => new Delays
             {
-                AddDelay(testSetup, delayInfo); 
-            }
+                SampleNumber = d.SampleNumber,
+                TimeBetweenSamples = d.TimeBetweenSamples,
+                Delay = d.Delay,
+                OpcServerTimeStamp = d.OpcTimeStamp,
+                SampleDateTime = d.SampleTimeStamp
+            }).ToList();
+
+            testSetup.Delays = delays;
             
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
         public JitterStatistics GetDelayStatistics(int setupId)
         {
             return statistics.GetDelayStatistics(setupId);
-        }
-
-        private void AddDelay(TestSetup testSetup, DelayInfo delayInfo)
-        {
-            testSetup.Delays.Add(new Delays
-            {
-                SampleNumber = delayInfo.SampleNumber,
-                TimeBetweenSamples = delayInfo.TimeBetweenSamples,
-                Delay = delayInfo.Delay,
-                OpcServerTimeStamp = delayInfo.OpcTimeStamp,
-                SampleDateTime = delayInfo.SampleTimeStamp
-            });
         }
 
         private TestSetup GetTestSetup(int setupId)
