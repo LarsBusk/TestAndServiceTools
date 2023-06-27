@@ -30,7 +30,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         {
             UninterruptibleMode = CreateOpcUaNode<bool>(alarmsFolder, "UninterruptibleMode", nodes);
             CabinetDoorOpen = CreateOpcUaNode<bool>(alarmsFolder, "CabinetDoorOpen", nodes);
-            ZeroSettingIncomplete = CreateOpcUaNode<bool>(alarmsFolder, "ZeroSettingIncomplete", nodes);
+            ZeroSettingIncomplete = CreateOpcUaNode<bool>(alarmsFolder, "zeroSettingIncomplete", nodes);
             Count = CreateOpcUaNode<uint>(alarmsFolder, "Count", nodes);
             SystemAlarms = CreateOpcUaNode<bool>(alarmsFolder, "SystemAlarms", nodes);
         }
