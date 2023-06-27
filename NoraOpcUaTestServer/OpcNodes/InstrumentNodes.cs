@@ -24,6 +24,7 @@ namespace NoraOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<int> PipetteProductCodeN;
         public OpcDataVariableNode<string> PipetteProductName;
         public OpcDataVariableNode<int> TimeUntilProcessClean;
+        public OpcDataVariableNode<bool> PipetteProductIsCheckSampleDefinition;
 
         public List<IOpcNode> Nodes => nodes;
 
@@ -59,6 +60,8 @@ namespace NoraOpcUaTestServer.OpcNodes
             PipetteProductCodeN = CreateOpcUaNode<int>(instrumentFolder, "PipetteProductCodeN", nodes);
             PipetteProductName = CreateOpcUaNode<string>(instrumentFolder, "PipetteProductName", nodes);
             TimeUntilProcessClean = CreateOpcUaNode<int>(instrumentFolder, "TimeUntilProcessClean", nodes);
+            PipetteProductIsCheckSampleDefinition =
+                CreateOpcUaNode<bool>(instrumentFolder, "PipetteProductIsCheckSampleDefinition", nodes);
         }
     }
 }
