@@ -36,22 +36,22 @@ namespace CreatePsc2KepserverCsvFiles
 
         private string CreateLine(XmlNodeFileReader.OpcUaNodeContent nodeContent, bool isStandard)
         {
-            var nodeType = GetType(nodeContent.Type);
+            var nodeType = GetType(nodeContent.Type, nodeContent.IsArray);
             var nodeIdentifier = nodeContent.NodeIdentifier;
-            var address = isStandard ? "?" : nodeContent.IsArray ? "?" : NextAddress(nodeType);
+            var address = isStandard ? "?" : nodeContent.IsArray ? NextArrayAddress(nodeType, nodeContent.ArrayDimension) : NextAddress(nodeType);
             return $"\"{nodeIdentifier}\",\"{address}\",{nodeType},1,R/W,100,,,,,,,,,,\"\",";
         }
 
-        private string GetType(string typeName)
+        private static string GetType(string typeName, bool isArray)
         {
             switch (typeName)
             {
                 case "Int32":
                     return "Long";
                 case "UInt32":
-                    return "DWord";
+                    return isArray ? "DWordArray" : "DWord";
                 case "UInt16":
-                    return "Word";
+                    return isArray ? "WordArray" : "Word";
                 default:
                     return typeName;
 
@@ -83,12 +83,41 @@ namespace CreatePsc2KepserverCsvFiles
                     address = $"D{numberAddress:D5}";
                     numberAddress += 4;
                     break;
+                case "Float":
+                    address = $"D{numberAddress:D5}";
+                    numberAddress += 4;
+                    break;
                 default:
                     address = $"D{numberAddress:D5}";
                     numberAddress += 2;
                     break;
             }
             
+            return address;
+        }
+
+        private string NextArrayAddress(string type, int dimension)
+        {
+            string address;
+
+            switch (type)
+            {
+                case "String":
+                    address = "?";
+                    break;
+                case "DWordArray":
+                    address = $"D{numberAddress:D5}[{dimension}]";
+                    numberAddress += 4 * dimension;
+                    break;
+                case "WordArray":
+                    address = $"D{numberAddress:D5}[{dimension}]";
+                    numberAddress += 2 * dimension;
+                    break;
+                default:
+                    address = "?";
+                    break;
+            }
+
             return address;
         }
     }
