@@ -12,22 +12,11 @@ namespace NoraOpcUaTestServer
     {
         public static string RootFolderName = "Foss.Nora";
         public static string ServerName = Properties.Settings.Default.ServerName;
+
         private OpcUaHelper helper;
         private readonly Logger statesLogger = new Logger("States.txt");
         private bool forceMeasure;
         private LogHelper logHelper;
-
-        #region Private delegates
-
-        private delegate void SetStartStopButtonTextCallback(string text);
-
-        private delegate void UpdateLabelTextCallback(Label label, string text);
-
-        private delegate void AppendToRichTextBoxDelegate(string text);
-
-        #endregion
-
-
         private IState CurrentState
         {
             get => currentState;
@@ -44,8 +33,20 @@ namespace NoraOpcUaTestServer
                 }
             }
         }
-
+        
         private IState currentState;
+        #region Private delegates
+
+        private delegate void SetStartStopButtonTextCallback(string text);
+
+        private delegate void UpdateLabelTextCallback(Label label, string text);
+
+        private delegate void AppendToRichTextBoxDelegate(string text);
+
+        #endregion
+
+
+
 
 
         public MainForm()
@@ -177,6 +178,8 @@ namespace NoraOpcUaTestServer
         private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             CurrentState.OpenSettings();
+            helper = null;
+            Initialise();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -221,9 +224,7 @@ namespace NoraOpcUaTestServer
         private void Initialise()
         {
             if (!Directory.Exists(Properties.Settings.Default.LogFolder))
-            {
                 Directory.CreateDirectory(Properties.Settings.Default.LogFolder);
-            }
 
             helper = new OpcUaHelper(ServerName, RootFolderName);
             logHelper = new LogHelper(helper);

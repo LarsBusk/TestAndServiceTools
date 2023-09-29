@@ -46,7 +46,7 @@ namespace NoraOpcUaTestServer.States
         public void OpenSettings()
         {
             SettingsForm form = new SettingsForm();
-            form.Show();
+            form.ShowDialog();
         }
         public void SetCip()
         {
