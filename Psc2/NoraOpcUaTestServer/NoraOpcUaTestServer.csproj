@@ -268,6 +268,12 @@
     <Compile Include="AlarmsForm.Designer.cs">
       <DependentUpon>AlarmsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CertForm.Designer.cs">
+      <DependentUpon>CertForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     <Compile Include="States\StateServerStopped.cs" />
     <EmbeddedResource Include="AlarmsForm.resx">
       <DependentUpon>AlarmsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CertForm.resx">
+      <DependentUpon>CertForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventsForm.resx">
       <DependentUpon>EventsForm.cs</DependentUpon>

@@ -41,11 +41,22 @@ namespace NoraOpcUaTestServer
             this.label4 = new System.Windows.Forms.Label();
             this.opcNamespaceTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.jitterCheckBox = new System.Windows.Forms.CheckBox();
-            this.measuredValuesCheckBox = new System.Windows.Forms.CheckBox();
-            this.statesCheckBox = new System.Windows.Forms.CheckBox();
             this.nodeValuesCheckBox = new System.Windows.Forms.CheckBox();
+            this.statesCheckBox = new System.Windows.Forms.CheckBox();
+            this.measuredValuesCheckBox = new System.Windows.Forms.CheckBox();
+            this.jitterCheckBox = new System.Windows.Forms.CheckBox();
+            this.userPasswordCheckbox = new System.Windows.Forms.CheckBox();
+            this.userTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.certLabel = new System.Windows.Forms.Label();
+            this.selectButton = new System.Windows.Forms.Button();
+            this.certificateCheckBox = new System.Windows.Forms.CheckBox();
+            this.anonymousCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -112,21 +123,13 @@ namespace NoraOpcUaTestServer
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // jitterCheckBox
+            // nodeValuesCheckBox
             // 
-            resources.ApplyResources(this.jitterCheckBox, "jitterCheckBox");
-            this.jitterCheckBox.Checked = true;
-            this.jitterCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.jitterCheckBox.Name = "jitterCheckBox";
-            this.jitterCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // measuredValuesCheckBox
-            // 
-            resources.ApplyResources(this.measuredValuesCheckBox, "measuredValuesCheckBox");
-            this.measuredValuesCheckBox.Checked = true;
-            this.measuredValuesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.measuredValuesCheckBox.Name = "measuredValuesCheckBox";
-            this.measuredValuesCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.nodeValuesCheckBox, "nodeValuesCheckBox");
+            this.nodeValuesCheckBox.Checked = true;
+            this.nodeValuesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.nodeValuesCheckBox.Name = "nodeValuesCheckBox";
+            this.nodeValuesCheckBox.UseVisualStyleBackColor = true;
             // 
             // statesCheckBox
             // 
@@ -136,18 +139,97 @@ namespace NoraOpcUaTestServer
             this.statesCheckBox.Name = "statesCheckBox";
             this.statesCheckBox.UseVisualStyleBackColor = true;
             // 
-            // nodeValuesCheckBox
+            // measuredValuesCheckBox
             // 
-            resources.ApplyResources(this.nodeValuesCheckBox, "nodeValuesCheckBox");
-            this.nodeValuesCheckBox.Checked = true;
-            this.nodeValuesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.nodeValuesCheckBox.Name = "nodeValuesCheckBox";
-            this.nodeValuesCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.measuredValuesCheckBox, "measuredValuesCheckBox");
+            this.measuredValuesCheckBox.Checked = true;
+            this.measuredValuesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.measuredValuesCheckBox.Name = "measuredValuesCheckBox";
+            this.measuredValuesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // jitterCheckBox
+            // 
+            resources.ApplyResources(this.jitterCheckBox, "jitterCheckBox");
+            this.jitterCheckBox.Checked = true;
+            this.jitterCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.jitterCheckBox.Name = "jitterCheckBox";
+            this.jitterCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // userPasswordCheckbox
+            // 
+            resources.ApplyResources(this.userPasswordCheckbox, "userPasswordCheckbox");
+            this.userPasswordCheckbox.Name = "userPasswordCheckbox";
+            this.userPasswordCheckbox.UseVisualStyleBackColor = true;
+            this.userPasswordCheckbox.CheckedChanged += new System.EventHandler(this.userPasswordCheckbox_CheckedChanged);
+            // 
+            // userTextBox
+            // 
+            resources.ApplyResources(this.userTextBox, "userTextBox");
+            this.userTextBox.Name = "userTextBox";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // passwordTextBox
+            // 
+            resources.ApplyResources(this.passwordTextBox, "passwordTextBox");
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.UseSystemPasswordChar = true;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.certLabel);
+            this.groupBox2.Controls.Add(this.selectButton);
+            this.groupBox2.Controls.Add(this.certificateCheckBox);
+            this.groupBox2.Controls.Add(this.anonymousCheckBox);
+            this.groupBox2.Controls.Add(this.userTextBox);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.userPasswordCheckbox);
+            this.groupBox2.Controls.Add(this.passwordTextBox);
+            this.groupBox2.Controls.Add(this.label5);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // certLabel
+            // 
+            resources.ApplyResources(this.certLabel, "certLabel");
+            this.certLabel.Name = "certLabel";
+            // 
+            // selectButton
+            // 
+            resources.ApplyResources(this.selectButton, "selectButton");
+            this.selectButton.Name = "selectButton";
+            this.selectButton.UseVisualStyleBackColor = true;
+            this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
+            // 
+            // certificateCheckBox
+            // 
+            resources.ApplyResources(this.certificateCheckBox, "certificateCheckBox");
+            this.certificateCheckBox.Name = "certificateCheckBox";
+            this.certificateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // anonymousCheckBox
+            // 
+            resources.ApplyResources(this.anonymousCheckBox, "anonymousCheckBox");
+            this.anonymousCheckBox.Checked = true;
+            this.anonymousCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.anonymousCheckBox.Name = "anonymousCheckBox";
+            this.anonymousCheckBox.UseVisualStyleBackColor = true;
+            this.anonymousCheckBox.CheckedChanged += new System.EventHandler(this.anonomousCheckBox_CheckedChanged);
             // 
             // SettingsForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.opcNamespaceTextBox);
             this.Controls.Add(this.label4);
@@ -165,6 +247,8 @@ namespace NoraOpcUaTestServer
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +271,15 @@ namespace NoraOpcUaTestServer
         private System.Windows.Forms.CheckBox statesCheckBox;
         private System.Windows.Forms.CheckBox measuredValuesCheckBox;
         private System.Windows.Forms.CheckBox jitterCheckBox;
+        private System.Windows.Forms.CheckBox userPasswordCheckbox;
+        private System.Windows.Forms.TextBox userTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox certificateCheckBox;
+        private System.Windows.Forms.CheckBox anonymousCheckBox;
+        private System.Windows.Forms.Label certLabel;
+        private System.Windows.Forms.Button selectButton;
     }
 }

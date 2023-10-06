@@ -16,7 +16,8 @@ namespace NoraOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<string> ProductName;
         public OpcDataVariableNode<int> Quality;
         public OpcDataVariableNode<string> SampleRegistrationValue;
-        
+        public OpcDataVariableNode<bool> MovingAverageCalculated;
+
 
         private readonly OpcFolderNode sampleFolder;
         private readonly List<IOpcNode> nodes = new List<IOpcNode>();
@@ -38,6 +39,7 @@ namespace NoraOpcUaTestServer.OpcNodes
             ProductName = CreateOpcUaNode<string>(sampleFolder, "ProductName", nodes);
             Quality = CreateOpcUaNode<int>(sampleFolder, "Quality", nodes);
             SampleRegistrationValue = CreateOpcUaNode<string>(sampleFolder, $"Registration{NodeSeparator}Value", nodes);
+            MovingAverageCalculated = CreateOpcUaNode<bool>(sampleFolder, "MovingAverageCalculated", nodes);
 
             ParametersNodes = new ParametersNodes(sampleFolder);
             nodes.AddRange(ParametersNodes.Nodes);

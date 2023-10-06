@@ -1,10 +1,9 @@
-﻿using NoraOpcUaTestServer.States;
+﻿using NoraOpcUaTestServer.Logging;
+using NoraOpcUaTestServer.States;
 using Opc.UaFx;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using NoraOpcUaTestServer.Logging;
 
 namespace NoraOpcUaTestServer
 {
@@ -12,6 +11,12 @@ namespace NoraOpcUaTestServer
     {
         public static string RootFolderName = "Foss.Nora";
         public static string ServerName = Properties.Settings.Default.ServerName;
+        public static bool EnableUserPassword;
+        public static bool EnableAnonymous = true;
+        public static bool EnableCertificate;
+        public static string User;
+        public static string Password;
+        public static string CertString;
 
         private OpcUaHelper helper;
         private readonly Logger statesLogger = new Logger("States.txt");
@@ -35,6 +40,7 @@ namespace NoraOpcUaTestServer
         }
         
         private IState currentState;
+
         #region Private delegates
 
         private delegate void SetStartStopButtonTextCallback(string text);
@@ -51,6 +57,7 @@ namespace NoraOpcUaTestServer
 
         public MainForm()
         {
+            EnableUserPassword = false;
             InitializeComponent();
             Initialise();
         }
@@ -226,7 +233,16 @@ namespace NoraOpcUaTestServer
             if (!Directory.Exists(Properties.Settings.Default.LogFolder))
                 Directory.CreateDirectory(Properties.Settings.Default.LogFolder);
 
-            helper = new OpcUaHelper(ServerName, RootFolderName);
+            helper = new OpcUaHelper(
+                serverName: ServerName,
+                homeFolder: RootFolderName,
+                enableAnonymous: EnableAnonymous,
+                enableUserAndPassword: EnableUserPassword,
+                enableCertificate: EnableCertificate,
+                userName: User,
+                password: Password,
+                certString: CertString);
+
             logHelper = new LogHelper(helper);
 
             helper.Server.StateChanged += Server_StateChanged;
@@ -290,6 +306,7 @@ namespace NoraOpcUaTestServer
             richTextBox1.AppendText($"{DateTime.Now}: {text}\n");
             richTextBox1.ScrollToCaret();
         }
+
 
         #endregion
 
