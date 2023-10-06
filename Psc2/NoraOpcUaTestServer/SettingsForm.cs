@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NoraOpcUaTestServer.OpcNodes;
+using System;
 using System.Windows.Forms;
-using NoraOpcUaTestServer.OpcNodes;
 
 namespace NoraOpcUaTestServer
 {
     public partial class SettingsForm : Form
     {
         public static LogOptions LogOptions;
+
+        private string certString;
+        private bool userPasswordEnabled;
+        private bool certEnabled;
+        private bool anonomousEnabled;
         public SettingsForm()
         {
             InitializeComponent();
@@ -25,6 +23,12 @@ namespace NoraOpcUaTestServer
             rootFolderTextBox.Text = MainForm.RootFolderName;
             nodeSeparatorTextBox.Text = NodeBase.NodeSeparator;
             opcNamespaceTextBox.Text = NodeBase.OpcNameSpace;
+            anonymousCheckBox.Checked = MainForm.EnableAnonymous;
+            userPasswordCheckbox.Checked = MainForm.EnableUserPassword;
+            certificateCheckBox.Checked = MainForm.EnableCertificate;
+            certString = MainForm.CertString;
+            userTextBox.Text = MainForm.User;
+            passwordTextBox.Text = MainForm.Password;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -38,11 +42,38 @@ namespace NoraOpcUaTestServer
             NodeBase.NodeSeparator = nodeSeparatorTextBox.Text;
             NodeBase.OpcNameSpace = opcNamespaceTextBox.Text;
             MainForm.ServerName = serverTextBox.Text;
+            MainForm.EnableUserPassword = userPasswordCheckbox.Checked;
+            MainForm.EnableAnonymous = anonymousCheckBox.Checked;
+            MainForm.EnableCertificate = certificateCheckBox.Checked;
+            MainForm.Password = passwordTextBox.Text;
+            MainForm.User = userTextBox.Text;
+            MainForm.CertString = certString;
             LogOptions.LogJitter = jitterCheckBox.Checked;
             LogOptions.LogMeasuredValues = measuredValuesCheckBox.Checked;
             LogOptions.LogNodeValues = nodeValuesCheckBox.Checked;
             LogOptions.LogStates = statesCheckBox.Checked;
             this.Close();
+        }
+
+        private void userPasswordCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            userTextBox.Enabled = userPasswordCheckbox.Checked;
+            passwordTextBox.Enabled = userPasswordCheckbox.Checked;
+            userPasswordEnabled = userPasswordCheckbox.Checked;
+        }
+
+        private void selectButton_Click(object sender, EventArgs e)
+        {
+            var certForm = new CertForm();
+            if (certForm.ShowDialog() == DialogResult.OK)
+            {
+                certString = certForm.CertString;
+            }
+        }
+
+        private void anonomousCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            anonomousEnabled = anonymousCheckBox.Checked;
         }
     }
 
