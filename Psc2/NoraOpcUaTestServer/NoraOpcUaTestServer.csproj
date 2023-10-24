@@ -314,6 +314,12 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimulateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulateForm.Designer.cs">
+      <DependentUpon>SimulateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="States\IState.cs" />
     <Compile Include="States\StateNoraCip.cs" />
     <Compile Include="States\StateNoraCleaning.cs" />
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulateForm.resx">
+      <DependentUpon>SimulateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
