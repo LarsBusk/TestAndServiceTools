@@ -1,8 +1,8 @@
-﻿using NoraOpcUaTestServer.Logging;
-using Opc.UaFx;
+﻿using Opc.UaFx;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using NiceLittleLogger;
 
 namespace NoraOpcUaTestServer
 {
@@ -15,7 +15,7 @@ namespace NoraOpcUaTestServer
         public AlarmsForm(OpcUaHelper helper)
         {
             InitializeComponent();
-            logger = new Logger("Alarm.log");
+            logger = new Logger("Logs","Alarm.log");
             this.helper = helper;
             GetCurrentAlarms();
 
