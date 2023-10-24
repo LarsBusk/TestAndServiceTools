@@ -15,6 +15,14 @@ namespace NoraOpcUaTestServer
         public NoraNodes Nodes => noraNodes;
         public OpcServer Server;
         public string RawDataString;
+
+
+        #endregion
+
+        #region Private fields
+
+        private NoraNodes noraNodes;
+        private static uint serverWatchdog = 1;
         private readonly string serverName;
         private readonly string homeFolder;
         private readonly string certString;
@@ -26,16 +34,9 @@ namespace NoraOpcUaTestServer
 
         #endregion
 
-        #region Private fields
-
-        private NoraNodes noraNodes;
-        private static uint serverWatchdog = 1;
-
-        #endregion
-        
         #region Public methods
 
-        public OpcUaHelper(string serverName, string homeFolder, bool enableAnonymous, bool enableUserAndPassword, 
+        public OpcUaHelper(string serverName, string homeFolder, bool enableAnonymous, bool enableUserAndPassword,
             bool enableCertificate, string userName, string password, string certString)
         {
             this.serverName = serverName;
@@ -46,7 +47,6 @@ namespace NoraOpcUaTestServer
             this.userName = userName;
             this.password = password;
             this.certString = certString;
-
 
             Server = CreateServer();
             SetAuthentication();
@@ -155,7 +155,6 @@ namespace NoraOpcUaTestServer
 
         private void EnableCert()
         {
-            //var certificate = new X509Certificate2("FOSStestLicense.pfx", "SLU1234");
             var certificate = new X509Certificate2(Convert.FromBase64String(certString));
             Server.CertificateStores.AutoCreateCertificate = false;
             RawDataString = Convert.ToBase64String(certificate.RawData);

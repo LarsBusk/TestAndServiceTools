@@ -22,7 +22,7 @@ namespace NoraOpcUaTestServer
         private readonly Logger statesLogger = new Logger("States.txt");
         private bool forceMeasure;
         private LogHelper logHelper;
-        private IState CurrentState
+        public IState CurrentState
         {
             get => currentState;
             set
@@ -308,8 +308,13 @@ namespace NoraOpcUaTestServer
         }
 
 
+
         #endregion
 
-
+        private void simulateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new SimulateForm(this);
+            form.ShowDialog();
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace NoraOpcUaTestServer.States
 
         public void OpenSettings()
         {
-            throw new NotImplementedException();
         }
 
         public void EnqueueRinse()
@@ -38,6 +37,7 @@ namespace NoraOpcUaTestServer.States
 
         public void StartStopMeasuring(string product)
         {
+            helper.StartMeasuring(product);
         }
 
         public void EnqueueZero()

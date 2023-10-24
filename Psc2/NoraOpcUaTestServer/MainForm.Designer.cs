@@ -61,6 +61,7 @@ namespace NoraOpcUaTestServer
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.forceMeasureCheckBox = new System.Windows.Forms.CheckBox();
             this.eventsButton = new System.Windows.Forms.Button();
+            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -298,7 +299,8 @@ namespace NoraOpcUaTestServer
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem1});
+            this.settingsToolStripMenuItem1,
+            this.simulateToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.settingsToolStripMenuItem.Text = "Opc server";
@@ -394,6 +396,13 @@ namespace NoraOpcUaTestServer
             this.eventsButton.UseVisualStyleBackColor = true;
             this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
             // 
+            // simulateToolStripMenuItem
+            // 
+            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Text = "Simulate";
+            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,6 +475,7 @@ namespace NoraOpcUaTestServer
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox forceMeasureCheckBox;
         private System.Windows.Forms.Button eventsButton;
+        private System.Windows.Forms.ToolStripMenuItem simulateToolStripMenuItem;
     }
 }
 
