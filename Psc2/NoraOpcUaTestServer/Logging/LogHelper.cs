@@ -1,4 +1,5 @@
-﻿using NoraOpcUaTestServer.OpcNodes;
+﻿using NiceLittleLogger;
+using NoraOpcUaTestServer.OpcNodes;
 using Opc.UaFx;
 using System;
 
@@ -15,13 +16,13 @@ namespace NoraOpcUaTestServer.Logging
         public LogHelper(OpcUaHelper helper)
         {
             _helper = helper;
-            _csvWriter = new CsvWriter("MeasuredValues.csv",
+            _csvWriter = new CsvWriter("Logs","MeasuredValues.csv",
                 "Time;SampleCounter;SampleNumber;SampleRegistrationValue;Fat;Protein;Lactose;SNF;TS\n");
             _jitterCsvWriter =
-                new CsvWriter("Jitter.csv",
+                new CsvWriter("Logs", "Jitter.csv",
                     "OpcServerTime;SampleTime;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
 
-            _logger = new Logger("NodeValues.txt");
+            _logger = new Logger("Logs", "NodeValues.txt");
 
             _helper.Nodes.InstrumentNodes.SampleCounter.AfterApplyChanges += SampleCounter_AfterApplyChanges;
             _helper.Nodes.InstrumentNodes.SampleCounter.BeforeApplyChanges += SampleCounter_BeforeApplyChanges;

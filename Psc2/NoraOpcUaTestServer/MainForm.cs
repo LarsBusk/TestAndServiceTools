@@ -1,4 +1,5 @@
-﻿using NoraOpcUaTestServer.Logging;
+﻿using NiceLittleLogger;
+using NoraOpcUaTestServer.Logging;
 using NoraOpcUaTestServer.States;
 using Opc.UaFx;
 using System;
@@ -19,7 +20,7 @@ namespace NoraOpcUaTestServer
         public static string CertString;
 
         private OpcUaHelper helper;
-        private readonly Logger statesLogger = new Logger("States.txt");
+        private readonly Logger statesLogger = new Logger("Logs", "States.txt");
         private bool forceMeasure;
         private LogHelper logHelper;
         public IState CurrentState

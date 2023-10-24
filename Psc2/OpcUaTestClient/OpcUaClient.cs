@@ -17,7 +17,7 @@ namespace OpcUaTestClient
 
         public OpcUaClient()
         {
-            Client = new OpcClient("opc.tcp://localhost:4840/NoraTestServer");
+            Client = new OpcClient("opc.tcp://172.20.20.54:4840/NoraTestServer");
             watchdogTimer = new Timer
             {
                 Interval = 1000,

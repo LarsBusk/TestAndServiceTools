@@ -67,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 84);
+            this.label2.Location = new System.Drawing.Point(33, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 13);
             this.label2.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             // CipTb
             // 
-            this.CipTb.Location = new System.Drawing.Point(36, 101);
+            this.CipTb.Location = new System.Drawing.Point(36, 85);
             this.CipTb.Name = "CipTb";
             this.CipTb.Size = new System.Drawing.Size(100, 20);
             this.CipTb.TabIndex = 4;
@@ -83,7 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 139);
+            this.label3.Location = new System.Drawing.Point(33, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 5;
@@ -91,7 +91,7 @@
             // 
             // StopTb
             // 
-            this.StopTb.Location = new System.Drawing.Point(36, 155);
+            this.StopTb.Location = new System.Drawing.Point(36, 134);
             this.StopTb.Name = "StopTb";
             this.StopTb.Size = new System.Drawing.Size(100, 20);
             this.StopTb.TabIndex = 6;
@@ -124,6 +124,7 @@
             this.MinimizeBox = false;
             this.Name = "SimulateForm";
             this.Text = "Simulate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SimulateForm_FormClosing);
             this.Load += new System.EventHandler(this.SimulateForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
