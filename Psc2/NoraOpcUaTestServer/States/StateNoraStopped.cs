@@ -27,7 +27,7 @@ namespace NoraOpcUaTestServer.States
         public StateNoraStopped(OpcUaHelper opcUaHelper)
         {
             helper = opcUaHelper;
-            helper.StopMeasuring();
+            //helper.StopMeasuring();
         }
 
         public void ChangeProduct(string product)
