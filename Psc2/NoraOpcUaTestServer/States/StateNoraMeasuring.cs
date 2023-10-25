@@ -10,7 +10,7 @@
         {
             helper = opcUaHelper;
             var currentProduct = helper.Nodes.InstrumentNodes.ProductName.Value;
-            helper.StartMeasuring(currentProduct);
+            //helper.StartMeasuring(currentProduct);
         }
 
         public void ChangeProduct(string product)

@@ -10,8 +10,11 @@ namespace NoraOpcUaTestServer.Logging
         private readonly CsvWriter _csvWriter;
         private readonly CsvWriter _jitterCsvWriter;
         private readonly Logger _logger;
+        private readonly Logger _simLogger;
         private OpcUaHelper _helper;
         private DateTime lastOpcServerDateTime = DateTime.MinValue;
+
+        public static bool IsSimulating;
 
         public LogHelper(OpcUaHelper helper)
         {
@@ -23,6 +26,8 @@ namespace NoraOpcUaTestServer.Logging
                     "OpcServerTime;SampleTime;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
 
             _logger = new Logger("Logs", "NodeValues.txt");
+            _simLogger = new Logger("Logs", "SimulatorLog.txt");
+            IsSimulating = false;
 
             _helper.Nodes.InstrumentNodes.SampleCounter.AfterApplyChanges += SampleCounter_AfterApplyChanges;
             _helper.Nodes.InstrumentNodes.SampleCounter.BeforeApplyChanges += SampleCounter_BeforeApplyChanges;
@@ -32,6 +37,8 @@ namespace NoraOpcUaTestServer.Logging
             _helper.Nodes.SampleNodes.ParametersNodes.SnfValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             _helper.Nodes.SampleNodes.ParametersNodes.TsValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             _helper.Nodes.SampleNodes.SampleNumber.AfterApplyChanges += ResultNode_AfterApplyChanges;
+            _helper.Nodes.InstrumentNodes.ModeN.AfterApplyChanges += LogSim;
+            _helper.Nodes.ControllerNodes.ModeN.AfterApplyChanges += LogSim;
         }
 
         private void SampleCounter_BeforeApplyChanges(object sender, OpcNodeChangesEventArgs e)
@@ -104,6 +111,20 @@ namespace NoraOpcUaTestServer.Logging
             if (SettingsForm.LogOptions.LogStates)
             {
                 _logger.LogInfo($"{name} changed value: {value} at {nodeTime.ToString("O")}");
+            }
+        }
+
+        private void LogSim(object sender, OpcNodeChangesEventArgs e)
+        {
+            var node = (OpcDataVariableNode)sender;
+            var nodeTime = node.Timestamp ?? DateTime.Now;
+            var name = node.Name;
+            var parrent = node.Parent.Name;
+            var value = node.Value;
+
+            if (IsSimulating)
+            {
+                _simLogger.LogInfo($"{parrent}.{name} changed value: {value} at {nodeTime.ToString("O")}");
             }
         }
 

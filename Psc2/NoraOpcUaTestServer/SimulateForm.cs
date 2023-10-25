@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using NoraOpcUaTestServer.Logging;
 
 namespace NoraOpcUaTestServer
 {
@@ -41,6 +42,7 @@ namespace NoraOpcUaTestServer
         private void StartButton_Click(object sender, EventArgs e)
         {
             this.simulate = true;
+            LogHelper.IsSimulating = true;
             simThread = new Thread(StartSimulation);
             simThread.Start();
         }
@@ -58,7 +60,8 @@ namespace NoraOpcUaTestServer
         private void OnClose()
         {
             simulate = false;
-            simThread.Join();
+            LogHelper.IsSimulating = false;
+            simThread.Abort();
         }
     }
 }
