@@ -12,7 +12,7 @@ namespace OPCClient
   /// </summary>
   public class OpcHelp
   {
-    private readonly IOpcTags MeatMasterIIOPCTags;
+    private readonly IOpcTags opcTags;
     private OpcServer srv;
     private static readonly ILog log = LogManager.GetLogger(typeof(OpcHelp));
 
@@ -29,12 +29,12 @@ namespace OPCClient
     /// <summary>
     /// Construct
     /// </summary>
-    /// <param name="meatMasterIIOPCTags"></param>
-    public OpcHelp(IOpcTags meatMasterIIOPCTags)
+    /// <param name="opcTags"></param>
+    public OpcHelp(IOpcTags opcTags)
     {
       log.Debug("Creating a new instance of OpcHelp");
-      MeatMasterIIOPCTags = meatMasterIIOPCTags;
-      OPCGetData = new OPCGetData(MeatMasterIIOPCTags);
+      this.opcTags = opcTags;
+      OPCGetData = new OPCGetData(this.opcTags);
       OPCSetData = new OPCSetData();
       log.Debug("Instance created....");
     }

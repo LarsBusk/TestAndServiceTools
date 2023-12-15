@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,7 +60,6 @@
     <Compile Include="Communicators\MilkoStreamKepServerCommunicator.cs" />
     <Compile Include="Communicators\ProFossKepServerCommunicator.cs" />
     <Compile Include="InstrumentStateMode.cs" />
-    <Compile Include="Communicators\OPCServerType.cs" />
     <Compile Include="OPCLogWriter.cs" />
     <Compile Include="OPCTags\IOpcTags.cs" />
     <Compile Include="OPCTags\KepServerControllerGroupMM.cs" />
@@ -77,28 +76,14 @@
     <Compile Include="OPCTags\KepServerSampleParametersGroupPf.cs" />
     <Compile Include="OPCTags\KepServerSampleParametersGroupMMII.cs" />
     <Compile Include="OPCTags\KepServerTestGroup.cs" />
-    <Compile Include="OPCTags\MeatMasterIIOPCTags.cs" />
-    <Compile Include="Communicators\MeatMasterOPCCommunicatior.cs" />
+    <Compile Include="Communicators\MeatMasterKepserverCommunicatior.cs" />
     <Compile Include="OPCGetData.cs" />
     <Compile Include="OpcHelp.cs" />
     <Compile Include="OPCSetData.cs" />
     <Compile Include="OPCTags\KepServerMeatMasterIIOPCTags.cs" />
-    <Compile Include="OPCTags\MMIIGetBatchParamaterGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetOpcServerStateGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetInstrumentStateProductGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleBoneGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleMetalGroup.cs" />
-    <Compile Include="OPCTags\MMIISetPostRegistrationGroup.cs" />
     <Compile Include="OPCTags\OPCGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetInstrumentStateGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetInstrumentStateEventDetailGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleEventDetailGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleParameterGroup.cs" />
-    <Compile Include="OPCTags\MMIIGetSampleRegistrationGroup.cs" />
-    <Compile Include="OPCTags\MMIISetPreregistrationGroup.cs" />
     <Compile Include="OPCTags\OPCTag.cs" />
-    <Compile Include="OPCTags\MMIISetInstrumentStateGroup.cs" />
+    <Compile Include="OPCTags\PfSampleRegistrationGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
