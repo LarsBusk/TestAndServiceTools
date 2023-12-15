@@ -19,31 +19,6 @@ namespace OPCClient
             WriteTextToFile(fileName, text+ Environment.NewLine);
         }
 
-        public static void WriteOPCDataToFile(string fileName, MeatMasterIIOPCTags meatMasterIIOPCTags)
-        {
-/*
-              if (handShake == sampleGroup.Identifier)
-                return;
-
-              handShake = sampleGroup.Identifier;
-        */
-            var streamWriter = GetStreamWriter(fileName);
-
-            streamWriter.Write(meatMasterIIOPCTags.ServerName.PadRight(50) + DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + Environment.NewLine);
-
-
-            foreach (var element in meatMasterIIOPCTags.OPCTags)
-            {
-                streamWriter.Write(element.ShortName.PadRight(50) +  element + Environment.NewLine);
-            }
-
-            streamWriter.WriteLine();
-            streamWriter.WriteLine();
-            streamWriter.WriteLine();
-            streamWriter.Close();
-
-        }
-
         private static StreamWriter GetStreamWriter(string fileName)
         {
             string combinedFileName = Path.Combine("", fileName);

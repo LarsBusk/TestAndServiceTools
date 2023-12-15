@@ -156,7 +156,7 @@ namespace MstOpcClient
         cbOpcServer.Items.Add(new KepServerItems(kepServer, appSettings[kepServer]));
       }
 
-      cbOpcServer.SelectedItem = cbOpcServer.Items[0];
+      cbOpcServer.SelectedItem = cbOpcServer.Items[1];
       tbGroupName.Text = appSettings["LastGroup"];
 
       Connected = false;
@@ -360,6 +360,10 @@ namespace MstOpcClient
       ProFossKepServerCommunicator.SetCalibrationSample(true);
       Thread.Sleep(TimeSpan.FromSeconds(1));
       ProFossKepServerCommunicator.SetCalibrationSample(false);
+      if (cbAddReg.Checked)
+      {
+          ProFossKepServerCommunicator.SetRegistrationToCalSample(int.Parse(tbCalRegValue.Text));
+      }
     }
 
     private void btnStartSimulation_Click(object sender, EventArgs e)
@@ -408,6 +412,11 @@ namespace MstOpcClient
       State = 0;
       UsePrdCpdeNChk.Enabled = true;
     }
-    #endregion Button click methods
-  }
+        #endregion Button click methods
+
+        private void cbAddReg_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCalRegValue.Enabled = cbAddReg.Checked;
+        }
+    }
 }

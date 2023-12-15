@@ -26,5 +26,19 @@ namespace OPCClient.Communicators
       KepServerOpcTags.ControllerGroup.CalibrationSample.ObjectValue = measureCal;
       OpcHelp.OPCSetData.SetOneOPCTag(KepServerOpcTags.ControllerGroup.CalibrationSample);
     }
+
+    public static void SetRegistrationToCalSample(int registration)
+    {
+        while (!KepServerOpcTags.InstrumentGroup.DoingCalibrationSample.Value)
+        {
+            KepServerOpcTags.ControllerGroup.SampleRegistrationGroup.PreRegistration01.ObjectValue = registration;
+            OpcHelp.OPCSetData.SetOneOPCTag(
+                KepServerOpcTags.ControllerGroup.SampleRegistrationGroup.PreRegistration01);
+            Thread.Sleep(1000);
+        }
+        KepServerOpcTags.ControllerGroup.SampleRegistrationGroup.PreRegistration01.ObjectValue = null;
+        OpcHelp.OPCSetData.SetOneOPCTag(
+            KepServerOpcTags.ControllerGroup.SampleRegistrationGroup.PreRegistration01);
+        }
   }
 }

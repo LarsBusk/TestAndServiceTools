@@ -12,6 +12,7 @@ namespace OPCClient.OPCTags
     public OPCTag<int> ProductCodeN;
     public OPCTag<bool> StartMeasuring;
     public OPCTag<bool> CalibrationSample;
+    public PfSampleRegistrationGroup SampleRegistrationGroup;
 
     public KepServerControllerGroupPf(string serverPrefix) : base(serverPrefix)
     {
@@ -23,6 +24,8 @@ namespace OPCClient.OPCTags
       OPCTags.Add(StartMeasuring);
       CalibrationSample = new OPCTag<bool>(serverPrefix, "Controller.CalibrationSample");
       OPCTags.Add(CalibrationSample);
+      SampleRegistrationGroup = new PfSampleRegistrationGroup(serverPrefix);
+      OPCTags.AddRange(SampleRegistrationGroup.OPCTags);
     }
   }
 }
