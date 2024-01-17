@@ -14,7 +14,8 @@ namespace CreatePsc2KepserverCsvFiles
             var csvCreator = new CsvNodeFileCreator();
 
             var nodes = xmlReader.GetOpcUaNodes(args[0]);
-            csvCreator.CreateCsvFiles(nodes);
+            var fileName = args[0].Contains("Nodeset-Dxter-Opc") ? "Dxter" : "Psc2";
+            csvCreator.CreateCsvFiles(nodes, fileName);
         }
     }
 }
