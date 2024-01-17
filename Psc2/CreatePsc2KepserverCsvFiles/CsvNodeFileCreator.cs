@@ -12,10 +12,10 @@ namespace CreatePsc2KepserverCsvFiles
         private int stringAddress = 1;
         private int numberAddress = 1;
 
-        public void CreateCsvFiles(IEnumerable<XmlNodeFileReader.OpcUaNodeContent> nodeContents)
+        public void CreateCsvFiles(IEnumerable<XmlNodeFileReader.OpcUaNodeContent> nodeContents, string fileName)
         {
-            CreateCsvFile("Psc2KepServerStandard.csv", nodeContents, true);
-            CreateCsvFile("Psc2KepServerMemoryBased.csv", nodeContents, false);
+            CreateCsvFile($"{fileName}KepServerStandard.csv", nodeContents, true);
+            CreateCsvFile($"{fileName}KepServerMemoryBased.csv", nodeContents, false);
         }
 
         private void CreateCsvFile(string fileName, IEnumerable<XmlNodeFileReader.OpcUaNodeContent> nodeContents,
@@ -86,6 +86,10 @@ namespace CreatePsc2KepserverCsvFiles
                 case "Float":
                     address = $"D{numberAddress:D5}";
                     numberAddress += 4;
+                    break;
+                case "Double":
+                    address = $"D{numberAddress:D5}";
+                    numberAddress += 8;
                     break;
                 default:
                     address = $"D{numberAddress:D5}";
