@@ -45,6 +45,8 @@
             AddTestSystemButton = new System.Windows.Forms.Button();
             CleanupButton = new System.Windows.Forms.Button();
             label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            cyclesTextBox = new System.Windows.Forms.TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -107,7 +109,7 @@
             // 
             // SelectCsvButton
             // 
-            SelectCsvButton.Location = new System.Drawing.Point(500, 208);
+            SelectCsvButton.Location = new System.Drawing.Point(500, 238);
             SelectCsvButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             SelectCsvButton.Name = "SelectCsvButton";
             SelectCsvButton.Size = new System.Drawing.Size(88, 27);
@@ -118,7 +120,7 @@
             // 
             // AddDataButton
             // 
-            AddDataButton.Location = new System.Drawing.Point(500, 241);
+            AddDataButton.Location = new System.Drawing.Point(500, 271);
             AddDataButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             AddDataButton.Name = "AddDataButton";
             AddDataButton.Size = new System.Drawing.Size(88, 27);
@@ -129,7 +131,7 @@
             // 
             // CommentTextBox
             // 
-            CommentTextBox.Location = new System.Drawing.Point(7, 140);
+            CommentTextBox.Location = new System.Drawing.Point(8, 129);
             CommentTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             CommentTextBox.Name = "CommentTextBox";
             CommentTextBox.Size = new System.Drawing.Size(377, 23);
@@ -138,7 +140,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(4, 121);
+            label4.Location = new System.Drawing.Point(4, 111);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(61, 15);
@@ -147,6 +149,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cyclesTextBox);
+            groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(realPCCheckBox);
             groupBox1.Controls.Add(NoDelayedResultsCb);
             groupBox1.Controls.Add(NoraVersionCombo);
@@ -159,7 +163,7 @@
             groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox1.Size = new System.Drawing.Size(405, 181);
+            groupBox1.Size = new System.Drawing.Size(405, 223);
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Test setup";
@@ -217,11 +221,27 @@
             label5.TabIndex = 13;
             label5.Text = "label5";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(4, 157);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(100, 15);
+            label6.TabIndex = 12;
+            label6.Text = "Number of cycles";
+            // 
+            // cyclesTextBox
+            // 
+            cyclesTextBox.Location = new System.Drawing.Point(7, 175);
+            cyclesTextBox.Name = "cyclesTextBox";
+            cyclesTextBox.Size = new System.Drawing.Size(120, 23);
+            cyclesTextBox.TabIndex = 13;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(612, 295);
+            ClientSize = new System.Drawing.Size(612, 322);
             Controls.Add(label5);
             Controls.Add(CleanupButton);
             Controls.Add(AddTestSystemButton);
@@ -261,6 +281,8 @@
         private System.Windows.Forms.CheckBox NoDelayedResultsCb;
         private System.Windows.Forms.CheckBox realPCCheckBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox cyclesTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }
 

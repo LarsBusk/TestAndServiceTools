@@ -18,16 +18,24 @@ namespace NoraJitterTool
 
         private void AddDataButton_Click(object sender, EventArgs e)
         {
-            var setupId = helper.AddNewTestSetup(
-                ((TestSystemComboItem)TestSystemCombo.SelectedItem).ChassisId,
-                NoraVersionCombo.Text,
-                DateTime.Now,
-                PlatformVersionCombo.Text,
-                CommentTextBox.Text,
-                csvFileName,
-                NoDelayedResultsCb.Checked,
-                realPCCheckBox.Checked);
-            helper.AddDelays(setupId, delayInfos);
+            if (int.TryParse(cyclesTextBox.Text, out var numberOfCycles))
+            {
+                var setupId = helper.AddNewTestSetup(
+                    ((TestSystemComboItem)TestSystemCombo.SelectedItem).ChassisId,
+                    NoraVersionCombo.Text,
+                    DateTime.Now,
+                    PlatformVersionCombo.Text,
+                    CommentTextBox.Text,
+                    csvFileName,
+                    NoDelayedResultsCb.Checked,
+                    realPCCheckBox.Checked,
+                    numberOfCycles);
+                helper.AddDelays(setupId, delayInfos);
+            }
+            else
+            {
+                MessageBox.Show("The number of cycles must be an integer", "Number of cycles");
+            }
         }
 
         private void SelectCsvButton_Click(object sender, EventArgs e)
