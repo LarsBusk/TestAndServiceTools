@@ -31,6 +31,8 @@ namespace NoraJitterTool.Model
 
         public bool PhysicalPC { get; set; }
 
+        public int NumberOfCycles { get; set; }
+
         [Required]
         [StringLength(50)]
         public string PlatformVersion { get; set; }

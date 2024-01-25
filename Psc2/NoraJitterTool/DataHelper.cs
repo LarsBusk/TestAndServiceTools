@@ -81,22 +81,24 @@ namespace NoraJitterTool
             return versions.ToArray();
         }
 
-        public int AddNewTestSetup(long chassisId, string novaVersion, DateTime testTime, string platformVersion,  string comment, string csvFileName, bool noDelayedResults, bool physicalPc)
+        public int AddNewTestSetup(long chassisId, string novaVersion, DateTime testTime, string platformVersion,
+            string comment, string csvFileName, bool noDelayedResults, bool physicalPc, int numberOfCycles)
         {
-           var testSystem = context.TestSystem.First(t => t.ChassisId.Equals(chassisId));
-           testSystem.TestSetup.Add(new TestSetup
-           {
-               NoraVersion = novaVersion, 
-               TestTime = testTime, 
-               PlatformVersion = platformVersion, 
-               Comment = comment,
-               CsvFileName = csvFileName,
-               NoDelayedResults = noDelayedResults,
-               PhysicalPC = physicalPc
-           });
-           context.SaveChanges();
+            var testSystem = context.TestSystem.First(t => t.ChassisId.Equals(chassisId));
+            testSystem.TestSetup.Add(new TestSetup
+            {
+                NoraVersion = novaVersion,
+                TestTime = testTime,
+                PlatformVersion = platformVersion,
+                Comment = comment,
+                CsvFileName = csvFileName,
+                NoDelayedResults = noDelayedResults,
+                PhysicalPC = physicalPc,
+                NumberOfCycles = numberOfCycles
+            });
+            context.SaveChanges();
 
-           return context.TestSetup.Max(t => t.TestSetupId);
+            return context.TestSetup.Max(t => t.TestSetupId);
         }
 
         public void RemoveTestSetup(int setupId)
