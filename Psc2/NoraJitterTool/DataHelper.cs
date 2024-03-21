@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace NoraJitterTool
 {
@@ -131,6 +132,11 @@ namespace NoraJitterTool
             testSetup.Delays = delays;
             
             context.SaveChanges();
+        }
+
+        public void AddStatistics(int testSetupId)
+        {
+            context.Database.ExecuteSql($"EXEC dbo.sp_add_statistics @TestSetupId = {testSetupId}");
         }
 
         public JitterStatistics GetDelayStatistics(int setupId)

@@ -12,13 +12,15 @@
         </DataSetParameter>
       </DataSetParameters>
       <CommandText>SELECT          Top 10
-                       TimeBetweenSamples
-                    ,  TestSetupId
+                       TimeBetweenSamples / tse.NumberOfCycles as TimeBetweenSamples 
+                    ,  d.TestSetupId
                     ,  SampleNumber
                     ,  SampleDateTime
-FROM            Delays
-WHERE         TestSetupId = @SetupId and
-                      TimeBetweenSamples &lt; 35000
+FROM            Delays d
+INNER JOIN TestSetup tse
+ON tse.TestSetupId  = d.TestSetupId 
+WHERE         tse.TestSetupId = @SetupId and
+                      TimeBetweenSamples &lt; 35000 * tse.NumberOfCycles
 ORDER BY    TimeBetweenSamples DESC</CommandText>
     </Query>
     <Fields>

@@ -22,7 +22,7 @@
         </Field>
         <Field Name="ChassisId">
           <DataField>ChassisId</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
         <Field Name="NoraVersion">
           <DataField>NoraVersion</DataField>
@@ -44,13 +44,17 @@
           <DataField>TestSetupId</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Count">
-          <DataField>Count</DataField>
+        <Field Name="NumberOfCycles">
+          <DataField>NumberOfCycles</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="PhysicalPC">
           <DataField>PhysicalPC</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="DelaysCount">
+          <DataField>DelaysCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="NoDelayedResults">
           <DataField>NoDelayedResults</DataField>
@@ -66,7 +70,7 @@
         </Field>
         <Field Name="MeanDelay">
           <DataField>MeanDelay</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="StdDevDelay">
           <DataField>StdDevDelay</DataField>
@@ -82,7 +86,7 @@
         </Field>
         <Field Name="MeanTBS">
           <DataField>MeanTBS</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="StdDevTBS">
           <DataField>StdDevTBS</DataField>
@@ -669,21 +673,21 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Count">
+                        <Textbox Name="DelaysCount">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Count.Value</Value>
+                                  <Value>=Fields!DelaysCount.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Count</rd:DefaultName>
+                          <rd:DefaultName>DelaysCount</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -981,7 +985,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>AllStatistics</DataSetName>
-            <Top>2.48487in</Top>
+            <Top>2.98487in</Top>
             <Left>0.56125in</Left>
             <Height>0.5in</Height>
             <Width>9in</Width>
@@ -1161,11 +1165,28 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                 </TextRuns>
                 <Style />
               </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Number Of Cycles: </Value>
+                    <Style>
+                      <Color>#000e37</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!NumberOfCycles.Value, "AllStatistics")</Value>
+                    <Style>
+                      <Color>#000e37</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
             <Top>0.78in</Top>
             <Left>0.56125in</Left>
-            <Height>1.63543in</Height>
+            <Height>1.92015in</Height>
             <Width>2.95833in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -1402,7 +1423,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Top10Delays</DataSetName>
-            <Top>3.56125in</Top>
+            <Top>4.06125in</Top>
             <Left>0.56125in</Left>
             <Height>0.5in</Height>
             <Width>4.30208in</Width>
@@ -1432,7 +1453,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox32</rd:DefaultName>
-            <Top>3.24181in</Top>
+            <Top>3.74181in</Top>
             <Left>0.56125in</Left>
             <Height>0.25in</Height>
             <Width>1.30208in</Width>
@@ -1671,7 +1692,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Top10Tbs</DataSetName>
-            <Top>3.56125in</Top>
+            <Top>4.06125in</Top>
             <Left>5.56125in</Left>
             <Height>0.5in</Height>
             <Width>4.71875in</Width>
@@ -1702,7 +1723,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox32</rd:DefaultName>
-            <Top>3.24181in</Top>
+            <Top>3.74181in</Top>
             <Left>5.56125in</Left>
             <Height>0.25in</Height>
             <Width>3in</Width>
@@ -1721,13 +1742,17 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="ChartGroup" />
+                  <Group Name="Chart1_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SampleDateTime.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!DelaysId.Value</Value>
+                      <Value>=Fields!SampleDateTime.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label />
+                  <Label>=Fields!SampleDateTime.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -1749,7 +1774,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <ToolTip>=Fields!SampleNumber.Value</ToolTip>
+                      <ToolTip>=Fields!DelaysId.Value</ToolTip>
                       <Style />
                       <ChartMarker>
                         <Style />
@@ -1829,7 +1854,6 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
-                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -2061,7 +2085,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Style>
             </ChartNoDataMessage>
             <DataSetName>AllDelays</DataSetName>
-            <Top>5.39458in</Top>
+            <Top>6.60627in</Top>
             <Left>0.56125in</Left>
             <Height>3in</Height>
             <Width>12.03125in</Width>
@@ -2079,13 +2103,17 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="ChartGroup1" />
+                  <Group Name="Chart2_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SampleDateTime.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!DelaysId.Value</Value>
+                      <Value>=Fields!SampleDateTime.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label />
+                  <Label>=Fields!SampleDateTime.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -2398,6 +2426,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
                   <Color>#a6a6a6</Color>
                 </Style>
                 <Position>TopLeft</Position>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
               </ChartTitle>
             </ChartTitles>
             <Palette>Pacific</Palette>
@@ -2418,7 +2447,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Style>
             </ChartNoDataMessage>
             <DataSetName>AllTbs</DataSetName>
-            <Top>8.56125in</Top>
+            <Top>9.77294in</Top>
             <Left>0.56125in</Left>
             <Height>3in</Height>
             <Width>12.03125in</Width>
@@ -2436,8 +2465,17 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="ChartGroup2" />
-                  <Label />
+                  <Group Name="Chart3_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SampleDateTime.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!SampleDateTime.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!SampleDateTime.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -2770,7 +2808,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SampleTimes</DataSetName>
-            <Top>11.81125in</Top>
+            <Top>13.02294in</Top>
             <Left>0.56125in</Left>
             <Height>3in</Height>
             <Width>12.03125in</Width>
@@ -2944,7 +2982,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Intervals</DataSetName>
-            <Top>11.29453cm</Top>
+            <Top>12.52927cm</Top>
             <Left>14.12558cm</Left>
             <Height>1.2cm</Height>
             <Width>6.61396cm</Width>
@@ -2974,7 +3012,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>10.47433cm</Top>
+            <Top>11.74433cm</Top>
             <Left>14.12558cm</Left>
             <Height>0.71438cm</Height>
             <Width>6.61396cm</Width>
@@ -2990,7 +3028,7 @@ Fields!Interval.Value = 4, "Greater than 15 s"
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>39.81662cm</Height>
+        <Height>40.69828cm</Height>
         <Style />
       </Body>
       <Width>33.84022cm</Width>

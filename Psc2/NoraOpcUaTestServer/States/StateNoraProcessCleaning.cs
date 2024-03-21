@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace NoraOpcUaTestServer.States
 {
-    public class StateNoraPreparing : IState
+    public class StateNoraProcessCleaning : IState
     {
-        public string StateName => "PrepareMeasuring";
+        public string StateName => "ProcessCleaning";
+
         public bool ForceMeasure { get; set; }
+
         private OpcUaHelper helper;
 
-        public StateNoraPreparing(OpcUaHelper opcUaHelper)
+        public StateNoraProcessCleaning(OpcUaHelper opcUaHelper)
         {
             helper = opcUaHelper;
         }
@@ -23,7 +25,6 @@ namespace NoraOpcUaTestServer.States
 
         public void OpenSettings()
         {
-            throw new NotImplementedException();
         }
 
         public void EnqueueRinse()

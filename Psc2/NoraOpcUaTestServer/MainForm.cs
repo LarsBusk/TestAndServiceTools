@@ -63,6 +63,7 @@ namespace NoraOpcUaTestServer
             Initialise();
         }
 
+
         #region EventHandlers
 
         private void SampleCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
@@ -85,11 +86,15 @@ namespace NoraOpcUaTestServer
             helper.UpdateServerWatchdog();
         }
 
-        private void ModeNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void ModeNodeN_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
-            var node = (OpcDataVariableNode<string>)sender;
-            var noraMode = node.Value;
+            var node = (OpcDataVariableNode<int>)sender;
+            var noraModeN = node.Value;
+            SetStateN(noraModeN);
+        }
 
+        private void SetState(string noraMode)
+        {
             switch (noraMode)
             {
                 case "Measuring":
@@ -110,11 +115,39 @@ namespace NoraOpcUaTestServer
                     CurrentState = new StateNoraPreparing(helper);
                     break;
                 case "ProcessCleaning":
-                    CurrentState = new StateNoraCleaning(helper);
+                    CurrentState = new StateNoraProcessCleaning(helper);
                     break;
                 case "CleanInPlace":
                     CurrentState = new StateNoraCip(helper);
                     SetStartStopButtonText("Stop");
+                    break;
+            }
+        }
+
+        private void SetStateN(int modeN)
+        {
+            switch (modeN)
+            {
+                case 0:
+                    CurrentState = new StateNoraStopped(helper);
+                    break;
+                case 1:
+                    CurrentState = new StateNoraMeasuring(helper);
+                    break;
+                case 2:
+                    CurrentState = new StateNoraCip(helper);
+                    break;
+                case 3:
+                    CurrentState = new StateNoraCleaning(helper);
+                    break;
+                case 4:
+                    CurrentState = new StateNoraZeroing(helper);
+                    break;
+                case 5:
+                    CurrentState = new StateNoraProcessCleaning(helper);
+                    break;
+                case 10:
+                    CurrentState = new StateNoraPreparing(helper);
                     break;
             }
         }
@@ -247,7 +280,7 @@ namespace NoraOpcUaTestServer
             logHelper = new LogHelper(helper);
 
             helper.Server.StateChanged += Server_StateChanged;
-            helper.Nodes.InstrumentNodes.Mode.AfterApplyChanges += ModeNode_AfterApplyChanges;
+            helper.Nodes.InstrumentNodes.ModeN.AfterApplyChanges += ModeNodeN_AfterApplyChanges;
             helper.Nodes.InstrumentNodes.WatchdogCounter.AfterApplyChanges += WatchdogCounterAfterApplyChanges;
             helper.Nodes.InstrumentNodes.ProductName.AfterApplyChanges += ProductName_AfterApplyChanges;
             helper.Nodes.InstrumentNodes.SampleCounter.AfterApplyChanges += SampleCounter_AfterApplyChanges;

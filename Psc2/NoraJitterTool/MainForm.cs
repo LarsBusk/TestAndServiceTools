@@ -31,6 +31,7 @@ namespace NoraJitterTool
                     realPCCheckBox.Checked,
                     numberOfCycles);
                 helper.AddDelays(setupId, delayInfos);
+                helper.AddStatistics(setupId);
             }
             else
             {
