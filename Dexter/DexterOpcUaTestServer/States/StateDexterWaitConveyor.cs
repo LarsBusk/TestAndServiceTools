@@ -22,7 +22,10 @@ namespace DexterOpcUaTestServer.States
         {
         }
 
-        public void ChangeRecipe(string recipe) { }
+        public void ChangeRecipe(string recipe)
+        {
+            helper.SetRecipe(recipe);
+        }
 
         public void OpenSettings()
         {

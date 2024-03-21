@@ -63,10 +63,10 @@ namespace DexterOpcUaTestServer
 
         #region EventHandlers
 
-        private void SampleCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void BatchCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var counter = (OpcDataVariableNode<uint>)sender;
-            UpdateLabelText(sampleCounterLabel, $"Sample counter: {counter.Value}");
+            UpdateLabelText(sampleCounterLabel, $"Batch counter: {counter.Value}");
         }
 
         private void ProductName_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
@@ -227,7 +227,7 @@ namespace DexterOpcUaTestServer
             helper.Nodes.InstrumentNodes.Mode.AfterApplyChanges += ModeNode_AfterApplyChanges;
             helper.Nodes.InstrumentNodes.WatchdogCounter.AfterApplyChanges += WatchdogCounterAfterApplyChanges;
             helper.Nodes.InstrumentNodes.ProductName.AfterApplyChanges += ProductName_AfterApplyChanges;
-            helper.Nodes.InstrumentNodes.SampleCounter.AfterApplyChanges += SampleCounter_AfterApplyChanges;
+            helper.Nodes.InstrumentNodes.BatchCounter.AfterApplyChanges += BatchCounter_AfterApplyChanges;
 
             CurrentState = new StateServerStopped(helper);
             SettingsForm.LogOptions = InitialiseLogging();

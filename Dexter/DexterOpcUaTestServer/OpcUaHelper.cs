@@ -12,7 +12,7 @@ namespace DexterOpcUaTestServer
     {
         #region Public properties
 
-        public NoraNodes Nodes => dexterNodes;
+        public DexterNodes Nodes => dexterNodes;
         public OpcServer Server;
         public string RawDataString;
 
@@ -21,7 +21,7 @@ namespace DexterOpcUaTestServer
 
         #region Private fields
 
-        private NoraNodes dexterNodes;
+        private DexterNodes dexterNodes;
         private static uint serverWatchdog = 1;
         private readonly string serverName;
         private readonly string homeFolder;
@@ -103,7 +103,7 @@ namespace DexterOpcUaTestServer
 
         private OpcServer CreateServer()
         {
-            dexterNodes = new NoraNodes(homeFolder);
+            dexterNodes = new DexterNodes(homeFolder);
 
             Opc.UaFx.Licenser.LicenseKey =
                 "AALSA4IRQPJKOGVQOZP32DTKRRNAIWS3CQLTG7RJEPUAZGVQG6NPQK2OL4DOJNVLSSUDQOEUY5KDHHJWYQSTXUITOEOGOOFL2R5TEIIMCGFE5JV6CQM7TDVFY35SPAB" +

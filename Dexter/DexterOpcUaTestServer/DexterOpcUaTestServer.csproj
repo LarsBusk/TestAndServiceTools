@@ -45,7 +45,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Output\NoraOpcUaTestServer\</OutputPath>
+    <OutputPath>..\..\Output\DexterOpcUaTestServer\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -302,7 +302,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OpcNodes\NodeBase.cs" />
-    <Compile Include="OpcNodes\NoraNodes.cs" />
+    <Compile Include="OpcNodes\DexterNodes.cs" />
     <Compile Include="OpcNodes\ParametersNodes.cs" />
     <Compile Include="OpcNodes\TimeStampNodes.cs" />
     <Compile Include="OpcUaHelper.cs" />

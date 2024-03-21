@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DexterOpcUaTestServer.OpcNodes
 {
-    public class NoraNodes
+    public class DexterNodes
     {
         #region Public nodegroups
 
@@ -22,7 +22,7 @@ namespace DexterOpcUaTestServer.OpcNodes
         private readonly List<IOpcNode> nodes;
         private readonly OpcFolderNode homeFolder;
 
-        public NoraNodes(string homeFolderName)
+        public DexterNodes(string homeFolderName)
         {
             nodes = new List<IOpcNode>();
             homeFolder = new OpcFolderNode(homeFolderName);
