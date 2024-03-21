@@ -11,6 +11,7 @@ namespace DexterOpcUaTestServer.OpcNodes
         public OpcDataVariableNode<string> Mode;
         public OpcDataVariableNode<uint> ModeN;
         public OpcDataVariableNode<uint> SampleCounter;
+        public OpcDataVariableNode<uint> BatchCounter;
         public OpcDataVariableNode<string> ProductName;
         public OpcDataVariableNode<string> ProductCode;
         public OpcDataVariableNode<int> ProductCodeN;
@@ -41,6 +42,7 @@ namespace DexterOpcUaTestServer.OpcNodes
             WatchdogCounter = CreateOpcUaNode<uint>(instrumentFolder, "WatchdogCounter", nodes);
             ModeN = CreateOpcUaNode<uint>(instrumentFolder, "ModeN", nodes);
             SampleCounter = CreateOpcUaNode<uint>(instrumentFolder, "SampleCounter", nodes);
+            BatchCounter = CreateOpcUaNode<uint>(instrumentFolder, "BatchCounter", nodes);
             ProductCode = CreateOpcUaNode<string>(instrumentFolder, "ProductCode", nodes);
             ProductCodeN = CreateOpcUaNode<int>(instrumentFolder, "ProductCodeN", nodes);
             ProductName = CreateOpcUaNode<string>(instrumentFolder, "ProductName", nodes);

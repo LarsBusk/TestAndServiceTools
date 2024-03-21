@@ -13,7 +13,7 @@ namespace DexterOpcUaTestServer.Logging
         private readonly Logger _simLogger;
         private OpcUaHelper _helper;
         private DateTime lastOpcServerDateTime = DateTime.MinValue;
-        private int sampleCounter;
+        private uint batchCounter;
 
         public static bool IsSimulating;
 
@@ -21,17 +21,17 @@ namespace DexterOpcUaTestServer.Logging
         {
             _helper = helper;
             _csvWriter = new CsvWriter("Logs","MeasuredValues.csv",
-                "Time;SampleCounter;SampleNumber;Fat;Weight;Bone;Metal\n");
+                "Time;BatchCounter;SampleNumber;Fat;Weight;Bone;Metal\n");
             _jitterCsvWriter =
                 new CsvWriter("Logs", "Jitter.csv",
-                    "OpcServerTime;SampleTime;SampleCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
+                    "OpcServerTime;SampleTime;BatchCounter;SampleNumber;TimeBetweenSamples;Delay;\n");
 
             _logger = new Logger("Logs", "NodeValues.txt");
             _simLogger = new Logger("Logs", "SimulatorLog.txt");
             IsSimulating = false;
 
-            _helper.Nodes.BatchNodes.ParameterNodes.BoneValue.AfterApplyChanges += SampleCounter_AfterApplyChanges;
-            _helper.Nodes.InstrumentNodes.SampleCounter.BeforeApplyChanges += SampleCounter_BeforeApplyChanges;
+            _helper.Nodes.InstrumentNodes.BatchCounter.AfterApplyChanges += BatchCounter_AfterApplyChanges;
+            _helper.Nodes.InstrumentNodes.BatchCounter.BeforeApplyChanges += BatchCounter_BeforeApplyChanges;
             _helper.Nodes.BatchNodes.ParameterNodes.FatValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             _helper.Nodes.BatchNodes.ParameterNodes.WeightValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
             _helper.Nodes.BatchNodes.ParameterNodes.BoneValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
@@ -40,7 +40,7 @@ namespace DexterOpcUaTestServer.Logging
             _helper.Nodes.InstrumentNodes.ModeN.AfterApplyChanges += LogSim;
         }
 
-        private void SampleCounter_BeforeApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void BatchCounter_BeforeApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode)sender;
             var nodeTime = node.Timestamp ?? DateTime.Now;
@@ -53,7 +53,7 @@ namespace DexterOpcUaTestServer.Logging
             }
         }
 
-        private void LogValues(NoraNodes nodes, DateTime opcServerDateTime)
+        private void LogValues(DexterNodes nodes, DateTime opcServerDateTime)
         {
             var fatValue = nodes.BatchNodes.ParameterNodes.FatValue.Value;
             var weightValue = nodes.BatchNodes.ParameterNodes.WeightValue.Value;
@@ -63,32 +63,32 @@ namespace DexterOpcUaTestServer.Logging
             var sampleNumber = nodes.SampleNodes.SampleNumber.Value;
             //var sampleRegistrationValue = nodes.SampleNodes.SampleRegistrationValue.Value;
 
-            _csvWriter.WriteValues(opcServerDateTime, sampleCounter, sampleNumber, fatValue,
+            _csvWriter.WriteValues(opcServerDateTime, batchCounter, sampleNumber, fatValue,
                 weightValue, boneValue,
                 metalValue);
         }
 
         #region EventHandlers
 
-        private void SampleCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void BatchCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
             ResultNode_AfterApplyChanges(sender, e);
             var node = (OpcDataVariableNode)sender;
             var opcServerDateTime = node.Timestamp ?? DateTime.Now;
-            sampleCounter ++;//= (uint)node.Value;
+            batchCounter = (uint)node.Value;
             var timeDif = 0;
             var sampleNumber = _helper.Nodes.SampleNodes.SampleNumber.Value;
-            var sampleDateTime = _helper.Nodes.SampleNodes.TimeStampNodes.SampleDateTime.Value;
+            var batchDateTime = _helper.Nodes.BatchNodes.Timestamp.Value;
 
             if (lastOpcServerDateTime > DateTime.MinValue)
                 timeDif = (int)opcServerDateTime.Subtract(lastOpcServerDateTime).TotalMilliseconds;
 
-            var delay = (int)opcServerDateTime.Subtract(sampleDateTime).TotalMilliseconds;
+            var delay = (int)opcServerDateTime.Subtract(batchDateTime).TotalMilliseconds;
 
             if (SettingsForm.LogOptions.LogJitter)
             {
-                _jitterCsvWriter.WriteValues(opcServerDateTime, sampleDateTime.ToString("yyyy-MM-dd HH:mm:ss,fff"),
-                    sampleCounter, sampleNumber, timeDif, delay);
+                _jitterCsvWriter.WriteValues(opcServerDateTime, batchDateTime.ToString("yyyy-MM-dd HH:mm:ss,fff"),
+                    batchCounter, sampleNumber, timeDif, delay);
             }
 
             if (SettingsForm.LogOptions.LogMeasuredValues)

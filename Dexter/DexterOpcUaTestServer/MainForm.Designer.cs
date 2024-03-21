@@ -40,6 +40,8 @@ namespace DexterOpcUaTestServer
             this.nodesButton = new System.Windows.Forms.Button();
             this.sampleCounterLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.recipeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cipButton = new System.Windows.Forms.Button();
             this.startStopButton = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@ namespace DexterOpcUaTestServer
             this.stateLabel = new System.Windows.Forms.Label();
             this.alarmsButton = new System.Windows.Forms.Button();
             this.eventsButton = new System.Windows.Forms.Button();
-            this.recipeTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -153,9 +153,9 @@ namespace DexterOpcUaTestServer
             this.sampleCounterLabel.Location = new System.Drawing.Point(44, 56);
             this.sampleCounterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.sampleCounterLabel.Name = "sampleCounterLabel";
-            this.sampleCounterLabel.Size = new System.Drawing.Size(82, 13);
+            this.sampleCounterLabel.Size = new System.Drawing.Size(75, 13);
             this.sampleCounterLabel.TabIndex = 3;
-            this.sampleCounterLabel.Text = "SampleCounter:";
+            this.sampleCounterLabel.Text = "BatchCounter:";
             // 
             // groupBox2
             // 
@@ -173,6 +173,23 @@ namespace DexterOpcUaTestServer
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dexter Control";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Recipe";
+            // 
+            // recipeTextBox
+            // 
+            this.recipeTextBox.Location = new System.Drawing.Point(5, 81);
+            this.recipeTextBox.Name = "recipeTextBox";
+            this.recipeTextBox.Size = new System.Drawing.Size(73, 20);
+            this.recipeTextBox.TabIndex = 6;
+            this.recipeTextBox.TextChanged += new System.EventHandler(this.recipeTextBox_TextChanged);
             // 
             // label2
             // 
@@ -306,23 +323,6 @@ namespace DexterOpcUaTestServer
             this.eventsButton.Text = "Events";
             this.eventsButton.UseVisualStyleBackColor = true;
             this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
-            // 
-            // recipeTextBox
-            // 
-            this.recipeTextBox.Location = new System.Drawing.Point(5, 81);
-            this.recipeTextBox.Name = "recipeTextBox";
-            this.recipeTextBox.Size = new System.Drawing.Size(73, 20);
-            this.recipeTextBox.TabIndex = 6;
-            this.recipeTextBox.TextChanged += new System.EventHandler(this.recipeTextBox_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Recipe";
             // 
             // MainForm
             // 
