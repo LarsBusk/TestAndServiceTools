@@ -11,13 +11,15 @@
           <rd:DbType>Int32</rd:DbType>
         </DataSetParameter>
       </DataSetParameters>
-      <CommandText>SELECT          TimeBetweenSamples
-                    , TestSetupId
+      <CommandText>SELECT          TimeBetweenSamples / tse.NumberOfCycles as TimeBetweenSamples 
+                    , tse.TestSetupId
                     , SampleNumber
                     , SampleDateTime
                     , DelaysId
-FROM            Delays
-WHERE         TestSetupId = @SetupId 
+FROM            Delays d
+INNER JOIN TestSetup tse
+ON tse.TestSetupId = d.TestSetupID
+WHERE         tse.TestSetupId = @SetupId 
 and                      TimeBetweenSamples &lt; 35000</CommandText>
     </Query>
     <Fields>

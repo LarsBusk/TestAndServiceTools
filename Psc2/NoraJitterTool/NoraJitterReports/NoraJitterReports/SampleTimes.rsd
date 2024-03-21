@@ -13,19 +13,22 @@
       </DataSetParameters>
       <CommandText>With	SampleTimes as
 (
-	Select		TestSetupId
+	Select		tse.TestSetupId
 			,	DelaysId
 			,	SampleNumber
 			,	SampleDateTime
-			,	LAG(SampleDateTime, 1) Over (Partition By TestSetupId Order by DelaysId) [LastSampleDateTime]
+            ,   tse.NumberOfCycles
+			,	LAG(SampleDateTime, 1) Over (Partition By d.TestSetupId Order by DelaysId) [LastSampleDateTime]
 	From		Delays d
-	Where		TestSetupId = @SetupId
+                   Inner Join                    TestSetup tse
+                   On                                 tse.TestSetupId = d.TestSetupId 
+	Where		tse.TestSetupId = @SetupId
 )
 Select			TestSetupId
 			,	DelaysId
 			,	SampleNumber
 			,	SampleDateTime
-			,	DATEDIFF(ms, LastSampleDateTime, SampleDateTime) [TimeSinceLastSample]
+			,	DATEDIFF(ms, LastSampleDateTime, SampleDateTime) / NumberOfCycles [TimeSinceLastSample]
 From		SampleTimes</CommandText>
     </Query>
     <Fields>

@@ -8,7 +8,7 @@ namespace NoraOpcUaTestServer.States
 {
     class StateNoraCip : IState
     {
-        public string StateName => "Clean in place";
+        public string StateName => "CleanInPlace";
 
         public bool ForceMeasure { get; set; }
 

@@ -323,6 +323,7 @@
     </Compile>
     <Compile Include="States\IState.cs" />
     <Compile Include="States\StateNoraCip.cs" />
+    <Compile Include="States\StateNoraProcessCleaning.cs" />
     <Compile Include="States\StateNoraCleaning.cs" />
     <Compile Include="States\StateNoraMeasuring.cs" />
     <Compile Include="States\StateNoraPreparing.cs" />

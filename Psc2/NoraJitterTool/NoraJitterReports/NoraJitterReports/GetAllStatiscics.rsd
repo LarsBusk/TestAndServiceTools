@@ -3,23 +3,7 @@
   <DataSet Name="DataSet1">
     <Query>
       <DataSourceReference>NoraJitter</DataSourceReference>
-      <CommandText>With stat as
-(
-	Select		TestSetupId
-			,	Count([Delay]) as [Count] 
-			,	Max([Delay]) as [MaxDelay]
-			,	Min([Delay]) as [MinDelay]
-			,	1.0*SUM(1.0*[Delay])/Count([Delay]) [MeanDelay]
-			,	STDEV([Delay]) [StdDevDelay]
-			,	Max(TimeBetweenSamples) as [MaxTBS]
-			,	Min(TimeBetweenSamples) as [MinTBS]
-			,	1.0*SUM(1.0*TimeBetweenSamples)/Count(TimeBetweenSamples) [MeanTBS]
-			,	STDEV(TimeBetweenSamples) [StdDevTBS]
-	From Delays
-	Where TimeBetweenSamples &lt; 35000
-	Group By TestSetupId
-)
-Select Top 25		tsy.SystemName
+      <CommandText>Select Top 25		tsy.SystemName
 		,	tsy.SerialNumber
 		,	tsy.[Type]
         ,   tsy.ChassisId
@@ -29,8 +13,18 @@ Select Top 25		tsy.SystemName
 		,	tse.Comment
 		,   tse.NoDelayedResults
         ,   tse.PhysicalPC
-		,	stat.*
-From stat
+		,	tse.NumberOfCycles
+		,	stat.TestSetupId
+		,	stat.[DelaysCount]
+		,	stat.MaxDelay
+		,	stat.MaxTBS
+		,	stat.MeanDelay
+		,	stat.MeanTBS
+		,	stat.MinDelay
+		,	stat.MinTBS
+		,	stat.StdDevDelay
+		,	stat.StdDevTBS
+From DelayStatistics stat
 Inner Join TestSetup tse on
 	tse.TestSetupId = stat.TestSetupId
 Inner Join TestSystem tsy on
@@ -70,20 +64,24 @@ Order By stat.TestSetupId Desc</CommandText>
         <DataField>Comment</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
-      <Field Name="TestSetupId">
-        <DataField>TestSetupId</DataField>
-        <rd:TypeName>System.Int32</rd:TypeName>
-      </Field>
       <Field Name="PhysicalPC">
         <DataField>PhysicalPC</DataField>
         <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="NumberOfCycles">
+        <DataField>NumberOfCycles</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
       </Field>
       <Field Name="NoDelayedResults">
         <DataField>NoDelayedResults</DataField>
         <rd:TypeName>System.Boolean</rd:TypeName>
       </Field>
-      <Field Name="Count">
-        <DataField>Count</DataField>
+      <Field Name="TestSetupId">
+        <DataField>TestSetupId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DelaysCount">
+        <DataField>DelaysCount</DataField>
         <rd:TypeName>System.Int32</rd:TypeName>
       </Field>
       <Field Name="MaxDelay">
@@ -96,7 +94,7 @@ Order By stat.TestSetupId Desc</CommandText>
       </Field>
       <Field Name="MeanDelay">
         <DataField>MeanDelay</DataField>
-        <rd:TypeName>System.Decimal</rd:TypeName>
+        <rd:TypeName>System.Double</rd:TypeName>
       </Field>
       <Field Name="StdDevDelay">
         <DataField>StdDevDelay</DataField>
@@ -112,7 +110,7 @@ Order By stat.TestSetupId Desc</CommandText>
       </Field>
       <Field Name="MeanTBS">
         <DataField>MeanTBS</DataField>
-        <rd:TypeName>System.Decimal</rd:TypeName>
+        <rd:TypeName>System.Double</rd:TypeName>
       </Field>
       <Field Name="StdDevTBS">
         <DataField>StdDevTBS</DataField>
