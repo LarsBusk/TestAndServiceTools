@@ -294,6 +294,7 @@
     <Compile Include="OpcNodes\BatchNodes.cs" />
     <Compile Include="OpcNodes\EventNodes.cs" />
     <Compile Include="OpcNodes\BatchParametersNodes.cs" />
+    <Compile Include="OpcNodes\RejectorNodes.cs" />
     <Compile Include="OpcNodes\SampleEventNodes.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
