@@ -13,6 +13,7 @@ namespace DexterOpcUaTestServer.OpcNodes
         public EventNodes EventNodes;
         public AlarmNodes AlarmNodes;
         public BatchNodes BatchNodes;
+        public RejectorNodes RejectorNodes;
 
         #endregion
 
@@ -43,6 +44,8 @@ namespace DexterOpcUaTestServer.OpcNodes
             nodes.AddRange(AlarmNodes.Nodes);
             BatchNodes = new BatchNodes(homeFolder);
             nodes.AddRange(BatchNodes.Nodes);
+            RejectorNodes = new RejectorNodes(homeFolder);
+            nodes.AddRange(RejectorNodes.Nodes);
         }
     }
 }

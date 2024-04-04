@@ -10,8 +10,8 @@ namespace DexterOpcUaTestServer.OpcNodes
     public class BatchNodes : NodeBase
     {
         public List<IOpcNode> Nodes => nodes;
-        public OpcDataVariableNode<string> BatchNumber;
-        public OpcDataVariableNode<int> BatchNumberN;
+        public OpcDataVariableNode<int> BatchNumber;
+        //public OpcDataVariableNode<int> BatchNumberN;
         public OpcDataVariableNode<DateTime> Timestamp;
         public BatchParametersNodes ParameterNodes;
 
@@ -28,8 +28,8 @@ namespace DexterOpcUaTestServer.OpcNodes
 
         private void GetNodes()
         {
-            BatchNumber = CreateOpcUaNode<string>(batchFolder, "BatchNumber", nodes);
-            BatchNumberN = CreateOpcUaNode<int>(batchFolder, "BatchNumberN", nodes);
+            BatchNumber = CreateOpcUaNode<int>(batchFolder, "BatchNumber", nodes);
+            //BatchNumberN = CreateOpcUaNode<int>(batchFolder, "BatchNumberN", nodes);
             Timestamp = CreateOpcUaNode<DateTime>(batchFolder, "Timestamp.DateTime", nodes);
             ParameterNodes = new BatchParametersNodes(batchFolder);
             nodes.AddRange(ParameterNodes.Nodes);
