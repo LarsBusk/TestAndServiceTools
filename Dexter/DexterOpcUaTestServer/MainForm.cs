@@ -111,10 +111,6 @@ namespace DexterOpcUaTestServer
                 case "Reference":
                     CurrentState = new StateDexterReference(helper);
                     break;
-                case "CleanInPlace":
-                    CurrentState = new StateDexterReference(helper);
-                    SetStartStopButtonText("Stop");
-                    break;
             }
         }
 
