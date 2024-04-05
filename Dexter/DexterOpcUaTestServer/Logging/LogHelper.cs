@@ -2,6 +2,10 @@
 using DexterOpcUaTestServer.OpcNodes;
 using Opc.UaFx;
 using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace DexterOpcUaTestServer.Logging
 {
@@ -11,9 +15,13 @@ namespace DexterOpcUaTestServer.Logging
         private readonly CsvWriter _jitterCsvWriter;
         private readonly Logger _logger;
         private readonly Logger _simLogger;
+        private readonly Logger _rejectLogger;
         private OpcUaHelper _helper;
         private DateTime lastOpcServerDateTime = DateTime.MinValue;
         private uint batchCounter;
+        private Stopwatch _rejectTimer;
+        private float lastBone = 0;
+        private  float lastMetal = 0;
 
         public static bool IsSimulating;
 
@@ -28,19 +36,61 @@ namespace DexterOpcUaTestServer.Logging
 
             _logger = new Logger("Logs", "NodeValues.txt");
             _simLogger = new Logger("Logs", "SimulatorLog.txt");
+            _rejectLogger = new Logger("Logs", "RejectTimes.txt");
+            _rejectTimer = new Stopwatch();
             IsSimulating = false;
 
+            if (!Directory.Exists("Images"))
+            {
+                Directory.CreateDirectory("Images");
+            }
+
             _helper.Nodes.InstrumentNodes.BatchCounter.AfterApplyChanges += BatchCounter_AfterApplyChanges;
-            _helper.Nodes.InstrumentNodes.BatchCounter.BeforeApplyChanges += BatchCounter_BeforeApplyChanges;
-            _helper.Nodes.BatchNodes.ParameterNodes.FatValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            _helper.Nodes.BatchNodes.ParameterNodes.WeightValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            _helper.Nodes.BatchNodes.ParameterNodes.BoneValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            _helper.Nodes.BatchNodes.ParameterNodes.MetalValue.AfterApplyChanges += ResultNode_AfterApplyChanges;
-            _helper.Nodes.SampleNodes.SampleNumber.AfterApplyChanges += ResultNode_AfterApplyChanges;
+            _helper.Nodes.BatchNodes.ParameterNodes.FatValue.AfterApplyChanges += LogNodeValues;
+            _helper.Nodes.BatchNodes.ParameterNodes.WeightValue.AfterApplyChanges += LogNodeValues;
+            _helper.Nodes.BatchNodes.ParameterNodes.BoneValue.AfterApplyChanges += LogNodeValues;
+            _helper.Nodes.BatchNodes.ParameterNodes.MetalValue.AfterApplyChanges += LogNodeValues;
+            _helper.Nodes.SampleNodes.SampleNumber.AfterApplyChanges += LogNodeValues;
+            _helper.Nodes.RejectorNodes.Active.AfterApplyChanges += Active_AfterApplyChanges; ;
             _helper.Nodes.InstrumentNodes.ModeN.AfterApplyChanges += LogSim;
+            _helper.Nodes.RejectorNodes.RejectedImageJPG.AfterApplyChanges += RejectedImageJPG_AfterApplyChanges;
+
+            lastBone = _helper.Nodes.BatchNodes.ParameterNodes.BoneValue.Value;
+            lastMetal = _helper.Nodes.BatchNodes.ParameterNodes.MetalValue.Value;
         }
 
-        private void BatchCounter_BeforeApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        public void NewMeasurement()
+        {
+            lastBone = 0;
+            lastMetal = 0;
+        }
+
+
+        private void Active_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        {
+            _rejectTimer.Stop();
+            LogNodeValues(sender, e);
+            _rejectLogger.LogInfo("Stopwatch stopped.");
+            _rejectLogger.LogInfo($"Time from sample to reject: {_rejectTimer.ElapsedMilliseconds}");
+            _rejectTimer.Reset();
+        }
+
+        private void RejectedImageJPG_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        {
+            var node = (OpcDataVariableNode)sender;
+            var nodeTime = node.Timestamp ?? DateTime.Now;
+            var value = (byte[])node.Value;
+            if (value is null)
+            {
+                return;
+            }
+            using (Image image = Image.FromStream(new MemoryStream(value)))
+            {
+                image.Save($"Images\\{nodeTime.ToString("yyMMddhhmmssfff")}.jpg", ImageFormat.Jpeg); 
+            }
+        }
+
+        private void LogNodeValues(object sender, OpcNodeChangesEventArgs e)
         {
             var node = (OpcDataVariableNode)sender;
             var nodeTime = node.Timestamp ?? DateTime.Now;
@@ -49,7 +99,7 @@ namespace DexterOpcUaTestServer.Logging
 
             if (SettingsForm.LogOptions.LogStates)
             {
-                _logger.LogInfo($"{name} before change value: {value} at {nodeTime.ToString("O")}");
+                _logger.LogInfo($"{name} changed value: {value} at {nodeTime.ToString("O")}");
             }
         }
 
@@ -59,9 +109,8 @@ namespace DexterOpcUaTestServer.Logging
             var weightValue = nodes.BatchNodes.ParameterNodes.WeightValue.Value;
             var boneValue = nodes.BatchNodes.ParameterNodes.BoneValue.Value;
             var metalValue = nodes.BatchNodes.ParameterNodes.MetalValue.Value;
-            //var sampleCounter = nodes.InstrumentNodes.SampleCounter.Value;
             var sampleNumber = nodes.SampleNodes.SampleNumber.Value;
-            //var sampleRegistrationValue = nodes.SampleNodes.SampleRegistrationValue.Value;
+            CheckFo(boneValue, metalValue);
 
             _csvWriter.WriteValues(opcServerDateTime, batchCounter, sampleNumber, fatValue,
                 weightValue, boneValue,
@@ -72,7 +121,7 @@ namespace DexterOpcUaTestServer.Logging
 
         private void BatchCounter_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
         {
-            ResultNode_AfterApplyChanges(sender, e);
+            LogNodeValues(sender, e);
             var node = (OpcDataVariableNode)sender;
             var opcServerDateTime = node.Timestamp ?? DateTime.Now;
             batchCounter = (uint)node.Value;
@@ -99,16 +148,14 @@ namespace DexterOpcUaTestServer.Logging
             lastOpcServerDateTime = opcServerDateTime;
         }
 
-        private void ResultNode_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
+        private void CheckFo(float bone, float metal)
         {
-            var node = (OpcDataVariableNode)sender;
-            var nodeTime = node.Timestamp ?? DateTime.Now;
-            string name = node.DisplayName;
-            var value = node.Value;
-
-            if (SettingsForm.LogOptions.LogStates)
+            if (bone > lastBone | metal > lastMetal)
             {
-                _logger.LogInfo($"{name} changed value: {value} at {nodeTime.ToString("O")}");
+                _rejectTimer.Start();
+                lastBone = bone;
+                lastMetal = metal;
+                _rejectLogger.LogInfo($"Stopwatch started metal: {metal}, bone: {bone}.");
             }
         }
 

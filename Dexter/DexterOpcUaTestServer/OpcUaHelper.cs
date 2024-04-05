@@ -64,18 +64,18 @@ namespace DexterOpcUaTestServer
 
         public void StartMeasuring(string product)
         {
-            SetNodeValue(dexterNodes.ControllerNodes.ProductCode, product);
-            SetNodeValue(dexterNodes.ControllerNodes.StartMeasuring, true);
+            SetNodeValue<string>(dexterNodes.ControllerNodes.ProductCode, product);
+            SetNodeValue<bool>(dexterNodes.ControllerNodes.StartMeasuring, true);
         }
 
         public void StartMeasuring()
         {
-            SetNodeValue(dexterNodes.ControllerNodes.StartMeasuring, true);
+            SetNodeValue<bool>(dexterNodes.ControllerNodes.StartMeasuring, true);
         }
 
         public void StopMeasuring()
         {
-            SetNodeValue(dexterNodes.ControllerNodes.StartMeasuring, false);
+            SetNodeValue<bool>(dexterNodes.ControllerNodes.StartMeasuring, false);
         }
 
         public void ChangeProduct(string newProduct)

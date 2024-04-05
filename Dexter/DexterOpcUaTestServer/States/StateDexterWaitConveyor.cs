@@ -35,9 +35,9 @@ namespace DexterOpcUaTestServer.States
         {
         }
 
-        public void StartStopMeasuring(string product)
+        public void StartStopMeasuring()
         {
-            helper.StartMeasuring(product);
+            helper.StartMeasuring();
         }
         
         public void StopServer()

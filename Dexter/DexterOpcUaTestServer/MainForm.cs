@@ -97,6 +97,7 @@ namespace DexterOpcUaTestServer
                 case "Stopped":
                     CurrentState = new StateDexterStopped(helper);
                     SetStartStopButtonText("Start");
+                    logHelper.NewMeasurement();
                     break;
                 case "SelfTest":
                     CurrentState = new StateDexterSelfTest(helper);
@@ -158,11 +159,7 @@ namespace DexterOpcUaTestServer
 
         private void startStopButton_Click(object sender, EventArgs e)
         {
-            CurrentState.StartStopMeasuring(productTextBox.Text);
-        }
-
-        private void cipButton_Click(object sender, EventArgs e)
-        {
+            CurrentState.StartStopMeasuring();
         }
 
         private void productTextBox_TextChanged(object sender, EventArgs e)
