@@ -43,7 +43,6 @@ namespace DexterOpcUaTestServer
             this.label3 = new System.Windows.Forms.Label();
             this.recipeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cipButton = new System.Windows.Forms.Button();
             this.startStopButton = new System.Windows.Forms.Button();
             this.productTextBox = new System.Windows.Forms.TextBox();
             this.productLabel = new System.Windows.Forms.Label();
@@ -162,7 +161,6 @@ namespace DexterOpcUaTestServer
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.recipeTextBox);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.cipButton);
             this.groupBox2.Controls.Add(this.startStopButton);
             this.groupBox2.Controls.Add(this.productTextBox);
             this.groupBox2.Location = new System.Drawing.Point(158, 95);
@@ -200,17 +198,6 @@ namespace DexterOpcUaTestServer
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Product";
-            // 
-            // cipButton
-            // 
-            this.cipButton.Location = new System.Drawing.Point(4, 145);
-            this.cipButton.Margin = new System.Windows.Forms.Padding(2);
-            this.cipButton.Name = "cipButton";
-            this.cipButton.Size = new System.Drawing.Size(90, 27);
-            this.cipButton.TabIndex = 2;
-            this.cipButton.Text = "CIP";
-            this.cipButton.UseVisualStyleBackColor = true;
-            this.cipButton.Click += new System.EventHandler(this.cipButton_Click);
             // 
             // startStopButton
             // 
@@ -371,7 +358,6 @@ namespace DexterOpcUaTestServer
         private System.Windows.Forms.Button startStopButton;
         private System.Windows.Forms.TextBox productTextBox;
         private System.Windows.Forms.Label productLabel;
-        private System.Windows.Forms.Button cipButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;

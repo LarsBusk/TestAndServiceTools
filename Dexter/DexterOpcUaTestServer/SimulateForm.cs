@@ -30,11 +30,11 @@ namespace DexterOpcUaTestServer
 
             while (simulate)
             {
-                mainForm.CurrentState.StartStopMeasuring("");
+                mainForm.CurrentState.StartStopMeasuring();
                 Thread.Sleep(measureTime);
                 //mainForm.CurrentState.SetCip();
                 Thread.Sleep(cipTime);
-                mainForm.CurrentState.StartStopMeasuring("");
+                mainForm.CurrentState.StartStopMeasuring();
                 Thread.Sleep(stopTime);
             }
         }

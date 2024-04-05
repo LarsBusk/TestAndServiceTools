@@ -11,7 +11,7 @@ namespace DexterOpcUaTestServer.States
     string StateName { get; }
     void StartServer();
     void StopServer();
-    void StartStopMeasuring(string product);
+    void StartStopMeasuring();
     void ChangeProduct(string product);
     void ChangeRecipe(string recipe);
     void OpenSettings();

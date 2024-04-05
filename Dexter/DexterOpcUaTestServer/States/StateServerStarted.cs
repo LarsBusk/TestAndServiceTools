@@ -26,7 +26,7 @@ namespace DexterOpcUaTestServer.States
         {
         }
 
-        public void StartStopMeasuring(string product)
+        public void StartStopMeasuring()
         {
         }
 

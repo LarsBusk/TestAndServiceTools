@@ -23,7 +23,7 @@
         {
         }
 
-        public void StartStopMeasuring(string product)
+        public void StartStopMeasuring()
         {
             helper.StopMeasuring();
         }
