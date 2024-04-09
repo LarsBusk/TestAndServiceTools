@@ -53,6 +53,7 @@ namespace NoraOpcUaTestServer
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stateLabel = new System.Windows.Forms.Label();
             this.alarmsButton = new System.Windows.Forms.Button();
             this.sampleRegButton = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@ namespace NoraOpcUaTestServer
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.forceMeasureCheckBox = new System.Windows.Forms.CheckBox();
             this.eventsButton = new System.Windows.Forms.Button();
-            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateWdCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -308,9 +309,16 @@ namespace NoraOpcUaTestServer
             // settingsToolStripMenuItem1
             // 
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
-            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
             this.settingsToolStripMenuItem1.Text = "Settings";
             this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
+            // 
+            // simulateToolStripMenuItem
+            // 
+            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.simulateToolStripMenuItem.Text = "Simulate";
+            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
             // 
             // stateLabel
             // 
@@ -396,18 +404,22 @@ namespace NoraOpcUaTestServer
             this.eventsButton.UseVisualStyleBackColor = true;
             this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
             // 
-            // simulateToolStripMenuItem
+            // updateWdCheckBox
             // 
-            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.simulateToolStripMenuItem.Text = "Simulate";
-            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
+            this.updateWdCheckBox.AutoSize = true;
+            this.updateWdCheckBox.Location = new System.Drawing.Point(349, 360);
+            this.updateWdCheckBox.Name = "updateWdCheckBox";
+            this.updateWdCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.updateWdCheckBox.TabIndex = 14;
+            this.updateWdCheckBox.Text = "Update watchdog";
+            this.updateWdCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 396);
+            this.Controls.Add(this.updateWdCheckBox);
             this.Controls.Add(this.eventsButton);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -476,6 +488,7 @@ namespace NoraOpcUaTestServer
         private System.Windows.Forms.CheckBox forceMeasureCheckBox;
         private System.Windows.Forms.Button eventsButton;
         private System.Windows.Forms.ToolStripMenuItem simulateToolStripMenuItem;
+        private System.Windows.Forms.CheckBox updateWdCheckBox;
     }
 }
 
