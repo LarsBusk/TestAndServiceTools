@@ -83,7 +83,10 @@ namespace NoraOpcUaTestServer
             var node = (OpcDataVariableNode<uint>)sender;
             var watchdog = node.Value.ToString();
             UpdateLabelText(watchdogLabel, watchdog);
-            helper.UpdateServerWatchdog();
+            if (updateWdCheckBox.Checked)
+            {
+                helper.UpdateServerWatchdog();
+            }
         }
 
         private void ModeNodeN_AfterApplyChanges(object sender, OpcNodeChangesEventArgs e)
