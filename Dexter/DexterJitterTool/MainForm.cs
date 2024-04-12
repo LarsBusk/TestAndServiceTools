@@ -28,7 +28,17 @@ namespace DexterJitterTool
                     CommentTextBox.Text,
                     csvFileName,
                     realPCCheckBox.Checked,
-                    timeCorrection);
+                    timeCorrection,
+                    int.Parse(conveyorSpeedCombo.Text),
+                    rejectionModeCombo.Text,
+                    elementOnBeltCombo.Text,
+                    int.Parse(delayTb.Text),
+                    int.Parse(durationTb.Text),
+                    int.Parse(distanceTb.Text),
+                    MosaicSyncCheck.Checked,
+                    autoExportCheck.Checked,
+                    ticketPrintCheck.Checked,
+                    reposCleanCheck.Checked);
                 helper.AddDelays(setupId, delayInfos);
                 helper.AddStatistics(setupId);
             }
@@ -56,6 +66,9 @@ namespace DexterJitterTool
 
             NoraVersionCombo.Items.AddRange(helper.NoraVersions());
             PlatformVersionCombo.Items.AddRange(helper.PlatformVersions());
+            elementOnBeltCombo.SelectedIndex = 0;
+            conveyorSpeedCombo.SelectedIndex = 2;
+            rejectionModeCombo.SelectedIndex = 0;
         }
 
         private void AddTestSystemButton_Click(object sender, EventArgs e)
@@ -80,6 +93,40 @@ namespace DexterJitterTool
         {
             var form = new MaintenanceForm(helper);
             form.ShowDialog();
+        }
+
+        private void VerifyInputIsInt(object sender, EventArgs e)
+        {
+            var textBox = (TextBox)sender;
+            if (!int.TryParse(textBox.Text, out var outInt))
+            {
+                MessageBox.Show("The input must be an integer", "Wrong input");
+            }
+
+            textBox.Text = outInt.ToString();
+        }
+
+        private void rejectionModeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var box = (ComboBox)sender;
+            switch (box.SelectedIndex)
+            {
+                case 0:
+                    delayTb.Enabled = false;
+                    durationTb.Enabled = false;
+                    distanceTb.Enabled = false;
+                    break;
+                case 1:
+                    delayTb.Enabled = false;
+                    durationTb.Enabled = false;
+                    distanceTb.Enabled = true;
+                    break;
+                case 2:
+                    delayTb.Enabled = true;
+                    durationTb.Enabled = true;
+                    distanceTb.Enabled = false;
+                    break;
+            }
         }
     }
 }

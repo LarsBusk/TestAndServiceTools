@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Forms;
 
 namespace DexterJitterTool.Model
 {
@@ -37,6 +38,26 @@ namespace DexterJitterTool.Model
         public string PlatformVersion { get; set; }
 
         public int TestSystemId { get; set; }
+
+        public int ConveyorSpeed { get; set; }
+
+        public string RejectorConfig { get; set; }
+
+        public string ElementOnBelt { get; set; }
+
+        public int? RejectionDelay { get; set; }
+
+        public int? RejectionDuration { get; set; }
+
+        public int? DistanceFromEdge { get; set; }
+
+        public bool MosaicSync { get; set; }
+
+        public bool AutoExport { get; set; }
+
+        public bool TicketPrint { get; set; }
+
+        public bool ReposClean { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual List<Delays> Delays { get; set; }

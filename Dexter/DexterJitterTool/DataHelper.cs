@@ -83,7 +83,9 @@ namespace DexterJitterTool
         }
 
         public int AddNewTestSetup(long chassisId, string dexterVersion, DateTime testTime, string platformVersion,
-            string comment, string csvFileName, bool physicalPc, int timeCorrection)
+            string comment, string csvFileName, bool physicalPc, int timeCorrection, int conveyorSpeed, string rejectorConfig,
+            string elementOnBelt, int rejectionDelay, int rejectionDuration, int distanceFromEdge, bool mosaicSync,
+            bool autoExport, bool ticketPrint, bool reposClean)
         {
             var testSystem = context.TestSystem.First(t => t.ChassisId.Equals(chassisId));
             testSystem.TestSetup.Add(new TestSetup
@@ -95,6 +97,16 @@ namespace DexterJitterTool
                 CsvFileName = csvFileName,
                 TimeCorrection = timeCorrection,
                 PhysicalPC = physicalPc,
+                ConveyorSpeed = conveyorSpeed,
+                RejectorConfig = rejectorConfig,
+                ElementOnBelt = elementOnBelt,
+                RejectionDelay = rejectionDelay,
+                RejectionDuration = rejectionDuration,
+                DistanceFromEdge = distanceFromEdge,
+                MosaicSync = mosaicSync,
+                AutoExport = autoExport,
+                TicketPrint = ticketPrint,
+                ReposClean = reposClean
             });
             context.SaveChanges();
 
