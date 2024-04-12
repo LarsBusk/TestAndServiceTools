@@ -10,9 +10,7 @@ namespace NiceLittleLogger
 
         private readonly string _columnNames;
 
-
         private const string TimeFormat = "yyyy-MM-dd HH:mm:ss,fff";
-
 
 
         public CsvWriter(string fileName, string columnNames)
@@ -26,7 +24,7 @@ namespace NiceLittleLogger
         {
             this._fileName = Path.Combine(folder, fileName);
             this._columnNames = columnNames;
-            CreateCsvIfNeeded();
+            CreateCsvIfNeeded(folder);
         }
 
         public void WriteValues(DateTime time, params object[] values)
@@ -46,8 +44,11 @@ namespace NiceLittleLogger
             File.AppendAllText(_fileName, builder.ToString());
         }
 
-        private void CreateCsvIfNeeded()
+        private void CreateCsvIfNeeded(string folder = "")
         {
+            if (!string.IsNullOrEmpty(folder) && !Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
             if (!File.Exists(this._fileName))
             {
                 File.AppendAllText(this._fileName, _columnNames);
