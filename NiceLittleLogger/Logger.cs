@@ -16,7 +16,7 @@ namespace NiceLittleLogger
         public Logger(string fileName)
         {
             this._fileName = fileName;
-            Initiate();
+            Initiate(String.Empty);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace NiceLittleLogger
         public Logger(string folder, string fileName)
         {
             this._fileName = Path.Combine(folder, fileName);
-            Initiate();
+            Initiate(folder);
         }
 
         public void LogInfo(string message)
@@ -53,12 +53,13 @@ namespace NiceLittleLogger
             return size;
         }
 
-        private void Initiate()
+        private void Initiate(string folder)
         {
+            if (!string.IsNullOrEmpty(folder) && !Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+            
             if (!File.Exists(_fileName))
-            {
-                File.AppendAllText(_fileName, "Start Logging");
-            }
+                LogInfo("Start logging.");
         }
     }
 
