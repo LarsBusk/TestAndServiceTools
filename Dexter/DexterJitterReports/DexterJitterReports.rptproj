@@ -54,6 +54,7 @@
     <DataSet Include="GetAllStatiscics.rsd" />
     <DataSet Include="Histogram.rsd" />
     <DataSet Include="Intervals.rsd" />
+    <DataSet Include="JitterSummary.rsd" />
     <DataSet Include="SampleTimes.rsd" />
     <DataSet Include="TestRuns.rsd" />
     <DataSet Include="Top10Delays.rsd" />
@@ -65,9 +66,9 @@
   <ItemGroup>
     <Report Include="AllDelaysGraph.rdl" />
     <Report Include="AllStatistics.rdl" />
-    <Report Include="Copy of Daily Jitter Report.rdl" />
     <Report Include="Daily Jitter Report.rdl" />
     <Report Include="Histogram.rdl" />
+    <Report Include="JitterSummary.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>

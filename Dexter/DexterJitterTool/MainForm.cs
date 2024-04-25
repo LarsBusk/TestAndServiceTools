@@ -113,18 +113,24 @@ namespace DexterJitterTool
             {
                 case 0:
                     delayTb.Enabled = false;
+                    delayTb.Text = "0";
                     durationTb.Enabled = false;
+                    durationTb.Text = "0";
                     distanceTb.Enabled = false;
+                    distanceTb.Text = "0";
                     break;
                 case 1:
                     delayTb.Enabled = false;
+                    delayTb.Text = "0";
                     durationTb.Enabled = false;
+                    durationTb.Text = "0";
                     distanceTb.Enabled = true;
                     break;
                 case 2:
                     delayTb.Enabled = true;
                     durationTb.Enabled = true;
                     distanceTb.Enabled = false;
+                    distanceTb.Text = "0";
                     break;
             }
         }
