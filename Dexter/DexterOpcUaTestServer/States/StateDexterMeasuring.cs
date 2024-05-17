@@ -8,8 +8,7 @@
         public StateDexterMeasuring(OpcUaHelper opcUaHelper)
         {
             helper = opcUaHelper;
-            var currentProduct = helper.Nodes.InstrumentNodes.ProductName.Value;
-            //helper.StartMeasuring(currentProduct);
+            helper.StartMeasuring();
         }
 
         public void ChangeProduct(string product)

@@ -17,6 +17,7 @@ namespace DexterOpcUaTestServer.States
         public StateDexterStopped(OpcUaHelper opcUaHelper)
         {
             helper = opcUaHelper;
+            helper.StopMeasuring();
         }
 
         public void ChangeProduct(string product)
