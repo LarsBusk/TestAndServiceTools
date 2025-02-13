@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "TestServer": "data source=.\\SQL2019;initial catalog=ThirdLineQs;integrated security=True;Trust Server Certificate=True",
+    "ThirdLineQs": "data source=Bl-JitterData;initial catalog=ThirdLineQs;User Id=ThirdUser;Password=Foss3rdLineRuleTheWaves!;Trust Server Certificate=True"
+  }
+}

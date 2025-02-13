@@ -1,0 +1,27 @@
+﻿<Window x:Class="_3rdLineQuestions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3rdLineQuestions"
+        mc:Ignorable="d"
+        Title="3rd Line Questions" Height="300" Width="400" ResizeMode="CanMinimize">
+    <Grid>
+        <GroupBox Header="Short" Margin="12,10,205,31">
+            <StackPanel>
+                <Button Content="Software" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddShortQuestion"/>
+                <Button Content="Hardware" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddShortQuestion"/>
+                <Button Content="General" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddShortQuestion"/>
+                <Button Content="Support" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddShortQuestion"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Long" Margin="205,10,12,31">
+            <StackPanel>
+                <Button Content="Software" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddLongQuestion"/>
+                <Button Content="Hardware" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddLongQuestion"/>
+                <Button Content="General" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddLongQuestion"/>
+                <Button Content="Support" HorizontalAlignment="Left" Height="38" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Click="AddLongQuestion"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
