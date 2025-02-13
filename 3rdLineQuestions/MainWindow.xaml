@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="3rd Line Questions" Height="300" Width="400" ResizeMode="CanMinimize">
     <Grid>
-        <GroupBox Header="Short" Margin="12,10,205,31">
+        <GroupBox Header="Short" Margin="12,10,205,31" Style="{StaticResource GroupBoxStyle}">
             <StackPanel>
                 <Button Content="Software" Style="{StaticResource ButtonStyle}" Click="AddShortQuestion"/>
                 <Button Content="Hardware" Style="{StaticResource ButtonStyle}"  Click="AddShortQuestion"/>
@@ -15,7 +15,7 @@
                 <Button Content="Support" Style="{StaticResource ButtonStyle}" Click="AddShortQuestion"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Long" Margin="205,10,12,31">
+        <GroupBox Header="Long" Margin="205,10,12,31" Style="{StaticResource GroupBoxStyle}">
             <StackPanel>
                 <Button Content="Software" Style="{StaticResource ButtonStyle}" Click="AddLongQuestion"/>
                 <Button Content="Hardware" Style="{StaticResource ButtonStyle}"  Click="AddLongQuestion"/>
