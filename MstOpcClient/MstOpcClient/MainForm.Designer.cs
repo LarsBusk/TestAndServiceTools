@@ -38,13 +38,8 @@
       this.cbOpcServer = new System.Windows.Forms.ComboBox();
 
       this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.label3 = new System.Windows.Forms.Label();
-      this.intervalTextBox = new System.Windows.Forms.TextBox();
-      this.button2 = new System.Windows.Forms.Button();
-      this.button1 = new System.Windows.Forms.Button();
       this.label7 = new System.Windows.Forms.Label();
       this.tbProductCode = new System.Windows.Forms.TextBox();
-      this.lblState = new System.Windows.Forms.Label();
       this.btnCip = new System.Windows.Forms.Button();
       this.btnWaterReference = new System.Windows.Forms.Button();
       this.btnCalibration = new System.Windows.Forms.Button();
@@ -161,13 +156,8 @@
 
       // groupBox2
       // 
-      this.groupBox2.Controls.Add(this.label3);
-      this.groupBox2.Controls.Add(this.intervalTextBox);
-      this.groupBox2.Controls.Add(this.button2);
-      this.groupBox2.Controls.Add(this.button1);
       this.groupBox2.Controls.Add(this.label7);
       this.groupBox2.Controls.Add(this.tbProductCode);
-      this.groupBox2.Controls.Add(this.lblState);
       this.groupBox2.Controls.Add(this.btnCip);
       this.groupBox2.Controls.Add(this.btnWaterReference);
       this.groupBox2.Controls.Add(this.btnCalibration);
@@ -181,22 +171,6 @@
       // 
       // label3
       // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(14, 173);
-      this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(42, 13);
-      this.label3.TabIndex = 12;
-      this.label3.Text = "Interval";
-      // 
-      // intervalTextBox
-      // 
-      this.intervalTextBox.Location = new System.Drawing.Point(16, 189);
-      this.intervalTextBox.Margin = new System.Windows.Forms.Padding(2);
-      this.intervalTextBox.Name = "intervalTextBox";
-      this.intervalTextBox.Size = new System.Drawing.Size(61, 20);
-      this.intervalTextBox.TabIndex = 11;
-      this.intervalTextBox.Text = "200";
 
       // 
       // label7
