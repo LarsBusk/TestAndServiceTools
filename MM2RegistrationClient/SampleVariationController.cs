@@ -267,15 +267,6 @@ namespace RegistrationClient
             }
         }
 
-        public void WriteRegistrationValuesToOpcServer()
-        {
-            var timeDifference = TooGreatTimeDifference ? 1500 : 25;
-
-            MeatMasterOPCCommunicatior.SetPreRegistrationsValue1(reg1Value);
-            Thread.Sleep(timeDifference);
-            MeatMasterOPCCommunicatior.SetPreRegistrationsValue2(reg2Value);
-        }
-
         #endregion
 
 
@@ -284,12 +275,12 @@ namespace RegistrationClient
         {
             if (SkipValue(noReadOnRfid) && regValueToSkip == 1) return;
 
-            MeatMasterOPCCommunicatior.KepServerSetRegistrationValue1(reg1Value);
+            MeatMasterKepserverCommunicatior.KepServerSetRegistrationValue1(reg1Value);
 
             if (SkipValue(doubleValues) && RegValueToDouble == 1)
             {
                 Thread.Sleep(500);
-                MeatMasterOPCCommunicatior.KepServerSetRegistrationValue1(reg1Value);
+                MeatMasterKepserverCommunicatior.KepServerSetRegistrationValue1(reg1Value);
             }
         }
 
@@ -299,12 +290,12 @@ namespace RegistrationClient
 
             if (SkipValue(noReadOnRfid) && regValueToSkip == 2) return;
 
-            MeatMasterOPCCommunicatior.KepServerSetRegistrationValue2(reg2Value);
+            MeatMasterKepserverCommunicatior.KepServerSetRegistrationValue2(reg2Value);
 
             if (SkipValue(doubleValues) && RegValueToDouble == 2)
             {
                 Thread.Sleep(500);
-                MeatMasterOPCCommunicatior.KepServerSetRegistrationValue2(reg2Value);
+                MeatMasterKepserverCommunicatior.KepServerSetRegistrationValue2(reg2Value);
             }
         }
 
@@ -312,14 +303,7 @@ namespace RegistrationClient
 
         private void SetProductCode(int productCode)
         {
-            if (IsKepServer)
-            {
-                MeatMasterOPCCommunicatior.KepServerSetProductCodeN(productCode);
-            }
-            else
-            {
-                MeatMasterOPCCommunicatior.ChangeProduct(productCode);
-            }
+            KepServerCommunicator.KepServerSetProductCodeN(productCode);
         }
 
         private void SetRegistrationValuesFromBoxes()
