@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ThirdLineQs.Model
+namespace _3rdLineQuestions.Model
 {
     internal class ThirdLineQuestions : DbContext
     {

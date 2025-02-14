@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3rdLineQuestions"
         mc:Ignorable="d"
-        Title="3rd Line Questions" Height="300" Width="400" ResizeMode="CanMinimize">
+        Title="3rd Line Questions" Height="300" Width="400" ResizeMode="CanMinimize"
+        Icon="3rdQ.ico">
     <Grid>
         <GroupBox Header="Short" Margin="12,10,205,31" Style="{StaticResource GroupBoxStyle}">
             <StackPanel>
@@ -23,5 +24,6 @@
                     <Button Content="Support" Style="{StaticResource ButtonStyle}" Click="AddLongQuestion"/>
             </StackPanel>
         </GroupBox>
+        <Label Content="{Binding Path=NewQuestion }" VerticalAlignment="Bottom" Margin="10,0,0,5"/>
     </Grid>
 </Window>

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ThirdLineQs.Model
+namespace _3rdLineQuestions.Model
 {
     [Table("Questions")]
     [PrimaryKey("QuestionId")]
