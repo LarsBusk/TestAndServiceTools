@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProFossJsonTest
+﻿namespace ProFossJsonTest
 {
-  public class PfInstrument
+    public class PfInstrument
   {
     public string Name;
 

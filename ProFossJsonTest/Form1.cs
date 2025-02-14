@@ -97,7 +97,7 @@ namespace ProFossJsonTest
 
         private string StopMeasuring()
         {
-            var returnValue = String.Empty;
+            var returnValue = string.Empty;
 
             foreach (var selectedItem in instrumentListBox.SelectedItems)
             {
@@ -137,7 +137,7 @@ namespace ProFossJsonTest
         {
             var prodInfo = SendCommand("currentProduct");
 
-            if (string.IsNullOrEmpty(prodInfo)) return String.Empty;
+            if (string.IsNullOrEmpty(prodInfo)) return string.Empty;
 
             var product = JObject.Parse($"{{'Product':{prodInfo} }}");
             var curProduct = (string)product["Product"]["name"];
@@ -148,11 +148,8 @@ namespace ProFossJsonTest
         private void GetProducts()
         {
             var response = SendCommand("products");
-
             var products = $"{{'ProductList': {{'Products':{response}}} }}";
-
             var jProduct = JObject.Parse(products);
-
             JArray jProducts = (JArray)jProduct["ProductList"]["Products"];
             productsCb.Items.Clear();
 
@@ -172,9 +169,7 @@ namespace ProFossJsonTest
             System.Net.WebClient wc = new System.Net.WebClient();
             var webData = wc.DownloadString($"http://{ip}:7913/instruments");
             var instruments = $"{{'InstrumentList': {{'Instruments':{webData} }} }}";
-
             var jInstrumentList = JObject.Parse(instruments);
-
             JArray jInstruments = (JArray)jInstrumentList["InstrumentList"]["Instruments"];
             instrumentListBox.Items.Clear();
 
@@ -276,6 +271,11 @@ namespace ProFossJsonTest
         private void ipTb_TextChanged(object sender, EventArgs e)
         {
             ip = ipTb.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GetStuff();
         }
     }
 }
