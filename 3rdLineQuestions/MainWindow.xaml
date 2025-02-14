@@ -1,0 +1,29 @@
+﻿<Window x:Class="_3rdLineQuestions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3rdLineQuestions"
+        mc:Ignorable="d"
+        Title="3rd Line Questions" Height="300" Width="400" ResizeMode="CanMinimize"
+        Icon="3rdQ.ico">
+    <Grid>
+        <GroupBox Header="Short" Margin="12,10,205,31" Style="{StaticResource GroupBoxStyle}">
+            <StackPanel>
+                <Button Content="Software" Style="{StaticResource ButtonStyle}" Click="AddShortQuestion"/>
+                <Button Content="Hardware" Style="{StaticResource ButtonStyle}"  Click="AddShortQuestion"/>
+                <Button Content="General" Style="{StaticResource ButtonStyle}" Click="AddShortQuestion"/>
+                <Button Content="Support" Style="{StaticResource ButtonStyle}" Click="AddShortQuestion"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Long" Margin="205,10,12,31" Style="{StaticResource GroupBoxStyle}">
+            <StackPanel>
+                <Button Content="Software" Style="{StaticResource ButtonStyle}" Click="AddLongQuestion"/>
+                <Button Content="Hardware" Style="{StaticResource ButtonStyle}"  Click="AddLongQuestion"/>
+                <Button Content="General" Style="{StaticResource ButtonStyle}" Click="AddLongQuestion"/>
+                    <Button Content="Support" Style="{StaticResource ButtonStyle}" Click="AddLongQuestion"/>
+            </StackPanel>
+        </GroupBox>
+        <Label Content="{Binding Path=NewQuestion }" VerticalAlignment="Bottom" Margin="10,0,0,5"/>
+    </Grid>
+</Window>
