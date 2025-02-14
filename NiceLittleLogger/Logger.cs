@@ -16,7 +16,7 @@ namespace NiceLittleLogger
         public Logger(string fileName)
         {
             this._fileName = fileName;
-            Initiate(String.Empty);
+            Initiate(string.Empty);
         }
 
         /// <summary>
