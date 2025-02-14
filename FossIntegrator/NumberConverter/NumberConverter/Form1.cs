@@ -24,41 +24,44 @@ namespace NumberConverter
 
         private void buttonConvert_Click(object sender, EventArgs e)
         {
-            if (convertToFI.Checked)
-            {
-                resultTb.Text = Converters.MosaicToFiChassisID(textBoxInput.Text); 
-            }
-            if (convertMosaic.Checked) 
-            {
-                resultTb.Text = Converters.FiToMosaicChassisID(textBoxInput.Text);   
-            }
-            textBoxInput.Text = "";
-            textBoxInput.Focus();
+            HiLoTb.Text = Converters.MosaicToFiChassisID(mosaicTb.Text);
         }
 
-        
-        
+        private void convertToMosaicBtn_Click(object sender, EventArgs e)
+        {
+            mosaicTb.Text = Converters.FiToMosaicChassisID(HiLoTb.Text);
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBoxInput.Focus();
-            textBoxInput.Text = "";
+            mosaicTb.Focus();
+            mosaicTb.Text = "";
         }
 
-        private void convertMosaic_CheckedChanged(object sender, EventArgs e)
+        private void convertFromFiCidBtn_Click(object sender, EventArgs e)
         {
-            inputStyleLabel.Text = "Foss Integrator Instrument ID to convert (low, high)";
-            textBoxInput.Text = "0,0";
-            textBoxInput.Focus();
+            var elements = fiCidTb.Text.Split('-');
+            string hexString = string.Empty;
+            foreach (var element in elements)
+            {
+                hexString += Converters.DecimalToHex(element, 2);
+            }
+
+            hexCidTb.Text = hexString;
+            decimalCidTb.Text = Converters.HexToDecimal(hexString);
         }
 
-        private void convertToFI_CheckedChanged(object sender, EventArgs e)
+        private void convertFromHexCidBtn_Click(object sender, EventArgs e)
         {
-            inputStyleLabel.Text = "Mosaic instrument ID to convert";
-            textBoxInput.Text = "0";
-            textBoxInput.Focus();
+            decimalCidTb.Text = Converters.HexToDecimal(hexCidTb.Text);
+            fiCidTb.Text = Converters.HexToFiCid(hexCidTb.Text);
         }
 
-      
+        private void convertFromDecCidBtn_Click(object sender, EventArgs e)
+        {
+            hexCidTb.Text = Converters.DecimalToHex(decimalCidTb.Text, 8);
+            fiCidTb.Text = Converters.HexToFiCid(hexCidTb.Text);
+        }
     }
 }

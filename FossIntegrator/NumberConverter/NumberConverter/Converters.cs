@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
 
@@ -8,8 +9,11 @@ namespace NumberConverter
 {
     class Converters
     {
-        static public string DecimalToHex(string decimalString)
+        public static string DecimalToHex(string decimalString, int leng)
         {
+            return (ulong.Parse(decimalString)).ToString($"X{leng}");
+
+            /*
             string[] hexNumbers = new string[16] 
                 { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
             ulong inputNumber = 0;
@@ -39,7 +43,7 @@ namespace NumberConverter
                 output = "0" + output;
             }
 
-            return output;
+            return output;*/
         }
 
         public static string FiToMosaicChassisID(string fiChassisID)
@@ -48,7 +52,7 @@ namespace NumberConverter
             {
                 string lowID = fiChassisID.Substring(fiChassisID.IndexOf(",") + 1);
                 string highID = fiChassisID.Substring(0, fiChassisID.IndexOf(","));
-                string mosaicID = HexToDecimal(DecimalToHex(lowID) + DecimalToHex(highID));
+                string mosaicID = HexToDecimal(DecimalToHex(lowID, 8) + DecimalToHex(highID, 8));
                 return mosaicID;
             }
             else return "Error";
@@ -111,7 +115,7 @@ namespace NumberConverter
             string highID, lowID;
             if (checkMosaicID(MosaicChassisID))
             {
-                string hexChassisID = DecimalToHex(MosaicChassisID);
+                string hexChassisID = DecimalToHex(MosaicChassisID, 8);
                 if (hexChassisID.Length > 8)
                 {
                     lowID = hexChassisID.Substring(hexChassisID.Length - 8);
@@ -151,9 +155,10 @@ namespace NumberConverter
 
 
 
-        public static string HexToDecimal(string hexInput)
+        public static string HexToDecimal(string hexInput, int leng=0)
         {
-            long decNumber = 0;
+            return (ulong.Parse(hexInput, System.Globalization.NumberStyles.HexNumber)).ToString($"d{leng}");
+            /*long decNumber = 0;
             hexInput = hexInput.ToUpper();
 
             char[] hexArray = hexInput.ToCharArray();
@@ -193,7 +198,22 @@ namespace NumberConverter
                 }
 
             }
-            return decNumber.ToString();
+            return decNumber.ToString();*/
+        }
+
+        public static string HexToFiCid(string hexInput)
+        {
+            string fiCid = string.Empty;
+
+            if (hexInput.Length != 8) return fiCid;
+
+            for (int i = 0; i < 4; i++)
+            {
+                fiCid += HexToDecimal(hexInput.Substring(i * 2, 2), 3);
+                fiCid += "-";
+            }
+
+            return fiCid.Substring(0, 15);
         }
     }
 }

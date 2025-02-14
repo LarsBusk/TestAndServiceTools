@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Drawing.Drawing2D;
 
 namespace RemovePmsFromFi
 {
@@ -11,8 +12,17 @@ namespace RemovePmsFromFi
     {
         public string[] UsedProducts;
 
+        public string PathToData
+        {
+            set
+            {
+                _pathToSysData = Path.Combine(value, "Data", "System.xml");
+                _pathToComData = Path.Combine(value, "Data", "ComponentData.xml");
+            }
+        }
+
         private string _pathToSysData;
-        private readonly string _pathToComData;
+        private string _pathToComData;
 
         private XDocument _sysDoc;
         private XDocument _comDoc;

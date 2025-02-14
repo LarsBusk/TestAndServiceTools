@@ -30,20 +30,29 @@
         {
             this.buttonConvert = new System.Windows.Forms.Button();
             this.inputStyleLabel = new System.Windows.Forms.Label();
-            this.textBoxInput = new System.Windows.Forms.TextBox();
-            this.panelConvertTo = new System.Windows.Forms.Panel();
-            this.convertToFI = new System.Windows.Forms.RadioButton();
-            this.convertMosaic = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.mosaicTb = new System.Windows.Forms.TextBox();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.HiLoTb = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.convertToMosaicBtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.convertFromDecCidBtn = new System.Windows.Forms.Button();
+            this.convertFromHexCidBtn = new System.Windows.Forms.Button();
+            this.convertFromFiCidBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.decimalCidTb = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.resultTb = new System.Windows.Forms.TextBox();
-            this.panelConvertTo.SuspendLayout();
+            this.hexCidTb = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.fiCidTb = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonConvert
             // 
-            this.buttonConvert.Location = new System.Drawing.Point(326, 146);
+            this.buttonConvert.Location = new System.Drawing.Point(232, 39);
             this.buttonConvert.Name = "buttonConvert";
             this.buttonConvert.Size = new System.Drawing.Size(75, 23);
             this.buttonConvert.TabIndex = 0;
@@ -54,66 +63,23 @@
             // inputStyleLabel
             // 
             this.inputStyleLabel.AutoSize = true;
-            this.inputStyleLabel.Location = new System.Drawing.Point(28, 18);
+            this.inputStyleLabel.Location = new System.Drawing.Point(2, 26);
             this.inputStyleLabel.Name = "inputStyleLabel";
             this.inputStyleLabel.Size = new System.Drawing.Size(196, 13);
             this.inputStyleLabel.TabIndex = 1;
             this.inputStyleLabel.Text = "Mosaic Instrument ID number to convert";
             // 
-            // textBoxInput
+            // mosaicTb
             // 
-            this.textBoxInput.Location = new System.Drawing.Point(31, 34);
-            this.textBoxInput.Name = "textBoxInput";
-            this.textBoxInput.Size = new System.Drawing.Size(221, 20);
-            this.textBoxInput.TabIndex = 1;
-            this.textBoxInput.Text = "0";
-            // 
-            // panelConvertTo
-            // 
-            this.panelConvertTo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelConvertTo.Controls.Add(this.convertToFI);
-            this.panelConvertTo.Controls.Add(this.convertMosaic);
-            this.panelConvertTo.Location = new System.Drawing.Point(31, 73);
-            this.panelConvertTo.Name = "panelConvertTo";
-            this.panelConvertTo.Size = new System.Drawing.Size(173, 67);
-            this.panelConvertTo.TabIndex = 3;
-            // 
-            // convertToFI
-            // 
-            this.convertToFI.AutoSize = true;
-            this.convertToFI.Checked = true;
-            this.convertToFI.Location = new System.Drawing.Point(9, 36);
-            this.convertToFI.Name = "convertToFI";
-            this.convertToFI.Size = new System.Drawing.Size(119, 17);
-            this.convertToFI.TabIndex = 4;
-            this.convertToFI.TabStop = true;
-            this.convertToFI.Text = "&Foss Integrator style";
-            this.convertToFI.UseVisualStyleBackColor = true;
-            this.convertToFI.CheckedChanged += new System.EventHandler(this.convertToFI_CheckedChanged);
-            // 
-            // convertMosaic
-            // 
-            this.convertMosaic.AutoSize = true;
-            this.convertMosaic.Location = new System.Drawing.Point(9, 12);
-            this.convertMosaic.Name = "convertMosaic";
-            this.convertMosaic.Size = new System.Drawing.Size(83, 17);
-            this.convertMosaic.TabIndex = 3;
-            this.convertMosaic.Text = "&Mosaic style";
-            this.convertMosaic.UseVisualStyleBackColor = true;
-            this.convertMosaic.CheckedChanged += new System.EventHandler(this.convertMosaic_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Convert to";
+            this.mosaicTb.Location = new System.Drawing.Point(5, 42);
+            this.mosaicTb.Name = "mosaicTb";
+            this.mosaicTb.Size = new System.Drawing.Size(221, 20);
+            this.mosaicTb.TabIndex = 1;
+            this.mosaicTb.Text = "0";
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(326, 175);
+            this.buttonClose.Location = new System.Drawing.Point(369, 340);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 4;
@@ -121,46 +87,162 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // HiLoTb
+            // 
+            this.HiLoTb.Location = new System.Drawing.Point(5, 83);
+            this.HiLoTb.Margin = new System.Windows.Forms.Padding(2);
+            this.HiLoTb.Name = "HiLoTb";
+            this.HiLoTb.Size = new System.Drawing.Size(221, 20);
+            this.HiLoTb.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Hi, lo chassisid to convert.";
+            // 
+            // convertToMosaicBtn
+            // 
+            this.convertToMosaicBtn.Location = new System.Drawing.Point(232, 80);
+            this.convertToMosaicBtn.Name = "convertToMosaicBtn";
+            this.convertToMosaicBtn.Size = new System.Drawing.Size(75, 23);
+            this.convertToMosaicBtn.TabIndex = 8;
+            this.convertToMosaicBtn.Text = "Convert";
+            this.convertToMosaicBtn.UseVisualStyleBackColor = true;
+            this.convertToMosaicBtn.Click += new System.EventHandler(this.convertToMosaicBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.HiLoTb);
+            this.groupBox1.Controls.Add(this.convertToMosaicBtn);
+            this.groupBox1.Controls.Add(this.buttonConvert);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.inputStyleLabel);
+            this.groupBox1.Controls.Add(this.mosaicTb);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(342, 120);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chassis ID";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.convertFromDecCidBtn);
+            this.groupBox2.Controls.Add(this.convertFromHexCidBtn);
+            this.groupBox2.Controls.Add(this.convertFromFiCidBtn);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.decimalCidTb);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.hexCidTb);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.fiCidTb);
+            this.groupBox2.Location = new System.Drawing.Point(15, 139);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(339, 195);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "CID";
+            // 
+            // convertFromDecCidBtn
+            // 
+            this.convertFromDecCidBtn.Location = new System.Drawing.Point(229, 134);
+            this.convertFromDecCidBtn.Name = "convertFromDecCidBtn";
+            this.convertFromDecCidBtn.Size = new System.Drawing.Size(75, 23);
+            this.convertFromDecCidBtn.TabIndex = 8;
+            this.convertFromDecCidBtn.Text = "Convert";
+            this.convertFromDecCidBtn.UseVisualStyleBackColor = true;
+            this.convertFromDecCidBtn.Click += new System.EventHandler(this.convertFromDecCidBtn_Click);
+            // 
+            // convertFromHexCidBtn
+            // 
+            this.convertFromHexCidBtn.Location = new System.Drawing.Point(229, 84);
+            this.convertFromHexCidBtn.Name = "convertFromHexCidBtn";
+            this.convertFromHexCidBtn.Size = new System.Drawing.Size(75, 23);
+            this.convertFromHexCidBtn.TabIndex = 7;
+            this.convertFromHexCidBtn.Text = "Convert";
+            this.convertFromHexCidBtn.UseVisualStyleBackColor = true;
+            this.convertFromHexCidBtn.Click += new System.EventHandler(this.convertFromHexCidBtn_Click);
+            // 
+            // convertFromFiCidBtn
+            // 
+            this.convertFromFiCidBtn.Location = new System.Drawing.Point(229, 37);
+            this.convertFromFiCidBtn.Name = "convertFromFiCidBtn";
+            this.convertFromFiCidBtn.Size = new System.Drawing.Size(75, 23);
+            this.convertFromFiCidBtn.TabIndex = 6;
+            this.convertFromFiCidBtn.Text = "Convert";
+            this.convertFromFiCidBtn.UseVisualStyleBackColor = true;
+            this.convertFromFiCidBtn.Click += new System.EventHandler(this.convertFromFiCidBtn_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 120);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Decimal";
+            // 
+            // decimalCidTb
+            // 
+            this.decimalCidTb.Location = new System.Drawing.Point(15, 136);
+            this.decimalCidTb.Name = "decimalCidTb";
+            this.decimalCidTb.Size = new System.Drawing.Size(208, 20);
+            this.decimalCidTb.TabIndex = 4;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 180);
+            this.label3.Location = new System.Drawing.Point(12, 71);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Result:";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "HEX";
             // 
-            // resultTb
+            // hexCidTb
             // 
-            this.resultTb.Location = new System.Drawing.Point(72, 178);
-            this.resultTb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.resultTb.Name = "resultTb";
-            this.resultTb.ReadOnly = true;
-            this.resultTb.Size = new System.Drawing.Size(234, 20);
-            this.resultTb.TabIndex = 6;
+            this.hexCidTb.Location = new System.Drawing.Point(15, 87);
+            this.hexCidTb.Name = "hexCidTb";
+            this.hexCidTb.Size = new System.Drawing.Size(208, 20);
+            this.hexCidTb.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Fi Style";
+            // 
+            // fiCidTb
+            // 
+            this.fiCidTb.Location = new System.Drawing.Point(15, 40);
+            this.fiCidTb.Name = "fiCidTb";
+            this.fiCidTb.Size = new System.Drawing.Size(208, 20);
+            this.fiCidTb.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 212);
-            this.Controls.Add(this.resultTb);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(456, 375);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panelConvertTo);
-            this.Controls.Add(this.textBoxInput);
-            this.Controls.Add(this.inputStyleLabel);
-            this.Controls.Add(this.buttonConvert);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "ChassisID Converter";
+            this.Text = "Number Converter";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panelConvertTo.ResumeLayout(false);
-            this.panelConvertTo.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -168,14 +250,22 @@
 
         private System.Windows.Forms.Button buttonConvert;
         private System.Windows.Forms.Label inputStyleLabel;
-        private System.Windows.Forms.TextBox textBoxInput;
-        private System.Windows.Forms.Panel panelConvertTo;
-        private System.Windows.Forms.RadioButton convertToFI;
-        private System.Windows.Forms.RadioButton convertMosaic;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox mosaicTb;
         private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.TextBox HiLoTb;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button convertToMosaicBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button convertFromDecCidBtn;
+        private System.Windows.Forms.Button convertFromHexCidBtn;
+        private System.Windows.Forms.Button convertFromFiCidBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox decimalCidTb;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox resultTb;
+        private System.Windows.Forms.TextBox hexCidTb;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox fiCidTb;
     }
 }
 

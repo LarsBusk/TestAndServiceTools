@@ -5,7 +5,7 @@ namespace RemovePmsFromFi
 {
     public partial class MainForm : Form
     {
-        private string basePath;
+        private string basePath = string.Empty;
         private XmlHelper xmlHelper;
         ToolTip toolTip;
 
@@ -31,6 +31,7 @@ namespace RemovePmsFromFi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            xmlHelper = new XmlHelper(basePath);
             comboBoxVersions.Items.AddRange(FiHelper.GetVersions());
 
             if (comboBoxVersions.Items.Count > 0)
@@ -38,7 +39,7 @@ namespace RemovePmsFromFi
 
             basePath = ((FiVersions)comboBoxVersions.SelectedItem)?.Version ??
                        @"C:\Users\lab\Projects\GitHub\Learing\RemovePmsFromFi";
-            xmlHelper = new XmlHelper(basePath);
+            
             toolTip = new ToolTip();
             toolTip.SetToolTip(buttonUsedroducts, "Finds the products that are used in current results.");
             toolTip.SetToolTip(buttonUnusedProducts, "Selects and removes unused products.");
@@ -48,6 +49,7 @@ namespace RemovePmsFromFi
         private void comboBoxVersions_SelectedIndexChanged(object sender, EventArgs e)
         {
             basePath = ((FiVersions)comboBoxVersions.SelectedItem).Version;
+            xmlHelper.PathToData=basePath;
             FiHelper.SelectedVersion = basePath;
         }
 
