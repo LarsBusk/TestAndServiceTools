@@ -7,15 +7,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>3rdQ.ico</ApplicationIcon>
+    <ApplicationIcon>3rdQProgram.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="3rdQ.ico" />
     <None Remove="config.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="3rdQ.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3rdQProgram.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="config.json">
