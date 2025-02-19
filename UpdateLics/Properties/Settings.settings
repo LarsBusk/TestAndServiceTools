@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UpdateLics.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DaysToAdd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="ThumbPrint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">44fa776e7fc544baf99186648e41599bb2e72560</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
