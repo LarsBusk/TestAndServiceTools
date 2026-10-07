@@ -46,5 +46,33 @@ namespace RemovePmsFromFi
 
             return Tuple.Create(name, created);
         }
+
+        public List<string> ComOrSysFileNames(List<int> indexes, string fileType)
+        {
+            var fileNames = new List<string>();
+            var pre = fileType == "Com" ? "Com" : "Sys";
+
+            foreach (var index in indexes)
+            {
+                var fileName = pre + index.ToString("X8").ToLower() + "-1.xml";
+                fileNames.Add(fileName);
+            }
+
+            return fileNames;
+        }
+
+        public List<string> GetComfiles()
+        {
+            var folder = "C:\\Users\\lab\\Documents\\SupportCases\\FI\\Irland\\Snapshot2";
+            var files = Directory.GetFiles(folder, "Com*");
+            return files.Select(f => Path.GetFileName(f)).ToList();
+        }
+
+        public List<string> GetSysfiles()
+        {
+            var folder = "C:\\Users\\lab\\Documents\\SupportCases\\FI\\Irland\\Snapshot2";
+            var files = Directory.GetFiles(folder, "Sys*");
+            return files.Select(f => Path.GetFileName(f)).ToList();
+        }
     }
 }

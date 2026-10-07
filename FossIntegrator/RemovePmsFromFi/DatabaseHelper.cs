@@ -25,6 +25,44 @@ namespace RemovePmsFromFi
             return programs;
         }
 
+        public List<int> ComponentIndexes()
+        {
+           var indexes = new List<int>();
+            var conn = new SqlConnection(ConnectionString());
+            var command = new SqlCommand("Select Distinct ComponentIndex From Jobs", conn);
+            conn.Open();
+
+            using (var rows = command.ExecuteReader())
+            {
+                while (rows.Read())
+                {
+                    indexes.Add(int.Parse($"{rows["ComponentIndex"]}"));
+                }
+            }
+
+            conn.Close();
+            return indexes;
+        }
+
+        public List<int> SetupIndexes()
+        {
+            var indexes = new List<int>();
+            var conn = new SqlConnection(ConnectionString());
+            var command = new SqlCommand("Select Distinct SetupIndex From Results", conn);
+            conn.Open();
+
+            using (var rows = command.ExecuteReader())
+            {
+                while (rows.Read())
+                {
+                    indexes.Add(int.Parse($"{rows["SetupIndex"]}"));
+                }
+            }
+
+            conn.Close();
+            return indexes;
+        }
+
         private string ConnectionString()
         {
             var connstr = new SqlConnectionStringBuilder();

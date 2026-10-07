@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RemovePmsFromFi
@@ -70,6 +71,28 @@ namespace RemovePmsFromFi
             usedProducts = form.Products.ToArray();
             buttonUnusedProducts.Enabled = true;
             buttonUnusedPms.Enabled = true;
+        }
+
+        private void getCombtn_Click(object sender, EventArgs e)
+        {
+            var dataHelper = new DatabaseHelper();
+            var fiHelper = new FiHelper();
+            var indexes = dataHelper.ComponentIndexes();
+            var files = fiHelper.ComOrSysFileNames(indexes, "Com");
+            var realFiles = fiHelper.GetComfiles();
+
+            var missing = files.Where(f => !realFiles.Contains(f)).ToList();
+        }
+
+        private void sysBtn_Click(object sender, EventArgs e)
+        {
+            var dataHelper = new DatabaseHelper();
+            var fiHelper = new FiHelper();
+            var indexes = dataHelper.SetupIndexes();
+            var files = fiHelper.ComOrSysFileNames(indexes, "Sys");
+            var realFiles = fiHelper.GetSysfiles();
+
+            var missing = files.Where(f => !realFiles.Contains(f)).ToList();
         }
     }
 }

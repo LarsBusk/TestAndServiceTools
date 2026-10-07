@@ -33,6 +33,10 @@
             this.comboBoxVersions = new System.Windows.Forms.ComboBox();
             this.buttonUsedroducts = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.getCombtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.sysBtn = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonUnusedProducts
@@ -85,11 +89,43 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Select version";
             // 
+            // getCombtn
+            // 
+            this.getCombtn.Location = new System.Drawing.Point(6, 19);
+            this.getCombtn.Name = "getCombtn";
+            this.getCombtn.Size = new System.Drawing.Size(89, 23);
+            this.getCombtn.TabIndex = 6;
+            this.getCombtn.Text = "Com files";
+            this.getCombtn.UseVisualStyleBackColor = true;
+            this.getCombtn.Click += new System.EventHandler(this.getCombtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.sysBtn);
+            this.groupBox1.Controls.Add(this.getCombtn);
+            this.groupBox1.Location = new System.Drawing.Point(29, 81);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(144, 114);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Missing snapshot";
+            // 
+            // sysBtn
+            // 
+            this.sysBtn.Location = new System.Drawing.Point(6, 48);
+            this.sysBtn.Name = "sysBtn";
+            this.sysBtn.Size = new System.Drawing.Size(89, 23);
+            this.sysBtn.TabIndex = 7;
+            this.sysBtn.Text = "Sys files";
+            this.sysBtn.UseVisualStyleBackColor = true;
+            this.sysBtn.Click += new System.EventHandler(this.sysBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 207);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonUsedroducts);
             this.Controls.Add(this.comboBoxVersions);
@@ -100,6 +136,7 @@
             this.Name = "MainForm";
             this.Text = "FossIntegrator prediction model cleaner";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,6 +149,9 @@
         private System.Windows.Forms.ComboBox comboBoxVersions;
         private System.Windows.Forms.Button buttonUsedroducts;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button getCombtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button sysBtn;
     }
 }
 
