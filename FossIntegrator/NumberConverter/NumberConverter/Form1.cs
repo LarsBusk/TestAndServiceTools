@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using NumberConverter.Converters;
 
 namespace NumberConverter
 {
@@ -15,6 +14,7 @@ namespace NumberConverter
         public Form1()
         {
             InitializeComponent();
+            SetToolTips();
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -62,6 +62,15 @@ namespace NumberConverter
         {
             hexCidTb.Text = Converters.DecimalToHex(decimalCidTb.Text, 8);
             fiCidTb.Text = Converters.HexToFiCid(hexCidTb.Text);
+        }
+
+        private void SetToolTips()
+        {
+            var tip = new ToolTip();
+            tip.SetToolTip(HiLoTb, "Type the chassis ID hi,lo and click convert.");
+            tip.SetToolTip(fiCidTb, "Type the CID as it is shown in prediction model settings in FI. The numbers must be devided by '-'");
+            tip.SetToolTip(hexCidTb, "The hex CID is used in the ComponentData.xml.");
+            tip.SetToolTip(decimalCidTb, "The decimal style is used in the FIBASE e.g. in the DoubleComponent table");
         }
     }
 }
